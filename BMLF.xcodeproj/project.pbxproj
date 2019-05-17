@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3800F047228E389B00095A2F /* ZJBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3800F046228E389B00095A2F /* ZJBaseViewController.swift */; };
+		3800F04E228E394400095A2F /* ZJRentAptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3800F04D228E394400095A2F /* ZJRentAptViewController.swift */; };
+		3800F050228E39D400095A2F /* ZJRentAptMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3800F04F228E39D400095A2F /* ZJRentAptMapView.swift */; };
+		3800F052228E3D0800095A2F /* ZJRentAptListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3800F051228E3D0800095A2F /* ZJRentAptListView.swift */; };
+		3800F054228E4D0D00095A2F /* ZJRentAptListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3800F053228E4D0D00095A2F /* ZJRentAptListViewCell.swift */; };
+		3800F057228E52B700095A2F /* PublishView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3800F055228E52B700095A2F /* PublishView.xib */; };
+		3800F058228E52B700095A2F /* PublishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3800F056228E52B700095A2F /* PublishView.swift */; };
+		4EB5AB71F9334FAE7E78F7D7 /* Pods_BMLF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 828C269B6E435890612D9151 /* Pods_BMLF.framework */; };
 		A41CFD3A228DF4F00008FFB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41CFD39228DF4F00008FFB6 /* AppDelegate.swift */; };
 		A41CFD41228DF4F30008FFB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A41CFD40228DF4F30008FFB6 /* Assets.xcassets */; };
 		A41CFD44228DF4F30008FFB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A41CFD42228DF4F30008FFB6 /* LaunchScreen.storyboard */; };
@@ -36,6 +44,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3800F046228E389B00095A2F /* ZJBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJBaseViewController.swift; sourceTree = "<group>"; };
+		3800F04D228E394400095A2F /* ZJRentAptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptViewController.swift; sourceTree = "<group>"; };
+		3800F04F228E39D400095A2F /* ZJRentAptMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptMapView.swift; sourceTree = "<group>"; };
+		3800F051228E3D0800095A2F /* ZJRentAptListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListView.swift; sourceTree = "<group>"; };
+		3800F053228E4D0D00095A2F /* ZJRentAptListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListViewCell.swift; sourceTree = "<group>"; };
+		3800F055228E52B700095A2F /* PublishView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishView.xib; sourceTree = "<group>"; };
+		3800F056228E52B700095A2F /* PublishView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishView.swift; sourceTree = "<group>"; };
+		828C269B6E435890612D9151 /* Pods_BMLF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BMLF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C17C4D8C7D3D43388A90FAD /* Pods-BMLF.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BMLF.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BMLF/Pods-BMLF.debug.xcconfig"; sourceTree = "<group>"; };
 		A41CFD36228DF4F00008FFB6 /* BMLF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BMLF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A41CFD39228DF4F00008FFB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A41CFD40228DF4F30008FFB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +68,7 @@
 		A41CFD69228DF6D30008FFB6 /* ZJNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJNavigationController.swift; sourceTree = "<group>"; };
 		A41CFD6B228DFCCA0008FFB6 /* ZJAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddViewController.swift; sourceTree = "<group>"; };
 		A41CFD6D228E13B60008FFB6 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		D895C8ADEDC5B0CBDEE2B650 /* Pods-BMLF.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BMLF.release.xcconfig"; path = "Pods/Target Support Files/Pods-BMLF/Pods-BMLF.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EB5AB71F9334FAE7E78F7D7 /* Pods_BMLF.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +97,71 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		28ED07D7B6472EADC2CD70AC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8C17C4D8C7D3D43388A90FAD /* Pods-BMLF.debug.xcconfig */,
+				D895C8ADEDC5B0CBDEE2B650 /* Pods-BMLF.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		3800F048228E38AB00095A2F /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				A41CFD39228DF4F00008FFB6 /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		3800F049228E38BE00095A2F /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				A41CFD67228DF6490008FFB6 /* ZJTabBarController.swift */,
+				A41CFD69228DF6D30008FFB6 /* ZJNavigationController.swift */,
+				3800F046228E389B00095A2F /* ZJBaseViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		3800F04A228E38DE00095A2F /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				3800F04C228E38FC00095A2F /* RentApt */,
+				3800F04B228E38ED00095A2F /* Add */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		3800F04B228E38ED00095A2F /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				3800F056228E52B700095A2F /* PublishView.swift */,
+				3800F055228E52B700095A2F /* PublishView.xib */,
+				A41CFD6B228DFCCA0008FFB6 /* ZJAddViewController.swift */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
+		3800F04C228E38FC00095A2F /* RentApt */ = {
+			isa = PBXGroup;
+			children = (
+				3800F04D228E394400095A2F /* ZJRentAptViewController.swift */,
+				3800F04F228E39D400095A2F /* ZJRentAptMapView.swift */,
+				3800F051228E3D0800095A2F /* ZJRentAptListView.swift */,
+				3800F053228E4D0D00095A2F /* ZJRentAptListViewCell.swift */,
+			);
+			path = RentApt;
+			sourceTree = "<group>";
+		};
+		6E0EB9381AE2C2D6FA548013 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				828C269B6E435890612D9151 /* Pods_BMLF.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A41CFD2D228DF4F00008FFB6 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +169,8 @@
 				A41CFD4D228DF4F40008FFB6 /* BMLFTests */,
 				A41CFD58228DF4F40008FFB6 /* BMLFUITests */,
 				A41CFD37228DF4F00008FFB6 /* Products */,
+				28ED07D7B6472EADC2CD70AC /* Pods */,
+				6E0EB9381AE2C2D6FA548013 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,10 +187,9 @@
 		A41CFD38228DF4F00008FFB6 /* BMLF */ = {
 			isa = PBXGroup;
 			children = (
-				A41CFD39228DF4F00008FFB6 /* AppDelegate.swift */,
-				A41CFD67228DF6490008FFB6 /* ZJTabBarController.swift */,
-				A41CFD69228DF6D30008FFB6 /* ZJNavigationController.swift */,
-				A41CFD6B228DFCCA0008FFB6 /* ZJAddViewController.swift */,
+				3800F048228E38AB00095A2F /* AppDelegate */,
+				3800F049228E38BE00095A2F /* Main */,
+				3800F04A228E38DE00095A2F /* Class */,
 				A41CFD6D228E13B60008FFB6 /* Helper.swift */,
 				A41CFD40228DF4F30008FFB6 /* Assets.xcassets */,
 				A41CFD42228DF4F30008FFB6 /* LaunchScreen.storyboard */,
@@ -138,9 +223,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A41CFD5E228DF4F40008FFB6 /* Build configuration list for PBXNativeTarget "BMLF" */;
 			buildPhases = (
+				7848120B8933061B73E7F25D /* [CP] Check Pods Manifest.lock */,
 				A41CFD32228DF4F00008FFB6 /* Sources */,
 				A41CFD33228DF4F00008FFB6 /* Frameworks */,
 				A41CFD34228DF4F00008FFB6 /* Resources */,
+				BAC00265B3A6D20834616E87 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -237,6 +324,7 @@
 			files = (
 				A41CFD44228DF4F30008FFB6 /* LaunchScreen.storyboard in Resources */,
 				A41CFD41228DF4F30008FFB6 /* Assets.xcassets in Resources */,
+				3800F057228E52B700095A2F /* PublishView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +344,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7848120B8933061B73E7F25D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BMLF-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BAC00265B3A6D20834616E87 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BMLF/Pods-BMLF-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BMLF/Pods-BMLF-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A41CFD32228DF4F00008FFB6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -264,7 +399,13 @@
 				A41CFD6C228DFCCA0008FFB6 /* ZJAddViewController.swift in Sources */,
 				A41CFD68228DF6490008FFB6 /* ZJTabBarController.swift in Sources */,
 				A41CFD6E228E13B60008FFB6 /* Helper.swift in Sources */,
+				3800F054228E4D0D00095A2F /* ZJRentAptListViewCell.swift in Sources */,
+				3800F047228E389B00095A2F /* ZJBaseViewController.swift in Sources */,
+				3800F052228E3D0800095A2F /* ZJRentAptListView.swift in Sources */,
+				3800F050228E39D400095A2F /* ZJRentAptMapView.swift in Sources */,
 				A41CFD3A228DF4F00008FFB6 /* AppDelegate.swift in Sources */,
+				3800F058228E52B700095A2F /* PublishView.swift in Sources */,
+				3800F04E228E394400095A2F /* ZJRentAptViewController.swift in Sources */,
 				A41CFD6A228DF6D30008FFB6 /* ZJNavigationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,6 +571,7 @@
 		};
 		A41CFD5F228DF4F40008FFB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C17C4D8C7D3D43388A90FAD /* Pods-BMLF.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -449,6 +591,7 @@
 		};
 		A41CFD60228DF4F40008FFB6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D895C8ADEDC5B0CBDEE2B650 /* Pods-BMLF.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

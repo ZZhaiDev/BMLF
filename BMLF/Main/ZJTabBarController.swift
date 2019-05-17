@@ -54,7 +54,7 @@ class ZJTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     // 添加所有控件
     func setUpAllViewController() -> Void {
-        setUpChildController(UIViewController(), "房子","tabLive","tabLiveHL")
+        setUpChildController(ZJRentAptViewController(), "房子","tabLive","tabLiveHL")
         setUpChildController(UIViewController(), "娱乐",  "tabYule",  "tabYuleHL")
         setUpChildController(UIViewController(), "",  "",  "")
         setUpChildController(UIViewController(), "鱼吧",  "tabYuba",  "tabYubaHL")
