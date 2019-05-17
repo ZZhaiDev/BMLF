@@ -11,7 +11,6 @@
 		3800F04E228E394400095A2F /* ZJRentAptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3800F04D228E394400095A2F /* ZJRentAptViewController.swift */; };
 		3800F050228E39D400095A2F /* ZJRentAptMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3800F04F228E39D400095A2F /* ZJRentAptMapView.swift */; };
 		3800F052228E3D0800095A2F /* ZJRentAptListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3800F051228E3D0800095A2F /* ZJRentAptListView.swift */; };
-		3800F054228E4D0D00095A2F /* ZJRentAptListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3800F053228E4D0D00095A2F /* ZJRentAptListViewCell.swift */; };
 		3800F057228E52B700095A2F /* PublishView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3800F055228E52B700095A2F /* PublishView.xib */; };
 		3800F058228E52B700095A2F /* PublishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3800F056228E52B700095A2F /* PublishView.swift */; };
 		4EB5AB71F9334FAE7E78F7D7 /* Pods_BMLF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 828C269B6E435890612D9151 /* Pods_BMLF.framework */; };
@@ -22,8 +21,12 @@
 		A41CFD5A228DF4F40008FFB6 /* BMLFUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41CFD59228DF4F40008FFB6 /* BMLFUITests.swift */; };
 		A41CFD68228DF6490008FFB6 /* ZJTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41CFD67228DF6490008FFB6 /* ZJTabBarController.swift */; };
 		A41CFD6A228DF6D30008FFB6 /* ZJNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41CFD69228DF6D30008FFB6 /* ZJNavigationController.swift */; };
-		A41CFD6C228DFCCA0008FFB6 /* ZJAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41CFD6B228DFCCA0008FFB6 /* ZJAddViewController.swift */; };
+		A41CFD6C228DFCCA0008FFB6 /* ZJAddAptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41CFD6B228DFCCA0008FFB6 /* ZJAddAptViewController.swift */; };
 		A41CFD6E228E13B60008FFB6 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41CFD6D228E13B60008FFB6 /* Helper.swift */; };
+		A41CFD73228F28FE0008FFB6 /* ZJRentAptListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41CFD71228F28FE0008FFB6 /* ZJRentAptListViewCell.swift */; };
+		A41CFD74228F28FE0008FFB6 /* ZJRentAptListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A41CFD72228F28FE0008FFB6 /* ZJRentAptListViewCell.xib */; };
+		A4A12EDF228F63EE00D281BE /* ZJAddAptMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A12EDE228F63EE00D281BE /* ZJAddAptMainView.swift */; };
+		A4A12EE2228F64B100D281BE /* ZJAddAptMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A12EE1228F64B100D281BE /* ZJAddAptMapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +51,6 @@
 		3800F04D228E394400095A2F /* ZJRentAptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptViewController.swift; sourceTree = "<group>"; };
 		3800F04F228E39D400095A2F /* ZJRentAptMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptMapView.swift; sourceTree = "<group>"; };
 		3800F051228E3D0800095A2F /* ZJRentAptListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListView.swift; sourceTree = "<group>"; };
-		3800F053228E4D0D00095A2F /* ZJRentAptListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListViewCell.swift; sourceTree = "<group>"; };
 		3800F055228E52B700095A2F /* PublishView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishView.xib; sourceTree = "<group>"; };
 		3800F056228E52B700095A2F /* PublishView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishView.swift; sourceTree = "<group>"; };
 		828C269B6E435890612D9151 /* Pods_BMLF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BMLF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,8 +68,12 @@
 		A41CFD5B228DF4F40008FFB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A41CFD67228DF6490008FFB6 /* ZJTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJTabBarController.swift; sourceTree = "<group>"; };
 		A41CFD69228DF6D30008FFB6 /* ZJNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJNavigationController.swift; sourceTree = "<group>"; };
-		A41CFD6B228DFCCA0008FFB6 /* ZJAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddViewController.swift; sourceTree = "<group>"; };
+		A41CFD6B228DFCCA0008FFB6 /* ZJAddAptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptViewController.swift; sourceTree = "<group>"; };
 		A41CFD6D228E13B60008FFB6 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		A41CFD71228F28FE0008FFB6 /* ZJRentAptListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListViewCell.swift; sourceTree = "<group>"; };
+		A41CFD72228F28FE0008FFB6 /* ZJRentAptListViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZJRentAptListViewCell.xib; sourceTree = "<group>"; };
+		A4A12EDE228F63EE00D281BE /* ZJAddAptMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptMainView.swift; sourceTree = "<group>"; };
+		A4A12EE1228F64B100D281BE /* ZJAddAptMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptMapView.swift; sourceTree = "<group>"; };
 		D895C8ADEDC5B0CBDEE2B650 /* Pods-BMLF.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BMLF.release.xcconfig"; path = "Pods/Target Support Files/Pods-BMLF/Pods-BMLF.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,7 +144,7 @@
 			children = (
 				3800F056228E52B700095A2F /* PublishView.swift */,
 				3800F055228E52B700095A2F /* PublishView.xib */,
-				A41CFD6B228DFCCA0008FFB6 /* ZJAddViewController.swift */,
+				A4A12EE0228F648D00D281BE /* Apt */,
 			);
 			path = Add;
 			sourceTree = "<group>";
@@ -149,7 +155,8 @@
 				3800F04D228E394400095A2F /* ZJRentAptViewController.swift */,
 				3800F04F228E39D400095A2F /* ZJRentAptMapView.swift */,
 				3800F051228E3D0800095A2F /* ZJRentAptListView.swift */,
-				3800F053228E4D0D00095A2F /* ZJRentAptListViewCell.swift */,
+				A41CFD71228F28FE0008FFB6 /* ZJRentAptListViewCell.swift */,
+				A41CFD72228F28FE0008FFB6 /* ZJRentAptListViewCell.xib */,
 			);
 			path = RentApt;
 			sourceTree = "<group>";
@@ -214,6 +221,16 @@
 				A41CFD5B228DF4F40008FFB6 /* Info.plist */,
 			);
 			path = BMLFUITests;
+			sourceTree = "<group>";
+		};
+		A4A12EE0228F648D00D281BE /* Apt */ = {
+			isa = PBXGroup;
+			children = (
+				A41CFD6B228DFCCA0008FFB6 /* ZJAddAptViewController.swift */,
+				A4A12EDE228F63EE00D281BE /* ZJAddAptMainView.swift */,
+				A4A12EE1228F64B100D281BE /* ZJAddAptMapView.swift */,
+			);
+			path = Apt;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,6 +342,7 @@
 				A41CFD44228DF4F30008FFB6 /* LaunchScreen.storyboard in Resources */,
 				A41CFD41228DF4F30008FFB6 /* Assets.xcassets in Resources */,
 				3800F057228E52B700095A2F /* PublishView.xib in Resources */,
+				A41CFD74228F28FE0008FFB6 /* ZJRentAptListViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,10 +414,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A41CFD6C228DFCCA0008FFB6 /* ZJAddViewController.swift in Sources */,
+				A4A12EE2228F64B100D281BE /* ZJAddAptMapView.swift in Sources */,
+				A41CFD6C228DFCCA0008FFB6 /* ZJAddAptViewController.swift in Sources */,
+				A41CFD73228F28FE0008FFB6 /* ZJRentAptListViewCell.swift in Sources */,
 				A41CFD68228DF6490008FFB6 /* ZJTabBarController.swift in Sources */,
+				A4A12EDF228F63EE00D281BE /* ZJAddAptMainView.swift in Sources */,
 				A41CFD6E228E13B60008FFB6 /* Helper.swift in Sources */,
-				3800F054228E4D0D00095A2F /* ZJRentAptListViewCell.swift in Sources */,
 				3800F047228E389B00095A2F /* ZJBaseViewController.swift in Sources */,
 				3800F052228E3D0800095A2F /* ZJRentAptListView.swift in Sources */,
 				3800F050228E39D400095A2F /* ZJRentAptMapView.swift in Sources */,

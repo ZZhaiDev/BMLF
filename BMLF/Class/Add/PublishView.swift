@@ -62,7 +62,7 @@ class PublishView: UIView {
     
     lazy var titlesArr:Array! = { () -> [String] in 
     
-        let array = ["发视频","发图片","发段子","发音频","审贴","离线下载"]
+        let array = ["发视频","租房子","发段子","发音频","审贴","离线下载"]
         
         return array
     }()
@@ -80,7 +80,7 @@ class PublishView: UIView {
         
         publishWindow = UIWindow()
         publishWindow.frame = UIScreen.main.bounds
-        publishWindow.backgroundColor = UIColor.init(white: 1.0, alpha: 0.8)
+        publishWindow.backgroundColor = UIColor.init(white: 1.0, alpha: 1.0)
         publishWindow.isHidden = false
         self.frame = publishWindow.bounds
         publishWindow.addSubview(self)
@@ -146,7 +146,18 @@ class PublishView: UIView {
     
     @objc func clickButton(button:VerticalButton) {
         
-        
+        if button.tag == 1{
+            cancelWithCompletionBlock {
+                if let tvc = UIApplication.topViewController(){
+                    let vc = ZJAddAptViewController()
+                    let nvc = ZJNavigationController(rootViewController: vc)
+                    tvc.present(nvc, animated: true, completion: nil)
+                }
+            }
+            
+            
+            
+        }
     }
     
     func cancelWithCompletionBlock(complentionBlock: @escaping ()->Void) {
@@ -176,6 +187,7 @@ class PublishView: UIView {
                 }
             }
         }
+        complentionBlock()
     }
     
 

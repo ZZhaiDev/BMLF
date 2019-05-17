@@ -1,5 +1,5 @@
 //
-//  ZJAddViewController.swift
+//  ZJAddAptViewController.swift
 //  BMLF
 //
 //  Created by Zijia Zhai on 5/16/19.
@@ -8,16 +8,19 @@
 
 import UIKit
 
-class ZJAddViewController: ZJBaseViewController {
+class ZJAddAptViewController: ZJBaseViewController {
+    fileprivate lazy var mainView : ZJAddAptMainView = {
+        let mv = ZJAddAptMainView()
+        return mv
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.view.backgroundColor = .black
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "关闭", style: .plain, target: self, action: #selector(closefunc))
+        self.view.addSubview(mainView)
+        mainView.fillSuperview()
         
-        let publishView = Bundle.main.loadNibNamed("PublishView", owner: nil, options: nil)?.first as! PublishView
-        
-        publishView.show()
     }
     
     @objc fileprivate func closefunc(){

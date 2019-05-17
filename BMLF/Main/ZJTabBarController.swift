@@ -62,9 +62,10 @@ class ZJTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     @objc fileprivate func composeBtnButtonClicked(){
-        let vc = ZJAddViewController()
-        let nvc = ZJNavigationController(rootViewController: vc)
-        self.present(nvc, animated: true, completion: nil)
+        
+        let publishView = Bundle.main.loadNibNamed("PublishView", owner: nil, options: nil)?.first as! PublishView
+        
+        publishView.show()
     }
 
     fileprivate func setUpChildController(_ controller : UIViewController,_ title : String,_ norImage : String,_ selectedImage : String){

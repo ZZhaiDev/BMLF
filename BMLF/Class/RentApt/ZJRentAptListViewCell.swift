@@ -2,21 +2,20 @@
 //  ZJRentAptListViewCell.swift
 //  BMLF
 //
-//  Created by zijia on 5/16/19.
+//  Created by Zijia Zhai on 5/17/19.
 //  Copyright © 2019 BMLF. All rights reserved.
 //
 
 import UIKit
 
 class ZJRentAptListViewCell: UICollectionViewCell {
-//    fileprivate lazy var 
-    
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.backgroundColor = .white
+//        self.layer.cornerRadius = 15
+//        self.layer.masksToBounds = true
+        // Initialization code
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+
 }

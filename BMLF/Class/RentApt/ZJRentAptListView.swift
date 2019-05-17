@@ -14,7 +14,7 @@ class ZJRentAptListView: UIView {
     fileprivate lazy var collectionView: UICollectionView = {
 //         = UICollectionView(collectionViewLayout: UICollectionViewFlowLayout())
         let view = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.background
         return view
     }()
 
@@ -27,13 +27,14 @@ class ZJRentAptListView: UIView {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.isPagingEnabled = true
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+//        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(UINib(nibName: "ZJRentAptListViewCell", bundle: nil), forCellWithReuseIdentifier: cellId)
         
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
 //        layout.scrollDirection = .horizontal
-        layout.minimumInteritemSpacing = 10
+        layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 10
-        layout.itemSize = CGSize(width: zjScreenWidth-20, height: 100)
+        layout.itemSize = CGSize(width: zjScreenWidth, height: 320)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -48,8 +49,9 @@ extension ZJRentAptListView: UICollectionViewDataSource, UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        cell.backgroundColor = .black
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ZJRentAptListViewCell
+
+//        cell.backgroundColor = .yellow
         return cell
     }
     
