@@ -13,6 +13,9 @@
 		3800F052228E3D0800095A2F /* ZJRentAptListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3800F051228E3D0800095A2F /* ZJRentAptListView.swift */; };
 		3800F057228E52B700095A2F /* PublishView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3800F055228E52B700095A2F /* PublishView.xib */; };
 		3800F058228E52B700095A2F /* PublishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3800F056228E52B700095A2F /* PublishView.swift */; };
+		3845EDB8229087B50045A694 /* ZJAddAptDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3845EDB7229087B50045A694 /* ZJAddAptDateCell.swift */; };
+		3845EDBA229097A80045A694 /* ZJAddAptHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3845EDB9229097A80045A694 /* ZJAddAptHeaderView.swift */; };
+		3845EDBC2290E7CF0045A694 /* ZJAddAptFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3845EDBB2290E7CF0045A694 /* ZJAddAptFooterView.swift */; };
 		4EB5AB71F9334FAE7E78F7D7 /* Pods_BMLF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 828C269B6E435890612D9151 /* Pods_BMLF.framework */; };
 		A41CFD3A228DF4F00008FFB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41CFD39228DF4F00008FFB6 /* AppDelegate.swift */; };
 		A41CFD41228DF4F30008FFB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A41CFD40228DF4F30008FFB6 /* Assets.xcassets */; };
@@ -53,6 +56,9 @@
 		3800F051228E3D0800095A2F /* ZJRentAptListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListView.swift; sourceTree = "<group>"; };
 		3800F055228E52B700095A2F /* PublishView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishView.xib; sourceTree = "<group>"; };
 		3800F056228E52B700095A2F /* PublishView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishView.swift; sourceTree = "<group>"; };
+		3845EDB7229087B50045A694 /* ZJAddAptDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptDateCell.swift; sourceTree = "<group>"; };
+		3845EDB9229097A80045A694 /* ZJAddAptHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptHeaderView.swift; sourceTree = "<group>"; };
+		3845EDBB2290E7CF0045A694 /* ZJAddAptFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptFooterView.swift; sourceTree = "<group>"; };
 		828C269B6E435890612D9151 /* Pods_BMLF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BMLF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C17C4D8C7D3D43388A90FAD /* Pods-BMLF.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BMLF.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BMLF/Pods-BMLF.debug.xcconfig"; sourceTree = "<group>"; };
 		A41CFD36228DF4F00008FFB6 /* BMLF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BMLF.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,8 +233,11 @@
 			isa = PBXGroup;
 			children = (
 				A41CFD6B228DFCCA0008FFB6 /* ZJAddAptViewController.swift */,
+				3845EDB9229097A80045A694 /* ZJAddAptHeaderView.swift */,
 				A4A12EDE228F63EE00D281BE /* ZJAddAptMainView.swift */,
 				A4A12EE1228F64B100D281BE /* ZJAddAptMapView.swift */,
+				3845EDB7229087B50045A694 /* ZJAddAptDateCell.swift */,
+				3845EDBB2290E7CF0045A694 /* ZJAddAptFooterView.swift */,
 			);
 			path = Apt;
 			sourceTree = "<group>";
@@ -394,12 +403,20 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BMLF/Pods-BMLF-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
+				"${BUILT_PRODUCTS_DIR}/PryntTrimmerView/PryntTrimmerView.framework",
+				"${BUILT_PRODUCTS_DIR}/SteviaLayout/Stevia.framework",
+				"${BUILT_PRODUCTS_DIR}/YPImagePicker/YPImagePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PryntTrimmerView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stevia.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YPImagePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,10 +432,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4A12EE2228F64B100D281BE /* ZJAddAptMapView.swift in Sources */,
+				3845EDB8229087B50045A694 /* ZJAddAptDateCell.swift in Sources */,
 				A41CFD6C228DFCCA0008FFB6 /* ZJAddAptViewController.swift in Sources */,
 				A41CFD73228F28FE0008FFB6 /* ZJRentAptListViewCell.swift in Sources */,
 				A41CFD68228DF6490008FFB6 /* ZJTabBarController.swift in Sources */,
 				A4A12EDF228F63EE00D281BE /* ZJAddAptMainView.swift in Sources */,
+				3845EDBA229097A80045A694 /* ZJAddAptHeaderView.swift in Sources */,
 				A41CFD6E228E13B60008FFB6 /* Helper.swift in Sources */,
 				3800F047228E389B00095A2F /* ZJBaseViewController.swift in Sources */,
 				3800F052228E3D0800095A2F /* ZJRentAptListView.swift in Sources */,
@@ -427,6 +446,7 @@
 				3800F058228E52B700095A2F /* PublishView.swift in Sources */,
 				3800F04E228E394400095A2F /* ZJRentAptViewController.swift in Sources */,
 				A41CFD6A228DF6D30008FFB6 /* ZJNavigationController.swift in Sources */,
+				3845EDBC2290E7CF0045A694 /* ZJAddAptFooterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.backgroundColor = UIColor.white
         let root = ZJTabBarController()
+//        let root = ZJAddAptViewController()
         self.window?.rootViewController = root
         self.window?.makeKeyAndVisible()
         return true

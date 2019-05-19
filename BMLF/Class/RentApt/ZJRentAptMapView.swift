@@ -15,18 +15,18 @@ class ZJRentAptMapView: UIView {
     var locationManager: CLLocationManager!
     let newPin = MKPointAnnotation()
     
+    var points = [CLLocationCoordinate2D]()
+    
     fileprivate lazy var mapsView: MKMapView = {
         let view = MKMapView()
         view.layer.cornerRadius = 5
         view.layer.masksToBounds = true
+        view.isUserInteractionEnabled = false
+        view.delegate = self
         return view
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupLocation()
-        setupUI()
-    }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -43,12 +43,62 @@ class ZJRentAptMapView: UIView {
         }
     }
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupLocation()
+        setupUI()
+    }
+    
     fileprivate func setupUI(){
         
         self.addSubview(mapsView)
         mapsView.fillSuperview()
     }
 
+}
+
+//:MARK -- 画圈
+extension ZJRentAptMapView{
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        mapsView.removeOverlays(mapsView.overlays)
+        if let touch = touches.first {
+            let coordinate = mapsView.convert(touch.location(in: mapsView),      toCoordinateFrom: mapsView)
+            points.append(coordinate)
+        }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first {
+            let coordinate = mapsView.convert(touch.location(in: mapsView),       toCoordinateFrom: mapsView)
+            points.append(coordinate)
+            let polyline = MKPolyline(coordinates: points, count: points.count)
+            mapsView.addOverlay(polyline)
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let polygon = MKPolygon(coordinates: &points, count: points.count)
+        mapsView.addOverlay(polygon)
+        points = [] // Reset points
+    }
+    
+   
+}
+
+extension ZJRentAptMapView: MKMapViewDelegate{
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if overlay is MKPolyline {
+            let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+            polylineRenderer.strokeColor = .orange
+            polylineRenderer.lineWidth = 5
+            return polylineRenderer
+        } else if overlay is MKPolygon {
+            let polygonView = MKPolygonRenderer(overlay: overlay)
+            polygonView.fillColor = .magenta
+            return polygonView
+        }
+        return MKPolylineRenderer(overlay: overlay)
+    }
 }
 
 extension ZJRentAptMapView: CLLocationManagerDelegate{

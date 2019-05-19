@@ -26,7 +26,7 @@ class ZJRentAptListView: UIView {
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.isPagingEnabled = true
+//        collectionView.isPagingEnabled = true
 //        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.register(UINib(nibName: "ZJRentAptListViewCell", bundle: nil), forCellWithReuseIdentifier: cellId)
         

@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>BMLF Need to Use Your Camery</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>BMLF Need to Use Your Location</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>

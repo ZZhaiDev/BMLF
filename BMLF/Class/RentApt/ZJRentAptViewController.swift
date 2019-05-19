@@ -44,6 +44,8 @@ extension ZJRentAptViewController{
         mapView.alpha = 1
         listView.alpha = 0
         
+        navigationItem.leftBarButtonItem = UIBarButtonItem(imageName: "logo")
+        navigationItem.leftBarButtonItem?.isEnabled = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "change", style: .plain, target: self, action: #selector(rightBarButtonClicked))
     }
     

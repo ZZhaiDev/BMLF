@@ -1,16 +1,32 @@
 PODS:
+  - Eureka (4.3.1)
   - pop (1.0.12)
+  - PryntTrimmerView (3.0.0)
+  - SteviaLayout (4.4.4)
+  - YPImagePicker (3.5.3):
+    - PryntTrimmerView (~> 3.0.0)
+    - SteviaLayout (~> 4.4.1)
 
 DEPENDENCIES:
+  - Eureka
   - pop
+  - YPImagePicker (~> 3.5.3)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Eureka
     - pop
+    - PryntTrimmerView
+    - SteviaLayout
+    - YPImagePicker
 
 SPEC CHECKSUMS:
+  Eureka: 28ea296f06710f6745266b71f17862048941a32d
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
+  PryntTrimmerView: 53ac64053c7ce63cb3e27f54090f52da0734891d
+  SteviaLayout: 523469269059f2c6da02820bb2ff28a5fe0780aa
+  YPImagePicker: 5dd3814b47b1208e9c8cc8f6ef77fe90db3723b6
 
-PODFILE CHECKSUM: 5bdd915cda48ff9a43b92ee48383e6ad879cd680
+PODFILE CHECKSUM: 9f9e6da805fa0c02110074d61eff38349cfe418c
 
 COCOAPODS: 1.5.3

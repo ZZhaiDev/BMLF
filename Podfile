@@ -6,5 +6,7 @@ target 'BMLF' do
   use_frameworks!
 
 pod 'pop'
+pod 'Eureka'
+pod 'YPImagePicker', '~>3.5.3'
 
 end
