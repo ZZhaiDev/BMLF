@@ -9,29 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BMLF/Class/Add/PublishView.swift"
-            timestampString = "579823046.5660729"
+            filePath = "BMLF/Class/Add/Apt/ZJAddAptViewController.swift"
+            timestampString = "580083010.96355"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
-            landmarkName = "clickButton(button:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BMLF/Class/Add/PublishView.swift"
-            timestampString = "579823046.566161"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "clickButton(button:)"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
+            landmarkName = "multipleSelectorDone(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

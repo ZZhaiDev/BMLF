@@ -47,6 +47,7 @@ class ZJAddAptViewController: FormViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "关闭", style: .plain, target: self, action: #selector(closefunc))
         
         self.view.addSubview(mapView)
@@ -54,9 +55,9 @@ class ZJAddAptViewController: FormViewController {
         
         self.view.addSubview(tableView)
         tableView.backgroundColor = .clear
-        tableView.anchor(top: mapView.bottomAnchor, left: self.view.leftAnchor, bottom: self.view.bottomAnchor, right: self.view.rightAnchor, paddingTop: -340, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        tableView.anchor(top: mapView.bottomAnchor, left: self.view.leftAnchor, bottom: self.view.bottomAnchor, right: self.view.rightAnchor, paddingTop: -600, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         //        collectionView.fillSuperview()
-        tableView.contentInset = UIEdgeInsets(top: 340, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 600, left: 0, bottom: 0, right: 0)
         
         self.view.bringSubviewToFront(mapView)
         
@@ -270,6 +271,7 @@ class ZJAddAptViewController: FormViewController {
         _ = navigationController?.popViewController(animated: true)
     }
     
+    
 //    override func valueHasBeenChanged(for row: BaseRow, oldValue: Any?, newValue: Any?) {
 //        if row.section === form[0] {
 //            print("Single Selection:\((row.section as! SelectableSection<ImageCheckRow<String>>).selectedRow()?.baseValue ?? "No row selected")")
@@ -286,8 +288,18 @@ class ZJAddAptViewController: FormViewController {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         ZJPrint(scrollView.contentOffset.y)
-        mapView.frame.origin.y = -scrollView.contentOffset.y - 340.0
+        mapView.frame.origin.y = -scrollView.contentOffset.y - 600
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        super.tableView(tableView, didSelectRowAt: indexPath)
+        ZJPrint(indexPath)
+        
+    }
+    
+    
     
 
 }
+
+

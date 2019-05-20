@@ -48,6 +48,7 @@ class ZJAddAptMapView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        ZJPrint("mapview creaeted")
         setupLocation()
         setupUI()
         
