@@ -54,9 +54,11 @@ class ZJAddAptViewController: FormViewController {
         
         self.view.addSubview(tableView)
         tableView.backgroundColor = .clear
-        tableView.anchor(top: mapView.bottomAnchor, left: self.view.leftAnchor, bottom: self.view.bottomAnchor, right: self.view.rightAnchor, paddingTop: -200, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        tableView.anchor(top: mapView.bottomAnchor, left: self.view.leftAnchor, bottom: self.view.bottomAnchor, right: self.view.rightAnchor, paddingTop: -340, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         //        collectionView.fillSuperview()
-        tableView.contentInset = UIEdgeInsets(top: 200, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 340, left: 0, bottom: 0, right: 0)
+        
+        self.view.bringSubviewToFront(mapView)
         
 //        tableView.addSubview(tbutton)
 //        tbutton.anchor(top: tableView.bottomAnchor, left: tableView.leftAnchor, bottom: nil, right: tableView.rightAnchor, paddingTop: tableView.frame.size.height-350, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 150)
@@ -280,6 +282,11 @@ class ZJAddAptViewController: FormViewController {
     @objc fileprivate func closefunc(){
         self.dismiss(animated: true) {
         }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        ZJPrint(scrollView.contentOffset.y)
+        mapView.frame.origin.y = -scrollView.contentOffset.y - 340.0
     }
     
 
