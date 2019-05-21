@@ -10,7 +10,7 @@ import UIKit
 
 //var mainViewHeightConstraint: NSLayoutConstraint?
 
-//var originalMapViewH: CGFloat = 245
+
 
 private let cellId = "cellId"
 private let dateCellId = "dateCellId"

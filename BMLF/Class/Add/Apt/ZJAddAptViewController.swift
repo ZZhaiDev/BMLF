@@ -9,6 +9,8 @@
 import UIKit
 import Eureka
 
+var originalMapViewH: CGFloat = 245
+
 class ZJAddAptViewController: FormViewController {
     let testButton: UIButton = {
        let b = UIButton()
@@ -26,6 +28,10 @@ class ZJAddAptViewController: FormViewController {
         let view = ZJAddAptFooterView()
         return view
     }
+    
+//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        return mapView
+//    }
     
     var navigationOptionsBackup : RowNavigationOptions?
     fileprivate lazy var mainView : ZJAddAptMainView = {
@@ -49,17 +55,18 @@ class ZJAddAptViewController: FormViewController {
         super.viewDidLoad()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "关闭", style: .plain, target: self, action: #selector(closefunc))
+        self.tableView.tableHeaderView = mapView
+        self.tableView.tableHeaderView?.frame.size.height = originalMapViewH
         
-        self.view.addSubview(mapView)
-        mapView.anchor(top: self.view.topAnchor, left: self.view.leftAnchor, bottom: nil, right: self.view.rightAnchor, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 10, width: 0, height: 0)
-        
-        self.view.addSubview(tableView)
-        tableView.backgroundColor = .clear
-        tableView.anchor(top: mapView.bottomAnchor, left: self.view.leftAnchor, bottom: self.view.bottomAnchor, right: self.view.rightAnchor, paddingTop: -600, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        //        collectionView.fillSuperview()
-        tableView.contentInset = UIEdgeInsets(top: 600, left: 0, bottom: 0, right: 0)
-        
-        self.view.bringSubviewToFront(mapView)
+//        self.view.addSubview(mapView)
+//        mapView.anchor(top: self.view.topAnchor, left: self.view.leftAnchor, bottom: nil, right: self.view.rightAnchor, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 10, width: 0, height: 0)
+//
+//        self.view.addSubview(tableView)
+//        tableView.backgroundColor = .clear
+//        tableView.anchor(top: mapView.bottomAnchor, left: self.view.leftAnchor, bottom: self.view.bottomAnchor, right: self.view.rightAnchor, paddingTop: -600, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+//        tableView.contentInset = UIEdgeInsets(top: 600, left: 0, bottom: 0, right: 0)
+//
+//        self.view.bringSubviewToFront(mapView)
         
 //        tableView.addSubview(tbutton)
 //        tbutton.anchor(top: tableView.bottomAnchor, left: tableView.leftAnchor, bottom: nil, right: tableView.rightAnchor, paddingTop: tableView.frame.size.height-350, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 150)
@@ -288,7 +295,7 @@ class ZJAddAptViewController: FormViewController {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         ZJPrint(scrollView.contentOffset.y)
-        mapView.frame.origin.y = -scrollView.contentOffset.y - 600
+//        mapView.frame.origin.y = -scrollView.contentOffset.y - 600
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

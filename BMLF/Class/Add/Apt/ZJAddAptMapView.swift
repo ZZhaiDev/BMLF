@@ -110,6 +110,10 @@ extension ZJAddAptMapView: UITextFieldDelegate{
 
             self.resultTableHeightConstraint?.constant = 0
 //            self.heightAnchor.constraint(equalToConstant: originalMapViewH)
+            if let topVC = UIApplication.topViewController() as? ZJAddAptViewController{
+                topVC.tableView.tableHeaderView?.frame.size.height = originalMapViewH
+                topVC.tableView.reloadData()
+            }
             return
         }
         searchCompleter.queryFragment = text
@@ -131,6 +135,11 @@ extension ZJAddAptMapView: UITableViewDataSource, UITableViewDelegate{
         
         self.resultTableHeightConstraint?.constant = CGFloat(cellH * cellNum)
 //        self.heightAnchor.constraint(equalToConstant: originalMapViewH+CGFloat(cellH * cellNum))
+//        self.frame.size.height = 245 + CGFloat(cellH * cellNum)
+        if let topVC = UIApplication.topViewController() as? ZJAddAptViewController{
+            topVC.tableView.tableHeaderView?.frame.size.height = originalMapViewH + CGFloat(cellH * cellNum)
+            topVC.tableView.reloadData()
+        }
         return cellNum
     }
     

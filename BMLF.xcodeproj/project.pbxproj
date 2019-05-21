@@ -16,6 +16,7 @@
 		3845EDB8229087B50045A694 /* ZJAddAptDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3845EDB7229087B50045A694 /* ZJAddAptDateCell.swift */; };
 		3845EDBA229097A80045A694 /* ZJAddAptHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3845EDB9229097A80045A694 /* ZJAddAptHeaderView.swift */; };
 		3845EDBC2290E7CF0045A694 /* ZJAddAptFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3845EDBB2290E7CF0045A694 /* ZJAddAptFooterView.swift */; };
+		38536EE822938C1700A555AC /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38536EE722938C1700A555AC /* APIs.swift */; };
 		4EB5AB71F9334FAE7E78F7D7 /* Pods_BMLF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 828C269B6E435890612D9151 /* Pods_BMLF.framework */; };
 		A41CFD3A228DF4F00008FFB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41CFD39228DF4F00008FFB6 /* AppDelegate.swift */; };
 		A41CFD41228DF4F30008FFB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A41CFD40228DF4F30008FFB6 /* Assets.xcassets */; };
@@ -59,6 +60,7 @@
 		3845EDB7229087B50045A694 /* ZJAddAptDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptDateCell.swift; sourceTree = "<group>"; };
 		3845EDB9229097A80045A694 /* ZJAddAptHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptHeaderView.swift; sourceTree = "<group>"; };
 		3845EDBB2290E7CF0045A694 /* ZJAddAptFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptFooterView.swift; sourceTree = "<group>"; };
+		38536EE722938C1700A555AC /* APIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIs.swift; sourceTree = "<group>"; };
 		828C269B6E435890612D9151 /* Pods_BMLF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BMLF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C17C4D8C7D3D43388A90FAD /* Pods-BMLF.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BMLF.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BMLF/Pods-BMLF.debug.xcconfig"; sourceTree = "<group>"; };
 		A41CFD36228DF4F00008FFB6 /* BMLF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BMLF.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				A41CFD39228DF4F00008FFB6 /* AppDelegate.swift */,
+				38536EE722938C1700A555AC /* APIs.swift */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 				3800F058228E52B700095A2F /* PublishView.swift in Sources */,
 				3800F04E228E394400095A2F /* ZJRentAptViewController.swift in Sources */,
 				A41CFD6A228DF6D30008FFB6 /* ZJNavigationController.swift in Sources */,
+				38536EE822938C1700A555AC /* APIs.swift in Sources */,
 				3845EDBC2290E7CF0045A694 /* ZJAddAptFooterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
