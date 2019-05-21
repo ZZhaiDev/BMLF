@@ -29,6 +29,15 @@
 		A41CFD6E228E13B60008FFB6 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41CFD6D228E13B60008FFB6 /* Helper.swift */; };
 		A41CFD73228F28FE0008FFB6 /* ZJRentAptListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41CFD71228F28FE0008FFB6 /* ZJRentAptListViewCell.swift */; };
 		A41CFD74228F28FE0008FFB6 /* ZJRentAptListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A41CFD72228F28FE0008FFB6 /* ZJRentAptListViewCell.xib */; };
+		A438F0F12294ADC900327754 /* ZJRentAptListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A438F0F02294ADC900327754 /* ZJRentAptListHeaderView.swift */; };
+		A454DA6522946166006EED07 /* ZJAddAptTitleAndSummary.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454DA6422946166006EED07 /* ZJAddAptTitleAndSummary.xib */; };
+		A454DA67229468DA006EED07 /* ZJRentAptListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454DA66229468DA006EED07 /* ZJRentAptListDetailViewController.swift */; };
+		A454DA7722947899006EED07 /* CycleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454DA7322947899006EED07 /* CycleCell.xib */; };
+		A454DA7822947899006EED07 /* RecommendCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454DA7422947899006EED07 /* RecommendCycleView.swift */; };
+		A454DA7922947899006EED07 /* CycleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454DA7522947899006EED07 /* CycleCell.swift */; };
+		A454DA7A22947899006EED07 /* RecommendCycleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454DA7622947899006EED07 /* RecommendCycleView.xib */; };
+		A454DA82229496DE006EED07 /* ZJRentAptListDetailTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454DA81229496DE006EED07 /* ZJRentAptListDetailTitleView.swift */; };
+		A454DA8422949D39006EED07 /* ZJRentAptListDetailCatrgories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454DA8322949D39006EED07 /* ZJRentAptListDetailCatrgories.swift */; };
 		A4A12EDF228F63EE00D281BE /* ZJAddAptMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A12EDE228F63EE00D281BE /* ZJAddAptMainView.swift */; };
 		A4A12EE2228F64B100D281BE /* ZJAddAptMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A12EE1228F64B100D281BE /* ZJAddAptMapView.swift */; };
 /* End PBXBuildFile section */
@@ -80,6 +89,15 @@
 		A41CFD6D228E13B60008FFB6 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		A41CFD71228F28FE0008FFB6 /* ZJRentAptListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListViewCell.swift; sourceTree = "<group>"; };
 		A41CFD72228F28FE0008FFB6 /* ZJRentAptListViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZJRentAptListViewCell.xib; sourceTree = "<group>"; };
+		A438F0F02294ADC900327754 /* ZJRentAptListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListHeaderView.swift; sourceTree = "<group>"; };
+		A454DA6422946166006EED07 /* ZJAddAptTitleAndSummary.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZJAddAptTitleAndSummary.xib; sourceTree = "<group>"; };
+		A454DA66229468DA006EED07 /* ZJRentAptListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListDetailViewController.swift; sourceTree = "<group>"; };
+		A454DA7322947899006EED07 /* CycleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CycleCell.xib; sourceTree = "<group>"; };
+		A454DA7422947899006EED07 /* RecommendCycleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendCycleView.swift; sourceTree = "<group>"; };
+		A454DA7522947899006EED07 /* CycleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleCell.swift; sourceTree = "<group>"; };
+		A454DA7622947899006EED07 /* RecommendCycleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendCycleView.xib; sourceTree = "<group>"; };
+		A454DA81229496DE006EED07 /* ZJRentAptListDetailTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListDetailTitleView.swift; sourceTree = "<group>"; };
+		A454DA8322949D39006EED07 /* ZJRentAptListDetailCatrgories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListDetailCatrgories.swift; sourceTree = "<group>"; };
 		A4A12EDE228F63EE00D281BE /* ZJAddAptMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptMainView.swift; sourceTree = "<group>"; };
 		A4A12EE1228F64B100D281BE /* ZJAddAptMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptMapView.swift; sourceTree = "<group>"; };
 		D895C8ADEDC5B0CBDEE2B650 /* Pods-BMLF.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BMLF.release.xcconfig"; path = "Pods/Target Support Files/Pods-BMLF/Pods-BMLF.release.xcconfig"; sourceTree = "<group>"; };
@@ -161,11 +179,8 @@
 		3800F04C228E38FC00095A2F /* RentApt */ = {
 			isa = PBXGroup;
 			children = (
-				3800F04D228E394400095A2F /* ZJRentAptViewController.swift */,
-				3800F04F228E39D400095A2F /* ZJRentAptMapView.swift */,
-				3800F051228E3D0800095A2F /* ZJRentAptListView.swift */,
-				A41CFD71228F28FE0008FFB6 /* ZJRentAptListViewCell.swift */,
-				A41CFD72228F28FE0008FFB6 /* ZJRentAptListViewCell.xib */,
+				A454DA6922946F91006EED07 /* View */,
+				A454DA6822946F7B006EED07 /* ViewController */,
 			);
 			path = RentApt;
 			sourceTree = "<group>";
@@ -232,6 +247,57 @@
 			path = BMLFUITests;
 			sourceTree = "<group>";
 		};
+		A454DA6822946F7B006EED07 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3800F04D228E394400095A2F /* ZJRentAptViewController.swift */,
+				A454DA66229468DA006EED07 /* ZJRentAptListDetailViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A454DA6922946F91006EED07 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A454DA8022949585006EED07 /* ListDetail */,
+				A454DA7F22949560006EED07 /* Main */,
+				A454DA7222946FB0006EED07 /* 循环播放 */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A454DA7222946FB0006EED07 /* 循环播放 */ = {
+			isa = PBXGroup;
+			children = (
+				A454DA7422947899006EED07 /* RecommendCycleView.swift */,
+				A454DA7622947899006EED07 /* RecommendCycleView.xib */,
+				A454DA7522947899006EED07 /* CycleCell.swift */,
+				A454DA7322947899006EED07 /* CycleCell.xib */,
+			);
+			path = "循环播放";
+			sourceTree = "<group>";
+		};
+		A454DA7F22949560006EED07 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				3800F04F228E39D400095A2F /* ZJRentAptMapView.swift */,
+				3800F051228E3D0800095A2F /* ZJRentAptListView.swift */,
+				A41CFD71228F28FE0008FFB6 /* ZJRentAptListViewCell.swift */,
+				A41CFD72228F28FE0008FFB6 /* ZJRentAptListViewCell.xib */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		A454DA8022949585006EED07 /* ListDetail */ = {
+			isa = PBXGroup;
+			children = (
+				A438F0F02294ADC900327754 /* ZJRentAptListHeaderView.swift */,
+				A454DA81229496DE006EED07 /* ZJRentAptListDetailTitleView.swift */,
+				A454DA8322949D39006EED07 /* ZJRentAptListDetailCatrgories.swift */,
+			);
+			path = ListDetail;
+			sourceTree = "<group>";
+		};
 		A4A12EE0228F648D00D281BE /* Apt */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +307,7 @@
 				A4A12EE1228F64B100D281BE /* ZJAddAptMapView.swift */,
 				3845EDB7229087B50045A694 /* ZJAddAptDateCell.swift */,
 				3845EDBB2290E7CF0045A694 /* ZJAddAptFooterView.swift */,
+				A454DA6422946166006EED07 /* ZJAddAptTitleAndSummary.xib */,
 			);
 			path = Apt;
 			sourceTree = "<group>";
@@ -353,7 +420,10 @@
 			files = (
 				A41CFD44228DF4F30008FFB6 /* LaunchScreen.storyboard in Resources */,
 				A41CFD41228DF4F30008FFB6 /* Assets.xcassets in Resources */,
+				A454DA6522946166006EED07 /* ZJAddAptTitleAndSummary.xib in Resources */,
 				3800F057228E52B700095A2F /* PublishView.xib in Resources */,
+				A454DA7A22947899006EED07 /* RecommendCycleView.xib in Resources */,
+				A454DA7722947899006EED07 /* CycleCell.xib in Resources */,
 				A41CFD74228F28FE0008FFB6 /* ZJRentAptListViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,8 +475,10 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BMLF/Pods-BMLF-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-BMLF/Pods-BMLF-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/PryntTrimmerView/PryntTrimmerView.framework",
 				"${BUILT_PRODUCTS_DIR}/SteviaLayout/Stevia.framework",
 				"${BUILT_PRODUCTS_DIR}/YPImagePicker/YPImagePicker.framework",
@@ -416,7 +488,9 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PryntTrimmerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stevia.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YPImagePicker.framework",
@@ -424,7 +498,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BMLF/Pods-BMLF-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BMLF/Pods-BMLF-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -434,13 +508,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A454DA8422949D39006EED07 /* ZJRentAptListDetailCatrgories.swift in Sources */,
+				A454DA7822947899006EED07 /* RecommendCycleView.swift in Sources */,
 				A4A12EE2228F64B100D281BE /* ZJAddAptMapView.swift in Sources */,
 				3845EDB8229087B50045A694 /* ZJAddAptDateCell.swift in Sources */,
 				A41CFD6C228DFCCA0008FFB6 /* ZJAddAptViewController.swift in Sources */,
 				A41CFD73228F28FE0008FFB6 /* ZJRentAptListViewCell.swift in Sources */,
+				A454DA67229468DA006EED07 /* ZJRentAptListDetailViewController.swift in Sources */,
+				A454DA7922947899006EED07 /* CycleCell.swift in Sources */,
 				A41CFD68228DF6490008FFB6 /* ZJTabBarController.swift in Sources */,
 				A4A12EDF228F63EE00D281BE /* ZJAddAptMainView.swift in Sources */,
 				3845EDBA229097A80045A694 /* ZJAddAptHeaderView.swift in Sources */,
+				A454DA82229496DE006EED07 /* ZJRentAptListDetailTitleView.swift in Sources */,
 				A41CFD6E228E13B60008FFB6 /* Helper.swift in Sources */,
 				3800F047228E389B00095A2F /* ZJBaseViewController.swift in Sources */,
 				3800F052228E3D0800095A2F /* ZJRentAptListView.swift in Sources */,
@@ -451,6 +530,7 @@
 				A41CFD6A228DF6D30008FFB6 /* ZJNavigationController.swift in Sources */,
 				38536EE822938C1700A555AC /* APIs.swift in Sources */,
 				3845EDBC2290E7CF0045A694 /* ZJAddAptFooterView.swift in Sources */,
+				A438F0F12294ADC900327754 /* ZJRentAptListHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,7 @@
 PODS:
+  - Alamofire (4.8.2)
   - Eureka (4.3.1)
+  - Kingfisher (5.1.1)
   - pop (1.0.12)
   - PryntTrimmerView (3.0.0)
   - SteviaLayout (4.4.4)
@@ -8,25 +10,31 @@ PODS:
     - SteviaLayout (~> 4.4.1)
 
 DEPENDENCIES:
+  - Alamofire
   - Eureka
+  - Kingfisher (~> 5.1.1)
   - pop
   - YPImagePicker (~> 3.5.3)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
     - Eureka
+    - Kingfisher
     - pop
     - PryntTrimmerView
     - SteviaLayout
     - YPImagePicker
 
 SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   Eureka: 28ea296f06710f6745266b71f17862048941a32d
+  Kingfisher: 2558186963e5be42d98c5b110ccb3130148b77e4
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   PryntTrimmerView: 53ac64053c7ce63cb3e27f54090f52da0734891d
   SteviaLayout: 523469269059f2c6da02820bb2ff28a5fe0780aa
   YPImagePicker: 5dd3814b47b1208e9c8cc8f6ef77fe90db3723b6
 
-PODFILE CHECKSUM: 9f9e6da805fa0c02110074d61eff38349cfe418c
+PODFILE CHECKSUM: 38eda6d6239533c466bf2bb4851e210373162ddb
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.2

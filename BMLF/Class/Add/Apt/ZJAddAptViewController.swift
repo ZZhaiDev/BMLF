@@ -19,7 +19,7 @@ class ZJAddAptViewController: FormViewController {
     }()
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == 1{
+        if section == 3{
             return 245
         }
         return 0
@@ -100,18 +100,34 @@ class ZJAddAptViewController: FormViewController {
             <<< DateInlineRow() {
                 $0.title = "开始时间"
                 $0.value = Date()
+//                $0.value = "尽快"
             }
             <<< DateInlineRow() {
                 $0.title = "结束日期"
                 $0.value = Date()
+//                $0.value = "无"
             }
+            +++ Section("Title")
             
+            <<< TextRow() {
+                $0.title = "Title"
+                $0.placeholder = "Input Your Title"
+            }
+//            <<< TextRow() {
+//                $0.cellProvider = CellProvider<ZJAddAptTitleAndSummar>(nibName: "ZJAddAptTitleAndSummary", bundle: Bundle.main)
+//                $0.cell.height = { 300 }
+//                }
+//                .onChange { row in
+//                    if let textView = row.cell.viewWithTag(99) as? UITextView {
+//                        textView.text = row.cell.textField.text
+//                    }
+//            }
             +++ Section("基础")
             <<< AlertRow<String>() {
                 $0.title = "房型"
                 $0.cancelTitle = "退出"
                 $0.selectorTitle = "房型"
-                $0.options = ["Studio", "一室一厅", "二室一厅", "三室一厅", "其他"]
+                $0.options = ["Studio", "一室一厅", "二室一厅", "二室二厅", "三室一厅", "其他"]
                 $0.value = ""
                 }.onChange { row in
                     print(row.value ?? "No Value")
@@ -143,6 +159,7 @@ class ZJAddAptViewController: FormViewController {
                 .onPresent{ _, to in
                     to.view.tintColor = .purple
             }
+            
             <<< AlertRow<String>() {
                 $0.title = "洗衣机"
                 $0.cancelTitle = "退出"
@@ -155,18 +172,26 @@ class ZJAddAptViewController: FormViewController {
                 .onPresent{ _, to in
                     to.view.tintColor = .purple
         }
-            <<< AlertRow<String>() {
-                $0.title = "健身房"
-                $0.cancelTitle = "退出"
-                $0.selectorTitle = "健身房"
-                $0.options = ["有", "无"]
-                $0.value = ""
-                }.onChange { row in
-                    print(row.value ?? "No Value")
-                }
-                .onPresent{ _, to in
-                    to.view.tintColor = .purple
+        <<< MultipleSelectorRow<String>() {
+            $0.title = "包含其他"
+            $0.options = ["包水", "包电", "包网络", "健身房", "简单家具"]
+            $0.value = []
+            }
+            .onPresent { from, to in
+                to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
         }
+            
+        <<< MultipleSelectorRow<String>() {
+            $0.title = "附近"
+            $0.options = ["学校", "地铁", "bus", "超市", "餐馆", "酒吧", "公园", "湖"]
+            $0.value = []
+            }
+            .onPresent { from, to in
+                to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
+        }
+            
+        
+        +++ Section("要求")
         <<< AlertRow<String>() {
                 $0.title = "租期"
                 $0.cancelTitle = "退出"
@@ -215,6 +240,15 @@ class ZJAddAptViewController: FormViewController {
                 }
                 .onPresent{ _, to in
                     to.view.tintColor = .purple
+        }
+        
+        <<< MultipleSelectorRow<String>() {
+                $0.title = "其他要求"
+                $0.options = ["干净卫生", "不带异性过夜", "安静", "不party", "不熬夜", "不养宠物", "爱护宠物"]
+                $0.value = []
+                }
+                .onPresent { from, to in
+                    to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
         }
         
         navigationOptions = RowNavigationOptions.Enabled.union(.SkipCanNotBecomeFirstResponderRow)

@@ -55,6 +55,16 @@ extension ZJRentAptListView: UICollectionViewDataSource, UICollectionViewDelegat
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let tvc = UIApplication.topViewController() as? ZJRentAptViewController{
+            let vc = ZJRentAptListDetailViewController()
+//            let nvc = ZJNavigationController(rootViewController: vc)
+            tvc.navigationController?.pushViewController(vc, animated: true)
+            
+            
+        }
+    }
+    
     
     
     

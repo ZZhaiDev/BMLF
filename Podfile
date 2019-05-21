@@ -8,5 +8,7 @@ target 'BMLF' do
 pod 'pop'
 pod 'Eureka'
 pod 'YPImagePicker', '~>3.5.3'
+pod 'Alamofire'
+pod 'Kingfisher', '~>5.1.1'
 
 end
