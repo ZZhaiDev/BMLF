@@ -10,7 +10,7 @@ import UIKit
 
 private let zjCycleViewH: CGFloat = zjScreenHeight * 3 / 8
 private let titleViewH:CGFloat = 100
-private let cateViewH: CGFloat = 100
+private let cateViewH: CGFloat = 90
 private let zjHeaderViewH: CGFloat = 50
 private let zjItemMargin : CGFloat = 10
 

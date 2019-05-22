@@ -95,23 +95,42 @@ class ZJAddAptViewController: FormViewController {
         
         form.inlineRowHideOptions = InlineRowHideOptions.AnotherInlineRowIsShown.union(.FirstResponderChanges)
         form
-            +++ Section("日期")
+            +++ Section("Date")
             
             <<< DateInlineRow() {
-                $0.title = "开始时间"
+                $0.title = "Start Date"
                 $0.value = Date()
 //                $0.value = "尽快"
             }
             <<< DateInlineRow() {
-                $0.title = "结束日期"
+                $0.title = "End Date"
                 $0.value = Date()
 //                $0.value = "无"
             }
-            +++ Section("Title")
+            +++ Section("Description")
             
             <<< TextRow() {
                 $0.title = "Title"
                 $0.placeholder = "Input Your Title"
+            }
+            <<< TextRow() {
+                $0.title = "Description"
+                $0.placeholder = "Input Your Title"
+            }
+            
+            +++ Section("Contact")
+            
+            <<< TextRow() {
+                $0.title = "Phone Number"
+                $0.placeholder = "Input Your Phone Number"
+            }
+            <<< TextRow() {
+                $0.title = "Email"
+                $0.placeholder = "Input Your Email"
+            }
+            <<< TextRow() {
+                $0.title = "Wechat"
+                $0.placeholder = "Input Your Wechat"
             }
 //            <<< TextRow() {
 //                $0.cellProvider = CellProvider<ZJAddAptTitleAndSummar>(nibName: "ZJAddAptTitleAndSummary", bundle: Bundle.main)
@@ -122,12 +141,16 @@ class ZJAddAptViewController: FormViewController {
 //                        textView.text = row.cell.textField.text
 //                    }
 //            }
-            +++ Section("基础")
+            +++ Section("Base")
+            <<< TextRow() {
+                $0.title = "Price"
+                $0.placeholder = "Input Your Price"
+            }
             <<< AlertRow<String>() {
-                $0.title = "房型"
-                $0.cancelTitle = "退出"
-                $0.selectorTitle = "房型"
-                $0.options = ["Studio", "一室一厅", "二室一厅", "二室二厅", "三室一厅", "其他"]
+                $0.title = "Type"
+                $0.cancelTitle = "Exit"
+                $0.selectorTitle = "Type"
+                $0.options = ["Renting", "Subleasing", "Find a Roommate", "Find a Room"]
                 $0.value = ""
                 }.onChange { row in
                     print(row.value ?? "No Value")
@@ -136,9 +159,21 @@ class ZJAddAptViewController: FormViewController {
                     to.view.tintColor = .purple
             }
             <<< AlertRow<String>() {
-                $0.title = "卫生间"
-                $0.cancelTitle = "退出"
-                $0.selectorTitle = "卫生间"
+                $0.title = "Room Type"
+                $0.cancelTitle = "Exit"
+                $0.selectorTitle = "Room type"
+                $0.options = ["Studio", "1b1b", "2b1b", "2b2b", "3b1b", "others"]
+                $0.value = ""
+                }.onChange { row in
+                    print(row.value ?? "No Value")
+                }
+                .onPresent{ _, to in
+                    to.view.tintColor = .purple
+            }
+            <<< AlertRow<String>() {
+                $0.title = "Bathroom"
+                $0.cancelTitle = "Exit"
+                $0.selectorTitle = "Bathroom"
                 $0.options = ["Private", "Share"]
                 $0.value = ""
                 }.onChange { row in
@@ -148,10 +183,10 @@ class ZJAddAptViewController: FormViewController {
                     to.view.tintColor = .purple
             }
             <<< AlertRow<String>() {
-                $0.title = "停车位"
-                $0.cancelTitle = "退出"
-                $0.selectorTitle = "停车位"
-                $0.options = ["免费停车位", "付费停车位", "免费街趴", "没有停车位"]
+                $0.title = "Parking Lot"
+                $0.cancelTitle = "Exit"
+                $0.selectorTitle = "Parking Lot"
+                $0.options = ["Free Parking", "Paid Parking", "Free Parking On Street", "No Parking"]
                 $0.value = ""
                 }.onChange { row in
                     print(row.value ?? "No Value")
@@ -161,10 +196,10 @@ class ZJAddAptViewController: FormViewController {
             }
             
             <<< AlertRow<String>() {
-                $0.title = "洗衣机"
-                $0.cancelTitle = "退出"
-                $0.selectorTitle = "洗衣机"
-                $0.options = ["室内洗衣机", "公用投币洗衣机"]
+                $0.title = "Washing Machine"
+                $0.cancelTitle = "Exit"
+                $0.selectorTitle = "Washing Machine"
+                $0.options = ["Indoor Washing Machine", "Share Washing Machine"]
                 $0.value = ""
                 }.onChange { row in
                     print(row.value ?? "No Value")
@@ -173,8 +208,8 @@ class ZJAddAptViewController: FormViewController {
                     to.view.tintColor = .purple
         }
         <<< MultipleSelectorRow<String>() {
-            $0.title = "包含其他"
-            $0.options = ["包水", "包电", "包网络", "健身房", "简单家具"]
+            $0.title = "Included"
+            $0.options = ["Water Included", "Electricity Included", "WiFi Included", "Gym", "Furniture"]
             $0.value = []
             }
             .onPresent { from, to in
@@ -182,8 +217,8 @@ class ZJAddAptViewController: FormViewController {
         }
             
         <<< MultipleSelectorRow<String>() {
-            $0.title = "附近"
-            $0.options = ["学校", "地铁", "bus", "超市", "餐馆", "酒吧", "公园", "湖"]
+            $0.title = "Nearby"
+            $0.options = ["School", "Subway", "bus", "Supermarket", "Restaurant", "Bar", "Park", "Lake"]
             $0.value = []
             }
             .onPresent { from, to in
@@ -191,12 +226,12 @@ class ZJAddAptViewController: FormViewController {
         }
             
         
-        +++ Section("要求")
+        +++ Section("Requirement")
         <<< AlertRow<String>() {
-                $0.title = "租期"
-                $0.cancelTitle = "退出"
-                $0.selectorTitle = "租期"
-                $0.options = ["长租", "短租", "长短租都可"]
+                $0.title = "Lease period"
+                $0.cancelTitle = "Exit"
+                $0.selectorTitle = "Lease period"
+                $0.options = ["Long-term rental", "Short-term rental", "Both"]
                 $0.value = ""
                 }.onChange { row in
                     print(row.value ?? "No Value")
@@ -205,10 +240,10 @@ class ZJAddAptViewController: FormViewController {
                     to.view.tintColor = .purple
             }
             <<< AlertRow<String>() {
-                $0.title = "性别要求"
-                $0.cancelTitle = "退出"
-                $0.selectorTitle = "性别"
-                $0.options = ["男", "女", "男女都行"]
+                $0.title = "Gender"
+                $0.cancelTitle = "Exit"
+                $0.selectorTitle = "Gender"
+                $0.options = ["Boys only", "Girls only", "both"]
                 $0.value = ""
                 }.onChange { row in
                     print(row.value ?? "No Value")
@@ -217,10 +252,10 @@ class ZJAddAptViewController: FormViewController {
                     to.view.tintColor = .purple
         }
             <<< AlertRow<String>() {
-                $0.title = "做饭"
-                $0.cancelTitle = "退出"
-                $0.selectorTitle = "做饭"
-                $0.options = ["正常", "少做饭", "不能做饭"]
+                $0.title = "Cooking"
+                $0.cancelTitle = "Exit"
+                $0.selectorTitle = "Cooking"
+                $0.options = ["Normal Cooking", "Less Cooking", "No Cooking"]
                 $0.value = ""
                 }.onChange { row in
                     print(row.value ?? "No Value")
@@ -230,10 +265,10 @@ class ZJAddAptViewController: FormViewController {
         }
             
         <<< AlertRow<String>() {
-                $0.title = "吸烟"
-                $0.cancelTitle = "退出"
-                $0.selectorTitle = "吸烟"
-                $0.options = ["可以吸烟", "禁止吸烟"]
+                $0.title = "Smoking"
+                $0.cancelTitle = "Exit"
+                $0.selectorTitle = "Smoke"
+                $0.options = ["No Smoking", "Normal Smoking"]
                 $0.value = ""
                 }.onChange { row in
                     print(row.value ?? "No Value")
@@ -243,8 +278,8 @@ class ZJAddAptViewController: FormViewController {
         }
         
         <<< MultipleSelectorRow<String>() {
-                $0.title = "其他要求"
-                $0.options = ["单身", "干净卫生", "不带异性过夜", "安静", "不party", "不熬夜", "不养宠物", "爱护宠物"]
+                $0.title = "Other Requirements"
+                $0.options = ["Single Only", "Keep Clean", "Without Overnight Visitor", "Quiet", "No Party", "Not Staying up Late", "No Pets", "Love Pets"]
                 $0.value = []
                 }
                 .onPresent { from, to in
