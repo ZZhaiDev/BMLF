@@ -75,7 +75,7 @@ class ZJTabBarController: UITabBarController, UITabBarControllerDelegate {
         controller.tabBarItem.selectedImage = UIImage(named: selectedImage)
         // 设置 NavigationController
         let nav = ZJNavigationController(rootViewController: controller)
-        controller.title = title
+//        controller.title = title
         self.addChild(nav)
     }
     
