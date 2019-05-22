@@ -17,7 +17,7 @@ class ZJRentAptListHeaderView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(label)
-        label.fillSuperview()
+        label.fillSuperview(padding: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0))
         
     }
     

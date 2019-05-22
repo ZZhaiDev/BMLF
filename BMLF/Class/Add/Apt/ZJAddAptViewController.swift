@@ -244,7 +244,7 @@ class ZJAddAptViewController: FormViewController {
         
         <<< MultipleSelectorRow<String>() {
                 $0.title = "其他要求"
-                $0.options = ["干净卫生", "不带异性过夜", "安静", "不party", "不熬夜", "不养宠物", "爱护宠物"]
+                $0.options = ["单身", "干净卫生", "不带异性过夜", "安静", "不party", "不熬夜", "不养宠物", "爱护宠物"]
                 $0.value = []
                 }
                 .onPresent { from, to in
