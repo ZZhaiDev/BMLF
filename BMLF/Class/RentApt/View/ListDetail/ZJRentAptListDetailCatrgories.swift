@@ -13,7 +13,7 @@ private let zjEdgeInsetMargin : CGFloat = 10
 
 class ZJRentAptListDetailCatrgories: UIView {
     
-    var dict = [["crime", "crime"],["email", "street view"],["email", "other"],["crime", "crime"],["phone", "street view"],["crime", "other"],["phone", "crime"],["crime", "street view"],["crime", "other"]]
+    var dict = [["crime", "crime"],["streetview", "street view"],["streetview", "other"],["crime", "crime"],["phone", "street view"],["crime", "other"],["phone", "crime"],["crime", "street view"],["crime", "other"]]
     
     
     fileprivate lazy var collectionView: UICollectionView = { [weak self] in
@@ -73,6 +73,11 @@ class GameCell: UICollectionViewCell {
         }
         
     }
+    lazy var externalView: UIView = {
+        let iv = UIView()
+        return iv
+    }()
+    
     lazy var imageView: UIImageView = {
         let iv = UIImageView()
         return iv
@@ -90,17 +95,22 @@ class GameCell: UICollectionViewCell {
     }
     
     func setupUI(){
-        imageView.layer.cornerRadius = 22.5
-        imageView.layer.masksToBounds = true
+        externalView.layer.cornerRadius = 22.5
+        externalView.layer.masksToBounds = true
         
-        self.addSubview(imageView)
-        imageView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -8).isActive = true
-        imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0).isActive = true
+        self.addSubview(externalView)
+        externalView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -8).isActive = true
+        externalView.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0).isActive = true
         //        imageView.frame.size = CGSize(width: 45, height: 45)
-        imageView.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 45, height: 45)
+        externalView.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 45, height: 45)
+        externalView.layer.borderColor = UIColor.orange.cgColor
+        externalView.layer.borderWidth = 1
+        
+        externalView.addSubview(imageView)
+        imageView.fillSuperview(padding: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8))
         
         self.addSubview(titleView)
-        titleView.anchor(top: imageView.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 5, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        titleView.anchor(top: externalView.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 5, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         titleView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor, constant: 0).isActive = true
     }
     

@@ -27,7 +27,7 @@ class ZJTabBarController: UITabBarController, UITabBarControllerDelegate {
             let item = tabBar.items![i]
             
             // 3.如果是下标值为2,则该item不可以和用户交互
-            if i == 2 {
+            if i == 1 {
                 item.isEnabled = false
                 continue
             }
@@ -55,10 +55,10 @@ class ZJTabBarController: UITabBarController, UITabBarControllerDelegate {
     // 添加所有控件
     func setUpAllViewController() -> Void {
         setUpChildController(ZJRentAptViewController(), "房子","tabLive","tabLiveHL")
-        setUpChildController(UIViewController(), "同城",  "tabYule",  "tabYuleHL")
+//        setUpChildController(UIViewController(), "同城",  "tabYule",  "tabYuleHL")
         setUpChildController(UIViewController(), "",  "",  "")
-        setUpChildController(UIViewController(), "移民",  "tabYuba",  "tabYubaHL")
-        setUpChildController(UIViewController(), "我的",  "tabDiscovery",  "tabDiscoveryHL")
+//        setUpChildController(UIViewController(), "移民",  "tabYuba",  "tabYubaHL")
+        setUpChildController(MineViewController(), "我的",  "tabDiscovery",  "tabDiscoveryHL")
     }
     
     @objc fileprivate func composeBtnButtonClicked(){
