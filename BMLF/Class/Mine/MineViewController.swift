@@ -54,12 +54,13 @@ class MineViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.alpha = 0
+//        navigationController?.navigationBar.isHidden = true
+//        navigationController?.navigationBar.alpha = 0
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.navigationBar.alpha = 1
+//        navigationController?.navigationBar.alpha = 1
     }
     
     override func viewDidLoad() {
@@ -83,17 +84,18 @@ extension MineViewController{
         tableView.parallaxHeader.height = 200
         tableView.parallaxHeader.minimumHeight = 0
         tableView.parallaxHeader.mode = .topFill
+//        self.navigationController?.hidesBarsOnSwipe = true
         
         
-        head.bgView.isUserInteractionEnabled = true
-        let guesture = UITapGestureRecognizer(target: self, action: #selector(imageClicked))
-        head.bgView.addGestureRecognizer(guesture)
+//        head.bgView.isUserInteractionEnabled = true
+//        let guesture = UITapGestureRecognizer(target: self, action: #selector(imageClicked))
+//        head.bgView.addGestureRecognizer(guesture)
     }
     
     @objc fileprivate func imageClicked(){
         UIView.animate(withDuration: 0.3) {
-            self.navigationController?.navigationBar.alpha = 1
-            self.tableView.contentOffset.y = -(zjStatusHeight+zjNavigationBarHeight-35) + 1
+//            self.navigationController?.navigationBar.alpha = 1
+//            self.tableView.contentOffset.y = -(zjStatusHeight+zjNavigationBarHeight-35) + 1
         }
     }
 //    @objc fileprivate func goback(){
@@ -130,29 +132,33 @@ extension MineViewController: UITableViewDelegate, UITableViewDataSource{
             let talkToNews = UIViewController()
             navigationController?.pushViewController(talkToNews, animated: true)
         }else if indexPath == [0, 1]{
-            let csVC = UIViewController()
+            let csVC = InfoController()
             navigationController?.pushViewController(csVC, animated: true)
+//            self.present(csVC, animated: true, completion: nil)
         }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         ZJPrint(scrollView.contentOffset.y)
-        
-        if scrollView.contentOffset.y > -(zjStatusHeight+zjNavigationBarHeight-35){
-            navigationController?.navigationBar.frame.origin.y = -(scrollView.contentOffset.y) - zjNavigationBarHeight + 35
-        }
-        
-        if scrollView.contentOffset.y > -(zjStatusHeight+100){
+
+//        if scrollView.contentOffset.y > -(zjStatusHeight+zjNavigationBarHeight-35){
+//            navigationController?.navigationBar.frame.origin.y = -(scrollView.contentOffset.y) - zjNavigationBarHeight + 35
+//        }
+        if scrollView.contentOffset.y > -30{
+            self.navigationController?.navigationBar.alpha = 1
+        }else if scrollView.contentOffset.y > -(zjStatusHeight+100){
             UIView.animate(withDuration: 0.5) {
-                self.navigationController?.navigationBar.alpha = 1
+                self.navigationController?.navigationBar.alpha = (scrollView.contentOffset.y+80)*0.02
+                self.navigationController?.navigationBar.isHidden = false
             }
         }else{
             UIView.animate(withDuration: 0.0) {
                 self.navigationController?.navigationBar.alpha = 0
+                self.navigationController?.navigationBar.isHidden = true
             }
         }
-        
-        
+
+
     }
     
     

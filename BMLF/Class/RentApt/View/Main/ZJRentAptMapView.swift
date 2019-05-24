@@ -147,3 +147,5 @@ extension ZJRentAptMapView: CLLocationManagerDelegate{
         manager.delegate = nil
     }
 }
+
+var didFinish = false

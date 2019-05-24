@@ -164,7 +164,7 @@ struct AnchoredConstraints {
 
 
 extension UIView {
-    /*
+    
     @discardableResult
     func anchor(top: NSLayoutYAxisAnchor?, leading: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, trailing: NSLayoutXAxisAnchor?, padding: UIEdgeInsets = .zero, size: CGSize = .zero) -> AnchoredConstraints {
         
@@ -199,7 +199,7 @@ extension UIView {
         
         return anchoredConstraints
     }
-    */
+ 
     
     
     func anchor(top: NSLayoutYAxisAnchor?, left: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, right: NSLayoutXAxisAnchor?,  paddingTop: CGFloat, paddingLeft: CGFloat, paddingBottom: CGFloat, paddingRight: CGFloat, width: CGFloat, height: CGFloat) {
@@ -282,6 +282,36 @@ class verticalButton: UIButton{
             titleLabel.frame.origin.x = (self.bounds.size.width - titleLabel.frame.size.width) / 2.0
             titleLabel.frame.origin.y = self.bounds.size.height - titleLabel.frame.size.height
         }
+    }
+}
+
+class ImageTextsButton: UIButton {
+    override init(frame: CGRect) {
+        super.init(frame: .zero)
+        
+        setImage(#imageLiteral(resourceName: "share").withRenderingMode(.alwaysTemplate), for: .normal)
+        imageView?.contentMode = .scaleToFill
+        imageView?.tintColor = #colorLiteral(red: 0.01194981113, green: 0.4769998789, blue: 0.9994105697, alpha: 1)
+        adjustsImageWhenHighlighted = false
+        contentHorizontalAlignment = .left
+        imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 0)
+        
+        let attributedText = NSMutableAttributedString(string: NSLocalizedString("share", comment: "shareButtonTitle"), attributes: [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .semibold),
+            NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.01194981113, green: 0.4769998789, blue: 0.9994105697, alpha: 1)
+            ])
+        setAttributedTitle(attributedText, for: .normal)
+    }
+    
+    override func setAttributedTitle(_ title: NSAttributedString?, for state: UIControl.State) {
+        UIView.performWithoutAnimation {
+            super.setAttributedTitle(title, for: state)
+            super.layoutIfNeeded()
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 

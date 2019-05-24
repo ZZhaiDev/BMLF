@@ -15,8 +15,9 @@ class ZJNavigationController: UINavigationController {
         self.navigationBar.isTranslucent = false
         
         // 自定义导航栏背景颜色
-        let navView = self.navigationBar.subviews.first
-        guard navView != nil else {return}
+//        let navView = self.navigationBar.subviews.first
+//        guard navView != nil else {return}
+        
         // 导航栏背景渐变
         //        zj_setUpGradientLayer(view: navView!, frame: CGRect(x: 0, y: 0, width: kScreenW, height: kStatuHeight+kNavigationBarHeight), color: kGradientColors)
         

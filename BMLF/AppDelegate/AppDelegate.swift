@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let root = ZJAddAptViewController()
         self.window?.rootViewController = root
         self.window?.makeKeyAndVisible()
+        
         return true
     }
 

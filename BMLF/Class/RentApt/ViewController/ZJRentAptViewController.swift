@@ -46,6 +46,9 @@ class SquareView: UIView{
     }
     
     fileprivate func setupUI(){
+    
+        
+        
         self.addSubview(imageV)
 //        let w = self.frame.size.width
         imageV.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: squareViewW/3, height: squareViewW/3)
@@ -102,10 +105,46 @@ class ZJRentAptViewController: ZJBaseViewController {
     
     
     
-    fileprivate lazy var mapView: ZJRentAptMapView = {
+    lazy var mapView: ZJRentAptMapView = {
         let mv = ZJRentAptMapView()
+        mv.layer.cornerRadius = 10
+        mv.layer.masksToBounds = true
+        let gesture = UIPanGestureRecognizer(target: self, action: #selector(didDragMap))
+        gesture.delegate = self
+        mv.addGestureRecognizer(gesture)
         return mv
     }()
+    
+    @objc fileprivate func didDragMap(gesture: UIPanGestureRecognizer){
+        if gesture.state == UIGestureRecognizer.State.ended{
+//            self.navigationController?.navigationBar.isHidden = false
+//            self.tabBarController?.tabBar.isHidden = false
+//            self.navigationController?.navigationBar.alpha = 1
+//            self.tabBarController?.tabBar.alpha = 1
+            UIView.animate(withDuration: 0) {
+                self.navigationController?.navigationBar.alpha = 1
+                self.tabBarController?.tabBar.alpha = 1
+//                self.mapView.mapsView.bounds = self.mapView.mapsView.frame.insetBy(dx: 0, dy: -20.0)
+                self.mapView.mapsView.layoutMargins = UIEdgeInsets(top: -(zjNavigationBarHeight+zjStatusHeight), left: 0, bottom: 0, right: 0)
+//                self.mapView.mapsView.frame.origin.y = -(zjNavigationBarHeight+zjStatusHeight)
+//                self.mapView.mapsView.frame.origin.x = 30
+                
+            }
+            self.view.frame = CGRect(x: 0, y: zjNavigationBarHeight+zjStatusHeight, width: zjScreenWidth, height: zjScreenHeight-zjNavigationBarHeight-zjStatusHeight)
+//            self.view.frame.origin.y = zjNavigationBarHeight
+//            mapView.layer.cornerRadius = 10
+//            mapView.layer.masksToBounds = true
+        }else if gesture.state == UIGestureRecognizer.State.began{
+//            self.navigationController?.navigationBar.isHidden = true
+//            self.tabBarController?.tabBar.isHidden = true
+            UIView.animate(withDuration: 0.5) {
+                self.navigationController?.navigationBar.alpha = 0
+                self.tabBarController?.tabBar.alpha = 0
+            }
+            self.view.frame = CGRect(x: 0, y: 0, width: zjScreenWidth, height: zjScreenHeight)
+//            self.view.frame.origin.y = 0
+        }
+    }
     
     fileprivate lazy var listView: ZJRentAptListView = {
         let lv = ZJRentAptListView()
@@ -116,7 +155,7 @@ class ZJRentAptViewController: ZJBaseViewController {
         super.viewDidLoad()
         setupUI()
         let url = "https://3dxcuahqad.execute-api.us-east-1.amazonaws.com/v1/uploadimage"
-        let dict = ["filePath": "crime.png", "contentType": "image/jpeg", "contentEncoding": "base64"]
+        let dict = ["filePath": "test1.jpeg", "contentType": "image/jpeg", "contentEncoding": "base64"]
         ApiService.callPost(url: URL(string: url)!, params: dict) { (arg0) in
             
             let (message, data) = arg0
@@ -131,7 +170,7 @@ class ZJRentAptViewController: ZJBaseViewController {
 //                    self.upload(image: UIImage(named: "crime")!, urlString: str, mimeType: "image/jpeg", completion: { (bool, error) in
 //                        
 //                    })
-                    ApiService.uploadToS3(image: UIImage(named: "test")!, urlString: str, completion: { (data, err) in
+                    ApiService.uploadToS3(image: UIImage(named: "test1")!, urlString: str, completion: { (data, err) in
                         
                     })
                 }
@@ -142,15 +181,6 @@ class ZJRentAptViewController: ZJBaseViewController {
             }
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -185,6 +215,12 @@ class ZJRentAptViewController: ZJBaseViewController {
 extension ZJRentAptViewController{
     fileprivate func setupUI(){
         
+        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.barTintColor = .orange
+        
+        self.view.backgroundColor = .orange
         self.view.addSubview(mapView)
         mapView.fillSuperview()
         
@@ -208,7 +244,7 @@ extension ZJRentAptViewController{
         mapView.alpha = 1
         listView.alpha = 0
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(imageName: "logo")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(imageName: "logo_white")
 //        navigationItem.leftBarButtonItem?.isEnabled = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "change", style: .plain, target: self, action: #selector(rightBarButtonClicked))
     }
@@ -242,6 +278,12 @@ extension ZJRentAptViewController{
                 
             }
         }
+    }
+}
+
+extension ZJRentAptViewController: UIGestureRecognizerDelegate{
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
 

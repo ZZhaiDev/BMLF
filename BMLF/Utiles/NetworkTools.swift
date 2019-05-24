@@ -76,19 +76,21 @@ class ApiService{
     
     
     static func uploadToS3(image: UIImage, urlString: String, completion: @escaping (Data?, Error?) -> Void) {
-        var imageData = image.pngData()
+        let imageData = image.jpegData(compressionQuality: 0.9)
         let data = imageData?.base64EncodedData()
         //        ZJPrint(URL(string: urlString))
         
-        let urlString = String(utf8String: urlString.replacingOccurrences(of: " ", with: "").cString(using: String.Encoding.utf8)!)
-        
+        let urlString = String(utf8String: urlString.cString(using: String.Encoding.utf8)!)
+        ZJPrint(urlString!)
         var requestURL = URL(string: urlString!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
-        
+//        let requestURL = URL(string: urlString!)!
+        ZJPrint(requestURL)
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = "PUT"
         request.setValue("image/jpeg", forHTTPHeaderField: "Content-Type")
         request.setValue("base64", forHTTPHeaderField: "Content-Encoding")
+        request.setValue("public-read", forHTTPHeaderField: "x-amz-acl")
         request.httpBody = data
         
         let task = URLSession.shared.dataTask(with: request) { (data, responce, error) in
