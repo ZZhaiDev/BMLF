@@ -19,7 +19,7 @@ class ZJAddAptViewController: FormViewController {
     }()
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == 3{
+        if section == 4{
             return 245
         }
         return 0
@@ -101,7 +101,9 @@ class ZJAddAptViewController: FormViewController {
                 $0.title = "Start Date"
                 $0.value = Date()
 //                $0.value = "尽快"
-            }
+                }.onChange({ (date) in
+                    ZJPrint(date.value!)
+                })
             <<< DateInlineRow() {
                 $0.title = "End Date"
                 $0.value = Date()
@@ -113,9 +115,19 @@ class ZJAddAptViewController: FormViewController {
                 $0.title = "Title"
                 $0.placeholder = "Input Your Title"
             }
-            <<< TextRow() {
-                $0.title = "Description"
-                $0.placeholder = "Input Your Title"
+//            <<< TextRow() {
+//                $0.title = "Description"
+//                $0.placeholder = "Input Your Title"
+//            }
+            
+            +++ Section(){ section in
+                var customView = HeaderFooterView<MyCustomUIView>(.class)
+                customView.height = {MyCustomUIView.cellHeight}
+                customView.title = "Description"
+                customView.onSetupView = { view, _ in
+                    view.backgroundColor = .white
+                }
+                section.header = customView
             }
             
             +++ Section("Contact")

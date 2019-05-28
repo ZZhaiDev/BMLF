@@ -109,9 +109,9 @@ class ZJRentAptViewController: ZJBaseViewController {
         let mv = ZJRentAptMapView()
         mv.layer.cornerRadius = 10
         mv.layer.masksToBounds = true
-        let gesture = UIPanGestureRecognizer(target: self, action: #selector(didDragMap))
-        gesture.delegate = self
-        mv.addGestureRecognizer(gesture)
+//        let gesture = UIPanGestureRecognizer(target: self, action: #selector(didDragMap))
+//        gesture.delegate = self
+//        mv.addGestureRecognizer(gesture)
         return mv
     }()
     
@@ -125,7 +125,8 @@ class ZJRentAptViewController: ZJBaseViewController {
                 self.navigationController?.navigationBar.alpha = 1
                 self.tabBarController?.tabBar.alpha = 1
 //                self.mapView.mapsView.bounds = self.mapView.mapsView.frame.insetBy(dx: 0, dy: -20.0)
-                self.mapView.mapsView.layoutMargins = UIEdgeInsets(top: -(zjNavigationBarHeight+zjStatusHeight), left: 0, bottom: 0, right: 0)
+                self.mapView.mapsView.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+//                self.mapView.mapsView.layoutMargins = UIEdgeInsets(top: -(zjNavigationBarHeight+zjStatusHeight), left: 0, bottom: 0, right: 0)
 //                self.mapView.mapsView.frame.origin.y = -(zjNavigationBarHeight+zjStatusHeight)
 //                self.mapView.mapsView.frame.origin.x = 30
                 
@@ -138,10 +139,10 @@ class ZJRentAptViewController: ZJBaseViewController {
 //            self.navigationController?.navigationBar.isHidden = true
 //            self.tabBarController?.tabBar.isHidden = true
             UIView.animate(withDuration: 0.5) {
-                self.navigationController?.navigationBar.alpha = 0
+                self.navigationController?.navigationBar.alpha = 1
                 self.tabBarController?.tabBar.alpha = 0
             }
-            self.view.frame = CGRect(x: 0, y: 0, width: zjScreenWidth, height: zjScreenHeight)
+            self.view.frame = CGRect(x: 0, y: zjNavigationBarHeight+zjStatusHeight, width: zjScreenWidth, height: zjScreenHeight-zjNavigationBarHeight-zjStatusHeight)
 //            self.view.frame.origin.y = 0
         }
     }
@@ -155,12 +156,13 @@ class ZJRentAptViewController: ZJBaseViewController {
         super.viewDidLoad()
         setupUI()
         let url = "https://3dxcuahqad.execute-api.us-east-1.amazonaws.com/v1/uploadimage"
-        let dict = ["filePath": "test1.jpeg", "contentType": "image/jpeg", "contentEncoding": "base64"]
+        let dict = ["filePath": "test.jpg", "contentType": "image/jpeg", "contentEncoding": "base64"]
         ApiService.callPost(url: URL(string: url)!, params: dict) { (arg0) in
             
             let (message, data) = arg0
             do
             {
+                ZJPrint(message)
                 if let jsonData = data
                 {
                     ZJPrint(jsonData)
@@ -170,7 +172,7 @@ class ZJRentAptViewController: ZJBaseViewController {
 //                    self.upload(image: UIImage(named: "crime")!, urlString: str, mimeType: "image/jpeg", completion: { (bool, error) in
 //                        
 //                    })
-                    ApiService.uploadToS3(image: UIImage(named: "test1")!, urlString: str, completion: { (data, err) in
+                    ApiService.uploadToS3(image: UIImage(named: "test")!, urlString: str, completion: { (data, err) in
                         
                     })
                 }
