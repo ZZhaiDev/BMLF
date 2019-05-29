@@ -81,36 +81,22 @@ class ApiService{
     
     static func uploadToS3(image: UIImage, urlString: String, completion: @escaping (Data?, Error?) -> Void) {
         let imageData = image.jpegData(compressionQuality: 0.9)
-//        let imageData
-        let data = imageData?.base64EncodedData()
-//        let urlString = "https://blissmotors-web-upload.s3.amazonaws.com/test.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAX7JZ5S7OYYBHPMNO%2F20190528%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20190528T221253Z&X-Amz-Expires=600&X-Amz-SignedHeaders=content-encoding%3Bcontent-type%3Bhost&X-Amz-Signature=92e9008840daefed38eec24267d817c7b4d4f35db2c2f6483fd9b608bade7b58"
-        let urlString = "https://blissmotors-web-upload.s3.amazonaws.com/test.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAX7JZ5S7OYYBHPMNO/20190528/us-east-1/s3/aws4_request&X-Amz-Date=20190528T222315Z&X-Amz-Expires=600&X-Amz-SignedHeaders=content-encoding;content-type;host&X-Amz-Signature=acdd037e21d844fc2ee4df48da96dcaae3feba39396758cc815e6706d35b20d7"
-//        urlString = String(utf8String: urlString.cString(using: String.Encoding.utf8)!)!.replacingOccurrences(of: "\"", with: "")
-        ZJPrint("123123")
-        ZJPrint(urlString)
-//        var requestURL = URL(string: urlString!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
-        guard let encoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed),
+        let decodedURLString = urlString.replacingOccurrences(of: "\"", with: "").replacingOccurrences(of: "\n", with: "").removingPercentEncoding!
+        ZJPrint(decodedURLString)
+        guard let encoded = decodedURLString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
             let myURL = URL(string: encoded) else{
             return
         }
-        let requestURL = myURL
-//        let requestURL = URL(urlString)
-//        let requestURL = URL(string: urlString!)!
-        ZJPrint(requestURL)
-        
-        var request = URLRequest(url: requestURL)
+        ZJPrint(myURL)
+        var request = URLRequest(url: myURL)
         request.httpMethod = "PUT"
         request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
         request.setValue("base64", forHTTPHeaderField: "Content-Encoding")
         request.setValue("image/jpeg", forHTTPHeaderField: "Content-Type")
-        
-//        request.setValue("public-read", forHTTPHeaderField: "x-amz-acl")
-        request.httpBody = data
+        request.httpBody = imageData
         
         let task = URLSession.shared.dataTask(with: request) { (data, responce, error) in
-            ZJPrint(data)
             let result = String(decoding: data!, as: UTF8.self)
-            
             let dict = convertToDictionary(text: result)
             ZJPrint(result)
             ZJPrint(dict)
@@ -118,8 +104,6 @@ class ApiService{
             completion(data, error)
         }
         task.resume()
-        
-
     }
     
    static func convertToDictionary(text: String) -> [String: Any]? {

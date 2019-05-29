@@ -156,29 +156,20 @@ class ZJRentAptViewController: ZJBaseViewController {
         super.viewDidLoad()
         setupUI()
         let url = "https://3dxcuahqad.execute-api.us-east-1.amazonaws.com/v1/uploadimage"
-        let dict = ["filePath": "test.jpg", "contentType": "image/jpeg", "contentEncoding": "base64"]
+        let dict = ["filePath": "test1.jpeg", "contentType": "image/jpeg", "contentEncoding": "base64"]
         ApiService.callPost(url: URL(string: url)!, params: dict) { (arg0) in
-            
             let (message, data) = arg0
-            do
-            {
+            do{
                 ZJPrint(message)
-                if let jsonData = data
-                {
+                if let jsonData = data{
                     ZJPrint(jsonData)
-                    var str = String(decoding: jsonData, as: UTF8.self)
+                    let str = String(data: jsonData, encoding: String.Encoding.utf8)!
                     ZJPrint(str)
-//                    str = "https://www.blissmotors-web-upload.s3.amazonaws.com/crime.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAX7JZ5S7OYYBHPMNO%2F20190523%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20190523T193510Z&X-Amz-Expires=600&X-Amz-SignedHeaders=content-encoding%3Bcontent-type%3Bhost&X-Amz-Signature=4d6bbaecf13e17fcfba1cb0cde6d448f4d8055a6b02211737f13adccf6b8fb3c"
-//                    self.upload(image: UIImage(named: "crime")!, urlString: str, mimeType: "image/jpeg", completion: { (bool, error) in
-//                        
-//                    })
-                    ApiService.uploadToS3(image: UIImage(named: "test")!, urlString: str, completion: { (data, err) in
-                        
+                    ApiService.uploadToS3(image: UIImage(named: "test1")!, urlString: str, completion: { (data, err) in
                     })
                 }
             }
-            catch
-            {
+            catch{
                 print("Parse Error: \(error)")
             }
         }
