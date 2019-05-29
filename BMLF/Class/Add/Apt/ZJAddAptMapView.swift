@@ -22,13 +22,23 @@ class ZJAddAptMapView: UIView {
     fileprivate let mapViewHeight: CGFloat = 200
     fileprivate let searchBarHeight: CGFloat = 40
     
-    lazy var searchBar: UITextField = { [weak self] in
-       let sb = UITextField()
+    lazy var searchBar: PaddingTextField = { [weak self] in
+       let sb = PaddingTextField()
         sb.delegate = self
+        sb.clearButtonMode = .always
         sb.layer.borderWidth = 0.5
         sb.layer.borderColor = UIColor.black.cgColor
         sb.addTarget(self, action: #selector(textFieldEditing), for: .editingChanged)
         return sb
+    }()
+    
+    lazy var addressLabel:UILabel = {
+       let label = UILabel()
+        label.text = "Address:"
+        label.adjustsFontSizeToFitWidth = true
+        label.backgroundColor = .orange
+        label.textColor = .white
+        return label
     }()
     
     fileprivate lazy var resultTableView: UITableView = { [weak self] in
@@ -74,6 +84,9 @@ class ZJAddAptMapView: UIView {
         self.addSubview(searchBar)
         searchBar.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: searchBarHeight)
         
+        searchBar.addSubview(addressLabel)
+        addressLabel.anchor(top: searchBar.topAnchor, left: searchBar.leftAnchor, bottom: searchBar.bottomAnchor, right: nil, paddingTop: 2, paddingLeft: 2, paddingBottom: 2, paddingRight: 0, width: 50, height: 0)
+        
         self.addSubview(resultTableView)
         resultTableView.anchor(top: self.searchBar.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         resultTableHeightConstraint = resultTableView.heightAnchor.constraint(equalToConstant: 0)
@@ -95,9 +108,12 @@ extension ZJAddAptMapView: MKLocalSearchCompleterDelegate {
     func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
         // handle error
     }
+    
+    
 }
 
 extension ZJAddAptMapView: UITextFieldDelegate{
+    
     
     @objc fileprivate func textFieldEditing(textF: UITextField){
     
@@ -106,7 +122,7 @@ extension ZJAddAptMapView: UITextFieldDelegate{
         }
         ZJPrint(text)
         if text == ""{
-            searchBar.resignFirstResponder()
+//            searchBar.resignFirstResponder()
 
             self.resultTableHeightConstraint?.constant = 0
 //            self.heightAnchor.constraint(equalToConstant: originalMapViewH)
@@ -117,6 +133,11 @@ extension ZJAddAptMapView: UITextFieldDelegate{
             return
         }
         searchCompleter.queryFragment = text
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchBar.resignFirstResponder()
+        return true
     }
 
 }
@@ -155,10 +176,20 @@ extension ZJAddAptMapView: UITableViewDataSource, UITableViewDelegate{
         tableView.deselectRow(at: indexPath, animated: true)
         
         let completion = searchResults[indexPath.row]
+        ZJPrint(completion.subtitle)
+        ZJPrint(completion.title)
+        searchBar.text = completion.title + ", " + completion.subtitle
+        searchBar.resignFirstResponder()
+        if let topVC = UIApplication.topViewController() as? ZJAddAptViewController{
+            topVC.tableView.tableHeaderView?.frame.size.height = originalMapViewH
+            topVC.tableView.reloadData()
+        }
+        
         
         let searchRequest = MKLocalSearch.Request(completion: completion)
         let search = MKLocalSearch(request: searchRequest)
         search.start { (response, error) in
+            ZJPrint(response)
             let coordinate = response?.mapItems[0].placemark.coordinate
             print(String(describing: coordinate))
         }

@@ -42,7 +42,6 @@
 		A438F0F12294ADC900327754 /* ZJRentAptListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A438F0F02294ADC900327754 /* ZJRentAptListHeaderView.swift */; };
 		A438F0F322959ED300327754 /* NetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = A438F0F222959ED300327754 /* NetworkTools.swift */; };
 		A43A95D5229DD04F006E7901 /* MyCustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43A95D3229DD04F006E7901 /* MyCustomUIView.swift */; };
-		A454DA6522946166006EED07 /* ZJAddAptTitleAndSummary.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454DA6422946166006EED07 /* ZJAddAptTitleAndSummary.xib */; };
 		A454DA67229468DA006EED07 /* ZJRentAptListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454DA66229468DA006EED07 /* ZJRentAptListDetailViewController.swift */; };
 		A454DA7722947899006EED07 /* CycleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454DA7322947899006EED07 /* CycleCell.xib */; };
 		A454DA7822947899006EED07 /* RecommendCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454DA7422947899006EED07 /* RecommendCycleView.swift */; };
@@ -52,6 +51,7 @@
 		A454DA8422949D39006EED07 /* ZJRentAptListDetailCatrgories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454DA8322949D39006EED07 /* ZJRentAptListDetailCatrgories.swift */; };
 		A4A12EDF228F63EE00D281BE /* ZJAddAptMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A12EDE228F63EE00D281BE /* ZJAddAptMainView.swift */; };
 		A4A12EE2228F64B100D281BE /* ZJAddAptMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A12EE1228F64B100D281BE /* ZJAddAptMapView.swift */; };
+		A4A32C5A229F191D002EC50E /* ZJAddAptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A32C59229F191D002EC50E /* ZJAddAptModel.swift */; };
 		A4B2DAE422987560003E1254 /* InfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B2DAE322987560003E1254 /* InfoController.swift */; };
 		A4B2DAE6229875AF003E1254 /* StretchyHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B2DAE5229875AF003E1254 /* StretchyHeaderLayout.swift */; };
 		A4B2DAE922987607003E1254 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B2DAE722987606003E1254 /* ConfettiView.swift */; };
@@ -119,7 +119,6 @@
 		A438F0F02294ADC900327754 /* ZJRentAptListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListHeaderView.swift; sourceTree = "<group>"; };
 		A438F0F222959ED300327754 /* NetworkTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTools.swift; sourceTree = "<group>"; };
 		A43A95D3229DD04F006E7901 /* MyCustomUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomUIView.swift; sourceTree = "<group>"; };
-		A454DA6422946166006EED07 /* ZJAddAptTitleAndSummary.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZJAddAptTitleAndSummary.xib; sourceTree = "<group>"; };
 		A454DA66229468DA006EED07 /* ZJRentAptListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListDetailViewController.swift; sourceTree = "<group>"; };
 		A454DA7322947899006EED07 /* CycleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CycleCell.xib; sourceTree = "<group>"; };
 		A454DA7422947899006EED07 /* RecommendCycleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendCycleView.swift; sourceTree = "<group>"; };
@@ -129,6 +128,7 @@
 		A454DA8322949D39006EED07 /* ZJRentAptListDetailCatrgories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListDetailCatrgories.swift; sourceTree = "<group>"; };
 		A4A12EDE228F63EE00D281BE /* ZJAddAptMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptMainView.swift; sourceTree = "<group>"; };
 		A4A12EE1228F64B100D281BE /* ZJAddAptMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptMapView.swift; sourceTree = "<group>"; };
+		A4A32C59229F191D002EC50E /* ZJAddAptModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptModel.swift; sourceTree = "<group>"; };
 		A4B2DAE322987560003E1254 /* InfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoController.swift; sourceTree = "<group>"; };
 		A4B2DAE5229875AF003E1254 /* StretchyHeaderLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StretchyHeaderLayout.swift; sourceTree = "<group>"; };
 		A4B2DAE722987606003E1254 /* ConfettiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
@@ -392,6 +392,7 @@
 		A4A12EE0228F648D00D281BE /* Apt */ = {
 			isa = PBXGroup;
 			children = (
+				A4A32C59229F191D002EC50E /* ZJAddAptModel.swift */,
 				A41CFD6B228DFCCA0008FFB6 /* ZJAddAptViewController.swift */,
 				3845EDB9229097A80045A694 /* ZJAddAptHeaderView.swift */,
 				A4A12EDE228F63EE00D281BE /* ZJAddAptMainView.swift */,
@@ -399,7 +400,6 @@
 				3845EDB7229087B50045A694 /* ZJAddAptDateCell.swift */,
 				3845EDBB2290E7CF0045A694 /* ZJAddAptFooterView.swift */,
 				A43A95D3229DD04F006E7901 /* MyCustomUIView.swift */,
-				A454DA6422946166006EED07 /* ZJAddAptTitleAndSummary.xib */,
 			);
 			path = Apt;
 			sourceTree = "<group>";
@@ -512,7 +512,6 @@
 			files = (
 				A41CFD44228DF4F30008FFB6 /* LaunchScreen.storyboard in Resources */,
 				A41CFD41228DF4F30008FFB6 /* Assets.xcassets in Resources */,
-				A454DA6522946166006EED07 /* ZJAddAptTitleAndSummary.xib in Resources */,
 				3800F057228E52B700095A2F /* PublishView.xib in Resources */,
 				A454DA7A22947899006EED07 /* RecommendCycleView.xib in Resources */,
 				A454DA7722947899006EED07 /* CycleCell.xib in Resources */,
@@ -609,6 +608,7 @@
 				3845EDB8229087B50045A694 /* ZJAddAptDateCell.swift in Sources */,
 				A41CFD6C228DFCCA0008FFB6 /* ZJAddAptViewController.swift in Sources */,
 				A41CFD73228F28FE0008FFB6 /* ZJRentAptListViewCell.swift in Sources */,
+				A4A32C5A229F191D002EC50E /* ZJAddAptModel.swift in Sources */,
 				3847613C2296371600084946 /* UIScrollView+ParallaxHeader.swift in Sources */,
 				A454DA67229468DA006EED07 /* ZJRentAptListDetailViewController.swift in Sources */,
 				A4B2DAE422987560003E1254 /* InfoController.swift in Sources */,

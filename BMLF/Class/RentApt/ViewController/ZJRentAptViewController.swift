@@ -154,6 +154,77 @@ class ZJRentAptViewController: ZJBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let para = [
+            "uuid": "46657078-c5dd-4ee7-b455-f042c9a982b3",
+            "fulladdress": "test",
+            "address": "test",
+            "city": "chicago",
+            "state": "IL",
+            "zipcode": "60611",
+            "submittime": "20190512",
+            "longitude": "20.231",
+            "latitude": "62.21",
+            "date": [
+                "id": 1,
+                "starttime": "20190426",
+                "endtime": "20190513"
+            ],
+            "description": [
+                "id": 1,
+                "title": "test",
+                "description": "test"
+            ],
+            "contact": [
+                "id": 1,
+                "phonenumber": "2153037602",
+                "email": "abc@gmail.com",
+                "wechat": "shshlx"
+            ],
+            "base": [
+                "id": 1,
+                "price": "1000",
+                "housetype": "test",
+                "roomtype": "test",
+                "bathroom": "test",
+                "parkinglot": "test",
+                "washingmachine": "test",
+                "nearby": [
+                [
+                "id": 1,
+                "nearby": "test"
+                ]
+                ],
+                "included": [
+                [
+                "id": 1,
+                "included": "test"
+                ]
+                ]
+            ],
+            "requirement": [
+                "id": 1,
+                "leaseperiod": "test",
+                "gender": "test",
+                "cooking": "test",
+                "smoking": "test",
+                "otherrequirements": [
+                [
+                "id": 1,
+                "otherrequirement": "test"
+                ]
+                ]
+            ],
+            "images": [
+            [
+            "id": 1,
+            "image": "test"
+            ]
+            ],
+            "videos": "test"
+            ] as [String : Any]
+        NetworkTools.requestData(.post, URLString: "http://aca33a60.ngrok.io/api/v1/rental/house/", parameters: para) { (data) in
+            ZJPrint(data)
+        }
         setupUI()
         let url = "https://3dxcuahqad.execute-api.us-east-1.amazonaws.com/v1/uploadimage"
         let dict = ["filePath": "test1.jpeg", "contentType": "image/jpeg", "contentEncoding": "base64"]

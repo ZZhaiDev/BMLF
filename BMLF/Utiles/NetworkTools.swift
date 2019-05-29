@@ -22,18 +22,27 @@ class NetworkTools {
         
         // 2.发送网络请求
 //        ZJPrint(URLString)
-        
-        AF.request(URLString, method: method, parameters: parameters).responseJSON { (response) in
-            
+        AF.request(URLString, method: method, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             // 3.获取结果
             guard let result = response.result.value else {
                 print(response.result.value ?? "")
                 return
             }
-            
+
             // 4.将结果回调出去
             finishedCallback(result)
         }
+//        AF.request(URLString, method: .post, parameters: parameters, encoder: JSONEncoding.default, headers: nil).responseJSON { (response) in
+//            // 3.获取结果
+//            guard let result = response.result.value else {
+//                print(response.result.value ?? "")
+//                return
+//            }
+//
+//            // 4.将结果回调出去
+//            finishedCallback(result)
+//        }
+
     }
 }
 
@@ -95,27 +104,28 @@ class ApiService{
         request.setValue("image/jpeg", forHTTPHeaderField: "Content-Type")
         request.httpBody = imageData
         
+        
         let task = URLSession.shared.dataTask(with: request) { (data, responce, error) in
             let result = String(decoding: data!, as: UTF8.self)
-            let dict = convertToDictionary(text: result)
+//            let dict = convertToDictionary(text: result)
             ZJPrint(result)
-            ZJPrint(dict)
+//            ZJPrint(dict)
             ZJPrint(error)
             completion(data, error)
         }
         task.resume()
     }
     
-   static func convertToDictionary(text: String) -> [String: Any]? {
-        if let data = text.data(using: .utf8) {
-            do {
-                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-        return nil
-    }
+//   static func convertToDictionary(text: String) -> [String: Any]? {
+//        if let data = text.data(using: .utf8) {
+//            do {
+//                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+//            } catch {
+//                print(error.localizedDescription)
+//            }
+//        }
+//        return nil
+//    }
     
     
    

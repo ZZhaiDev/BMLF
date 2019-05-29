@@ -9,9 +9,49 @@
 import UIKit
 import Eureka
 
+private var uuid: String = "empty"
+private var fulladdress: String = "empty"
+private var address: String = "empty"
+private var city: String = "empty"
+private var state: String = "empty"
+private var zipcode: String = "empty"
+private var submittime: String = "empty"
+private var longitude: String = "empty"
+private var latitude: String = "empty"
+
+private var startDate: String = "empty"
+private var endDate: String = "empty"
+private var title: String = "empty"
+private var description: String = "empty"
+private var phoneNumber: String = "empty"
+private var email: String = "empty"
+private var wechat: String = "empty"
+private var price: String = "empty"
+private var Type: String = "empty"
+private var roomType: String = "empty"
+private var bathroom: String = "empty"
+private var parkingLot: String = "empty"
+private var washingMachine: String = "empty"
+private var inlcuded: [String] = []
+private var nearby: [String] = []
+private var leasePeriod: String = "empty"
+private var gender: String = "empty"
+private var cooking: String = "empty"
+private var otherRequirements: [String] = []
+private var images: [String] = []
+private var video: String = "empty"
+
+
+
+
+
+
 var originalMapViewH: CGFloat = 245
 
 class ZJAddAptViewController: FormViewController {
+    
+    var isShowedEndDate = false
+    
     let testButton: UIButton = {
        let b = UIButton()
         b.backgroundColor = .red
@@ -19,19 +59,16 @@ class ZJAddAptViewController: FormViewController {
     }()
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == 4{
+        if section == 5{
             return 245
         }
         return 0
     }
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
         let view = ZJAddAptFooterView()
         return view
     }
-    
-//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        return mapView
-//    }
     
     var navigationOptionsBackup : RowNavigationOptions?
     fileprivate lazy var mainView : ZJAddAptMainView = {
@@ -40,7 +77,6 @@ class ZJAddAptViewController: FormViewController {
     }()
     
     fileprivate lazy var mapView: ZJAddAptMapView = {
-        //        let mv = ZJAddAptMapView(frame: CGRect(x: 0, y: -250, width: zjScreenWidth, height: originalMapViewH))
         let mv = ZJAddAptMapView()
         return mv
     }()
@@ -58,57 +94,45 @@ class ZJAddAptViewController: FormViewController {
         self.tableView.tableHeaderView = mapView
         self.tableView.tableHeaderView?.frame.size.height = originalMapViewH
         
-//        self.view.addSubview(mapView)
-//        mapView.anchor(top: self.view.topAnchor, left: self.view.leftAnchor, bottom: nil, right: self.view.rightAnchor, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 10, width: 0, height: 0)
-//
-//        self.view.addSubview(tableView)
-//        tableView.backgroundColor = .clear
-//        tableView.anchor(top: mapView.bottomAnchor, left: self.view.leftAnchor, bottom: self.view.bottomAnchor, right: self.view.rightAnchor, paddingTop: -600, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-//        tableView.contentInset = UIEdgeInsets(top: 600, left: 0, bottom: 0, right: 0)
-//
-//        self.view.bringSubviewToFront(mapView)
-        
-//        tableView.addSubview(tbutton)
-//        tbutton.anchor(top: tableView.bottomAnchor, left: tableView.leftAnchor, bottom: nil, right: tableView.rightAnchor, paddingTop: tableView.frame.size.height-350, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 150)
-        
         setup()
-//        self.view.addSubview(mainView)
-//        mainView.fillSuperview()
         
     }
     
     func setup(){
         
-//        let oceans = ["Arctic", "Atlantic", "Indian", "Pacific", "Southern"]
-//        form +++ SelectableSection<ImageCheckRow<String>>("And which of the following oceans have you taken a bath in?", selectionType: .multipleSelection)
-//        for option in oceans {
-//            form.last! <<< ImageCheckRow<String>(option){ lrow in
-//                lrow.title = option
-//                lrow.selectableValue = option
-//                lrow.value = nil
-//                }.cellSetup { cell, _ in
-//                    cell.trueImage = UIImage(named: "selectedRectangle")!
-//                    cell.falseImage = UIImage(named: "unselectedRectangle")!
-//                    cell.accessoryType = .checkmark
-//            }
-//        }
-        
         form.inlineRowHideOptions = InlineRowHideOptions.AnotherInlineRowIsShown.union(.FirstResponderChanges)
         form
-            +++ Section("Date")
+            +++ Section(header: "Date", footer: "This section is shown only when 'Show Next Row' switch is enabled")
             
             <<< DateInlineRow() {
                 $0.title = "Start Date"
                 $0.value = Date()
 //                $0.value = "尽快"
                 }.onChange({ (date) in
-                    ZJPrint(date.value!)
+                    if let value = date.value{
+                        let dateformatter = DateFormatter()
+                        dateformatter.dateStyle = DateFormatter.Style.medium
+                        let now = dateformatter.string(from: value)
+                        startDate = now
+                    }
+                })
+            <<< SwitchRow("Show End Date"){
+                $0.title = $0.tag
+                }.onChange({ (bool) in
+                    if let value = bool.value{
+                        self.isShowedEndDate = value
+                    }
                 })
             <<< DateInlineRow() {
                 $0.title = "End Date"
                 $0.value = Date()
-//                $0.value = "无"
-            }
+                $0.hidden = .function(["Show End Date"], { form -> Bool in
+                    let row: RowOf<Bool>! = form.rowBy(tag: "Show End Date")
+                    return row.value ?? false == false
+                })
+                }.onChange({ (endDate) in
+                    ZJPrint(endDate.value!)
+                })
             +++ Section("Description")
             
             <<< TextRow() {
