@@ -16,6 +16,10 @@ class ZJAddAptFooterView: UIView {
     
     var selectedItems = [YPMediaItem]()
     let selectedImageV = UIImageView()
+    fileprivate lazy var imageBackGroundView: UIView = {
+        let view = UIView()
+        return view
+    }()
     
     fileprivate lazy var resultsButton: UIButton = {
        let b = UIButton()
@@ -37,11 +41,14 @@ class ZJAddAptFooterView: UIView {
         self.addSubview(pickButton)
         pickButton.anchor(top: self.topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 50, height: 50)
         
-        selectedImageV.contentMode = .scaleAspectFit
-        self.addSubview(selectedImageV)
-        selectedImageV.anchor(top: pickButton.bottomAnchor, left: pickButton.leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 60, height: 60)
+//        selectedImageV.contentMode = .scaleAspectFit
+//        self.addSubview(selectedImageV)
+//        selectedImageV.anchor(top: pickButton.bottomAnchor, left: pickButton.leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 60, height: 60)
         
-        
+        //第二个20位图片padding 5*4
+        let height = (zjScreenWidth-20-20)/5 * (zjScreenHeight/zjScreenWidth)
+        self.addSubview(imageBackGroundView)
+        imageBackGroundView.anchor(top: pickButton.bottomAnchor, left: pickButton.leftAnchor, bottom: nil, right: self.rightAnchor, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 10, width: 0, height: height)
         
         self.addSubview(resultsButton)
         resultsButton.anchor(top: nil, left: pickButton.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 20, width: 200, height: 30)
@@ -65,7 +72,7 @@ extension ZJAddAptFooterView{
         config.startOnScreen = .library
         config.screens = [.library, .photo, .video]
         config.video.libraryTimeLimit = 500.0
-        config.showsCrop = .rectangle(ratio: (16/9))
+//        config.showsCrop = .rectangle(ratio: (16/9))
         config.wordings.libraryTitle = "Gallery"
         config.hidesStatusBar = false
         config.hidesBottomBar = false
@@ -85,7 +92,8 @@ extension ZJAddAptFooterView{
             if let firstItem = items.first {
                 switch firstItem {
                 case .photo(let photo):
-                    self.selectedImageV.image = photo.image
+//                    self.selectedImageV.image = photo.image
+                    self.setupImages(images: self.selectedItems)
                     picker.dismiss(animated: true, completion: nil)
                 case .video(let video):
                     self.selectedImageV.image = video.thumbnail
@@ -108,6 +116,21 @@ extension ZJAddAptFooterView{
             vc.present(picker, animated: true, completion: nil)
         }
         
+    }
+    
+    func setupImages(images: [YPMediaItem]){
+        let padding: CGFloat = 5
+        let w: CGFloat = (self.imageBackGroundView.frame.size.width - 4*padding)/5
+//        let count = images.count
+        for (index, image) in images.enumerated(){
+            switch image{
+            case .photo(p: let photo):
+                let imageV = UIImageView(frame: CGRect(x: CGFloat(index)*(w+padding), y: 0, width: w, height: self.imageBackGroundView.frame.size.height))
+                imageV.image = photo.image
+                imageBackGroundView.addSubview(imageV)
+            case .video(let video): break
+            }
+        }
     }
     
     func resolutionForLocalVideo(url: URL) -> CGSize? {

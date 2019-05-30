@@ -21,22 +21,23 @@ private var latitude: String = "empty"
 
 private var startDate: String = "empty"
 private var endDate: String = "empty"
-private var title: String = "empty"
-private var description: String = "empty"
+private var titleL: String = "empty"
+var descriptionText_ = "empty"
 private var phoneNumber: String = "empty"
 private var email: String = "empty"
 private var wechat: String = "empty"
 private var price: String = "empty"
-private var Type: String = "empty"
+private var type: String = "empty"
 private var roomType: String = "empty"
 private var bathroom: String = "empty"
 private var parkingLot: String = "empty"
 private var washingMachine: String = "empty"
-private var inlcuded: [String] = []
+private var included: [String] = []
 private var nearby: [String] = []
 private var leasePeriod: String = "empty"
 private var gender: String = "empty"
 private var cooking: String = "empty"
+private var smoking: String = "empty"
 private var otherRequirements: [String] = []
 private var images: [String] = []
 private var video: String = "empty"
@@ -130,19 +131,25 @@ class ZJAddAptViewController: FormViewController {
                     let row: RowOf<Bool>! = form.rowBy(tag: "Show End Date")
                     return row.value ?? false == false
                 })
-                }.onChange({ (endDate) in
-                    ZJPrint(endDate.value!)
+                }.onChange({ (date) in
+                    if let value = date.value{
+                        let dateformatter = DateFormatter()
+                        dateformatter.dateStyle = DateFormatter.Style.medium
+                        let now = dateformatter.string(from: value)
+                        endDate = now
+                    }
+                    
                 })
             +++ Section("Description")
             
             <<< TextRow() {
                 $0.title = "Title"
                 $0.placeholder = "Input Your Title"
-            }
-//            <<< TextRow() {
-//                $0.title = "Description"
-//                $0.placeholder = "Input Your Title"
-//            }
+                }.onChange({ (text) in
+                    if let text =  text.value{
+                        titleL = text
+                    }
+                })
             
             +++ Section(){ section in
                 var customView = HeaderFooterView<MyCustomUIView>(.class)
@@ -159,15 +166,28 @@ class ZJAddAptViewController: FormViewController {
             <<< TextRow() {
                 $0.title = "Phone Number"
                 $0.placeholder = "Input Your Phone Number"
-            }
+                }.onChange({ (text) in
+                    if let text = text.value{
+                        phoneNumber = text
+                    }
+                })
             <<< TextRow() {
                 $0.title = "Email"
                 $0.placeholder = "Input Your Email"
-            }
+                }.onChange({ (text) in
+                    if let text = text.value{
+                        email = text
+                    }
+                })
+            
             <<< TextRow() {
                 $0.title = "Wechat"
                 $0.placeholder = "Input Your Wechat"
-            }
+                }.onChange({ (text) in
+                    if let text = text.value{
+                        wechat = text
+                    }
+                })
 //            <<< TextRow() {
 //                $0.cellProvider = CellProvider<ZJAddAptTitleAndSummar>(nibName: "ZJAddAptTitleAndSummary", bundle: Bundle.main)
 //                $0.cell.height = { 300 }
@@ -181,7 +201,12 @@ class ZJAddAptViewController: FormViewController {
             <<< TextRow() {
                 $0.title = "Price"
                 $0.placeholder = "Input Your Price"
-            }
+                }.onChange({ (text) in
+                    if let text = text.value{
+                        price = text
+                    }
+                })
+            
             <<< AlertRow<String>() {
                 $0.title = "Type"
                 $0.cancelTitle = "Exit"
@@ -193,7 +218,11 @@ class ZJAddAptViewController: FormViewController {
                 }
                 .onPresent{ _, to in
                     to.view.tintColor = .purple
-            }
+                }.onChange({ (text) in
+                    if let text = text.value{
+                        type = text
+                    }
+                })
             <<< AlertRow<String>() {
                 $0.title = "Room Type"
                 $0.cancelTitle = "Exit"
@@ -205,7 +234,12 @@ class ZJAddAptViewController: FormViewController {
                 }
                 .onPresent{ _, to in
                     to.view.tintColor = .purple
-            }
+                }.onChange({ (text) in
+                    if let text = text.value{
+                        roomType = text
+                    }
+                })
+            
             <<< AlertRow<String>() {
                 $0.title = "Bathroom"
                 $0.cancelTitle = "Exit"
@@ -217,7 +251,12 @@ class ZJAddAptViewController: FormViewController {
                 }
                 .onPresent{ _, to in
                     to.view.tintColor = .purple
-            }
+                }.onChange({ (text) in
+                    if let text = text.value{
+                        bathroom = text
+                    }
+                })
+            
             <<< AlertRow<String>() {
                 $0.title = "Parking Lot"
                 $0.cancelTitle = "Exit"
@@ -229,7 +268,11 @@ class ZJAddAptViewController: FormViewController {
                 }
                 .onPresent{ _, to in
                     to.view.tintColor = .purple
-            }
+                }.onChange({ (text) in
+                    if let text = text.value{
+                        parkingLot = text
+                    }
+                })
             
             <<< AlertRow<String>() {
                 $0.title = "Washing Machine"
@@ -242,7 +285,12 @@ class ZJAddAptViewController: FormViewController {
                 }
                 .onPresent{ _, to in
                     to.view.tintColor = .purple
-        }
+                }.onChange({ (text) in
+                    if let text = text.value{
+                        washingMachine = text
+                    }
+                })
+            
         <<< MultipleSelectorRow<String>() {
             $0.title = "Included"
             $0.options = ["Water Included", "Electricity Included", "WiFi Included", "Gym", "Furniture"]
@@ -250,7 +298,11 @@ class ZJAddAptViewController: FormViewController {
             }
             .onPresent { from, to in
                 to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
-        }
+            }.onChange({ (text) in
+                if let text = text.value{
+                     included = Array(text)
+                }
+            })
             
         <<< MultipleSelectorRow<String>() {
             $0.title = "Nearby"
@@ -259,7 +311,11 @@ class ZJAddAptViewController: FormViewController {
             }
             .onPresent { from, to in
                 to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
-        }
+            }.onChange({ (text) in
+                if let text = text.value{
+                    nearby = Array(text)
+                }
+            })
             
         
         +++ Section("Requirement")
@@ -274,7 +330,12 @@ class ZJAddAptViewController: FormViewController {
                 }
                 .onPresent{ _, to in
                     to.view.tintColor = .purple
-            }
+            }.onChange({ (text) in
+                if let text = text.value{
+                    leasePeriod = text
+                }
+            })
+            
             <<< AlertRow<String>() {
                 $0.title = "Gender"
                 $0.cancelTitle = "Exit"
@@ -286,7 +347,12 @@ class ZJAddAptViewController: FormViewController {
                 }
                 .onPresent{ _, to in
                     to.view.tintColor = .purple
-        }
+                }.onChange({ (text) in
+                    if let text = text.value{
+                        gender = text
+                    }
+                })
+            
             <<< AlertRow<String>() {
                 $0.title = "Cooking"
                 $0.cancelTitle = "Exit"
@@ -298,7 +364,11 @@ class ZJAddAptViewController: FormViewController {
                 }
                 .onPresent{ _, to in
                     to.view.tintColor = .purple
-        }
+                }.onChange({ (text) in
+                    if let text = text.value{
+                        cooking = text
+                    }
+                })
             
         <<< AlertRow<String>() {
                 $0.title = "Smoking"
@@ -311,7 +381,11 @@ class ZJAddAptViewController: FormViewController {
                 }
                 .onPresent{ _, to in
                     to.view.tintColor = .purple
-        }
+            }.onChange({ (text) in
+                if let text = text.value{
+                    smoking = text
+                }
+            })
         
         <<< MultipleSelectorRow<String>() {
                 $0.title = "Other Requirements"
@@ -320,7 +394,11 @@ class ZJAddAptViewController: FormViewController {
                 }
                 .onPresent { from, to in
                     to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
-        }
+            }.onChange({ (text) in
+                if let text = text.value{
+                    otherRequirements = Array(text)
+                }
+            })
         
         navigationOptions = RowNavigationOptions.Enabled.union(.SkipCanNotBecomeFirstResponderRow)
         navigationOptionsBackup = navigationOptions

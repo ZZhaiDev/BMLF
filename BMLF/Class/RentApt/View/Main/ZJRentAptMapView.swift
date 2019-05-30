@@ -91,6 +91,8 @@ extension ZJRentAptMapView{
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !isDrawing { return }
         let polygon = MKPolygon(coordinates: &points, count: points.count)
+        ZJPrint(points.count)
+        ZJPrint(points)
         mapsView.addOverlay(polygon)
         points = [] // Reset points
     }

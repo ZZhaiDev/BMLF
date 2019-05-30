@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class MyCustomUIView: UIView {
     
     static let cellHeight: CGFloat = 120
@@ -59,6 +61,7 @@ extension MyCustomUIView: UITextViewDelegate{
         }
         textView.resignFirstResponder()
         ZJPrint(textView.text)
+        descriptionText_ = textView.text
     }
     
     
