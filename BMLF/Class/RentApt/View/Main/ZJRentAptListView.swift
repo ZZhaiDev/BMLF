@@ -10,6 +10,11 @@ import UIKit
 private let cellId = "cellId"
 
 class ZJRentAptListView: UIView {
+    var data = [AddAptProperties](){
+        didSet{
+            collectionView.reloadData()
+        }
+    }
     
     fileprivate lazy var collectionView: UICollectionView = {
 //         = UICollectionView(collectionViewLayout: UICollectionViewFlowLayout())
@@ -45,13 +50,12 @@ class ZJRentAptListView: UIView {
 
 extension ZJRentAptListView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return data.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ZJRentAptListViewCell
-
-//        cell.backgroundColor = .yellow
+        cell.data = data[indexPath.row]
         return cell
     }
     

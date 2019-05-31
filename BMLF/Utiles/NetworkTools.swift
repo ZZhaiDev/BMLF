@@ -15,7 +15,7 @@ enum MethodType {
 }
 
 class NetworkTools {
-    class func requestData(_ type : MethodType, URLString : String, parameters : [String : Any]? = nil, finishedCallback :  @escaping (_ result : Any) -> ()) {
+    class func requestData(_ type : MethodType, URLString : String, parameters : [String : Any]? = nil, finishedCallback :  @escaping (_ result : Any?) -> ()) {
         
         // 1.获取类型
         let method = type == .get ? HTTPMethod.get : HTTPMethod.post
@@ -26,22 +26,13 @@ class NetworkTools {
             // 3.获取结果
             guard let result = response.result.value else {
                 print(response.result.value ?? "")
-                return
+                finishedCallback(response)
+                return 
             }
 
             // 4.将结果回调出去
             finishedCallback(result)
         }
-//        AF.request(URLString, method: .post, parameters: parameters, encoder: JSONEncoding.default, headers: nil).responseJSON { (response) in
-//            // 3.获取结果
-//            guard let result = response.result.value else {
-//                print(response.result.value ?? "")
-//                return
-//            }
-//
-//            // 4.将结果回调出去
-//            finishedCallback(result)
-//        }
 
     }
 }
@@ -74,10 +65,7 @@ class ApiService{
             }
             else
             {
-                ZJPrint(response)
-                ZJPrint(response?.description)
-                ZJPrint(data)
-                ZJPrint(data?.description)
+//                ZJPrint(response)
                 result.message = "Success"
                 result.data = data
             }
@@ -91,12 +79,12 @@ class ApiService{
     static func uploadToS3(image: UIImage, urlString: String, completion: @escaping (URLResponse?, Error?) -> Void) {
         let imageData = image.jpegData(compressionQuality: 0.9)
         let decodedURLString = urlString.replacingOccurrences(of: "\"", with: "").replacingOccurrences(of: "\n", with: "").removingPercentEncoding!
-        ZJPrint(decodedURLString)
+//        ZJPrint(decodedURLString)
         guard let encoded = decodedURLString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
             let myURL = URL(string: encoded) else{
             return
         }
-        ZJPrint(myURL)
+//        ZJPrint(myURL)
         var request = URLRequest(url: myURL)
         request.httpMethod = "PUT"
         request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData

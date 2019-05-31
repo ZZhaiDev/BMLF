@@ -53,9 +53,9 @@ class ZJRentAptMapView: UIView {
     }
     
     fileprivate func setupUI(){
-        
         self.addSubview(mapsView)
         mapsView.fillSuperview()
+        
         
 //        var coordinates = [CLLocationCoordinate2D]()
 //        for location in locations{

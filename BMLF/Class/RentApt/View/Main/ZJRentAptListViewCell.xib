@@ -204,6 +204,17 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="286" height="321"/>
+            <connections>
+                <outlet property="cityL" destination="Xj9-js-i5m" id="Phe-ZZ-FXJ"/>
+                <outlet property="closeL" destination="Zyb-pG-dEu" id="h3o-2X-e8n"/>
+                <outlet property="emailB" destination="KHA-I2-QKa" id="fl3-ol-kDL"/>
+                <outlet property="genderL" destination="2KS-0R-LCF" id="eAR-pu-CN6"/>
+                <outlet property="imageV" destination="cym-Cd-kHn" id="lit-Bg-Av1"/>
+                <outlet property="phoneB" destination="PLR-kH-V5s" id="8f9-9Z-F6u"/>
+                <outlet property="priceL" destination="YCo-4C-XMc" id="eEu-c0-rXw"/>
+                <outlet property="timeL" destination="xj3-Eb-saF" id="yP2-k9-AU3"/>
+                <outlet property="typeL" destination="lU9-bB-fTP" id="lsx-b3-OBw"/>
+            </connections>
             <point key="canvasLocation" x="62.399999999999999" y="134.48275862068968"/>
         </collectionViewCell>
     </objects>

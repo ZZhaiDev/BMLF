@@ -13,7 +13,6 @@
 		3800F052228E3D0800095A2F /* ZJRentAptListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3800F051228E3D0800095A2F /* ZJRentAptListView.swift */; };
 		3800F057228E52B700095A2F /* PublishView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3800F055228E52B700095A2F /* PublishView.xib */; };
 		3800F058228E52B700095A2F /* PublishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3800F056228E52B700095A2F /* PublishView.swift */; };
-		381BE98922A0C43E003BC27C /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381BE98822A0C43E003BC27C /* Constant.swift */; };
 		381BE98B22A0D228003BC27C /* ZJAddAptViewControllerLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381BE98A22A0D228003BC27C /* ZJAddAptViewControllerLayout.swift */; };
 		3845EDB8229087B50045A694 /* ZJAddAptDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3845EDB7229087B50045A694 /* ZJAddAptDateCell.swift */; };
 		3845EDBA229097A80045A694 /* ZJAddAptHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3845EDB9229097A80045A694 /* ZJAddAptHeaderView.swift */; };
@@ -30,6 +29,7 @@
 		38C5146F2294E2C800953286 /* ZJRentAptListDetailRequirementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C5146E2294E2C800953286 /* ZJRentAptListDetailRequirementCell.swift */; };
 		38C514722294EADD00953286 /* YNCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C514712294EADD00953286 /* YNCategoryButton.swift */; };
 		4EB5AB71F9334FAE7E78F7D7 /* Pods_BMLF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 828C269B6E435890612D9151 /* Pods_BMLF.framework */; };
+		A419FDB222A1BF10002D891F /* ZJAptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A419FDB122A1BF10002D891F /* ZJAptViewModel.swift */; };
 		A41CFD3A228DF4F00008FFB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41CFD39228DF4F00008FFB6 /* AppDelegate.swift */; };
 		A41CFD41228DF4F30008FFB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A41CFD40228DF4F30008FFB6 /* Assets.xcassets */; };
 		A41CFD44228DF4F30008FFB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A41CFD42228DF4F30008FFB6 /* LaunchScreen.storyboard */; };
@@ -85,7 +85,6 @@
 		3800F051228E3D0800095A2F /* ZJRentAptListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListView.swift; sourceTree = "<group>"; };
 		3800F055228E52B700095A2F /* PublishView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishView.xib; sourceTree = "<group>"; };
 		3800F056228E52B700095A2F /* PublishView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishView.swift; sourceTree = "<group>"; };
-		381BE98822A0C43E003BC27C /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		381BE98A22A0D228003BC27C /* ZJAddAptViewControllerLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptViewControllerLayout.swift; sourceTree = "<group>"; };
 		3845EDB7229087B50045A694 /* ZJAddAptDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptDateCell.swift; sourceTree = "<group>"; };
 		3845EDB9229097A80045A694 /* ZJAddAptHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptHeaderView.swift; sourceTree = "<group>"; };
@@ -103,6 +102,7 @@
 		38C514712294EADD00953286 /* YNCategoryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YNCategoryButton.swift; sourceTree = "<group>"; };
 		828C269B6E435890612D9151 /* Pods_BMLF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BMLF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C17C4D8C7D3D43388A90FAD /* Pods-BMLF.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BMLF.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BMLF/Pods-BMLF.debug.xcconfig"; sourceTree = "<group>"; };
+		A419FDB122A1BF10002D891F /* ZJAptViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAptViewModel.swift; sourceTree = "<group>"; };
 		A41CFD36228DF4F00008FFB6 /* BMLF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BMLF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A41CFD39228DF4F00008FFB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A41CFD40228DF4F30008FFB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -246,7 +246,6 @@
 				384761372296371600084946 /* ParallaxHeader.swift */,
 				384761382296371600084946 /* ParallaxHeaderMode.swift */,
 				384761392296371600084946 /* UIScrollView+ParallaxHeader.swift */,
-				381BE98822A0C43E003BC27C /* Constant.swift */,
 			);
 			name = ParallaxHeader;
 			path = "../../../Carloudy-News/CarloudyNews/CarloudyNews/Utils/ParallaxHeader";
@@ -264,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				38476141229649A000084946 /* CityBoundaryViewModel.swift */,
+				A419FDB122A1BF10002D891F /* ZJAptViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -577,6 +577,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/PryntTrimmerView/PryntTrimmerView.framework",
 				"${BUILT_PRODUCTS_DIR}/SteviaLayout/Stevia.framework",
 				"${BUILT_PRODUCTS_DIR}/YPImagePicker/YPImagePicker.framework",
@@ -590,6 +591,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PryntTrimmerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stevia.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YPImagePicker.framework",
@@ -614,6 +616,7 @@
 				3845EDB8229087B50045A694 /* ZJAddAptDateCell.swift in Sources */,
 				A41CFD6C228DFCCA0008FFB6 /* ZJAddAptViewController.swift in Sources */,
 				A41CFD73228F28FE0008FFB6 /* ZJRentAptListViewCell.swift in Sources */,
+				A419FDB222A1BF10002D891F /* ZJAptViewModel.swift in Sources */,
 				A4A32C5A229F191D002EC50E /* ZJAddAptModel.swift in Sources */,
 				381BE98B22A0D228003BC27C /* ZJAddAptViewControllerLayout.swift in Sources */,
 				3847613C2296371600084946 /* UIScrollView+ParallaxHeader.swift in Sources */,
@@ -643,7 +646,6 @@
 				3800F04E228E394400095A2F /* ZJRentAptViewController.swift in Sources */,
 				A41CFD6A228DF6D30008FFB6 /* ZJNavigationController.swift in Sources */,
 				38476144229649CD00084946 /* CityBoundaryModel.swift in Sources */,
-				381BE98922A0C43E003BC27C /* Constant.swift in Sources */,
 				A4B2DAE6229875AF003E1254 /* StretchyHeaderLayout.swift in Sources */,
 				38536EE822938C1700A555AC /* APIs.swift in Sources */,
 				3845EDBC2290E7CF0045A694 /* ZJAddAptFooterView.swift in Sources */,

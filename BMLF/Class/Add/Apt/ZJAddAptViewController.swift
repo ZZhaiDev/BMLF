@@ -9,9 +9,6 @@
 import UIKit
 import Eureka
 
-
-
-
 var originalMapViewH: CGFloat = 245
 
 class ZJAddAptViewController: FormViewController {
@@ -85,8 +82,9 @@ class ZJAddAptViewController: FormViewController {
 //        }
 //    }
     
-    @objc fileprivate func closefunc(){
+    @objc func closefunc(){
         self.dismiss(animated: true) {
+            self.resetForms()
         }
     }
     

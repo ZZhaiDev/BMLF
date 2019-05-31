@@ -13,6 +13,7 @@ import AFNetworking
 private let squareViewW: CGFloat = 50
 private let stackViewSpace: CGFloat = 10
 class SquareView: UIView{
+    
     lazy var imageV: UIImageView = {
        let iv = UIImageView()
         return iv
@@ -47,7 +48,8 @@ class SquareView: UIView{
     
     fileprivate func setupUI(){
     
-        
+//        aptViewModel.loadApt { (responce) in
+//        }
         
         self.addSubview(imageV)
 //        let w = self.frame.size.width
@@ -76,6 +78,7 @@ class ZJRentAptViewController: ZJBaseViewController {
 //        db.addTarget(self, action: #selector(drawButtonClicked), for: .touchUpInside)
 //        return db
 //    }()
+    var aptViewModel = ZJAptViewModel()
     lazy var cityBoundaryViewModel = CityBoundaryViewModel()
     fileprivate lazy var drawView: SquareView = {
         let view = SquareView()
@@ -154,7 +157,9 @@ class ZJRentAptViewController: ZJBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        aptViewModel.loadApt { (responce) in
+            self.listView.data = self.aptViewModel.aptProperties
+        }
         setupUI()
     }
     

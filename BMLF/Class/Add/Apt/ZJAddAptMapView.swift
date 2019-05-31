@@ -192,9 +192,41 @@ extension ZJAddAptMapView: UITableViewDataSource, UITableViewDelegate{
         let searchRequest = MKLocalSearch.Request(completion: completion)
         let search = MKLocalSearch(request: searchRequest)
         search.start { (response, error) in
-            ZJPrint(response)
-            let coordinate = response?.mapItems[0].placemark.coordinate
-            print(String(describing: coordinate))
+            /*
+            open var thoroughfare: String? { get } // street name, eg. Infinite Loop
+            
+            open var subThoroughfare: String? { get } // eg. 1
+            
+            open var locality: String? { get } // city, eg. Cupertino
+            
+            open var subLocality: String? { get } // neighborhood, common name, eg. Mission District
+            
+            open var administrativeArea: String? { get } // state, eg. CA
+            
+            open var subAdministrativeArea: String? { get } // county, eg. Santa Clara
+            
+            open var postalCode: String? { get } // zip code, eg. 95014
+            
+            open var isoCountryCode: String? { get } // eg. US
+            
+            open var country: String? { get } // eg. United States
+ */
+            if let thoroughfare = response?.mapItems[0].placemark.thoroughfare{
+                address = thoroughfare
+            }
+            if let locality = response?.mapItems[0].placemark.locality{
+                city = locality
+            }
+            if let administrativeArea = response?.mapItems[0].placemark.administrativeArea{
+                state = administrativeArea
+            }
+            if let postalCode = response?.mapItems[0].placemark.postalCode{
+                zipcode = postalCode
+            }
+            if let coordinate = response?.mapItems[0].placemark.coordinate{
+                longitude = String(coordinate.longitude)
+                latitude = String(coordinate.latitude)
+            }
         }
     }
     

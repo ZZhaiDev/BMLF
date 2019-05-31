@@ -17,6 +17,9 @@ PODS:
   - Alamofire (5.0.0.beta.1)
   - Eureka (4.3.1)
   - Kingfisher (5.1.1)
+  - NVActivityIndicatorView (4.6.0):
+    - NVActivityIndicatorView/Presenter (= 4.6.0)
+  - NVActivityIndicatorView/Presenter (4.6.0)
   - pop (1.0.12)
   - PryntTrimmerView (3.0.0)
   - SteviaLayout (4.4.4)
@@ -29,6 +32,7 @@ DEPENDENCIES:
   - Alamofire (= 5.0.0.beta.1)
   - Eureka
   - Kingfisher (~> 5.1.1)
+  - NVActivityIndicatorView (= 4.6.0)
   - pop
   - YPImagePicker (~> 3.5.3)
 
@@ -38,6 +42,7 @@ SPEC REPOS:
     - Alamofire
     - Eureka
     - Kingfisher
+    - NVActivityIndicatorView
     - pop
     - PryntTrimmerView
     - SteviaLayout
@@ -48,11 +53,12 @@ SPEC CHECKSUMS:
   Alamofire: 2ef6d6c984c5d21c366e9b41a9ae7dfee2b67a44
   Eureka: 28ea296f06710f6745266b71f17862048941a32d
   Kingfisher: 2558186963e5be42d98c5b110ccb3130148b77e4
+  NVActivityIndicatorView: 9c3704896798b042315e2a154dc27e48384756f0
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   PryntTrimmerView: 53ac64053c7ce63cb3e27f54090f52da0734891d
   SteviaLayout: 523469269059f2c6da02820bb2ff28a5fe0780aa
   YPImagePicker: 5dd3814b47b1208e9c8cc8f6ef77fe90db3723b6
 
-PODFILE CHECKSUM: 59ee6254cfceec405e9bdbc2edeb2dae2081ffcb
+PODFILE CHECKSUM: 637734a5d5eebc649e172fb14d3e58292490b4e9
 
 COCOAPODS: 1.6.2

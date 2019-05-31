@@ -9,14 +9,14 @@
 import UIKit
 //http://aca33a60.ngrok.io/api/v1/rental/house/
 
-struct AddAptModel: Codable {
-    var count: Int
+struct ZJAddAptModel: Codable {
+    var count: Int?
     var results: AddAptResults?
 }
 
 struct AddAptResults: Codable{
     var type: String? //FeatureCollection
-    var features: [AddAptFeature]
+    var features: [AddAptFeature]?
 }
 struct AddAptFeature: Codable {
     var id: Int?

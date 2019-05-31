@@ -8,16 +8,17 @@
 
 import UIKit
 import Eureka
+import NVActivityIndicatorView
 
 private var uuid: String = "empty"
 var fulladdress: String = "empty"
-private var address: String = "empty"
-private var city: String = "empty"
-private var state: String = "empty"
-private var zipcode: String = "empty"
+ var address: String = "empty"
+ var city: String = "empty"
+ var state: String = "empty"
+ var zipcode: String = "empty"
 private var submittime: String = "empty"
-private var longitude: String = "empty"
-private var latitude: String = "empty"
+ var longitude: String = "0.0"
+ var latitude: String = "0.0"
 
 private var startDate: String = "empty"
 private var endDate: String = "empty"
@@ -44,59 +45,115 @@ private var video: String = "empty"
 
 
 
-extension ZJAddAptViewController{
+extension ZJAddAptViewController: NVActivityIndicatorViewable{
     func nearbyDict() -> [[String: String]]{
         let nearbyCount = nearby.count
         var nearbyDict = [[String:String]]()
         for i in 0..<nearbyCount{
             var dict = [String: String]()
-            dict["id"] = "1"
             dict["nearby"] = nearby[i]
             nearbyDict.append(dict)
         }
         return nearbyDict
     }
     
-    @objc func submitfunc(){
-        let UUID = NSUUID().uuidString
-        
+    func includedDict() -> [[String: String]]{
+        let includedCount = included.count
+        var includedDict = [[String:String]]()
+        for i in 0..<includedCount{
+            var dict = [String: String]()
+            dict["included"] = included[i]
+            includedDict.append(dict)
+        }
+        return includedDict
+    }
+    
+    func otherRequirementsDict() -> [[String: String]]{
+        let otherCount = otherRequirements.count
+        var otherDict = [[String:String]]()
+        for i in 0..<otherCount{
+            var dict = [String: String]()
+            dict["otherrequirement"] = otherRequirements[i]
+            otherDict.append(dict)
+        }
+        return otherDict
+    }
+    
+    func imagesDict() -> [[String: String]]{
+        let imagesCount = images.count
+        var imagesDict = [[String:String]]()
+        for i in 0..<imagesCount{
+            var dict = [String: String]()
+            dict["image"] = images[i]
+            imagesDict.append(dict)
+        }
+        return imagesDict
+    }
+    
+    
+    
+    func currentTime() -> String{
         let dateformatter = DateFormatter()
         dateformatter.dateStyle = DateFormatter.Style.medium
         let now = dateformatter.string(from: Date())
-        ZJPrint(now)
+        return now
+    }
+    
+    @objc func submitfunc(){
+        let UUID = NSUUID().uuidString
         
-        getImageUrlFromAWSS3()
-        
-        ZJPrint(nearbyDict())
-        ZJPrint(fulladdress)
-        let para = [
+        startAnimating(CGSize(width: 30, height: 30), message: "Uploading...", fadeInAnimation: nil)
+        getImageUrlFromAWSS3(UUID: UUID) {
+            ZJPrint(images)
+            let form = self.fillOutForms(UUID: UUID)
+            NetworkTools.requestData(.post, URLString: "http://aca33a60.ngrok.io/api/v1/rental/house/", parameters: form) { (data) in
+                guard let data = data else{
+                    NVActivityIndicatorPresenter.sharedInstance.setMessage("Something is Wrong...")
+                    DispatchQueue.main.asyncAfter(deadline: .now()+1.5, execute: {
+                        self.stopAnimating()
+                        ZJPrint("1111123121233123312")
+                        self.closefunc()
+                        return
+                    })
+                    ZJPrint("123121233123312")
+                    return
+                }
+                NVActivityIndicatorPresenter.sharedInstance.setMessage("Uploaded Successfully...")
+                DispatchQueue.main.asyncAfter(deadline: .now()+1.5, execute: {
+                  self.stopAnimating()
+                  self.closefunc()
+                })
+                
+                ZJPrint(data)
+            }
+        }
+    }
+    
+    func fillOutForms(UUID: String) -> [String : Any]{
+        let form = [
             "uuid": UUID,
             "fulladdress": fulladdress,
             "address": address,
             "city": city,
             "state": state,
             "zipcode": zipcode,
-            "submittime": now,
-            "longitude": "20.231",              //不能填string 只能填double？
-            "latitude": "62.21",
+            "submittime": currentTime(),
+            "longitude": longitude,              //不能填string 只能填double？
+            "latitude": latitude,
             "date": [
-                "id": 1,
                 "starttime": startDate,
                 "endtime": endDate
             ],
             "description": [
-                "id": 1,
                 "title": titleL,
                 "description": descriptionText_
             ],
             "contact": [
-                "id": 1,
                 "phonenumber": phoneNumber,
                 "email": email,             //测试
                 "wechat": wechat
             ],
             "base": [
-                "id": 1,
                 "price": price,
                 "housetype": type,
                 "roomtype": roomType,
@@ -104,48 +161,70 @@ extension ZJAddAptViewController{
                 "parkinglot": parkingLot,
                 "washingmachine": washingMachine,
                 "nearby": nearbyDict(),
-                "included": [
-                    [
-                        "id": 1,
-                        "included": "test"
-                    ]
-                ]
+                "included": includedDict()
             ],
             "requirement": [
-                "id": 1,
                 "leaseperiod": leasePeriod,
                 "gender": gender,
                 "cooking": cooking,
                 "smoking": smoking,
-                "otherrequirements": [
-                    [
-                        "id": 1,
-                        "otherrequirement": "test"
-                    ]
-                ]
+                "otherrequirements": otherRequirementsDict()
             ],
-            "images": [
-                [
-                    "id": 1,
-                    "image": "test"
-                ]
-            ],
+            "images": imagesDict(),
             "videos": "test"
             ] as [String : Any]
-        NetworkTools.requestData(.post, URLString: "http://aca33a60.ngrok.io/api/v1/rental/house/", parameters: para) { (data) in
-            ZJPrint(data)
-        }
-        
+        return form
     }
     
-    func getImageUrlFromAWSS3(){
+    func resetForms(){
+        uuid = "empty"
+        fulladdress = "empty"
+        address = "empty"
+        city = "empty"
+        state = "empty"
+        zipcode = "empty"
+        submittime = "empty"
+        longitude = "0.0"
+        latitude = "0.0"
+        
+        startDate = "empty"
+        endDate = "empty"
+        titleL = "empty"
+        descriptionText_ = "empty"
+        phoneNumber = "empty"
+        email = "empty"
+        wechat = "empty"
+        price = "empty"
+        type = "empty"
+        roomType = "empty"
+        bathroom = "empty"
+        parkingLot = "empty"
+        washingMachine = "empty"
+        included = []
+        nearby = []
+        leasePeriod = "empty"
+        gender = "empty"
+        cooking = "empty"
+        smoking = "empty"
+        otherRequirements = []
+        images = []
+        video = "empty"
+        
+        selectedItems = []
+    }
+    
+    func getImageUrlFromAWSS3(UUID: String, finish: @escaping ()->()){
+        if selectedItems.count == 0{
+            finish()
+            return
+        }
         for image in selectedItems{
             switch image{
             case .photo(p: let imageV):
                 guard let imageName = imageV.asset?.value(forKey: "filename") else {return}
                 ZJPrint(imageName)
                 let url = "https://3dxcuahqad.execute-api.us-east-1.amazonaws.com/v1/uploadimage"
-                let dict = ["filePath": imageName, "contentType": "image/jpeg", "contentEncoding": "base64"]
+                let dict = ["filePath": "\(UUID)-\(imageName)", "contentType": "image/jpeg", "contentEncoding": "base64"]
                 ApiService.callPost(url: URL(string: url)!, params: dict) { (arg0) in
                     let (message, data) = arg0
                     ZJPrint(message)
@@ -156,7 +235,12 @@ extension ZJAddAptViewController{
                                 ZJPrint(err)
                                 return
                             }
-                            ZJPrint(responce!)
+//                            ZJPrint(responce!)
+                            let urlStr = "https://blissmotors-web-upload.s3.amazonaws.com/\(UUID)-\(imageName)"
+                            images.append(urlStr)
+                            if images.count == selectedItems.count{
+                                finish()
+                            }
                             
                         })
                     }
@@ -165,13 +249,15 @@ extension ZJAddAptViewController{
                 break
             }
         }
+        
     }
 }
 
 
+
+// MARK:- UISetup
 extension ZJAddAptViewController{
     func setup(){
-        
         form.inlineRowHideOptions = InlineRowHideOptions.AnotherInlineRowIsShown.union(.FirstResponderChanges)
         form
             +++ Section(header: "Date", footer: "This section is shown only when 'Show Next Row' switch is enabled")
@@ -259,15 +345,7 @@ extension ZJAddAptViewController{
                         wechat = text
                     }
                 })
-            //            <<< TextRow() {
-            //                $0.cellProvider = CellProvider<ZJAddAptTitleAndSummar>(nibName: "ZJAddAptTitleAndSummary", bundle: Bundle.main)
-            //                $0.cell.height = { 300 }
-            //                }
-            //                .onChange { row in
-            //                    if let textView = row.cell.viewWithTag(99) as? UITextView {
-            //                        textView.text = row.cell.textField.text
-            //                    }
-            //            }
+            
             +++ Section("Base")
             <<< TextRow() {
                 $0.title = "Price"
@@ -473,58 +551,5 @@ extension ZJAddAptViewController{
         
         navigationOptions = RowNavigationOptions.Enabled.union(.SkipCanNotBecomeFirstResponderRow)
         navigationOptionsBackup = navigationOptions
-        
-        //        form = Section(header: "Settings", footer: "These settings change how the navigation accessory view behaves")
-        //        form = Section(header: "Settings")
-        //           +++ Section("基础1")
-        //            <<< SwitchRow("set_none") { [weak self] in
-        //                $0.title = "Navigation accessory view"
-        //                $0.value = self?.navigationOptions != .Disabled
-        //                }.onChange { [weak self] in
-        //                    if $0.value ?? false {
-        //                        self?.navigationOptions = self?.navigationOptionsBackup
-        //                        self?.form.rowBy(tag: "set_disabled")?.baseValue = self?.navigationOptions?.contains(.StopDisabledRow)
-        //                        self?.form.rowBy(tag: "set_skip")?.baseValue = self?.navigationOptions?.contains(.SkipCanNotBecomeFirstResponderRow)
-        //                        self?.form.rowBy(tag: "set_disabled")?.updateCell()
-        //                        self?.form.rowBy(tag: "set_skip")?.updateCell()
-        //                    }
-        //                    else {
-        //                        self?.navigationOptionsBackup = self?.navigationOptions
-        //                        self?.navigationOptions = .Disabled
-        //                    }
-        //            }
-        //
-        //            <<< CheckRow("set_disabled") { [weak self] in
-        //                $0.title = "Stop at disabled row"
-        //                $0.value = self?.navigationOptions?.contains(.StopDisabledRow)
-        //                $0.hidden = "$set_none == false" // .Predicate(NSPredicate(format: "$set_none == false"))
-        //                }.onChange { [weak self] row in
-        //                    if row.value ?? false {
-        //                        self?.navigationOptions = self?.navigationOptions?.union(.StopDisabledRow)
-        //                    }
-        //                    else{
-        //                        self?.navigationOptions = self?.navigationOptions?.subtracting(.StopDisabledRow)
-        //                    }
-        //            }
-        //
-        //            <<< CheckRow("set_skip") { [weak self] in
-        //                $0.title = "Skip non first responder view"
-        //                $0.value = self?.navigationOptions?.contains(.SkipCanNotBecomeFirstResponderRow)
-        //                $0.hidden = "$set_none  == false"
-        //                }.onChange { [weak self] row in
-        //                    if row.value ?? false {
-        //                        self?.navigationOptions = self?.navigationOptions?.union(.SkipCanNotBecomeFirstResponderRow)
-        //                    }
-        //                    else{
-        //                        self?.navigationOptions = self?.navigationOptions?.subtracting(.SkipCanNotBecomeFirstResponderRow)
-        //                    }
-        //        }
-        //        +++
-        //        NameRow() { $0.title = "Your name:" }
-        
-        
-        
-        
-        
     }
 }
