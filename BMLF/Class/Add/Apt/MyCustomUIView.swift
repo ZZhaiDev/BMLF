@@ -45,7 +45,7 @@ class MyCustomUIView: UIView {
 
 extension MyCustomUIView: UITextViewDelegate{
     func textViewDidBeginEditing(_ textView: UITextView) {
-        label.textColor = .blue
+        label.textColor = UIApplication.topViewController()?.navigationController?.navigationBar.tintColor
         if (textView.text == "Description(Optional)"){
             textView.text = ""
             textView.textColor = UIColor.black

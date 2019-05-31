@@ -179,6 +179,9 @@ extension ZJAddAptMapView: UITableViewDataSource, UITableViewDelegate{
         ZJPrint(completion.subtitle)
         ZJPrint(completion.title)
         searchBar.text = completion.title + ", " + completion.subtitle
+        if let text = searchBar.text{
+            fulladdress = text
+        }
         searchBar.resignFirstResponder()
         if let topVC = UIApplication.topViewController() as? ZJAddAptViewController{
             topVC.tableView.tableHeaderView?.frame.size.height = originalMapViewH

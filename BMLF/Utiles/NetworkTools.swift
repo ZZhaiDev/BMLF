@@ -88,7 +88,7 @@ class ApiService{
     }
     
     
-    static func uploadToS3(image: UIImage, urlString: String, completion: @escaping (Data?, Error?) -> Void) {
+    static func uploadToS3(image: UIImage, urlString: String, completion: @escaping (URLResponse?, Error?) -> Void) {
         let imageData = image.jpegData(compressionQuality: 0.9)
         let decodedURLString = urlString.replacingOccurrences(of: "\"", with: "").replacingOccurrences(of: "\n", with: "").removingPercentEncoding!
         ZJPrint(decodedURLString)
@@ -106,12 +106,7 @@ class ApiService{
         
         
         let task = URLSession.shared.dataTask(with: request) { (data, responce, error) in
-            let result = String(decoding: data!, as: UTF8.self)
-//            let dict = convertToDictionary(text: result)
-            ZJPrint(result)
-//            ZJPrint(dict)
-            ZJPrint(error)
-            completion(data, error)
+            completion(responce, error)
         }
         task.resume()
     }

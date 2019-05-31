@@ -13,6 +13,8 @@
 		3800F052228E3D0800095A2F /* ZJRentAptListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3800F051228E3D0800095A2F /* ZJRentAptListView.swift */; };
 		3800F057228E52B700095A2F /* PublishView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3800F055228E52B700095A2F /* PublishView.xib */; };
 		3800F058228E52B700095A2F /* PublishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3800F056228E52B700095A2F /* PublishView.swift */; };
+		381BE98922A0C43E003BC27C /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381BE98822A0C43E003BC27C /* Constant.swift */; };
+		381BE98B22A0D228003BC27C /* ZJAddAptViewControllerLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381BE98A22A0D228003BC27C /* ZJAddAptViewControllerLayout.swift */; };
 		3845EDB8229087B50045A694 /* ZJAddAptDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3845EDB7229087B50045A694 /* ZJAddAptDateCell.swift */; };
 		3845EDBA229097A80045A694 /* ZJAddAptHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3845EDB9229097A80045A694 /* ZJAddAptHeaderView.swift */; };
 		3845EDBC2290E7CF0045A694 /* ZJAddAptFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3845EDBB2290E7CF0045A694 /* ZJAddAptFooterView.swift */; };
@@ -83,6 +85,8 @@
 		3800F051228E3D0800095A2F /* ZJRentAptListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListView.swift; sourceTree = "<group>"; };
 		3800F055228E52B700095A2F /* PublishView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishView.xib; sourceTree = "<group>"; };
 		3800F056228E52B700095A2F /* PublishView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishView.swift; sourceTree = "<group>"; };
+		381BE98822A0C43E003BC27C /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		381BE98A22A0D228003BC27C /* ZJAddAptViewControllerLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptViewControllerLayout.swift; sourceTree = "<group>"; };
 		3845EDB7229087B50045A694 /* ZJAddAptDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptDateCell.swift; sourceTree = "<group>"; };
 		3845EDB9229097A80045A694 /* ZJAddAptHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptHeaderView.swift; sourceTree = "<group>"; };
 		3845EDBB2290E7CF0045A694 /* ZJAddAptFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptFooterView.swift; sourceTree = "<group>"; };
@@ -242,6 +246,7 @@
 				384761372296371600084946 /* ParallaxHeader.swift */,
 				384761382296371600084946 /* ParallaxHeaderMode.swift */,
 				384761392296371600084946 /* UIScrollView+ParallaxHeader.swift */,
+				381BE98822A0C43E003BC27C /* Constant.swift */,
 			);
 			name = ParallaxHeader;
 			path = "../../../Carloudy-News/CarloudyNews/CarloudyNews/Utils/ParallaxHeader";
@@ -394,6 +399,7 @@
 			children = (
 				A4A32C59229F191D002EC50E /* ZJAddAptModel.swift */,
 				A41CFD6B228DFCCA0008FFB6 /* ZJAddAptViewController.swift */,
+				381BE98A22A0D228003BC27C /* ZJAddAptViewControllerLayout.swift */,
 				3845EDB9229097A80045A694 /* ZJAddAptHeaderView.swift */,
 				A4A12EDE228F63EE00D281BE /* ZJAddAptMainView.swift */,
 				A4A12EE1228F64B100D281BE /* ZJAddAptMapView.swift */,
@@ -609,6 +615,7 @@
 				A41CFD6C228DFCCA0008FFB6 /* ZJAddAptViewController.swift in Sources */,
 				A41CFD73228F28FE0008FFB6 /* ZJRentAptListViewCell.swift in Sources */,
 				A4A32C5A229F191D002EC50E /* ZJAddAptModel.swift in Sources */,
+				381BE98B22A0D228003BC27C /* ZJAddAptViewControllerLayout.swift in Sources */,
 				3847613C2296371600084946 /* UIScrollView+ParallaxHeader.swift in Sources */,
 				A454DA67229468DA006EED07 /* ZJRentAptListDetailViewController.swift in Sources */,
 				A4B2DAE422987560003E1254 /* InfoController.swift in Sources */,
@@ -636,6 +643,7 @@
 				3800F04E228E394400095A2F /* ZJRentAptViewController.swift in Sources */,
 				A41CFD6A228DF6D30008FFB6 /* ZJNavigationController.swift in Sources */,
 				38476144229649CD00084946 /* CityBoundaryModel.swift in Sources */,
+				381BE98922A0C43E003BC27C /* Constant.swift in Sources */,
 				A4B2DAE6229875AF003E1254 /* StretchyHeaderLayout.swift in Sources */,
 				38536EE822938C1700A555AC /* APIs.swift in Sources */,
 				3845EDBC2290E7CF0045A694 /* ZJAddAptFooterView.swift in Sources */,
