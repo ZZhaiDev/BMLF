@@ -14,16 +14,20 @@ private let cellId = "cellId"
 class RecommendCycleView: UIView {
     
     var cycleTimer : Timer?
-    var cycleModels = [CycleModel]() {
+    var data = [AddAptImages]() {
         didSet {
+            if data.count == 0{
+                return 
+            }
+            ZJPrint(data)
             // 1.刷新collectionView
             collectionView.reloadData()
             
             // 2.设置pageControl个数
-            pageControl.numberOfPages = cycleModels.count
+            pageControl.numberOfPages = data.count
             
             // 3.默认滚动到中间某一个位置
-            let indexPath = IndexPath(item: cycleModels.count * 10, section: 0)
+            let indexPath = IndexPath(item: data.count * 10, section: 0)
             collectionView.scrollToItem(at: indexPath, at: .left, animated: false)
             
             // 4.添加定时器
@@ -66,11 +70,11 @@ extension RecommendCycleView{
 
 extension RecommendCycleView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cycleModels.count * 10000
+        return data.count * 10000
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CycleCell
-        cell.cycleModel = cycleModels[(indexPath as NSIndexPath).item % cycleModels.count]
+        cell.data = data[(indexPath as NSIndexPath).item % data.count]
         
         return cell
     }
@@ -100,7 +104,7 @@ extension RecommendCycleView {
         let offsetX = scrollView.contentOffset.x + scrollView.bounds.width * 0.5
         
         // 2.计算pageControl的currentIndex
-        pageControl.currentPage = Int(offsetX / scrollView.bounds.width) % (cycleModels.count)
+        pageControl.currentPage = Int(offsetX / scrollView.bounds.width) % (data.count)
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

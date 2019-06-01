@@ -58,7 +58,7 @@
                             <constraint firstItem="lU9-bB-fTP" firstAttribute="top" secondItem="NU1-Yb-Wj0" secondAttribute="top" id="zmA-1h-mtT"/>
                         </constraints>
                     </view>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sites-RBC" translatesAutoresizingMaskIntoConstraints="NO" id="cym-Cd-kHn">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_image" translatesAutoresizingMaskIntoConstraints="NO" id="cym-Cd-kHn">
                         <rect key="frame" x="0.0" y="35" width="286" height="200"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="200" id="est-S7-q7G"/>
@@ -80,7 +80,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Xj9-js-i5m" firstAttribute="top" secondItem="sda-yZ-uem" secondAttribute="top" id="1Kq-ok-a7n"/>
                             <constraint firstAttribute="height" constant="25" id="1yR-w4-aSY"/>
@@ -109,7 +109,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Zyb-pG-dEu" secondAttribute="trailing" id="5ds-Ua-7BF"/>
                             <constraint firstItem="Zyb-pG-dEu" firstAttribute="top" secondItem="7Gn-fH-cdp" secondAttribute="top" id="AG0-qH-lOr"/>
@@ -161,7 +161,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Tef-Jj-oc2" firstAttribute="leading" secondItem="3ce-Kj-X7N" secondAttribute="leading" id="0OS-fs-YlY"/>
                             <constraint firstAttribute="trailing" secondItem="Tef-Jj-oc2" secondAttribute="trailing" id="1h0-Bn-pEl"/>
@@ -219,6 +219,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="Sites-RBC" width="800" height="600"/>
+        <image name="default_image" width="800" height="800"/>
     </resources>
 </document>

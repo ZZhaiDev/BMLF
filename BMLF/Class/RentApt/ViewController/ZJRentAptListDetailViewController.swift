@@ -20,14 +20,51 @@ private let baseCellId = "baseCellId"
 private let requirementCellId = "requirementCellId"
 class ZJRentAptListDetailViewController: ZJBaseViewController {
     
+    var data = AddAptProperties(){
+        didSet{
+            titleView.data = data
+            if let images = data.images{
+                cycleView.data = images
+            }
+            
+            
+            baseValue.append(data.fullAddress ?? "")
+            let price = data.base?.price ?? "" + "/m"
+            baseValue.append(price)
+            baseValue.append(data.base?.roomtype ?? "")
+            let bathroom = data.base?.bathroom ?? "" + "Bathroom"
+            baseValue.append(bathroom)
+            baseValue.append(data.base?.parkinglot ?? "")
+            baseValue.append(data.base?.washingmachine ?? "")
+            
+            if let requirement = data.requirement, let others = requirement.otherrequirements{
+                for other in others{
+                    requirementTitles.append(other.otherrequirement ?? "")
+                }
+            }
+            if let base = data.base, let include = base.included{
+                for i in include{
+                    includeTitles.append(i.included ?? "")
+                }
+            }
+            
+            if let base = data.base, let nearby = base.nearby{
+                for i in nearby{
+                    closeTitles.append(i.nearby ?? "")
+                }
+            }
+        }
+    }
+    
     var requiredmentCellHeight: CGFloat = 100
     var ynCategoryButtons = [YNCategoryButton]()
     
-    let dict = [["key": "地址", "value": "160 E Grand Ave, Chicago, 60611, United States"], ["key": "价格", "value": "900/m"],["key": "房型", "value": "一室一厅"], ["key": "卫生间", "value": "share"], ["key": "停车位", "value": "免费停车位"], ["key": "洗衣机", "value": "室内洗衣机"]]
-    let titleArr = ["基础", "要求", "包含", "附近", "包含", "附近"]
-    let requirementTitles = ["长租", "女生", "少做饭", "禁止吸烟", "单身", "禁止养动物", "干净卫生", "长租", "女生", "少做饭", "禁止吸烟", "单身", "禁止养动物", "干净卫生"]
-    let includeTitles = ["包水", "包网络", "家具", "健身房"]
-    let closeTitles = ["学校","超市","地铁","bus","图书馆"]
+    let titleArr = ["Base", "Requirement", "Included", "Nearby", "包含", "附近"]
+    var basekey = ["Address", "Price", "Type", "Bathroom", "Parking", "Washer"]
+    var baseValue = [String]()
+    var requirementTitles = [String]()
+    var includeTitles = [String]()
+    var closeTitles = [String]()
     
     let cycleView: RecommendCycleView = {
         let cv = RecommendCycleView.recommendCycleView()
@@ -71,20 +108,12 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.view.addSubview(cycleView)
-//        self.view.addSubview(titleView)
-//        self.view.addSubview(catView)
         view.addSubview(collectionView)
         collectionView.contentInset = UIEdgeInsets(top: zjCycleViewH+titleViewH+cateViewH, left: 0, bottom: 0, right: 0)
         collectionView.addSubview(cycleView)
         collectionView.addSubview(titleView)
         collectionView.addSubview(catView)
-
-        // Do any additional setup after loading the view.
     }
-    
-
-
 }
 
 
@@ -96,7 +125,9 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0{
-            return dict.count
+            ZJPrint(baseValue.count)
+            ZJPrint(basekey.count)
+            return min(basekey.count, baseValue.count)
         }
         return 1
     }
@@ -118,9 +149,10 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
         
         if indexPath.section == 0{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: baseCellId, for: indexPath) as! ZJRentAptListDetailBaseCell
-            let dicts = dict[indexPath.row]
-            cell.firstLabel.text = "\(dicts["key"]!)" + ":"
-            cell.secondtLabel.text = "\(dicts["value"]!)"
+            
+            cell.firstLabel.text = "\(basekey[indexPath.row])" + ":"
+            ZJPrint(baseValue.count)
+            cell.secondtLabel.text = "\(baseValue[indexPath.row])"
 //            cell.firstLabel.text = "123"
 //            cell.secondtLabel.text = "665"
             return cell

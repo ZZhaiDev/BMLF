@@ -11,16 +11,24 @@ private let userPhotoWidth: CGFloat = 50
 
 class ZJRentAptListDetailTitleView: UIView {
     
+    var data = AddAptProperties(){
+        didSet{
+            if let description = data.description{
+               titleLabel.text = description.title ?? ""
+//                titleLabel.text =  "一室一厅招租，近地铁，进学校 900每月"
+            }
+        }
+    }
     
     
     fileprivate lazy var titleLabel: UILabel = {
        let l = UILabel()
         l.textColor = .black
-        l.text = "sadf asdf asdf sadfdsa fasd sdfa sdf"
+        l.text = ""
         l.numberOfLines = 0
-        l.adjustsFontSizeToFitWidth = true
 //        l.font = UIFont.Weight.bold
-//        l.font = UIFont.boldSystemFont(ofSize: 22)
+        l.font = UIFont.boldSystemFont(ofSize: 22)
+        l.adjustsFontSizeToFitWidth = true
         l.textAlignment = .left
         return l
     }()
@@ -42,11 +50,12 @@ class ZJRentAptListDetailTitleView: UIView {
     }
     
     fileprivate func setupUI(){
-        self.backgroundColor = .white
+        self.backgroundColor = .red
         self.addSubview(userPhoto)
         self.addSubview(titleLabel)
-        userPhoto.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: userPhotoWidth, height: userPhotoWidth)
-        titleLabel.anchor(top: userPhoto.topAnchor, left: userPhoto.rightAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingTop: 0, paddingLeft: 15, paddingBottom: 5, paddingRight: 10, width: 0, height: 0)
+        userPhoto.anchor(top: nil, left: leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: userPhotoWidth, height: userPhotoWidth)
+        userPhoto.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        titleLabel.anchor(top: self.topAnchor, left: userPhoto.rightAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingTop: 5, paddingLeft: 15, paddingBottom: 5, paddingRight: 10, width: 0, height: 0)
     }
     
 }

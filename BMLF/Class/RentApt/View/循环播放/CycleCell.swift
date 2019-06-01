@@ -9,9 +9,7 @@
 import UIKit
 import Kingfisher
 
-class CycleModel: NSObject {
-    
-}
+
 
 class CycleCell: UICollectionViewCell {
 
@@ -19,16 +17,22 @@ class CycleCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     
     
-    var cycleModel : CycleModel? {
+    var data = AddAptImages(){
         didSet {
-            if let cycle = cycleModel{
-//                titleLabel.text = cycle.title
-//                let iconURL = URL(string: cycle.pic_url)
-//
-//                imageView.kf.setImage(with: iconURL, placeholder: UIImage(named: "Img_default"))
-                titleLabel.text = "123test"
-                
+            imageView.kf.indicatorType = .activity
+            if let imageStr = data.image{
+                let url = URL(string: imageStr)
+                imageView.kf.setImage(with: url)
             }
+            
+//            if let cycle = data{
+////                titleLabel.text = cycle.title
+////                let iconURL = URL(string: cycle.pic_url)
+////
+////                imageView.kf.setImage(with: iconURL, placeholder: UIImage(named: "Img_default"))
+//                titleLabel.text = "123test"
+//
+//            }
             
             
         }

@@ -227,6 +227,10 @@ extension ZJAddAptViewController: NVActivityIndicatorViewable{
                 let dict = ["filePath": "\(UUID)-\(imageName)", "contentType": "image/jpeg", "contentEncoding": "base64"]
                 ApiService.callPost(url: URL(string: url)!, params: dict) { (arg0) in
                     let (message, data) = arg0
+                    if message != "Success"{
+                        ZJPrint("---------WRONG")
+                        return
+                    }
                     ZJPrint(message)
                     if let jsonData = data{
                         let str = String(data: jsonData, encoding: String.Encoding.utf8)!
@@ -236,7 +240,7 @@ extension ZJAddAptViewController: NVActivityIndicatorViewable{
                                 return
                             }
 //                            ZJPrint(responce!)
-                            let urlStr = "https://blissmotors-web-upload.s3.amazonaws.com/\(UUID)-\(imageName)"
+                            let urlStr = "https://blissmotors-web-upload.s3.amazonaws.com/bmlife/\(UUID)-\(imageName)"
                             images.append(urlStr)
                             if images.count == selectedItems.count{
                                 finish()

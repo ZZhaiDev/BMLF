@@ -19,13 +19,22 @@ class ZJRentAptListView: UIView {
     fileprivate lazy var collectionView: UICollectionView = {
 //         = UICollectionView(collectionViewLayout: UICollectionViewFlowLayout())
         let view = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        view.layer.cornerRadius = 10
+        view.layer.masksToBounds = true
         view.backgroundColor = UIColor.background
         return view
     }()
+    
+//    fileprivate lazy var orangeView: UIView = {
+//       let view = UIView(frame: CGRect(x: 0, y: 0, width: zjScreenWidth, height: 200))
+//        view.backgroundColor = .orange
+//        return view
+//    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 //        self.backgroundColor = .red
+//        self.addSubview(orangeView)
         self.addSubview(collectionView)
         collectionView.fillSuperview()
         
@@ -50,6 +59,7 @@ class ZJRentAptListView: UIView {
 
 extension ZJRentAptListView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        ZJPrint(data.count)
         return data.count
     }
     
@@ -62,6 +72,7 @@ extension ZJRentAptListView: UICollectionViewDataSource, UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let tvc = UIApplication.topViewController() as? ZJRentAptViewController{
             let vc = ZJRentAptListDetailViewController()
+            vc.data = data[indexPath.row]
 //            let nvc = ZJNavigationController(rootViewController: vc)
             tvc.navigationController?.pushViewController(vc, animated: true)
             

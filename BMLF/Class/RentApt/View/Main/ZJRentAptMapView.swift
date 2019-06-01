@@ -10,26 +10,42 @@ import UIKit
 import MapKit
 import CoreLocation
 
+class CustomPointAnnotation: MKPointAnnotation {
+    var imageName: String!
+}
+
+
 class ZJRentAptMapView: UIView {
-    
-//    var locations = []()
     
     var isDrawing = false
     var locationManager: CLLocationManager!
-    let newPin = MKPointAnnotation()
-    
     var points = [CLLocationCoordinate2D]()
+    var data = [AddAptProperties](){
+        didSet{
+            for property in data{
+                if let lat = property.latitude, let lon = property.longitude{
+                    let annotation = CustomizedAnnotation()
+//                    annotation.imageName = "Sites-RBC"
+                    annotation.data = property
+                    annotation.title = "chicago il"
+                    annotation.subtitle = "1室一厅 u短租"
+                    annotation.coordinate = CLLocationCoordinate2D(latitude: Double(lat)!, longitude: Double(lon)!)
+                    mapsView.addAnnotation(annotation)
+                }
+                
+            }
+        }
+    }
     
     lazy var mapsView: MKMapView = {
         let view = MKMapView()
-        view.layer.cornerRadius = 5
+        view.layer.cornerRadius = 10
+        view.showsUserLocation = true
         view.layer.masksToBounds = true
         view.isUserInteractionEnabled = true
         view.delegate = self
         return view
     }()
-    
-    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -55,16 +71,7 @@ class ZJRentAptMapView: UIView {
     fileprivate func setupUI(){
         self.addSubview(mapsView)
         mapsView.fillSuperview()
-        
-        
-//        var coordinates = [CLLocationCoordinate2D]()
-//        for location in locations{
-//            coordinates.append(CLLocationCoordinate2D(latitude: location[1], longitude: location[0]))
-//        }
-//        let polygon = MKPolyline(coordinates: coordinates, count: locations.count)
-//        mapsView.addOverlay(polygon)
     }
-
 }
 
 //:MARK -- 画圈
@@ -121,17 +128,81 @@ extension ZJRentAptMapView: MKMapViewDelegate{
         }
         return MKPolylineRenderer(overlay: overlay)
     }
+    
+    //自定义 annotation
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        // Don't want to show a custom image if the annotation is the user's location.
+        guard !(annotation is MKUserLocation) else {
+            return nil
+        }
+        
+        // Better to make this class property
+        let annotationIdentifier = "AnnotationIdentifier"
+        
+        var annotationView: MKAnnotationView?
+        if let dequeuedAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) {
+            annotationView = dequeuedAnnotationView
+            annotationView?.annotation = annotation
+        }
+        else {
+            let av = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+            av.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            annotationView = av
+        }
+        
+        if let annotationView = annotationView {
+            // Configure your annotation view here
+            annotationView.canShowCallout = false
+            annotationView.frame.size = CGSize(width: 21, height: 36)
+            annotationView.image = UIImage(named: "customize_pin")
+        }
+        
+        return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if view.annotation is MKUserLocation{return}
+        // 2
+        let starbucksAnnotation = view.annotation as! CustomizedAnnotation
+//        let views = c
+        let calloutView = CustomCalloutView(frame: CGRect(x: 0, y: 0, width: zjScreenWidth*0.6, height: zjScreenHeight*0.4))
+        calloutView.data = starbucksAnnotation.data
+//        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
+//        button.addTarget(self, action: #selector(ViewController.callPhoneNumber(sender:)), for: .touchUpInside)
+//        calloutView.addSubview(button)
+        // 3
+        calloutView.center = CGPoint(x: view.bounds.size.width / 2, y: -calloutView.bounds.size.height*0.52)
+        view.addSubview(calloutView)
+        guard let tempCoordinate = view.annotation?.coordinate else{
+            return
+        }
+        var centerCoordinate = tempCoordinate
+        centerCoordinate.latitude += (mapView.region.span.latitudeDelta * 0.2)
+        mapView.setCenter(centerCoordinate, animated: true)
+    }
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        ZJPrint(view)
+        if view.isKind(of: MKAnnotationView.self)
+        {
+            for subview in view.subviews
+            {
+                subview.removeFromSuperview()
+            }
+        }
+    }
 }
 
 extension ZJRentAptMapView: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        mapsView.removeAnnotation(newPin)
+//        mapsView.removeAnnotation(newPin)
         if let location = locations.last{
             let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
             self.mapsView.setRegion(region, animated: true)
-            newPin.coordinate = location.coordinate
-            mapsView.addAnnotation(newPin)
+            
+//            newPin.coordinate = location.coordinate
+            
+//            mapsView.addAnnotation(newPin)
             let geocoder = CLGeocoder()
             geocoder.reverseGeocodeLocation(CLLocation.init(latitude: location.coordinate.latitude, longitude:location.coordinate.longitude)) { (places, error) in
                 if error == nil{
@@ -149,5 +220,3 @@ extension ZJRentAptMapView: CLLocationManagerDelegate{
         manager.delegate = nil
     }
 }
-
-var didFinish = false

@@ -158,7 +158,9 @@ class ZJRentAptViewController: ZJBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         aptViewModel.loadApt { (responce) in
+            ZJPrint(self.aptViewModel.aptProperties.count)
             self.listView.data = self.aptViewModel.aptProperties
+            self.mapView.data = self.aptViewModel.aptProperties
         }
         setupUI()
     }

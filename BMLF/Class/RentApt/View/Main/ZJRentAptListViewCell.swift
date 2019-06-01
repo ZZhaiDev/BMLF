@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ZJRentAptListViewCell: UICollectionViewCell {
     
@@ -56,7 +57,11 @@ class ZJRentAptListViewCell: UICollectionViewCell {
                 }
             }
             
-            if let images = data.images{
+            if let imagef = data.images?.first, let imageStr = imagef.image{
+                imageV.kf.indicatorType = .activity
+                ZJPrint(imageStr)
+                let url = URL(string: imageStr)
+                imageV.kf.setImage(with: url)
                 
             }
         }
@@ -74,7 +79,7 @@ class ZJRentAptListViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = .white
+        self.backgroundColor = .clear
         
         emailB.titleLabel?.numberOfLines = 1;
         emailB.titleLabel?.adjustsFontSizeToFitWidth = true;

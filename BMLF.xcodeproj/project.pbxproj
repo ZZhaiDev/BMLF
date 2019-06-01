@@ -25,6 +25,7 @@
 		38476142229649A000084946 /* CityBoundaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38476141229649A000084946 /* CityBoundaryViewModel.swift */; };
 		38476144229649CD00084946 /* CityBoundaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38476143229649CD00084946 /* CityBoundaryModel.swift */; };
 		38536EE822938C1700A555AC /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38536EE722938C1700A555AC /* APIs.swift */; };
+		3883511122A3159000E00A93 /* CustomizedAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3883511022A3159000E00A93 /* CustomizedAnnotationView.swift */; };
 		38C5146D2294C88B00953286 /* ZJRentAptListDetailBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C5146C2294C88B00953286 /* ZJRentAptListDetailBaseCell.swift */; };
 		38C5146F2294E2C800953286 /* ZJRentAptListDetailRequirementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C5146E2294E2C800953286 /* ZJRentAptListDetailRequirementCell.swift */; };
 		38C514722294EADD00953286 /* YNCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C514712294EADD00953286 /* YNCategoryButton.swift */; };
@@ -97,6 +98,7 @@
 		38476141229649A000084946 /* CityBoundaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityBoundaryViewModel.swift; sourceTree = "<group>"; };
 		38476143229649CD00084946 /* CityBoundaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityBoundaryModel.swift; sourceTree = "<group>"; };
 		38536EE722938C1700A555AC /* APIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIs.swift; sourceTree = "<group>"; };
+		3883511022A3159000E00A93 /* CustomizedAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizedAnnotationView.swift; sourceTree = "<group>"; };
 		38C5146C2294C88B00953286 /* ZJRentAptListDetailBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListDetailBaseCell.swift; sourceTree = "<group>"; };
 		38C5146E2294E2C800953286 /* ZJRentAptListDetailRequirementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListDetailRequirementCell.swift; sourceTree = "<group>"; };
 		38C514712294EADD00953286 /* YNCategoryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YNCategoryButton.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 			isa = PBXGroup;
 			children = (
 				3800F04F228E39D400095A2F /* ZJRentAptMapView.swift */,
+				3883511022A3159000E00A93 /* CustomizedAnnotationView.swift */,
 				3800F051228E3D0800095A2F /* ZJRentAptListView.swift */,
 				A41CFD71228F28FE0008FFB6 /* ZJRentAptListViewCell.swift */,
 				A41CFD72228F28FE0008FFB6 /* ZJRentAptListViewCell.xib */,
@@ -614,6 +617,7 @@
 				A4A12EE2228F64B100D281BE /* ZJAddAptMapView.swift in Sources */,
 				38476134229636D500084946 /* MineViewController.swift in Sources */,
 				3845EDB8229087B50045A694 /* ZJAddAptDateCell.swift in Sources */,
+				3883511122A3159000E00A93 /* CustomizedAnnotationView.swift in Sources */,
 				A41CFD6C228DFCCA0008FFB6 /* ZJAddAptViewController.swift in Sources */,
 				A41CFD73228F28FE0008FFB6 /* ZJRentAptListViewCell.swift in Sources */,
 				A419FDB222A1BF10002D891F /* ZJAptViewModel.swift in Sources */,
