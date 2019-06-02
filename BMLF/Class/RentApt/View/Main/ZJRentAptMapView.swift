@@ -10,8 +10,12 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class CustomPointAnnotation: MKPointAnnotation {
-    var imageName: String!
+//class CustomPointAnnotation: MKPointAnnotation {
+//    var imageName: String!
+//}
+
+protocol ZJRentAptMapViewDelegate: class {
+    func zjRentAptMapViewDidEndDraw()
 }
 
 
@@ -20,6 +24,7 @@ class ZJRentAptMapView: UIView {
     var isDrawing = false
     var locationManager: CLLocationManager!
     var points = [CLLocationCoordinate2D]()
+    var delegate: ZJRentAptMapViewDelegate?
     var data = [AddAptProperties](){
         didSet{
             for property in data{
@@ -102,6 +107,10 @@ extension ZJRentAptMapView{
         ZJPrint(points)
         mapsView.addOverlay(polygon)
         points = [] // Reset points
+        
+
+        self.delegate?.zjRentAptMapViewDidEndDraw()
+        
     }
     
    
@@ -117,13 +126,13 @@ extension ZJRentAptMapView: MKMapViewDelegate{
                 return renderer
             }
             let polylineRenderer = MKPolylineRenderer(overlay: overlay)
-            polylineRenderer.strokeColor = .gray
+            polylineRenderer.strokeColor = .orange
             polylineRenderer.lineWidth = 1
             return polylineRenderer
         } else if overlay is MKPolygon {
             
             let polygonView = MKPolygonRenderer(overlay: overlay)
-            polygonView.fillColor = UIColor.lightGray
+            polygonView.fillColor = UIColor.lightGray.withAlphaComponent(0.4)
             return polygonView
         }
         return MKPolylineRenderer(overlay: overlay)
@@ -145,7 +154,7 @@ extension ZJRentAptMapView: MKMapViewDelegate{
             annotationView?.annotation = annotation
         }
         else {
-            let av = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+            let av = CustomizedAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
             av.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             annotationView = av
         }
@@ -159,18 +168,22 @@ extension ZJRentAptMapView: MKMapViewDelegate{
         
         return annotationView
     }
+//    @objc func callPhoneNumber(){
+//      ZJPrint("32121")
+//    }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if view.annotation is MKUserLocation{return}
         // 2
         let starbucksAnnotation = view.annotation as! CustomizedAnnotation
 //        let views = c
-        let calloutView = CustomCalloutView(frame: CGRect(x: 0, y: 0, width: zjScreenWidth*0.6, height: zjScreenHeight*0.4))
+        let calloutView = CustomCalloutView(frame: CGRect(x: 0, y: 0, width: zjScreenWidth*0.6, height: zjScreenHeight*0.5))
         calloutView.data = starbucksAnnotation.data
-//        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
-//        button.addTarget(self, action: #selector(ViewController.callPhoneNumber(sender:)), for: .touchUpInside)
+        
+//        let button = UIButton(frame: calloutView.phoneB.frame)
+//        button.addTarget(self, action: #selector(callPhoneNumber), for: .touchUpInside)
 //        calloutView.addSubview(button)
-        // 3
+        
         calloutView.center = CGPoint(x: view.bounds.size.width / 2, y: -calloutView.bounds.size.height*0.52)
         view.addSubview(calloutView)
         guard let tempCoordinate = view.annotation?.coordinate else{
@@ -182,13 +195,20 @@ extension ZJRentAptMapView: MKMapViewDelegate{
     }
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         ZJPrint(view)
-        if view.isKind(of: MKAnnotationView.self)
+//        MKAnnotationView
+        ZJPrint(view.annotation)
+        ZJPrint(view.calloutOffset)
+        ZJPrint(view.leftCalloutAccessoryView)
+        if view.isKind(of: CustomizedAnnotationView.self)
         {
             for subview in view.subviews
             {
                 subview.removeFromSuperview()
             }
         }
+    }
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
     }
 }
 

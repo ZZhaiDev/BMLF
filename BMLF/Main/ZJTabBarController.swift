@@ -42,8 +42,11 @@ class ZJTabBarController: UITabBarController, UITabBarControllerDelegate {
         // 2.设置属性
         composeBtn.setBackgroundImage(UIImage(named: "tabbar_compose_button"), for: .normal)
         composeBtn.setBackgroundImage(UIImage(named: "tabbar_compose_button_highlighted"), for: .highlighted)
-        composeBtn.setImage(UIImage(named: "tabbar_compose_icon_add"), for: .normal)
-        composeBtn.setImage(UIImage(named: "tabbar_compose_icon_add_highlighted"), for: .highlighted)
+//        composeBtn.setImage(UIImage(named: "tabbar_compose_icon_add"), for: .normal)
+//        composeBtn.setImage(UIImage(named: "tabbar_compose_icon_add_highlighted"), for: .highlighted)
+        composeBtn.setTitle("+", for: .normal)
+        composeBtn.titleLabel?.font = UIFont.systemFont(ofSize: 60)
+        composeBtn.titleLabel?.textColor = .white
 //        composeBtn.sizeToFit()
         composeBtn.frame.size = CGSize(width: zjScreenWidth/5, height: zjScreenWidth/5)
         

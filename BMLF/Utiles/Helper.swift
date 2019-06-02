@@ -94,6 +94,9 @@ extension UIColor{
     class var background: UIColor {
         return UIColor(displayP3Red: 242/255, green: 242/255, blue: 242/255, alpha: 1.0)
     }
+    class var phoneBcolor: UIColor {
+        return UIColor(displayP3Red: 21/255, green: 88/255, blue: 35/255, alpha: 1.0)
+    }
 }
 
 extension Date{

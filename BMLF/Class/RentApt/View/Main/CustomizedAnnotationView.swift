@@ -1,37 +1,9 @@
 
 
 import MapKit
-import Kingfisher
 
-class CustomCalloutView: UIView{
-    var imageV: UIImageView = {
-       let iv = UIImageView()
-        iv.contentMode = .scaleAspectFit
-        iv.layer.masksToBounds = true
-        return iv
-    }()
-    var data = AddAptProperties(){
-        didSet{
-            if let images = data.images, let fimage = images.first, let image = fimage.image{
-                imageV.kf.indicatorType = .activity
-                ZJPrint(image)
-                let url = URL(string: image)
-                imageV.kf.setImage(with: url)
-            }
-        }
-    }
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        addSubview(imageV)
-        imageV.fillSuperview()
-        self.backgroundColor = .white
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
 
+//自定义CustomizedAnnotation 用来给callout传数据
 class CustomizedAnnotation: MKPointAnnotation {
     var data = AddAptProperties(){
         didSet{

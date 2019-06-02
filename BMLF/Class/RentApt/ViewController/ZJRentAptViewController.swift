@@ -112,6 +112,7 @@ class ZJRentAptViewController: ZJBaseViewController {
         let mv = ZJRentAptMapView()
         mv.layer.cornerRadius = 10
         mv.layer.masksToBounds = true
+        mv.delegate = self
 //        let gesture = UIPanGestureRecognizer(target: self, action: #selector(didDragMap))
 //        gesture.delegate = self
 //        mv.addGestureRecognizer(gesture)
@@ -176,15 +177,24 @@ class ZJRentAptViewController: ZJBaseViewController {
     }
     
     @objc fileprivate func drawCustomCircle(){
-        if mapView.isDrawing == false{
-            mapView.isDrawing = true
-            mapView.mapsView.isUserInteractionEnabled = false
-            drawView.data = ["draw", "Cancel"]
-        }else{
+        if drawView.labelV.text == "Cancel"{
             mapView.isDrawing = false
             mapView.mapsView.isUserInteractionEnabled = true
             drawView.data = ["draw", "draw"]
+            mapView.mapsView.removeOverlays(mapView.mapsView.overlays)
+            return
         }
+        
+        if mapView.isDrawing == false{
+            mapView.isDrawing = true
+            mapView.mapsView.isUserInteractionEnabled = false
+            drawView.data = ["draw", "drawing"]
+        }
+//        else{
+//            mapView.isDrawing = false
+//            drawView.data = ["draw", "draw"]
+//            mapView.mapsView.removeOverlays(mapView.mapsView.overlays)
+//        }
     }
     
     @objc fileprivate func moveCurrentLocation(){
@@ -193,6 +203,15 @@ class ZJRentAptViewController: ZJBaseViewController {
         mapView.mapsView.setRegion(region, animated: true)
     }
     
+}
+
+
+extension ZJRentAptViewController: ZJRentAptMapViewDelegate{
+    func zjRentAptMapViewDidEndDraw() {
+        mapView.isDrawing = false
+        mapView.mapsView.isUserInteractionEnabled = true
+        drawView.data = ["draw", "Cancel"]
+    }
 }
 
 extension ZJRentAptViewController{
