@@ -60,6 +60,7 @@
 		A4B2DAE922987607003E1254 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B2DAE722987606003E1254 /* ConfettiView.swift */; };
 		A4B2DAEA22987607003E1254 /* InfoImageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B2DAE822987606003E1254 /* InfoImageHeader.swift */; };
 		A4B2DAEC2298764E003E1254 /* InfoContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B2DAEB2298764E003E1254 /* InfoContentCell.swift */; };
+		A4F460E422A701F000A0831E /* ZJRentAptFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F460E322A701F000A0831E /* ZJRentAptFilterViewController.swift */; };
 		D3FC18A892D1483EAE94B8E8 /* Pods_BMLife.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8421B0C6CB69EE790F3D9692 /* Pods_BMLife.framework */; };
 /* End PBXBuildFile section */
 
@@ -143,6 +144,7 @@
 		A4B2DAE722987606003E1254 /* ConfettiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 		A4B2DAE822987606003E1254 /* InfoImageHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoImageHeader.swift; sourceTree = "<group>"; };
 		A4B2DAEB2298764E003E1254 /* InfoContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoContentCell.swift; sourceTree = "<group>"; };
+		A4F460E322A701F000A0831E /* ZJRentAptFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptFilterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,6 +343,7 @@
 			children = (
 				3800F04D228E394400095A2F /* ZJRentAptViewController.swift */,
 				A454DA66229468DA006EED07 /* ZJRentAptListDetailViewController.swift */,
+				A4F460E322A701F000A0831E /* ZJRentAptFilterViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -648,6 +651,7 @@
 				A4B2DAE922987607003E1254 /* ConfettiView.swift in Sources */,
 				A41CFD3A228DF4F00008FFB6 /* AppDelegate.swift in Sources */,
 				38476135229636D500084946 /* MineHead.swift in Sources */,
+				A4F460E422A701F000A0831E /* ZJRentAptFilterViewController.swift in Sources */,
 				38476142229649A000084946 /* CityBoundaryViewModel.swift in Sources */,
 				3800F058228E52B700095A2F /* PublishView.swift in Sources */,
 				3800F04E228E394400095A2F /* ZJRentAptViewController.swift in Sources */,

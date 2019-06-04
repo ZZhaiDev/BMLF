@@ -45,13 +45,13 @@ class ZJTabBarController: UITabBarController, UITabBarControllerDelegate {
 //        composeBtn.setImage(UIImage(named: "tabbar_compose_icon_add"), for: .normal)
 //        composeBtn.setImage(UIImage(named: "tabbar_compose_icon_add_highlighted"), for: .highlighted)
         composeBtn.setTitle("+", for: .normal)
-        composeBtn.titleLabel?.font = UIFont.systemFont(ofSize: 60)
+        composeBtn.titleLabel?.font = UIFont.systemFont(ofSize: 45)
         composeBtn.titleLabel?.textColor = .white
 //        composeBtn.sizeToFit()
-        composeBtn.frame.size = CGSize(width: zjScreenWidth/5, height: zjScreenWidth/5)
+        composeBtn.frame.size = CGSize(width: zjScreenWidth/5, height: tabBar.bounds.size.height)
         
         // 3.设置位置
-        composeBtn.center = CGPoint(x: tabBar.center.x, y: tabBar.bounds.size.height * 0.2)
+        composeBtn.center = CGPoint(x: tabBar.center.x, y: tabBar.bounds.size.height * 0.5)
         composeBtn.addTarget(self, action: #selector(composeBtnButtonClicked), for: .touchUpInside)
     }
     
@@ -61,7 +61,7 @@ class ZJTabBarController: UITabBarController, UITabBarControllerDelegate {
 //        setUpChildController(UIViewController(), "同城",  "tabYule",  "tabYuleHL")
         setUpChildController(UIViewController(), "",  "",  "")
 //        setUpChildController(UIViewController(), "移民",  "tabYuba",  "tabYubaHL")
-        setUpChildController(MineViewController(), "我的",  "tabDiscovery",  "tabDiscoveryHL")
+        setUpChildController(InfoController(), "我的",  "tabDiscovery",  "tabDiscoveryHL")
     }
     
     @objc fileprivate func composeBtnButtonClicked(){

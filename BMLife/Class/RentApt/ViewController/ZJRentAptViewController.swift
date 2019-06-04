@@ -67,6 +67,8 @@ class SquareView: UIView{
     }
 }
 
+let searchBarHeight: CGFloat = 30
+
 class ZJRentAptViewController: ZJBaseViewController {
     
 //    fileprivate lazy var drawButton: UIButton = {
@@ -78,6 +80,25 @@ class ZJRentAptViewController: ZJBaseViewController {
 //        db.addTarget(self, action: #selector(drawButtonClicked), for: .touchUpInside)
 //        return db
 //    }()
+    lazy var titleView: UIView = {
+       let v = UIView(frame: CGRect(x: 0, y: 0, width: zjScreenWidth/2, height: searchBarHeight))
+        return v
+    }()
+    lazy var searchBar: UIButton = {
+       let b = UIButton(frame: CGRect(x: 0, y: 0, width: titleView.frame.width, height: titleView.frame.height))
+        b.backgroundColor = .white
+//        b.layer.borderColor = UIColor.lightGray.cgColor
+//        b.layer.borderWidth = 0.5
+        b.layer.cornerRadius = searchBarHeight/2
+        b.layer.masksToBounds = true
+        b.setTitle("Enter Address", for: .normal)
+        b.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        b.titleLabel?.textAlignment = .left
+        b.setTitleColor(UIColor.lightGray, for: .normal)
+        b.addTarget(self, action: #selector(searchButtonClicked), for: .touchUpInside)
+        return b
+    }()
+    
     var aptViewModel = ZJAptViewModel()
     lazy var cityBoundaryViewModel = CityBoundaryViewModel()
     fileprivate lazy var drawView: SquareView = {
@@ -118,6 +139,13 @@ class ZJRentAptViewController: ZJBaseViewController {
 //        mv.addGestureRecognizer(gesture)
         return mv
     }()
+    
+    @objc fileprivate func searchButtonClicked(){
+        let vc = ZJRentAptFilterViewController()
+        self.present(vc, animated: true) {
+            
+        }
+    }
     
     @objc fileprivate func didDragMap(gesture: UIPanGestureRecognizer){
         if gesture.state == UIGestureRecognizer.State.ended{
@@ -228,14 +256,14 @@ extension ZJRentAptViewController{
         
         self.view.addSubview(listView)
         listView.fillSuperview()
-        
-        stackView = UIStackView(arrangedSubviews: [drawView, locationView, cityView])
+        let subViews = [drawView, locationView]
+        stackView = UIStackView(arrangedSubviews: subViews)
         stackView.setCustomSpacing(stackViewSpace, after: drawView)
-        stackView.setCustomSpacing(stackViewSpace, after: locationView)
+//        stackView.setCustomSpacing(stackViewSpace, after: locationView)
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         self.view.addSubview(stackView)
-        stackView.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 10, paddingBottom: zjTabBarHeight+10, paddingRight: 0, width: squareViewW, height: stackViewSpace*2+squareViewW*3)
+        stackView.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 10, paddingBottom: zjTabBarHeight+10, paddingRight: 0, width: squareViewW, height: stackViewSpace*CGFloat(subViews.count-1)+squareViewW*CGFloat(subViews.count))
         
 //        self.view.addSubview(drawButton)
 //        let width: CGFloat = 50
@@ -246,20 +274,23 @@ extension ZJRentAptViewController{
         mapView.alpha = 1
         listView.alpha = 0
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(imageName: "logo_white")
-//        navigationItem.leftBarButtonItem?.isEnabled = false
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "change", style: .plain, target: self, action: #selector(rightBarButtonClicked))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(imageName: "Logo_english")
+        let changeRightBarButtonItem = UIBarButtonItem(title: "change", style: .plain, target: self, action: #selector(rightBarButtonClicked))
+        
+        
+        titleView.addSubview(searchBar)
+        navigationItem.titleView = titleView
+        
+//        let filterRightBarButtonItem = UIBarButtonItem(title: "filter", style: .plain, target: self, action: #selector(filterBarButtonClicked))
+        navigationItem.rightBarButtonItems = [changeRightBarButtonItem]
     }
     
     @objc fileprivate func rightBarButtonClicked(){
         showView()
     }
     
-    
-//    @objc fileprivate func drawButtonClicked(){
-//    }
-    
-    
+    @objc fileprivate func filterBarButtonClicked(){
+    }
     
     fileprivate func showView(){
         if mapView.alpha == 0{

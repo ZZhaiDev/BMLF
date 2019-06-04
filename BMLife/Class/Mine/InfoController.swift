@@ -39,7 +39,7 @@ class InfoController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         hideStatusBar(true)
         setupCollectionView()
-        setupCloseButton()
+//        setupCloseButton()
         setupFloatingView()
         view.addSubview(confetti)
     }

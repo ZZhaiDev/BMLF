@@ -15,6 +15,7 @@ class ZJAddAptMapView: UIView {
 
     var locationManager: CLLocationManager!
     let newPin = MKPointAnnotation()
+//    let userPin = MKPointAnnotation()
     var searchCompleter = MKLocalSearchCompleter()
     var searchResults = [MKLocalSearchCompletion]()
     var resultTableHeightConstraint: NSLayoutConstraint?
@@ -51,6 +52,7 @@ class ZJAddAptMapView: UIView {
     
     fileprivate lazy var mapsView: MKMapView = {
         let view = MKMapView()
+        view.showsUserLocation = true
         view.layer.cornerRadius = 5
         view.layer.masksToBounds = true
         return view
@@ -175,6 +177,8 @@ extension ZJAddAptMapView: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        mapsView.removeAnnotation(newPin)
+        
         let completion = searchResults[indexPath.row]
         ZJPrint(completion.subtitle)
         ZJPrint(completion.title)
@@ -185,7 +189,10 @@ extension ZJAddAptMapView: UITableViewDataSource, UITableViewDelegate{
         searchBar.resignFirstResponder()
         if let topVC = UIApplication.topViewController() as? ZJAddAptViewController{
             topVC.tableView.tableHeaderView?.frame.size.height = originalMapViewH
+            resultTableHeightConstraint = resultTableView.heightAnchor.constraint(equalToConstant: 0)
+            resultTableHeightConstraint?.isActive = true
             topVC.tableView.reloadData()
+            
         }
         
         
@@ -226,6 +233,12 @@ extension ZJAddAptMapView: UITableViewDataSource, UITableViewDelegate{
             if let coordinate = response?.mapItems[0].placemark.coordinate{
                 longitude = String(coordinate.longitude)
                 latitude = String(coordinate.latitude)
+                let center = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+                let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+                self.mapsView.setRegion(region, animated: true)
+                
+                self.newPin.coordinate = coordinate
+                self.mapsView.addAnnotation(self.newPin)
             }
         }
     }
@@ -235,13 +248,13 @@ extension ZJAddAptMapView: UITableViewDataSource, UITableViewDelegate{
 
 extension ZJAddAptMapView: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        mapsView.removeAnnotation(newPin)
+//        mapsView.removeAnnotation(userPin)
         if let location = locations.last{
             let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
             self.mapsView.setRegion(region, animated: true)
-            newPin.coordinate = location.coordinate
-            mapsView.addAnnotation(newPin)
+//            userPin.coordinate = location.coordinate
+//            mapsView.addAnnotation(userPin)
             let geocoder = CLGeocoder()
             geocoder.reverseGeocodeLocation(CLLocation.init(latitude: location.coordinate.latitude, longitude:location.coordinate.longitude)) { (places, error) in
                 if error == nil{

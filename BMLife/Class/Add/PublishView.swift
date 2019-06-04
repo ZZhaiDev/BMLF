@@ -56,13 +56,15 @@ class PublishView: UIView {
     
     lazy var imagesArr:Array! = { () -> [String] in 
         
-       let array = ["publish-video","publish-picture","publish-text","publish-audio","publish-review","publish-offline"]
+//       let array = ["publish-video","publish-picture","publish-text","publish-audio","publish-review","publish-offline"]
+        let array = ["publish-video","publish-picture","publish-text","publish-audio","publish-review"]
         return array
     }()
     
     lazy var titlesArr:Array! = { () -> [String] in 
     
-        let array = ["发视频","租房子","发段子","发音频","审贴","离线下载"]
+//        let array = ["北美同城","租房子","北美同校","移民","审贴","离线下载"]
+        let array = ["同城活动","租房子","同校活动", "吃喝玩乐", "移民板块"]
         
         return array
     }()
@@ -102,6 +104,10 @@ class PublishView: UIView {
         let buttonStartY = (zjScreenHeight - 2 * CGFloat(buttonH)) / CGFloat(2)
         for  i in 0 ..< imagesArr.count {
             let button = VerticalButton(type: .custom)
+            button.isEnabled = false
+            if i == 1{
+                button.isEnabled = true
+            }
             let row = i / maxCols
             let col = i % maxCols
             let buttonX = CGFloat(buttonStartX) + (buttonMargx + CGFloat(buttonW)) * CGFloat(col)

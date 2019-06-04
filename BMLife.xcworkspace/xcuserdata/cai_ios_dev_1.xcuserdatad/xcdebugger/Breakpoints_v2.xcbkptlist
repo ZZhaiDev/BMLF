@@ -139,38 +139,6 @@
             endingLineNumber = "86"
             landmarkName = "closefunc()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BMLF.ZJAddAptViewController.closefunc() -&gt; ()"
-                  moduleName = "BMLF"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/cai_ios_dev_1/Desktop/BMLF/BMLF/Class/Add/Apt/ZJAddAptViewController.swift"
-                  timestampString = "581032663.785862"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "86"
-                  endingLineNumber = "86"
-                  offsetFromSymbolStart = "28">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in BMLF.ZJAddAptViewController.closefunc() -&gt; ()"
-                  moduleName = "BMLF"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/cai_ios_dev_1/Desktop/BMLF/BMLF/Class/Add/Apt/ZJAddAptViewController.swift"
-                  timestampString = "581032663.788048"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "87"
-                  endingLineNumber = "87"
-                  offsetFromSymbolStart = "28">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -250,6 +218,54 @@
             startingLineNumber = "184"
             endingLineNumber = "184"
             landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BMLife/Class/Add/Apt/ZJAddAptFooterView.swift"
+            timestampString = "581380368.564195"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
+            landmarkName = "handlePlusPhoto()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BMLife/Class/RentApt/ViewController/ZJRentAptViewController.swift"
+            timestampString = "581380368.564396"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BMLife/Class/RentApt/ViewController/ZJRentAptViewController.swift"
+            timestampString = "581380368.5645241"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "searchButtonClicked()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

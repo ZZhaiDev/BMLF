@@ -49,6 +49,7 @@ class ZJAddAptFooterView: UIView {
         im.layer.masksToBounds = true
         im.layer.borderWidth = 2
         im.layer.borderColor = UIColor.orange.cgColor
+        im.isHidden = true
         return im
     }()
     var imageV1: UIImageView = {
@@ -57,6 +58,7 @@ class ZJAddAptFooterView: UIView {
         im.layer.masksToBounds = true
         im.layer.borderWidth = 2
         im.layer.borderColor = UIColor.orange.cgColor
+        im.isHidden = true
         return im
     }()
     var imageV2: UIImageView = {
@@ -65,6 +67,7 @@ class ZJAddAptFooterView: UIView {
         im.layer.masksToBounds = true
         im.layer.borderWidth = 2
         im.layer.borderColor = UIColor.orange.cgColor
+        im.isHidden = true
         return im
     }()
     var imageV3: UIImageView = {
@@ -73,6 +76,7 @@ class ZJAddAptFooterView: UIView {
         im.layer.masksToBounds = true
         im.layer.borderWidth = 2
         im.layer.borderColor = UIColor.orange.cgColor
+        im.isHidden = true
         return im
     }()
     
@@ -82,13 +86,14 @@ class ZJAddAptFooterView: UIView {
         im.layer.masksToBounds = true
         im.layer.borderWidth = 2
         im.layer.borderColor = UIColor.orange.cgColor
+        im.isHidden = true
         return im
     }()
    
     
     fileprivate lazy var imageBackGroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .red
+//        view.backgroundColor = .red
         return view
     }()
     
@@ -168,9 +173,15 @@ extension ZJAddAptFooterView{
                 picker.dismiss(animated: true, completion: nil)
                 return
             }
+            let imagesArr = [self.imageV0, self.imageV1, self.imageV2, self.imageV3, self.imageV4]
+            imagesArr.forEach({ (image) in
+                image.isHidden = true
+            })
             _ = items.map { print("🧀 \($0)") }
             
             selectedItems = items
+            ZJPrint(items.count)
+            ZJPrint(selectedItems.count)
             if let firstItem = items.first {
                 switch firstItem {
                 case .photo(let photo):
@@ -206,6 +217,7 @@ extension ZJAddAptFooterView{
             switch image{
             case .photo(p: let photo):
                 imagesArr[index].image = photo.image
+                imagesArr[index].isHidden = false
             case .video(let video): break
             }
         }

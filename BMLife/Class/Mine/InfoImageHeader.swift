@@ -60,9 +60,9 @@ class InfoImageHeader: UICollectionReusableView {
         titleLabel.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 24, bottom: 16, right: 16))
         titleLabel.numberOfLines = 0
         
-        let attributedText = NSMutableAttributedString(string:  NSLocalizedString("welcomeTo", comment: ""), attributes: [.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold)])
+        let attributedText = NSMutableAttributedString(string:  NSLocalizedString("Welcome to", comment: ""), attributes: [.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .bold)])
         attributedText.append(NSAttributedString(string: "\n", attributes: [.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 4, weight: .heavy)]))
-        attributedText.append(NSAttributedString(string: "Find My Parking", attributes: [.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 32, weight: .heavy)]))
+        attributedText.append(NSAttributedString(string: "BMLife", attributes: [.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 32, weight: .heavy)]))
         titleLabel.attributedText = attributedText
     }
     

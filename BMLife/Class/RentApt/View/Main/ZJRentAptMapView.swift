@@ -32,8 +32,8 @@ class ZJRentAptMapView: UIView {
                     let annotation = CustomizedAnnotation()
 //                    annotation.imageName = "Sites-RBC"
                     annotation.data = property
-                    annotation.title = "chicago il"
-                    annotation.subtitle = "1室一厅 u短租"
+//                    annotation.title = "chicago il"
+//                    annotation.subtitle = "1室一厅 u短租"
                     annotation.coordinate = CLLocationCoordinate2D(latitude: Double(lat)!, longitude: Double(lon)!)
                     mapsView.addAnnotation(annotation)
                 }
@@ -212,25 +212,22 @@ extension ZJRentAptMapView: MKMapViewDelegate{
     }
 }
 
+
 extension ZJRentAptMapView: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        mapsView.removeAnnotation(newPin)
+        /*
         if let location = locations.last{
+            /*
             let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
             self.mapsView.setRegion(region, animated: true)
-            
-//            newPin.coordinate = location.coordinate
-            
-//            mapsView.addAnnotation(newPin)
+             */
             let geocoder = CLGeocoder()
             geocoder.reverseGeocodeLocation(CLLocation.init(latitude: location.coordinate.latitude, longitude:location.coordinate.longitude)) { (places, error) in
                 if error == nil{
                     if let place = places{
                         if let firstPlace = place.first, let subthoroughfare = firstPlace.subThoroughfare, let thoroughfare = firstPlace.thoroughfare, let postalCode = firstPlace.postalCode, let locality = firstPlace.locality{
-//                            self.addressLabel.text = "\(subthoroughfare) \(thoroughfare),\(locality),\(postalCode)"
                         }
-                        
                     }
                 }
             }
@@ -238,5 +235,6 @@ extension ZJRentAptMapView: CLLocationManagerDelegate{
         
         manager.stopUpdatingLocation()
         manager.delegate = nil
+ */
     }
 }

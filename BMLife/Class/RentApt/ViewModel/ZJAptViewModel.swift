@@ -15,7 +15,7 @@ class ZJAptViewModel{
 
 extension ZJAptViewModel{
     func loadApt(finished: @escaping ([String: Any])->()){
-        let api = "http://aca33a60.ngrok.io/api/v1/rental/house/?page=1&page_size=50"
+        let api = "http://aca33a60.ngrok.io/api/v1/rental/house/?page=1&page_size=300"
         NetworkTools.requestData(.get, URLString: api) { (responce) in
             
             guard let dict = responce as? [String: Any] else { return }
