@@ -11,6 +11,22 @@ import MapKit
 
 private let cellId = "cellId"
 
+class AutoCompleteTextField: UITextField {
+    let padding = UIEdgeInsets(top: 0, left: 60, bottom: 0, right: 5)
+    
+    override open func textRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
+    }
+    
+    override open func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
+    }
+    
+    override open func editingRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
+    }
+}
+
 class ZJAddAptMapView: UIView {
 
     var locationManager: CLLocationManager!
@@ -23,8 +39,8 @@ class ZJAddAptMapView: UIView {
     fileprivate let mapViewHeight: CGFloat = 200
     fileprivate let searchBarHeight: CGFloat = 40
     
-    lazy var searchBar: PaddingTextField = { [weak self] in
-       let sb = PaddingTextField()
+    lazy var searchBar: AutoCompleteTextField = { [weak self] in
+       let sb = AutoCompleteTextField()
         sb.delegate = self
         sb.clearButtonMode = .always
         sb.layer.borderWidth = 0.5

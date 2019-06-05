@@ -12,5 +12,7 @@ pod 'Alamofire', '5.0.0.beta.1'
 pod 'Kingfisher', '~>5.1.1'
 pod 'AFNetworking'
 pod 'NVActivityIndicatorView', '4.6.0'
+pod 'GoogleMaps'
+pod 'GooglePlaces'
 
 end

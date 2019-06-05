@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 private let zjCycleViewH: CGFloat = zjScreenHeight * 3 / 8
 private let titleViewH:CGFloat = 100
@@ -52,6 +53,9 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
                 for i in nearby{
                     closeTitles.append(i.nearby ?? "")
                 }
+            }
+            if let lon = data.longitude, let lati = data.latitude{
+                catView.coordinate = CLLocationCoordinate2D(latitude: Double(lati)!, longitude: Double(lon)!)
             }
         }
     }

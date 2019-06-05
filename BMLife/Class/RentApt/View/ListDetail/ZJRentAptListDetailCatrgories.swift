@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import MapKit
 
 private let cellId = "cellId"
 private let zjEdgeInsetMargin : CGFloat = 10
 
 class ZJRentAptListDetailCatrgories: UIView {
+    
+    var coordinate: CLLocationCoordinate2D?
     
     var dict = [["crime", "crime"],["streetview", "street view"],["streetview", "other"],["crime", "crime"],["phone", "street view"],["crime", "other"],["phone", "crime"],["crime", "street view"],["crime", "other"]]
     
@@ -22,6 +25,7 @@ class ZJRentAptListDetailCatrgories: UIView {
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: self!.bounds, collectionViewLayout: layout)
         cv.dataSource = self
+        cv.delegate = self
         cv.register(GameCell.self, forCellWithReuseIdentifier: cellId)
         cv.contentInset = UIEdgeInsets(top: 0, left: zjEdgeInsetMargin, bottom: 0, right: zjEdgeInsetMargin)
         cv.backgroundColor = .clear
@@ -44,7 +48,7 @@ class ZJRentAptListDetailCatrgories: UIView {
     }
 }
 
-extension ZJRentAptListDetailCatrgories: UICollectionViewDataSource{
+extension ZJRentAptListDetailCatrgories: UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dict.count
     }
@@ -60,6 +64,21 @@ extension ZJRentAptListDetailCatrgories: UICollectionViewDataSource{
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.row == 1{
+            let streetVC = StreetViewController()
+            streetVC.destinationLatitude = coordinate?.latitude
+            streetVC.destinationLongitude = coordinate?.longitude
+            if let topVC = UIApplication.topViewController(){
+                topVC.present(streetVC, animated: true) {
+                    
+                }
+            }
+        }
+    }
+    
+    
 }
 
 

@@ -12,7 +12,7 @@ class ZJRentAptListDetailRequirementCell: UICollectionViewCell {
     
     
     
-    open var ynCategoryButtons = [YNCategoryButton]()
+    var ynCategoryButtons = [YNCategoryButton]()
     var ynCategoryButtonType: YNCategoryButtonType = .border
     var titles = [String](){
         didSet{

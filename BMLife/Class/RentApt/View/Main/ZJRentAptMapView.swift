@@ -25,6 +25,7 @@ class ZJRentAptMapView: UIView {
     var locationManager: CLLocationManager!
     var points = [CLLocationCoordinate2D]()
     var delegate: ZJRentAptMapViewDelegate?
+    var crimeViewModel = CrimeViewModel()
     var data = [AddAptProperties](){
         didSet{
             for property in data{
@@ -104,16 +105,36 @@ extension ZJRentAptMapView{
         if !isDrawing { return }
         let polygon = MKPolygon(coordinates: &points, count: points.count)
         ZJPrint(points.count)
-        ZJPrint(points)
+//        ZJPrint(points)
+        var temp = ""
+        for point in points{
+            temp += ",\(point.longitude),\(point.latitude)"
+        }
+        temp.removeFirst()
+        temp += ",\(points.first!.longitude),\(points.first!.latitude)"
+//        NetworkTools.requestData(.post, URLString: "http://aca33a60.ngrok.io/api/v1/info/crime/il/?page_size=300", parameters: ["in_polygon": temp]) { (data) in
+//            ZJPrint(data)
+//        }
+        crimeViewModel.loadCrime(dictValue: temp) {
+            self.crimeViewModel.crimeProperties.forEach({ (property) in
+                if let lon = property.longitude, let lat = property.latitude, let crime = property.parent_incident_type, let time = property.incident_datetime{
+                    let annotation = CrimeAnnotation()
+                    annotation.title = crime
+                    annotation.subtitle = time
+                    annotation.coordinate = CLLocationCoordinate2D(latitude: Double(lat)!, longitude: Double(lon)!)
+                    self.mapsView.addAnnotation(annotation)
+                }
+                
+            })
+        }
+        ZJPrint(temp)
         mapsView.addOverlay(polygon)
         points = [] // Reset points
         
 
         self.delegate?.zjRentAptMapViewDidEndDraw()
         
-    }
-    
-   
+    }  
 }
 
 extension ZJRentAptMapView: MKMapViewDelegate{
@@ -145,6 +166,27 @@ extension ZJRentAptMapView: MKMapViewDelegate{
             return nil
         }
         
+        guard !(annotation is CrimeAnnotation) else {
+            let Identifier = "CrimeIdentifier"
+            var crimeAnnotion: MKAnnotationView?
+            if let dequeuedAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: Identifier) {
+                crimeAnnotion = dequeuedAnnotationView
+                crimeAnnotion?.annotation = annotation
+            }else {
+                let av = CrimeAnnotationView(annotation: annotation, reuseIdentifier: Identifier)
+                av.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+                crimeAnnotion = av
+            }
+            
+            if let annotationView = crimeAnnotion {
+                annotationView.canShowCallout = false
+                annotationView.frame.size = CGSize(width: 21, height: 21)
+                annotationView.image = UIImage(named: "Crime_annotation1")
+            }
+            return crimeAnnotion
+        }
+        
+        
         // Better to make this class property
         let annotationIdentifier = "AnnotationIdentifier"
         
@@ -152,28 +194,23 @@ extension ZJRentAptMapView: MKMapViewDelegate{
         if let dequeuedAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) {
             annotationView = dequeuedAnnotationView
             annotationView?.annotation = annotation
-        }
-        else {
+        }else {
             let av = CustomizedAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
             av.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             annotationView = av
         }
         
         if let annotationView = annotationView {
-            // Configure your annotation view here
             annotationView.canShowCallout = false
             annotationView.frame.size = CGSize(width: 21, height: 36)
             annotationView.image = UIImage(named: "customize_pin")
         }
-        
         return annotationView
     }
-//    @objc func callPhoneNumber(){
-//      ZJPrint("32121")
-//    }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if view.annotation is MKUserLocation{return}
+        if view.annotation is CrimeAnnotation{return}
         // 2
         let starbucksAnnotation = view.annotation as! CustomizedAnnotation
 //        let views = c
@@ -193,6 +230,7 @@ extension ZJRentAptMapView: MKMapViewDelegate{
         centerCoordinate.latitude += (mapView.region.span.latitudeDelta * 0.2)
         mapView.setCenter(centerCoordinate, animated: true)
     }
+    
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         ZJPrint(view)
 //        MKAnnotationView
@@ -215,13 +253,13 @@ extension ZJRentAptMapView: MKMapViewDelegate{
 
 extension ZJRentAptMapView: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        /*
+      
         if let location = locations.last{
-            /*
+         
             let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
             self.mapsView.setRegion(region, animated: true)
-             */
+ 
             let geocoder = CLGeocoder()
             geocoder.reverseGeocodeLocation(CLLocation.init(latitude: location.coordinate.latitude, longitude:location.coordinate.longitude)) { (places, error) in
                 if error == nil{
@@ -235,6 +273,5 @@ extension ZJRentAptMapView: CLLocationManagerDelegate{
         
         manager.stopUpdatingLocation()
         manager.delegate = nil
- */
     }
 }
