@@ -143,6 +143,10 @@ extension UIApplication {
         let vc = nav.viewControllers.first
         return vc
     }
+    
+    var statusBarView: UIView?{
+        return value(forKey: "statusBar") as? UIView
+    }
 }
 
 extension UIDevice {

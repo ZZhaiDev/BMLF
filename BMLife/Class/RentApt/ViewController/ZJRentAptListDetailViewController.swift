@@ -9,13 +9,15 @@
 import UIKit
 import MapKit
 
-private let zjCycleViewH: CGFloat = zjScreenHeight * 3 / 8
+let zjCycleViewH: CGFloat = zjScreenHeight * 3 / 8
 private let titleViewH:CGFloat = 100
 private let cateViewH: CGFloat = 90
 private let zjHeaderViewH: CGFloat = 50
 private let zjItemMargin : CGFloat = 10
 
 private let cellId = "cellId"
+private let titleCellId = "titleCellId"
+private let cateCellId = "cateCellId"
 private let headerCellId = "headerCellId"
 private let baseCellId = "baseCellId"
 private let requirementCellId = "requirementCellId"
@@ -23,7 +25,7 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
     
     var data = AddAptProperties(){
         didSet{
-            titleView.data = data
+//            titleView.data = data
             if let images = data.images{
                 cycleView.data = images
             }
@@ -54,16 +56,14 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
                     closeTitles.append(i.nearby ?? "")
                 }
             }
-            if let lon = data.longitude, let lati = data.latitude{
-                catView.coordinate = CLLocationCoordinate2D(latitude: Double(lati)!, longitude: Double(lon)!)
-            }
+            
         }
     }
     
     var requiredmentCellHeight: CGFloat = 100
     var ynCategoryButtons = [YNCategoryButton]()
     
-    let titleArr = ["Base", "Requirement", "Included", "Nearby", "包含", "附近"]
+    let titleArr = ["", "", "Base", "Requirement", "Included", "Nearby", "包含", "附近"]
     var basekey = ["Address", "Price", "Type", "Bathroom", "Parking", "Washer"]
     var baseValue = [String]()
     var requirementTitles = [String]()
@@ -72,19 +72,19 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
     
     let cycleView: RecommendCycleView = {
         let cv = RecommendCycleView.recommendCycleView()
-        cv.frame = CGRect(x: 0, y: -(zjCycleViewH+titleViewH+cateViewH), width: zjScreenWidth, height: zjCycleViewH)
+        cv.frame = CGRect(x: 0, y: -(zjCycleViewH+zjStatusHeight+zjNavigationBarHeight), width: zjScreenWidth, height: zjCycleViewH+zjStatusHeight+zjNavigationBarHeight)
         return cv
     }()
     
-    let titleView: ZJRentAptListDetailTitleView = {
-       let tv = ZJRentAptListDetailTitleView(frame: CGRect(x: 0, y: -(titleViewH+cateViewH), width: zjScreenWidth, height: titleViewH))
-        return tv
-    }()
-    
-    let catView: ZJRentAptListDetailCatrgories = {
-       let cat = ZJRentAptListDetailCatrgories(frame: CGRect(x: 0, y: -cateViewH, width: zjScreenWidth, height: cateViewH))
-        return cat
-    }()
+//    let titleView: ZJRentAptListDetailTitleView = {
+//       let tv = ZJRentAptListDetailTitleView(frame: CGRect(x: 0, y: -(titleViewH+cateViewH), width: zjScreenWidth, height: titleViewH))
+//        return tv
+//    }()
+//
+//    let catView: ZJRentAptListDetailCatrgories = {
+//       let cat = ZJRentAptListDetailCatrgories(frame: CGRect(x: 0, y: -cateViewH, width: zjScreenWidth, height: cateViewH))
+//        return cat
+//    }()
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -99,6 +99,8 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
         cv.register(ZJRentAptListDetailBaseCell.self, forCellWithReuseIdentifier: baseCellId)
         
         cv.register(ZJRentAptListDetailRequirementCell.self, forCellWithReuseIdentifier: requirementCellId)
+        cv.register(ZJRentAptListDetailTitleViewCell.self, forCellWithReuseIdentifier: titleCellId)
+        cv.register(ZJRentAptListDetailCatrgoriesCell.self, forCellWithReuseIdentifier: cateCellId)
         cv.backgroundColor = .clear
 //        cv.register(UINib(nibName: "CollectionPrettyCell", bundle: nil), forCellWithReuseIdentifier: zjPrettyCellID)
 //        cv.register(UINib(nibName: "CollectionNormalCell", bundle: nil), forCellWithReuseIdentifier: zjNormalCellID)
@@ -109,26 +111,52 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
         cv.delegate = self
         return cv
     }()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        hideNavigationBar()
+        
+    }
+    
+    func hideNavigationBar(){
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+    }
+    fileprivate func showNavigationBar(){
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.view.backgroundColor = .orange
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        showNavigationBar()
+        navigationController?.navigationBar.tintColor = .white
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        hideNavigationBar()
+//        self.navigationController?.navigationBar.tintColor = .orange
+        
         view.addSubview(collectionView)
-        collectionView.contentInset = UIEdgeInsets(top: zjCycleViewH+titleViewH+cateViewH, left: 0, bottom: 0, right: 0)
+        collectionView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        collectionView.contentInset = UIEdgeInsets(top: zjCycleViewH, left: 0, bottom: 0, right: 0)
+        
         collectionView.addSubview(cycleView)
-        collectionView.addSubview(titleView)
-        collectionView.addSubview(catView)
+        
+        
     }
 }
 
 
 extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 6
+        return 8
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == 0{
+        if section == 2{
             ZJPrint(baseValue.count)
             ZJPrint(basekey.count)
             return min(basekey.count, baseValue.count)
@@ -138,20 +166,43 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.section == 0{
-            return CGSize(width: zjScreenWidth, height: 25)
+            return CGSize(width: zjScreenWidth, height: titleViewH)
         }else if indexPath.section == 1{
-            return CGSize(width: zjScreenWidth, height: calcuatedHeight(titles: requirementTitles))
+            return CGSize(width: zjScreenWidth, height: cateViewH)
         }else if indexPath.section == 2{
-            return CGSize(width: zjScreenWidth, height: calcuatedHeight(titles: includeTitles))
+            return CGSize(width: zjScreenWidth, height: 25)
         }else if indexPath.section == 3{
+            return CGSize(width: zjScreenWidth, height: calcuatedHeight(titles: requirementTitles))
+        }else if indexPath.section == 4{
+            return CGSize(width: zjScreenWidth, height: calcuatedHeight(titles: includeTitles))
+        }else if indexPath.section == 5{
             return CGSize(width: zjScreenWidth, height: calcuatedHeight(titles: closeTitles))
         }
         return CGSize(width: zjScreenWidth, height: 100)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if section == 0{
+            return .zero
+        }else if section == 1{
+            return .zero
+        }
+        return CGSize(width: zjScreenWidth, height: 44)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         if indexPath.section == 0{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: titleCellId, for: indexPath) as! ZJRentAptListDetailTitleViewCell
+            cell.data = data
+            return cell
+        }else if indexPath.section == 1{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cateCellId, for: indexPath) as! ZJRentAptListDetailCatrgoriesCell
+            if let lon = data.longitude, let lati = data.latitude{
+                cell.coordinate = CLLocationCoordinate2D(latitude: Double(lati)!, longitude: Double(lon)!)
+            }
+            return cell
+            
+        }else if indexPath.section == 2{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: baseCellId, for: indexPath) as! ZJRentAptListDetailBaseCell
             
             cell.firstLabel.text = "\(basekey[indexPath.row])" + ":"
@@ -160,17 +211,17 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
 //            cell.firstLabel.text = "123"
 //            cell.secondtLabel.text = "665"
             return cell
-        }else if indexPath.section == 1{
+        }else if indexPath.section == 3{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: requirementCellId, for: indexPath) as! ZJRentAptListDetailRequirementCell
             cell.ynCategoryButtonType = .colorful
             cell.titles = requirementTitles
             
             return cell
-        }else if indexPath.section == 2{
+        }else if indexPath.section == 4{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: requirementCellId, for: indexPath) as! ZJRentAptListDetailRequirementCell
             cell.titles = includeTitles
             return cell
-        }else if indexPath.section == 3{
+        }else if indexPath.section == 5{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: requirementCellId, for: indexPath) as! ZJRentAptListDetailRequirementCell
             cell.titles = closeTitles
             return cell
@@ -214,6 +265,31 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
         return formerHeight + 25
     }
     
-    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        ZJPrint(scrollView.contentOffset)
+        ZJPrint(zjCycleViewH)
+        var offset = (scrollView.contentOffset.y + zjCycleViewH + zjNavigationBarHeight + zjStatusHeight)/150
+        ZJPrint(offset)
+        if offset > 1{
+            offset = 1
+//            let color = UIColor.init(red: 1, green: 1, blue: 1, alpha: offset)
+            let color = UIColor(displayP3Red: 255/255, green: 165/255, blue: 0, alpha: offset)
+//            self.navigationController?.navigationBar.tintColor = UIColor(hue: 0, saturation: offset, brightness: 1, alpha: 1)
+            self.navigationController?.navigationBar.tintColor = UIColor.white
+//            let color = UIColor.orange.withAlphaComponent(offset)
+//            self.navigationController?.navigationBar.tintColor =  UIColor.white.withAlphaComponent(offset)
+            self.navigationController?.navigationBar.backgroundColor = color
+            UIApplication.shared.statusBarView?.backgroundColor = color
+        }else{
+//            let color = UIColor.init(red: 1, green: 1, blue: 1, alpha: offset)
+            let color = UIColor(displayP3Red: 255/255, green: 165/255, blue: 0, alpha: offset)
+//            self.navigationController?.navigationBar.tintColor = UIColor(hue: 39, saturation:(1-offset), brightness: 1, alpha: 1)
+            self.navigationController?.navigationBar.tintColor = UIColor.orange.withAlphaComponent(1-offset)
+//            let color = UIColor.orange.withAlphaComponent(offset)
+//            self.navigationController?.navigationBar.tintColor =  UIColor.orange.withAlphaComponent(1-offset)
+            self.navigationController?.navigationBar.backgroundColor = color
+            UIApplication.shared.statusBarView?.backgroundColor = color
+        }
+    }
     
 }

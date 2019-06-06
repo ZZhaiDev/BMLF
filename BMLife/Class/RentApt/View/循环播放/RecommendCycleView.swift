@@ -80,6 +80,7 @@ extension RecommendCycleView: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: zjScreenWidth, height: self.frame.size.height+zjStatusHeight+zjNavigationBarHeight)
         return CGSize(width: zjScreenWidth, height: self.frame.size.height)
     }
     

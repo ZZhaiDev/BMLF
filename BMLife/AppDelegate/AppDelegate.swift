@@ -32,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let root = ZJAddAptViewController()
         self.window?.rootViewController = root
         self.window?.makeKeyAndVisible()
+        UINavigationBar.appearance().tintColor = .white
         
         return true
     }

@@ -50,8 +50,8 @@
 		A454DA7822947899006EED07 /* RecommendCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454DA7422947899006EED07 /* RecommendCycleView.swift */; };
 		A454DA7922947899006EED07 /* CycleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454DA7522947899006EED07 /* CycleCell.swift */; };
 		A454DA7A22947899006EED07 /* RecommendCycleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454DA7622947899006EED07 /* RecommendCycleView.xib */; };
-		A454DA82229496DE006EED07 /* ZJRentAptListDetailTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454DA81229496DE006EED07 /* ZJRentAptListDetailTitleView.swift */; };
-		A454DA8422949D39006EED07 /* ZJRentAptListDetailCatrgories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454DA8322949D39006EED07 /* ZJRentAptListDetailCatrgories.swift */; };
+		A454DA82229496DE006EED07 /* ZJRentAptListDetailTitleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454DA81229496DE006EED07 /* ZJRentAptListDetailTitleViewCell.swift */; };
+		A454DA8422949D39006EED07 /* ZJRentAptListDetailCatrgoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454DA8322949D39006EED07 /* ZJRentAptListDetailCatrgoriesCell.swift */; };
 		A4A12EDF228F63EE00D281BE /* ZJAddAptMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A12EDE228F63EE00D281BE /* ZJAddAptMainView.swift */; };
 		A4A12EE2228F64B100D281BE /* ZJAddAptMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A12EE1228F64B100D281BE /* ZJAddAptMapView.swift */; };
 		A4A32C5A229F191D002EC50E /* ZJAddAptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A32C59229F191D002EC50E /* ZJAddAptModel.swift */; };
@@ -139,8 +139,8 @@
 		A454DA7422947899006EED07 /* RecommendCycleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendCycleView.swift; sourceTree = "<group>"; };
 		A454DA7522947899006EED07 /* CycleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleCell.swift; sourceTree = "<group>"; };
 		A454DA7622947899006EED07 /* RecommendCycleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendCycleView.xib; sourceTree = "<group>"; };
-		A454DA81229496DE006EED07 /* ZJRentAptListDetailTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListDetailTitleView.swift; sourceTree = "<group>"; };
-		A454DA8322949D39006EED07 /* ZJRentAptListDetailCatrgories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListDetailCatrgories.swift; sourceTree = "<group>"; };
+		A454DA81229496DE006EED07 /* ZJRentAptListDetailTitleViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListDetailTitleViewCell.swift; sourceTree = "<group>"; };
+		A454DA8322949D39006EED07 /* ZJRentAptListDetailCatrgoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListDetailCatrgoriesCell.swift; sourceTree = "<group>"; };
 		A4A12EDE228F63EE00D281BE /* ZJAddAptMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptMainView.swift; sourceTree = "<group>"; };
 		A4A12EE1228F64B100D281BE /* ZJAddAptMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptMapView.swift; sourceTree = "<group>"; };
 		A4A32C59229F191D002EC50E /* ZJAddAptModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptModel.swift; sourceTree = "<group>"; };
@@ -401,8 +401,8 @@
 			isa = PBXGroup;
 			children = (
 				A438F0F02294ADC900327754 /* ZJRentAptListHeaderView.swift */,
-				A454DA81229496DE006EED07 /* ZJRentAptListDetailTitleView.swift */,
-				A454DA8322949D39006EED07 /* ZJRentAptListDetailCatrgories.swift */,
+				A454DA81229496DE006EED07 /* ZJRentAptListDetailTitleViewCell.swift */,
+				A454DA8322949D39006EED07 /* ZJRentAptListDetailCatrgoriesCell.swift */,
 				38C5146C2294C88B00953286 /* ZJRentAptListDetailBaseCell.swift */,
 				38C5146E2294E2C800953286 /* ZJRentAptListDetailRequirementCell.swift */,
 			);
@@ -659,7 +659,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A454DA8422949D39006EED07 /* ZJRentAptListDetailCatrgories.swift in Sources */,
+				A454DA8422949D39006EED07 /* ZJRentAptListDetailCatrgoriesCell.swift in Sources */,
 				A454DA7822947899006EED07 /* RecommendCycleView.swift in Sources */,
 				A4A12EE2228F64B100D281BE /* ZJAddAptMapView.swift in Sources */,
 				38476134229636D500084946 /* MineViewController.swift in Sources */,
@@ -680,7 +680,7 @@
 				A41CFD68228DF6490008FFB6 /* ZJTabBarController.swift in Sources */,
 				A4A12EDF228F63EE00D281BE /* ZJAddAptMainView.swift in Sources */,
 				3845EDBA229097A80045A694 /* ZJAddAptHeaderView.swift in Sources */,
-				A454DA82229496DE006EED07 /* ZJRentAptListDetailTitleView.swift in Sources */,
+				A454DA82229496DE006EED07 /* ZJRentAptListDetailTitleViewCell.swift in Sources */,
 				A43A95D5229DD04F006E7901 /* MyCustomUIView.swift in Sources */,
 				3847613B2296371600084946 /* ParallaxHeaderMode.swift in Sources */,
 				A4B2DAEA22987607003E1254 /* InfoImageHeader.swift in Sources */,

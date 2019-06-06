@@ -55,6 +55,8 @@ class ZJAddAptViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+       
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(closefunc))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Submit", style: .plain, target: self, action: #selector(submitfunc))
         

@@ -12,7 +12,7 @@ import MapKit
 private let cellId = "cellId"
 private let zjEdgeInsetMargin : CGFloat = 10
 
-class ZJRentAptListDetailCatrgories: UIView {
+class ZJRentAptListDetailCatrgoriesCell: UICollectionViewCell {
     
     var coordinate: CLLocationCoordinate2D?
     
@@ -48,7 +48,7 @@ class ZJRentAptListDetailCatrgories: UIView {
     }
 }
 
-extension ZJRentAptListDetailCatrgories: UICollectionViewDataSource, UICollectionViewDelegate{
+extension ZJRentAptListDetailCatrgoriesCell: UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dict.count
     }
@@ -70,7 +70,8 @@ extension ZJRentAptListDetailCatrgories: UICollectionViewDataSource, UICollectio
             let streetVC = StreetViewController()
             streetVC.destinationLatitude = coordinate?.latitude
             streetVC.destinationLongitude = coordinate?.longitude
-            if let topVC = UIApplication.topViewController(){
+            if let topVC = UIApplication.topViewController() as? ZJRentAptListDetailViewController{
+                topVC.collectionView.contentOffset.y = -(zjNavigationBarHeight+zjCycleViewH+zjStatusHeight)
                 topVC.present(streetVC, animated: true) {
                     
                 }

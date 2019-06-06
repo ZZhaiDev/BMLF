@@ -56,6 +56,43 @@ class CustomCalloutView: UIView{
         return cv
     }()
     
+    lazy var blackView: UIView = {
+       let v = UIView(frame: .zero)
+        v.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        return v
+    }()
+    
+    lazy var typeL: UILabel = {
+       let l = UILabel(frame: .zero)
+        l.backgroundColor = .clear
+        l.textColor = .white
+        l.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        l.numberOfLines = 0
+        l.adjustsFontSizeToFitWidth = true
+//        l.text = "Find a Room"
+        return l
+    }()
+    
+    lazy var priceL: UILabel = {
+        let l = UILabel(frame: .zero)
+        l.backgroundColor = .clear
+        l.textColor = .white
+        l.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+//        l.text = "900/m"
+        return l
+    }()
+    
+    lazy var requireL: UILabel = {
+        let l = UILabel(frame: .zero)
+        l.backgroundColor = .clear
+        l.textColor = .white
+        l.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        l.numberOfLines = 0
+        l.adjustsFontSizeToFitWidth = true
+//        l.text = "Girls only"
+        return l
+    }()
+    
     
     
     lazy var phoneB: UIButton = {
@@ -94,6 +131,27 @@ class CustomCalloutView: UIView{
                 let str = callStr + phone
                 phoneB.setTitle(str, for: .normal)
             }
+//            if let roomtype = data.base?.roomtype{
+//                typeL.text = roomtype
+//            }
+            if let title = data.description?.title{
+                typeL.text = title
+            }
+            if let price = data.base?.price{
+                priceL.text = price + "/m"
+            }
+            if let requirements = data.requirement?.otherrequirements{
+                var result = ""
+                for requirement in requirements{
+                    if let temp = requirement.otherrequirement{
+                       result += (temp + ", ")
+                    }
+                }
+                if result.suffix(2) == ", "{
+                    result.removeLast(2)
+                }
+                requireL.text = result
+            }
         }
     }
     override init(frame: CGRect) {
@@ -104,16 +162,15 @@ class CustomCalloutView: UIView{
         tap.numberOfTapsRequired = 1
         self.addGestureRecognizer(tap)
         
-        
         self.layer.cornerRadius = 10
         self.layer.masksToBounds = true
         self.layer.borderColor = UIColor.white.cgColor
         self.layer.borderWidth = 3
         
-        
-        
         addSubview(collectionView)
         collectionView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: phoneBHeight, paddingRight: 0, width: 0, height: 0)
+        addSubview(blackView)
+        blackView.anchor(top: nil, left: leftAnchor, bottom: collectionView.bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: self.frame.size.height/4)
         
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: self.frame.size.width, height: self.frame.size.height-phoneBHeight)
@@ -121,6 +178,12 @@ class CustomCalloutView: UIView{
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
+        
+        let stackV = UIStackView(arrangedSubviews: [typeL, priceL, requireL])
+        stackV.axis = .vertical
+        stackV.distribution = .fillEqually
+        blackView.addSubview(stackV)
+        stackV.fillSuperview(padding: UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15))
         
         
         addSubview(phoneB)

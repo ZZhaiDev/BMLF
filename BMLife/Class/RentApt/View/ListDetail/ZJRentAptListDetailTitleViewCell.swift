@@ -9,7 +9,7 @@
 import UIKit
 private let userPhotoWidth: CGFloat = 50
 
-class ZJRentAptListDetailTitleView: UIView {
+class ZJRentAptListDetailTitleViewCell: UICollectionViewCell {
     
     var data = AddAptProperties(){
         didSet{
