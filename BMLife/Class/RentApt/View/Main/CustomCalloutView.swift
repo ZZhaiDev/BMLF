@@ -66,10 +66,9 @@ class CustomCalloutView: UIView{
        let l = UILabel(frame: .zero)
         l.backgroundColor = .clear
         l.textColor = .white
-        l.font = UIFont.systemFont(ofSize: 15, weight: .bold)
-        l.numberOfLines = 0
-        l.adjustsFontSizeToFitWidth = true
-//        l.text = "Find a Room"
+        l.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+        l.numberOfLines = 1
+//        l.adjustsFontSizeToFitWidth = true
         return l
     }()
     
@@ -89,8 +88,14 @@ class CustomCalloutView: UIView{
         l.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         l.numberOfLines = 0
         l.adjustsFontSizeToFitWidth = true
+        l.textColor = UIColor.yellow.withAlphaComponent(1)
 //        l.text = "Girls only"
         return l
+    }()
+    
+    lazy var emptyView: UIView  = {
+       let view = UIView()
+        return view
     }()
     
     
@@ -138,19 +143,31 @@ class CustomCalloutView: UIView{
                 typeL.text = title
             }
             if let price = data.base?.price{
-                priceL.text = price + "/m"
+                priceL.text = "Price: " + price + "/m"
             }
+            var result = ""
             if let requirements = data.requirement?.otherrequirements{
-                var result = ""
                 for requirement in requirements{
                     if let temp = requirement.otherrequirement{
                        result += (temp + ", ")
                     }
                 }
+                if let leasingP = data.requirement?.leaseperiod, leasingP != "Both"{
+                    result = leasingP + ", " + result
+                }
+                if let cooking = data.requirement?.cooking, cooking != "Normal Cooking"{
+                    result = cooking + ", " + result
+                }
+                if let smoking = data.requirement?.smoking, smoking == "No Smoking"{
+                    result = smoking + ", " + result
+                }
+                if let gender = data.requirement?.gender, gender != "Both"{
+                    result = gender + ", " + result
+                }
                 if result.suffix(2) == ", "{
                     result.removeLast(2)
                 }
-                requireL.text = result
+                requireL.text = "Requirements: " + result
             }
         }
     }
@@ -181,9 +198,12 @@ class CustomCalloutView: UIView{
         
         let stackV = UIStackView(arrangedSubviews: [typeL, priceL, requireL])
         stackV.axis = .vertical
-        stackV.distribution = .fillEqually
+//        stackV.distribution = .fillEqually
         blackView.addSubview(stackV)
-        stackV.fillSuperview(padding: UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15))
+        stackV.fillSuperview(padding: UIEdgeInsets(top: 5, left: 15, bottom: 5, right: 15))
+        typeL.frame.size.height = stackV.frame.size.height/4
+        priceL.frame.size.height = stackV.frame.size.height/4
+        requireL.frame.size.height = stackV.frame.size.height/2
         
         
         addSubview(phoneB)

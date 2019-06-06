@@ -26,21 +26,25 @@ class InfoController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        hideStatusBar(true)
         navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.barTintColor = .black
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.isHidden = false
+        tabBarController?.tabBar.barTintColor = .white
+        handleDismiss()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        hideStatusBar(true)
+        
         setupCollectionView()
 //        setupCloseButton()
-        setupFloatingView()
+//        setupFloatingView()
         view.addSubview(confetti)
     }
     
@@ -82,7 +86,7 @@ class InfoController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let offsetY = scrollView.contentOffset.y
         
         if -offsetY > 150 {
-            handleDismiss()
+//            handleDismiss()
             return
         }
         
@@ -100,7 +104,7 @@ class InfoController: UIViewController, UICollectionViewDelegate, UICollectionVi
     fileprivate func setupCollectionView() {
         view.addSubview(collectionView)
         collectionView.fillSuperview()
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .black
         collectionView.alwaysBounceVertical = true
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -117,7 +121,7 @@ class InfoController: UIViewController, UICollectionViewDelegate, UICollectionVi
         header?.animator.stopAnimation(true)
         confetti.removeFromSuperview()
 //        dismiss(animated: true)
-        navigationController?.popViewController(animated: true)
+//        navigationController?.popViewController(animated: true)
         hideStatusBar(false)
     }
     

@@ -34,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         UINavigationBar.appearance().tintColor = .white
         
+        
         return true
     }
 

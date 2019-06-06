@@ -31,7 +31,7 @@ struct AddAptGeometry: Codable {
 //post 请求
 struct AddAptProperties: Codable {
     var uuid: String?
-    var fullAddress: String?
+    var fulladdress: String?
     var address: String?
     var city: String?
     var zipcode: String?

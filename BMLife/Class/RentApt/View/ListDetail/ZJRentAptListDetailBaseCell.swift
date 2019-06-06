@@ -20,6 +20,8 @@ class ZJRentAptListDetailBaseCell: UICollectionViewCell {
         let fl = UILabel()
         fl.textColor = UIColor.black
         fl.font = UIFont.boldSystemFont(ofSize: 18)
+        fl.numberOfLines = 0
+        fl.adjustsFontSizeToFitWidth = true
 //        fl.adjustsFontSizeToFitWidth = true
         return fl
     }()

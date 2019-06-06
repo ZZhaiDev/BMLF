@@ -10,45 +10,44 @@ import UIKit
 
 class InfoContentCell: UICollectionViewCell {
     
-    let descriptionLabel: UITextView = {
-        let tv = UITextView()
-        
-        let attributedText = NSMutableAttributedString(string: NSLocalizedString("ifYou", comment: ""), attributes: [.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20)])
-        
-        attributedText.append(NSAttributedString(string: NSLocalizedString("wereLike", comment: ""), attributes: [.foregroundColor: UIColor.gray, .font: UIFont.systemFont(ofSize: 20, weight: .regular)]))
-        
-        attributedText.append(NSAttributedString(string: NSLocalizedString("aboutData", comment: ""), attributes: [.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20)]))
-        
-        attributedText.append(NSAttributedString(string: "\n\n", attributes: [.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 4)]))
-        
-        attributedText.append(NSAttributedString(string: NSLocalizedString("theParking", comment: ""), attributes: [.foregroundColor: UIColor.gray, .font: UIFont.systemFont(ofSize: 20, weight: .regular)]))
-        
-        attributedText.append(NSAttributedString(string: NSLocalizedString("I'llTry", comment: ""), attributes: [.foregroundColor: UIColor.gray, .font: UIFont.systemFont(ofSize: 20, weight: .regular)]))
-        
-        attributedText.append(NSAttributedString(string: NSLocalizedString("suggestions", comment: ""), attributes: [.foregroundColor: UIColor.gray, .font: UIFont.systemFont(ofSize: 20, weight: .regular)]))
-        
-        attributedText.append(NSAttributedString(string: "\n\n\nFind My Parking", attributes: [.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20)]))
-        
-        attributedText.append(NSAttributedString(string: NSLocalizedString("isFully", comment: ""), attributes: [.foregroundColor: UIColor.gray, .font: UIFont.systemFont(ofSize: 20, weight: .regular)]))
-        
-        let github = NSAttributedString(string: "GitHub", attributes:[NSAttributedString.Key.link: URL(string: "https://github.com/weitieda/find-my-parking")!, .font: UIFont.systemFont(ofSize: 20, weight: .regular)])
-        attributedText.append(github)
-        
-        attributedText.append(NSAttributedString(string: ".\n", attributes: [.foregroundColor: UIColor.gray, .font: UIFont.systemFont(ofSize: 20, weight: .regular)]))
-        
-        tv.font = UIFont.systemFont(ofSize: 20, weight: .regular)
-        tv.attributedText = attributedText
-        tv.isUserInteractionEnabled = true
-        tv.isScrollEnabled = false
-        tv.isEditable = false
-        
-        return tv
-    }()
+    let title1 = UILabel()
+    let title2 = UILabel()
+    let content1 = UILabel()
+    let icon = UIImageView()
+    let labelStack = UIStackView()
+    let content2 = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(descriptionLabel)
-        descriptionLabel.fillSuperview()
+        backgroundColor = .black
+        title1.textColor = .white
+        title2.textColor = .white
+        content1.textColor = .white
+        content2.textColor = .white
+        
+        let labels = [title1, content1, title2, content2]
+        labels.forEach { label in
+            label.numberOfLines = 0
+            labelStack.addArrangedSubview(label)
+        }
+        labelStack.spacing = 10
+        labelStack.axis = .vertical
+        addSubview(labelStack)
+        labelStack.fillSuperview()
+        
+        title1.font = UIFont.boldSystemFont(ofSize: 32)
+        title1.text = "Developers:"
+        content1.text = """
+        Zijia Zhai: iOS Developer😍
+        Honglei Zhou: Backend Developer😍
+        """
+        title2.font = UIFont.boldSystemFont(ofSize: 32)
+        title2.text = "Contacts:"
+        content2.text = """
+        If you want to report a bug, contact us;
+        If you want to hire us, contact us;
+        If you have any questions, contact us;
+        """
     }
     
     required init?(coder aDecoder: NSCoder) {

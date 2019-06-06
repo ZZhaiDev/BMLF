@@ -50,7 +50,7 @@ class ZJRentAptListDetailTitleViewCell: UICollectionViewCell {
     }
     
     fileprivate func setupUI(){
-        self.backgroundColor = .red
+//        self.backgroundColor = .red
         self.addSubview(userPhoto)
         self.addSubview(titleLabel)
         userPhoto.anchor(top: nil, left: leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: userPhotoWidth, height: userPhotoWidth)

@@ -16,14 +16,14 @@ class MyCustomUIView: UIView {
     lazy var label: UILabel = {
        let l = UILabel()
         l.font = UIFont.systemFont(ofSize: 18)
-        l.textAlignment = .center
+        l.textAlignment = .left
         l.text = "Description"
         return l
     }()
     lazy var textView: UITextView = {
        let tv = UITextView()
         tv.font = UIFont.systemFont(ofSize: 14)
-        tv.text = "Description(Optional)"
+        tv.text = "(Optional)"
         tv.textColor = UIColor.lightGray
         tv.delegate = self
         return tv
@@ -32,7 +32,7 @@ class MyCustomUIView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(label)
-        let padding:CGFloat = 20.0
+        let padding:CGFloat = 18.0
         label.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 10, paddingLeft: padding, paddingBottom: 0, paddingRight: padding, width: 0, height: 20)
         self.addSubview(textView)
         textView.anchor(top: label.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: padding, paddingBottom: 0, paddingRight: padding, width: 0, height: 0)
@@ -45,8 +45,8 @@ class MyCustomUIView: UIView {
 
 extension MyCustomUIView: UITextViewDelegate{
     func textViewDidBeginEditing(_ textView: UITextView) {
-        label.textColor = UIApplication.topViewController()?.navigationController?.navigationBar.tintColor
-        if (textView.text == "Description(Optional)"){
+        label.textColor = UIColor.blue
+        if (textView.text == "(Optional)"){
             textView.text = ""
             textView.textColor = UIColor.black
         }
@@ -56,7 +56,7 @@ extension MyCustomUIView: UITextViewDelegate{
     func textViewDidEndEditing(_ textView: UITextView) {
         label.textColor = .black
         if (textView.text == ""){
-            textView.text = "Description(Optional)"
+            textView.text = "(Optional)"
             textView.textColor = UIColor.lightGray
         }
         textView.resignFirstResponder()

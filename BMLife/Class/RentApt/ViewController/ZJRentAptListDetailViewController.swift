@@ -30,12 +30,12 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
                 cycleView.data = images
             }
             
-            
-            baseValue.append(data.fullAddress ?? "")
-            let price = data.base?.price ?? "" + "/m"
+            ZJPrint(data.fulladdress)
+            baseValue.append(data.fulladdress ?? "")
+            let price = (data.base?.price ?? "") + "/m"
             baseValue.append(price)
             baseValue.append(data.base?.roomtype ?? "")
-            let bathroom = data.base?.bathroom ?? "" + "Bathroom"
+            let bathroom = (data.base?.bathroom ?? "") + " Bathroom"
             baseValue.append(bathroom)
             baseValue.append(data.base?.parkinglot ?? "")
             baseValue.append(data.base?.washingmachine ?? "")
@@ -44,7 +44,20 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
                 for other in others{
                     requirementTitles.append(other.otherrequirement ?? "")
                 }
+                if let leasingP = requirement.leaseperiod, leasingP != "Both"{
+                    requirementTitles.insert(leasingP, at: 0)
+                }
+                if let cooking = requirement.cooking, cooking != "Normal Cooking"{
+                    requirementTitles.insert(cooking, at: 0)
+                }
+                if let smoking = requirement.smoking, smoking == "No Smoking"{
+                    requirementTitles.insert(smoking, at: 0)
+                }
+                if let gender = requirement.gender, gender != "Both"{
+                    requirementTitles.insert(gender, at: 0)
+                }
             }
+            
             if let base = data.base, let include = base.included{
                 for i in include{
                     includeTitles.append(i.included ?? "")
@@ -56,6 +69,9 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
                     closeTitles.append(i.nearby ?? "")
                 }
             }
+            if let start = data.date?.starttime{
+                baseValue.append(start)
+            }
             
         }
     }
@@ -64,7 +80,7 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
     var ynCategoryButtons = [YNCategoryButton]()
     
     let titleArr = ["", "", "Base", "Requirement", "Included", "Nearby", "包含", "附近"]
-    var basekey = ["Address", "Price", "Type", "Bathroom", "Parking", "Washer"]
+    var basekey = ["Address", "Price", "Type", "Bathroom", "Parking", "Washer", "Start Date"]
     var baseValue = [String]()
     var requirementTitles = [String]()
     var includeTitles = [String]()
@@ -273,8 +289,9 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
         if offset > 1{
             offset = 1
 //            let color = UIColor.init(red: 1, green: 1, blue: 1, alpha: offset)
-            let color = UIColor(displayP3Red: 255/255, green: 165/255, blue: 0, alpha: offset)
+//            let color = UIColor(displayP3Red: 255/255, green: 165/255, blue: 0, alpha: offset)
 //            self.navigationController?.navigationBar.tintColor = UIColor(hue: 0, saturation: offset, brightness: 1, alpha: 1)
+            let color = UIColor.orange.withAlphaComponent(offset)
             self.navigationController?.navigationBar.tintColor = UIColor.white
 //            let color = UIColor.orange.withAlphaComponent(offset)
 //            self.navigationController?.navigationBar.tintColor =  UIColor.white.withAlphaComponent(offset)
@@ -282,7 +299,7 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
             UIApplication.shared.statusBarView?.backgroundColor = color
         }else{
 //            let color = UIColor.init(red: 1, green: 1, blue: 1, alpha: offset)
-            let color = UIColor(displayP3Red: 255/255, green: 165/255, blue: 0, alpha: offset)
+            let color = UIColor.orange.withAlphaComponent(offset)
 //            self.navigationController?.navigationBar.tintColor = UIColor(hue: 39, saturation:(1-offset), brightness: 1, alpha: 1)
             self.navigationController?.navigationBar.tintColor = UIColor.orange.withAlphaComponent(1-offset)
 //            let color = UIColor.orange.withAlphaComponent(offset)

@@ -13,7 +13,7 @@ class ZJRentAptListViewCell: UICollectionViewCell {
     
     var data = AddAptProperties(){
         didSet{
-            ZJPrint(data.fullAddress)
+            ZJPrint(data.fulladdress)
             if let city = data.city{
                 ZJPrint(city)
                 cityL.text = city

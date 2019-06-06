@@ -10,38 +10,41 @@ import UIKit
 import Eureka
 import NVActivityIndicatorView
 
-private var uuid: String = "empty"
-var fulladdress: String = "empty"
- var address: String = "empty"
- var city: String = "empty"
- var state: String = "empty"
- var zipcode: String = "empty"
+var optionalStr = "(Optional)"
+private var defalutValue = "empty"
+
+private var uuid: String = defalutValue
+var fulladdress: String = defalutValue
+ var address: String = defalutValue
+ var city: String = defalutValue
+ var state: String = defalutValue
+ var zipcode: String = defalutValue
 private var submittime: String = "empty"
  var longitude: String = "0.0"
  var latitude: String = "0.0"
 
-private var startDate: String = "empty"
-private var endDate: String = "empty"
-private var titleL: String = "empty"
-var descriptionText_ = "empty"
-private var phoneNumber: String = "empty"
-private var email: String = "empty"
-private var wechat: String = "empty"
-private var price: String = "empty"
-private var type: String = "empty"
-private var roomType: String = "empty"
-private var bathroom: String = "empty"
-private var parkingLot: String = "empty"
-private var washingMachine: String = "empty"
+private var startDate: String = defalutValue
+private var endDate: String = defalutValue
+private var titleL: String = defalutValue
+var descriptionText_ = defalutValue
+private var phoneNumber: String = defalutValue
+private var email: String = defalutValue
+private var wechat: String = defalutValue
+private var price: String = defalutValue
+private var type: String = defalutValue
+private var roomType: String = defalutValue
+private var bathroom: String = defalutValue
+private var parkingLot: String = defalutValue
+private var washingMachine: String = defalutValue
 private var included: [String] = []
 private var nearby: [String] = []
-private var leasePeriod: String = "empty"
-private var gender: String = "empty"
-private var cooking: String = "empty"
-private var smoking: String = "empty"
+private var leasePeriod: String = defalutValue
+private var gender: String = defalutValue
+private var cooking: String = defalutValue
+private var smoking: String = defalutValue
 private var otherRequirements: [String] = []
 private var images: [String] = []
-private var video: String = "empty"
+private var video: String = defalutValue
 
 
 
@@ -99,7 +102,21 @@ extension ZJAddAptViewController: NVActivityIndicatorViewable{
         return now
     }
     
+    fileprivate func checkSubmitValide() -> Bool{
+        if fulladdress == defalutValue || titleL == defalutValue || phoneNumber == defalutValue || email == defalutValue || email == defalutValue || selectedItems.count == 0{
+            let alertVC = UIAlertController(title: "Warning", message: "Please Make Sure Your Address, Title, Phone Number, Email, Price and Photos are not Empty!", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .cancel) { (alertAction) in
+            }
+            alertVC.addAction(okAction)
+            self.present(alertVC, animated: true) {
+            }
+            return false
+        }
+        return true
+    }
+    
     @objc func submitfunc(){
+        if checkSubmitValide() == false {return}
         let UUID = NSUUID().uuidString
         
         startAnimating(CGSize(width: 30, height: 30), message: "Uploading...", fadeInAnimation: nil)
@@ -111,11 +128,9 @@ extension ZJAddAptViewController: NVActivityIndicatorViewable{
                     NVActivityIndicatorPresenter.sharedInstance.setMessage("Something is Wrong...")
                     DispatchQueue.main.asyncAfter(deadline: .now()+1.5, execute: {
                         self.stopAnimating()
-                        ZJPrint("1111123121233123312")
                         self.closefunc()
                         return
                     })
-                    ZJPrint("123121233123312")
                     return
                 }
                 NVActivityIndicatorPresenter.sharedInstance.setMessage("Uploaded Successfully...")
@@ -268,8 +283,12 @@ extension ZJAddAptViewController{
             
             <<< DateInlineRow() {
                 $0.title = "Start Date"
-                $0.value = Date()
-                //                $0.value = "尽快"
+                let defaultV = Date()
+                $0.value = defaultV
+                let dateformatter = DateFormatter()
+                dateformatter.dateStyle = DateFormatter.Style.medium
+                let now = dateformatter.string(from: defaultV)
+                startDate = now
                 }.onChange({ (date) in
                     if let value = date.value{
                         let dateformatter = DateFormatter()
@@ -343,7 +362,7 @@ extension ZJAddAptViewController{
             
             <<< TextRow() {
                 $0.title = "Wechat"
-                $0.placeholder = "Input Your Wechat"
+                $0.placeholder = optionalStr
                 }.onChange({ (text) in
                     if let text = text.value{
                         wechat = text
@@ -365,12 +384,14 @@ extension ZJAddAptViewController{
                 $0.cancelTitle = "Exit"
                 $0.selectorTitle = "Type"
                 $0.options = ["Renting", "Subleasing", "Find a Roommate", "Find a Room"]
-                $0.value = ""
+                let defalutV = "Renting"
+                $0.value = defalutV
+                type = defalutV
                 }.onChange { row in
                     print(row.value ?? "No Value")
                 }
                 .onPresent{ _, to in
-                    to.view.tintColor = .purple
+                    to.view.tintColor = .orange
                 }.onChange({ (text) in
                     if let text = text.value{
                         type = text
@@ -381,12 +402,14 @@ extension ZJAddAptViewController{
                 $0.cancelTitle = "Exit"
                 $0.selectorTitle = "Room type"
                 $0.options = ["Share Room", "Single Room", "Studio", "1b1b", "2b1b", "2b2b", "3b1b", "Over 3 Bedrooms"]
-                $0.value = ""
+                let defalutV = "Single Room"
+                $0.value = defalutV
+                roomType = defalutV
                 }.onChange { row in
                     print(row.value ?? "No Value")
                 }
                 .onPresent{ _, to in
-                    to.view.tintColor = .purple
+                    to.view.tintColor = .orange
                 }.onChange({ (text) in
                     if let text = text.value{
                         roomType = text
@@ -398,12 +421,14 @@ extension ZJAddAptViewController{
                 $0.cancelTitle = "Exit"
                 $0.selectorTitle = "Bathroom"
                 $0.options = ["Private", "Share"]
-                $0.value = ""
+                let defalutV = "Share"
+                $0.value = defalutV
+                bathroom = defalutV
                 }.onChange { row in
                     print(row.value ?? "No Value")
                 }
                 .onPresent{ _, to in
-                    to.view.tintColor = .purple
+                    to.view.tintColor = .orange
                 }.onChange({ (text) in
                     if let text = text.value{
                         bathroom = text
@@ -415,12 +440,14 @@ extension ZJAddAptViewController{
                 $0.cancelTitle = "Exit"
                 $0.selectorTitle = "Parking Lot"
                 $0.options = ["Free Parking", "Paid Parking", "Free Parking On Street", "No Parking"]
-                $0.value = ""
+                let defalutV = "No Parking"
+                $0.value = defalutV
+                parkingLot = defalutV
                 }.onChange { row in
                     print(row.value ?? "No Value")
                 }
                 .onPresent{ _, to in
-                    to.view.tintColor = .purple
+                    to.view.tintColor = .orange
                 }.onChange({ (text) in
                     if let text = text.value{
                         parkingLot = text
@@ -432,12 +459,14 @@ extension ZJAddAptViewController{
                 $0.cancelTitle = "Exit"
                 $0.selectorTitle = "Washing Machine"
                 $0.options = ["Indoor Washing Machine", "Share Washing Machine"]
-                $0.value = ""
+                let defalutV = "Share Washing Machine"
+                $0.value = defalutV
+                washingMachine = defalutV
                 }.onChange { row in
                     print(row.value ?? "No Value")
                 }
                 .onPresent{ _, to in
-                    to.view.tintColor = .purple
+                    to.view.tintColor = .orange
                 }.onChange({ (text) in
                     if let text = text.value{
                         washingMachine = text
@@ -447,7 +476,9 @@ extension ZJAddAptViewController{
             <<< MultipleSelectorRow<String>() {
                 $0.title = "Included"
                 $0.options = ["Water Included", "Electricity Included", "WiFi Included", "Gym", "Furniture"]
-                $0.value = []
+                let defalutV = ["Water Included", "Electricity Included", "WiFi Included"]
+                $0.value = Set(defalutV)
+                included = defalutV
                 }
                 .onPresent { from, to in
                     to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
@@ -460,7 +491,9 @@ extension ZJAddAptViewController{
             <<< MultipleSelectorRow<String>() {
                 $0.title = "Nearby"
                 $0.options = ["School", "Subway", "bus", "Supermarket", "Restaurant", "Bar", "Park", "Lake"]
-                $0.value = []
+                let defalutV = ["Restaurant"]
+                $0.value = Set(defalutV)
+                nearby = defalutV
                 }
                 .onPresent { from, to in
                     to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
@@ -477,12 +510,14 @@ extension ZJAddAptViewController{
                 $0.cancelTitle = "Exit"
                 $0.selectorTitle = "Lease period"
                 $0.options = ["Long-term rental", "Short-term rental", "Both"]
-                $0.value = ""
+                let defalutV = "Both"
+                $0.value = defalutV
+                leasePeriod = defalutV
                 }.onChange { row in
                     print(row.value ?? "No Value")
                 }
                 .onPresent{ _, to in
-                    to.view.tintColor = .purple
+                    to.view.tintColor = .orange
                 }.onChange({ (text) in
                     if let text = text.value{
                         leasePeriod = text
@@ -494,12 +529,14 @@ extension ZJAddAptViewController{
                 $0.cancelTitle = "Exit"
                 $0.selectorTitle = "Gender"
                 $0.options = ["Boys only", "Girls only", "both"]
-                $0.value = ""
+                let defalutV = "Both"
+                $0.value = defalutV
+                gender = defalutV
                 }.onChange { row in
                     print(row.value ?? "No Value")
                 }
                 .onPresent{ _, to in
-                    to.view.tintColor = .purple
+                    to.view.tintColor = .orange
                 }.onChange({ (text) in
                     if let text = text.value{
                         gender = text
@@ -511,12 +548,14 @@ extension ZJAddAptViewController{
                 $0.cancelTitle = "Exit"
                 $0.selectorTitle = "Cooking"
                 $0.options = ["Normal Cooking", "Less Cooking", "No Cooking"]
-                $0.value = ""
+                let defalutV = "Normal Cooking"
+                $0.value = defalutV
+                cooking = defalutV
                 }.onChange { row in
                     print(row.value ?? "No Value")
                 }
                 .onPresent{ _, to in
-                    to.view.tintColor = .purple
+                    to.view.tintColor = .orange
                 }.onChange({ (text) in
                     if let text = text.value{
                         cooking = text
@@ -528,12 +567,14 @@ extension ZJAddAptViewController{
                 $0.cancelTitle = "Exit"
                 $0.selectorTitle = "Smoke"
                 $0.options = ["No Smoking", "Normal Smoking"]
-                $0.value = ""
+                let defalutV = "Normal Smoking"
+                $0.value = defalutV
+                smoking = defalutV
                 }.onChange { row in
                     print(row.value ?? "No Value")
                 }
                 .onPresent{ _, to in
-                    to.view.tintColor = .purple
+                    to.view.tintColor = .orange
                 }.onChange({ (text) in
                     if let text = text.value{
                         smoking = text
@@ -543,7 +584,9 @@ extension ZJAddAptViewController{
             <<< MultipleSelectorRow<String>() {
                 $0.title = "Other Requirements"
                 $0.options = ["Single Only", "Keep Clean", "Without Overnight Visitor", "Quiet", "No Party", "Not Staying up Late", "No Pets", "Love Pets"]
-                $0.value = []
+                let defalutV = ["Quiet", "Not Staying up Late"]
+                $0.value = Set(defalutV)
+                otherRequirements = defalutV
                 }
                 .onPresent { from, to in
                     to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))

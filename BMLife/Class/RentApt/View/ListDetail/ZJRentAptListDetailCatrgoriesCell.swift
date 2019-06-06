@@ -16,7 +16,7 @@ class ZJRentAptListDetailCatrgoriesCell: UICollectionViewCell {
     
     var coordinate: CLLocationCoordinate2D?
     
-    var dict = [["crime", "crime"],["streetview", "street view"],["streetview", "other"],["crime", "crime"],["phone", "street view"],["crime", "other"],["phone", "crime"],["crime", "street view"],["crime", "other"]]
+    var dict = [["crime", "crime"],["streetview", "street view"]]
     
     
     fileprivate lazy var collectionView: UICollectionView = { [weak self] in
