@@ -32,10 +32,21 @@ class ZJRentAptListDetailCatrgoriesCell: UICollectionViewCell {
         return cv
         }()
     
+    lazy var line1: UIView = {
+       let v = UIView(frame: .zero)
+        v.backgroundColor = UIColor.lightGray
+        return v
+    }()
+    
+    lazy var line2: UIView = {
+        let v = UIView(frame: .zero)
+        v.backgroundColor = UIColor.lightGray
+        return v
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+//        self.backgroundColor = .red
         setupUI()
     }
     
@@ -45,6 +56,10 @@ class ZJRentAptListDetailCatrgoriesCell: UICollectionViewCell {
     
     fileprivate func setupUI(){
         self.addSubview(collectionView)
+        self.addSubview(line1)
+        line1.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.5)
+        self.addSubview(line2)
+        line2.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.5)
     }
 }
 

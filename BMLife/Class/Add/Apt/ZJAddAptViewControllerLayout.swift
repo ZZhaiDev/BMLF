@@ -11,7 +11,7 @@ import Eureka
 import NVActivityIndicatorView
 
 var optionalStr = "(Optional)"
-private var defalutValue = "empty"
+var defalutValue = "empty"
 
 private var uuid: String = defalutValue
 var fulladdress: String = defalutValue
@@ -405,7 +405,7 @@ extension ZJAddAptViewController{
                 $0.title = "Room Type"
                 $0.cancelTitle = "Exit"
                 $0.selectorTitle = "Room type"
-                $0.options = ["Studio", "1b1b", "2b1b", "2b2b", "3b1b", "Over 3 Bedrooms"]
+                $0.options = ["Studio", "1b1b", "2b1b", "2b2b", "3b1b", "3b2b", "4b4b", "Over 4 Bedrooms"]
                 let defalutV = "2b1b"
                 $0.value = defalutV
                 roomType = defalutV

@@ -36,7 +36,9 @@ class ZJRentAptMapView: UIView {
 //                    annotation.title = "chicago il"
 //                    annotation.subtitle = "1室一厅 u短租"
                     annotation.coordinate = CLLocationCoordinate2D(latitude: Double(lat)!, longitude: Double(lon)!)
-                    mapsView.addAnnotation(annotation)
+                    DispatchQueue.main.async {
+                        self.mapsView.addAnnotation(annotation)
+                    }
                 }
                 
             }

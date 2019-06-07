@@ -60,6 +60,8 @@ class ZJRentAptListDetailRequirementCell: UICollectionViewCell {
     
             ynCategoryButtons.append(button)
             self.addSubview(button)
+            
+         
     
         }
     }

@@ -10,8 +10,8 @@ import UIKit
 import MapKit
 
 let zjCycleViewH: CGFloat = zjScreenHeight * 3 / 8
-private let titleViewH:CGFloat = 100
-private let cateViewH: CGFloat = 90
+private let titleViewH:CGFloat = 80
+private let cateViewH: CGFloat = 80
 private let zjHeaderViewH: CGFloat = 50
 private let zjItemMargin : CGFloat = 10
 
@@ -21,6 +21,8 @@ private let cateCellId = "cateCellId"
 private let headerCellId = "headerCellId"
 private let baseCellId = "baseCellId"
 private let requirementCellId = "requirementCellId"
+private let descriptionCellId = "descriptionCellId"
+private let contactCellId = "contactCellId"
 class ZJRentAptListDetailViewController: ZJBaseViewController {
     
     var data = AddAptProperties(){
@@ -74,14 +76,20 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
             if let start = data.date?.starttime{
                 baseValue.append(start)
             }
-            
+            if let description = data.description, let des = description.description{
+//                descriptionVaule = des
+                descriptionVaule = des
+                
+            }
+//            collectionView.reloadData()
         }
     }
     
+    var descriptionVaule = defalutValue
     var requiredmentCellHeight: CGFloat = 100
     var ynCategoryButtons = [YNCategoryButton]()
     
-    let titleArr = ["", "", "Base", "Requirement", "Included", "Nearby", "包含", "附近"]
+    var titleArr = ["", "", "Base", "Requirement", "Included", "Nearby", "Description", "Contact", ""]
     var basekey = ["Address", "Price", "Category", "House Type", "Room Type",  "Bathroom", "Parking", "Washer", "Start Date"]
     var baseValue = [String]()
     var requirementTitles = [String]()
@@ -119,6 +127,9 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
         cv.register(ZJRentAptListDetailRequirementCell.self, forCellWithReuseIdentifier: requirementCellId)
         cv.register(ZJRentAptListDetailTitleViewCell.self, forCellWithReuseIdentifier: titleCellId)
         cv.register(ZJRentAptListDetailCatrgoriesCell.self, forCellWithReuseIdentifier: cateCellId)
+        cv.register(ZJRentAptListDetailDescriptionCell.self, forCellWithReuseIdentifier: descriptionCellId)
+        cv.register(ZJRentAptListDetailContactCell.self, forCellWithReuseIdentifier: contactCellId)
+        
         cv.backgroundColor = .clear
 //        cv.register(UINib(nibName: "CollectionPrettyCell", bundle: nil), forCellWithReuseIdentifier: zjPrettyCellID)
 //        cv.register(UINib(nibName: "CollectionNormalCell", bundle: nil), forCellWithReuseIdentifier: zjNormalCellID)
@@ -150,6 +161,9 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
         super.viewWillDisappear(animated)
         showNavigationBar()
         navigationController?.navigationBar.tintColor = .white
+        //防止statusView 还是黄色的bug
+        collectionView.contentOffset.y = -(zjNavigationBarHeight+zjCycleViewH+zjStatusHeight)
+        
     }
 
     override func viewDidLoad() {
@@ -195,6 +209,18 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
             return CGSize(width: zjScreenWidth, height: calcuatedHeight(titles: includeTitles))
         }else if indexPath.section == 5{
             return CGSize(width: zjScreenWidth, height: calcuatedHeight(titles: closeTitles))
+        }else if indexPath.section == 6{
+            if descriptionVaule == defalutValue{
+                return CGSize(width: zjScreenWidth, height: 0.001)
+            }
+            let approximateWidthOfContent = view.frame.width - 15
+            let size = CGSize(width: approximateWidthOfContent, height: 2000)
+            let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)]
+            let estimatedFrame = NSString(string: descriptionVaule).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
+            let height = estimatedFrame.height
+            return CGSize(width: approximateWidthOfContent, height: height+20)
+        }else if indexPath.section == 7{
+            return CGSize(width: zjScreenWidth, height: ZJRentAptListDetailContactCell.selfHeight)
         }
         return CGSize(width: zjScreenWidth, height: 100)
     }
@@ -204,6 +230,11 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
             return .zero
         }else if section == 1{
             return .zero
+        }else if section == 6{
+            if descriptionVaule == defalutValue{
+                return .zero
+            }
+            return CGSize(width: zjScreenWidth, height: 44)
         }
         return CGSize(width: zjScreenWidth, height: 44)
     }
@@ -226,8 +257,6 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
             cell.firstLabel.text = "\(basekey[indexPath.row])" + ":"
             ZJPrint(baseValue.count)
             cell.secondtLabel.text = "\(baseValue[indexPath.row])"
-//            cell.firstLabel.text = "123"
-//            cell.secondtLabel.text = "665"
             return cell
         }else if indexPath.section == 3{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: requirementCellId, for: indexPath) as! ZJRentAptListDetailRequirementCell
@@ -243,13 +272,20 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: requirementCellId, for: indexPath) as! ZJRentAptListDetailRequirementCell
             cell.titles = closeTitles
             return cell
+        }else if indexPath.section == 6{
+            if descriptionVaule == defalutValue{
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+                return cell
+            }
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: descriptionCellId, for: indexPath) as! ZJRentAptListDetailDescriptionCell
+            cell.data = descriptionVaule
+            return cell
+        }else if indexPath.section == 7{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: contactCellId, for: indexPath) as! ZJRentAptListDetailContactCell
+//            cell.data = descriptionVaule
+            return cell
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        if indexPath.row/2 == 0{
-            cell.backgroundColor = .red
-        }else{
-            cell.backgroundColor = .black
-        }
         return cell
     }
     
