@@ -1,10 +1,4 @@
-//
-//  InfoController.swift
-//  find-my-parking
-//
-//  Created by Tieda Wei on 2019-04-21.
-//  Copyright © 2019 Tieda Wei. All rights reserved.
-//
+
 
 import UIKit
 
@@ -26,7 +20,9 @@ class InfoController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        view.addSubview(confetti)
         hideStatusBar(true)
+//        header?.animator.stopAnimation(false)
         navigationController?.navigationBar.isHidden = true
         tabBarController?.tabBar.barTintColor = .black
     }
@@ -45,7 +41,7 @@ class InfoController: UIViewController, UICollectionViewDelegate, UICollectionVi
         setupCollectionView()
 //        setupCloseButton()
 //        setupFloatingView()
-        view.addSubview(confetti)
+        
     }
     
     fileprivate func setupFloatingView() {
@@ -118,7 +114,7 @@ class InfoController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     @objc fileprivate func handleDismiss() {
-        header?.animator.stopAnimation(true)
+//        header?.animator.stopAnimation(true)
         confetti.removeFromSuperview()
 //        dismiss(animated: true)
 //        navigationController?.popViewController(animated: true)

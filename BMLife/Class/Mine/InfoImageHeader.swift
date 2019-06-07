@@ -19,7 +19,7 @@ class InfoImageHeader: UICollectionReusableView {
         super.init(frame: frame)
         
         clipsToBounds = true
-
+        
         setupImageView()
         setupBlurView()
         setupGradientLayer()
@@ -35,10 +35,12 @@ class InfoImageHeader: UICollectionReusableView {
     fileprivate func setupBlurView() {
         animator = UIViewPropertyAnimator(duration: 2, curve: .linear, animations: { [unowned self] in
             let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
+            
             self.addSubview(blurView)
             blurView.fillSuperview()
             self.bringSubviewToFront(self.titleLabel)
         })
+        self.animator.pausesOnCompletion = true
     }
     
     fileprivate func setupGradientLayer() {
