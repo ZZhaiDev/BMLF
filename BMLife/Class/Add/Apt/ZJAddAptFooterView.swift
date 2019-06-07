@@ -137,9 +137,9 @@ class ZJAddAptFooterView: UIView {
         self.addSubview(imageBackGroundView)
         imageBackGroundView.anchor(top: pickButton.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, paddingTop: imageBackGroundViewPadding, paddingLeft: imageBackGroundViewPadding, paddingBottom: 0, paddingRight: imageBackGroundViewPadding, width: 0, height: imageBackGroundViewHeight)
         
-        self.addSubview(resultsButton)
-        resultsButton.anchor(top: nil, left: pickButton.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 20, width: 200, height: 30)
-        resultsButton.centerYAnchor.constraint(equalTo: pickButton.centerYAnchor).isActive = true
+//        self.addSubview(resultsButton)
+//        resultsButton.anchor(top: nil, left: pickButton.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 20, width: 200, height: 30)
+//        resultsButton.centerYAnchor.constraint(equalTo: pickButton.centerYAnchor).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

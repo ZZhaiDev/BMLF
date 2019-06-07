@@ -112,9 +112,7 @@ extension ZJRentAptMapView{
         }
         temp.removeFirst()
         temp += ",\(points.first!.longitude),\(points.first!.latitude)"
-//        NetworkTools.requestData(.post, URLString: "http://aca33a60.ngrok.io/api/v1/info/crime/il/?page_size=300", parameters: ["in_polygon": temp]) { (data) in
-//            ZJPrint(data)
-//        }
+        /*
         crimeViewModel.loadCrime(dictValue: temp) {
             self.crimeViewModel.crimeProperties.forEach({ (property) in
                 if let lon = property.longitude, let lat = property.latitude, let crime = property.parent_incident_type, let time = property.incident_datetime{
@@ -127,6 +125,7 @@ extension ZJRentAptMapView{
                 
             })
         }
+ */
         ZJPrint(temp)
         mapsView.addOverlay(polygon)
         points = [] // Reset points
@@ -166,9 +165,11 @@ extension ZJRentAptMapView: MKMapViewDelegate{
             return nil
         }
         
+        /*
+         //画crime 点
         guard !(annotation is CrimeAnnotation) else {
             let Identifier = "CrimeIdentifier"
-            var crimeAnnotion: MKAnnotationView?
+            var : MKAnnotationView?
             if let dequeuedAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: Identifier) {
                 crimeAnnotion = dequeuedAnnotationView
                 crimeAnnotion?.annotation = annotation
@@ -185,6 +186,7 @@ extension ZJRentAptMapView: MKMapViewDelegate{
             }
             return crimeAnnotion
         }
+         */
         
         
         // Better to make this class property
@@ -210,16 +212,13 @@ extension ZJRentAptMapView: MKMapViewDelegate{
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if view.annotation is MKUserLocation{return}
-        if view.annotation is CrimeAnnotation{return}
+//        if view.annotation is CrimeAnnotation{return}
         // 2
         let starbucksAnnotation = view.annotation as! CustomizedAnnotation
 //        let views = c
         let calloutView = CustomCalloutView(frame: CGRect(x: 0, y: 0, width: zjScreenWidth*0.6, height: zjScreenHeight*0.5))
         calloutView.data = starbucksAnnotation.data
         
-//        let button = UIButton(frame: calloutView.phoneB.frame)
-//        button.addTarget(self, action: #selector(callPhoneNumber), for: .touchUpInside)
-//        calloutView.addSubview(button)
         
         calloutView.center = CGPoint(x: view.bounds.size.width / 2, y: -calloutView.bounds.size.height*0.52)
         view.addSubview(calloutView)

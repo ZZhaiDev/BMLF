@@ -136,12 +136,12 @@ class CustomCalloutView: UIView{
                 let str = callStr + phone
                 phoneB.setTitle(str, for: .normal)
             }
-//            if let roomtype = data.base?.roomtype{
-//                typeL.text = roomtype
-//            }
-            if let title = data.description?.title{
-                typeL.text = title
+            if let cat = data.category{
+                typeL.text = cat
             }
+//            if let title = data.description?.title{
+//                typeL.text = title
+//            }
             if let price = data.base?.price{
                 priceL.text = "Price: " + price + "/m"
             }

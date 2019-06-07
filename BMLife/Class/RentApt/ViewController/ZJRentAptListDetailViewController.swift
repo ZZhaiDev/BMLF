@@ -34,6 +34,8 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
             baseValue.append(data.fulladdress ?? "")
             let price = (data.base?.price ?? "") + "/m"
             baseValue.append(price)
+            baseValue.append(data.category ?? "")
+            baseValue.append(data.base?.housetype ?? "")
             baseValue.append(data.base?.roomtype ?? "")
             let bathroom = (data.base?.bathroom ?? "") + " Bathroom"
             baseValue.append(bathroom)
@@ -80,7 +82,7 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
     var ynCategoryButtons = [YNCategoryButton]()
     
     let titleArr = ["", "", "Base", "Requirement", "Included", "Nearby", "包含", "附近"]
-    var basekey = ["Address", "Price", "Type", "Bathroom", "Parking", "Washer", "Start Date"]
+    var basekey = ["Address", "Price", "Category", "House Type", "Room Type",  "Bathroom", "Parking", "Washer", "Start Date"]
     var baseValue = [String]()
     var requirementTitles = [String]()
     var includeTitles = [String]()
@@ -168,7 +170,7 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
 
 extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 8
+        return titleArr.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

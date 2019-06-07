@@ -41,7 +41,7 @@ class CustomizedAnnotationView: MKAnnotationView{
 }
 
 
-
+/*
 class CrimeAnnotation: MKPointAnnotation {
 }
 
@@ -71,3 +71,4 @@ class CrimeAnnotationView: MKAnnotationView{
         return isInside
     }
 }
+*/

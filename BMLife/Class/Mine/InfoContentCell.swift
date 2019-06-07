@@ -16,6 +16,36 @@ class InfoContentCell: UICollectionViewCell {
     let icon = UIImageView()
     let labelStack = UIStackView()
     let content2 = UILabel()
+    let emailL1: PaddingLabel = {
+       let el = PaddingLabel()
+        el.layer.cornerRadius = 5
+        el.layer.masksToBounds = true
+        el.layer.borderWidth = 1
+        el.layer.borderColor = UIColor.orange.cgColor
+        el.layer.shadowOpacity = 1
+        el.layer.shadowOffset = CGSize(width: 0, height: 2)
+        el.layer.shadowRadius = 5
+        el.text = "zijiazhai@gmail.com"
+        el.textColor = .orange
+        el.font = UIFont.systemFont(ofSize: 20)
+        return el
+    }()
+    
+    let emailL2: PaddingLabel = {
+        let el = PaddingLabel()
+        el.layer.cornerRadius = 5
+        el.layer.masksToBounds = true
+        el.layer.borderWidth = 1
+        el.layer.borderColor = UIColor.orange.cgColor
+        el.layer.shadowOpacity = 1
+        el.layer.shadowOffset = CGSize(width: 0, height: 2)
+        el.layer.shadowRadius = 5
+        el.text = "nbhlzhou@gmail.com"
+        el.textColor = .orange
+        el.font = UIFont.systemFont(ofSize: 20)
+        return el
+    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,7 +55,7 @@ class InfoContentCell: UICollectionViewCell {
         content1.textColor = .white
         content2.textColor = .white
         
-        let labels = [title1, content1, title2, content2]
+        let labels = [title1, content1, title2, content2, emailL1, emailL2]
         labels.forEach { label in
             label.numberOfLines = 0
             labelStack.addArrangedSubview(label)

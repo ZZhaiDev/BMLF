@@ -31,7 +31,8 @@ private var phoneNumber: String = defalutValue
 private var email: String = defalutValue
 private var wechat: String = defalutValue
 private var price: String = defalutValue
-private var type: String = defalutValue
+private var category: String = defalutValue
+private var houseType: String = defalutValue
 private var roomType: String = defalutValue
 private var bathroom: String = defalutValue
 private var parkingLot: String = defalutValue
@@ -147,6 +148,7 @@ extension ZJAddAptViewController: NVActivityIndicatorViewable{
     func fillOutForms(UUID: String) -> [String : Any]{
         let form = [
             "uuid": UUID,
+            "category": category,
             "fulladdress": fulladdress,
             "address": address,
             "city": city,
@@ -170,7 +172,7 @@ extension ZJAddAptViewController: NVActivityIndicatorViewable{
             ],
             "base": [
                 "price": price,
-                "housetype": type,
+                "housetype": houseType,
                 "roomtype": roomType,
                 "bathroom": bathroom,
                 "parkinglot": parkingLot,
@@ -192,38 +194,39 @@ extension ZJAddAptViewController: NVActivityIndicatorViewable{
     }
     
     func resetForms(){
-        uuid = "empty"
-        fulladdress = "empty"
-        address = "empty"
-        city = "empty"
-        state = "empty"
-        zipcode = "empty"
-        submittime = "empty"
+        uuid = defalutValue
+        fulladdress = defalutValue
+        address = defalutValue
+        city = defalutValue
+        state = defalutValue
+        zipcode = defalutValue
+        submittime = defalutValue
         longitude = "0.0"
         latitude = "0.0"
         
-        startDate = "empty"
-        endDate = "empty"
-        titleL = "empty"
-        descriptionText_ = "empty"
-        phoneNumber = "empty"
-        email = "empty"
-        wechat = "empty"
-        price = "empty"
-        type = "empty"
-        roomType = "empty"
-        bathroom = "empty"
-        parkingLot = "empty"
-        washingMachine = "empty"
+        startDate = defalutValue
+        endDate = defalutValue
+        titleL = defalutValue
+        descriptionText_ = defalutValue
+        phoneNumber = defalutValue
+        email = defalutValue
+        wechat = defalutValue
+        price = defalutValue
+        category = defalutValue
+        houseType = defalutValue
+        roomType = defalutValue
+        bathroom = defalutValue
+        parkingLot = defalutValue
+        washingMachine = defalutValue
         included = []
         nearby = []
-        leasePeriod = "empty"
-        gender = "empty"
-        cooking = "empty"
-        smoking = "empty"
+        leasePeriod = defalutValue
+        gender = defalutValue
+        cooking = defalutValue
+        smoking = defalutValue
         otherRequirements = []
         images = []
-        video = "empty"
+        video = defalutValue
         
         selectedItems = []
     }
@@ -380,13 +383,14 @@ extension ZJAddAptViewController{
                 })
             
             <<< AlertRow<String>() {
-                $0.title = "Type"
+                $0.title = "Category"
                 $0.cancelTitle = "Exit"
-                $0.selectorTitle = "Type"
-                $0.options = ["Renting", "Subleasing", "Find a Roommate", "Find a Room"]
-                let defalutV = "Renting"
+                $0.selectorTitle = "Category"
+                $0.options = ["Leasing", "Subleasing", "Find a Roommate"]
+                let defalutV = "Find a Roommate"
                 $0.value = defalutV
-                type = defalutV
+                category = defalutV
+//                $0.placeholder = "Input Your Category"
                 }.onChange { row in
                     print(row.value ?? "No Value")
                 }
@@ -394,15 +398,15 @@ extension ZJAddAptViewController{
                     to.view.tintColor = .orange
                 }.onChange({ (text) in
                     if let text = text.value{
-                        type = text
+                        category = text
                     }
                 })
             <<< AlertRow<String>() {
                 $0.title = "Room Type"
                 $0.cancelTitle = "Exit"
                 $0.selectorTitle = "Room type"
-                $0.options = ["Share Room", "Single Room", "Studio", "1b1b", "2b1b", "2b2b", "3b1b", "Over 3 Bedrooms"]
-                let defalutV = "Single Room"
+                $0.options = ["Studio", "1b1b", "2b1b", "2b2b", "3b1b", "Over 3 Bedrooms"]
+                let defalutV = "2b1b"
                 $0.value = defalutV
                 roomType = defalutV
                 }.onChange { row in
@@ -413,6 +417,25 @@ extension ZJAddAptViewController{
                 }.onChange({ (text) in
                     if let text = text.value{
                         roomType = text
+                    }
+                })
+            
+            <<< AlertRow<String>() {
+                $0.title = "House Type"
+                $0.cancelTitle = "Exit"
+                $0.selectorTitle = "House type"
+                $0.options = ["Apartment", "Condo", "House", "Town House"]
+                let defalutV = "Apartment"
+                $0.value = defalutV
+                houseType = defalutV
+                }.onChange { row in
+                    print(row.value ?? "No Value")
+                }
+                .onPresent{ _, to in
+                    to.view.tintColor = .orange
+                }.onChange({ (text) in
+                    if let text = text.value{
+                        houseType = text
                     }
                 })
             
