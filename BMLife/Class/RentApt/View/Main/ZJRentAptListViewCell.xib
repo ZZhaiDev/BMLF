@@ -131,6 +131,9 @@
                                 <state key="normal" title="Email">
                                     <color key="titleColor" red="0.081293381750583649" green="0.34601235389709473" blue="0.138287752866745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="emailClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="I0U-Zf-sTE"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLR-kH-V5s">
                                 <rect key="frame" x="143" y="0.0" width="143" height="40"/>
@@ -138,6 +141,9 @@
                                 <state key="normal" title="9056652284">
                                     <color key="titleColor" red="0.081293381750583649" green="0.34601235389709473" blue="0.138287752866745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="phoneClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="iX4-JV-Axd"/>
+                                </connections>
                             </button>
                             <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tef-Jj-oc2">
                                 <rect key="frame" x="0.0" y="0.0" width="286" height="0.5"/>

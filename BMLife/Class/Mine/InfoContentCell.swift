@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class InfoContentCell: UICollectionViewCell {
     
@@ -16,29 +17,52 @@ class InfoContentCell: UICollectionViewCell {
     let icon = UIImageView()
     let labelStack = UIStackView()
     let content2 = UILabel()
-    let emailL1: PaddingLabel = {
+    let zijiaEmail = "zijiazhai@gmail.com"
+    let hongleiEmail = "nbhlzhou@gmail.com"
+    lazy var emailL1: PaddingLabel = {
         let el = PaddingLabel()
         el.layer.cornerRadius = 10
         el.layer.masksToBounds = true
         el.layer.borderWidth = 1
         el.layer.borderColor = UIColor.orange.cgColor
-        el.text = "zijiazhai@gmail.com"
+        el.text = zijiaEmail
         el.textColor = .orange
         el.font = UIFont.systemFont(ofSize: 20)
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(sendEmail))
+        el.addGestureRecognizer(gesture)
+        el.isUserInteractionEnabled = true
         return el
     }()
 //    "nbhlzhou@gmail.com"
-    let emailL2: PaddingLabel = {
+    lazy var emailL2: PaddingLabel = {
         let el = PaddingLabel()
         el.layer.cornerRadius = 10
         el.layer.masksToBounds = true
         el.layer.borderWidth = 1
         el.layer.borderColor = UIColor.orange.cgColor
-        el.text = "nbhlzhou@gmail.com"
+        el.text = hongleiEmail
         el.textColor = .orange
         el.font = UIFont.systemFont(ofSize: 20)
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(sendEmail))
+        el.addGestureRecognizer(gesture)
+        el.isUserInteractionEnabled = true
         return el
     }()
+    
+    @objc fileprivate func sendEmail(){
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients([zijiaEmail, hongleiEmail])
+//            mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
+            mail.setSubject("BMLife-Feedback")
+            if let topVC = UIApplication.topViewController(){
+                topVC.present(mail, animated: true)
+            }
+        } else {
+            // show failure alert
+        }
+    }
     
     
     override init(frame: CGRect) {
@@ -76,6 +100,27 @@ class InfoContentCell: UICollectionViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+}
+
+
+extension InfoContentCell: MFMailComposeViewControllerDelegate{
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true) {
+            if result == .sent{
+                guard let topVC = UIApplication.topViewController() else {return}
+                let alertVC = UIAlertController(title: "Email Sent", message: "Thanks for Your Feedback, We Will Reply back to You Soon!", preferredStyle: .actionSheet)
+                let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+                }
+                alertVC.addAction(okAction)
+                topVC.present(alertVC, animated: true) {
+                }
+            }else{
+                
+            }
+        } 
     }
 }
 

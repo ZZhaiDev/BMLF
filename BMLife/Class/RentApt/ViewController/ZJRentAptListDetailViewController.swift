@@ -214,16 +214,15 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
                 return CGSize(width: zjScreenWidth, height: 0.001)
             }
             let approximateWidthOfContent = view.frame.width - 15
-            let size = CGSize(width: approximateWidthOfContent, height: 2000)
-            let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)]
-            let estimatedFrame = NSString(string: descriptionVaule).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
-            let height = estimatedFrame.height
+            let height = calculateHeight(width: approximateWidthOfContent, textFont: UIFont.systemFont(ofSize: 16), text: descriptionVaule)
             return CGSize(width: approximateWidthOfContent, height: height+20)
         }else if indexPath.section == 7{
             return CGSize(width: zjScreenWidth, height: ZJRentAptListDetailContactCell.selfHeight)
         }
         return CGSize(width: zjScreenWidth, height: 100)
     }
+    
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if section == 0{
@@ -282,7 +281,7 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
             return cell
         }else if indexPath.section == 7{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: contactCellId, for: indexPath) as! ZJRentAptListDetailContactCell
-//            cell.data = descriptionVaule
+            cell.data = data.contact
             return cell
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)

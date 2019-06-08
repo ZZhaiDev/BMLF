@@ -16,13 +16,15 @@ class ZJRentAptListDetailRequirementCell: UICollectionViewCell {
     var ynCategoryButtonType: YNCategoryButtonType = .border
     var titles = [String](){
         didSet{
-            setupUI1()
+            ZJPrint(titles)
+            setupUI()
         }
     }
     var titleButtons: [UIButton] = [UIButton]()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         
     }
     
@@ -32,7 +34,12 @@ class ZJRentAptListDetailRequirementCell: UICollectionViewCell {
     
    
     
-    func setupUI1(){
+    func setupUI(){
+        //avoid repeating adding same view multiple times
+        for button in ynCategoryButtons{
+            button.removeFromSuperview()
+        }
+        
         let margin: CGFloat = 15
         var formerWidth: CGFloat = 15
         var formerHeight: CGFloat = 0
@@ -60,9 +67,6 @@ class ZJRentAptListDetailRequirementCell: UICollectionViewCell {
     
             ynCategoryButtons.append(button)
             self.addSubview(button)
-            
-         
-    
         }
     }
     

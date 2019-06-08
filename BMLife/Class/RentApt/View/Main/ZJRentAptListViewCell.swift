@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import MessageUI
 
 class ZJRentAptListViewCell: UICollectionViewCell {
     
@@ -76,6 +77,16 @@ class ZJRentAptListViewCell: UICollectionViewCell {
     @IBOutlet weak var closeL: UILabel!
     @IBOutlet weak var emailB: UIButton!
     @IBOutlet weak var phoneB: UIButton!
+    @IBAction func emailClicked(_ sender: Any) {
+        sendEmail()
+    }
+    @IBAction func phoneClicked(_ sender: Any) {
+        if let str = phoneB.titleLabel?.text, let url = URL(string: "telprompt://\(str)"), UIApplication.shared.canOpenURL(url){
+            UIApplication.shared.open(url, options: [:]) { (_) in
+                
+            }
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -84,9 +95,40 @@ class ZJRentAptListViewCell: UICollectionViewCell {
         emailB.titleLabel?.numberOfLines = 1;
         emailB.titleLabel?.adjustsFontSizeToFitWidth = true;
         emailB.titleLabel?.lineBreakMode = .byClipping
-//        self.layer.cornerRadius = 15
-//        self.layer.masksToBounds = true
-        // Initialization code
+    }
+    
+    @objc fileprivate func sendEmail(){
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients([emailB.titleLabel?.text ?? ""])
+            //            mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
+            mail.setSubject("BMLife-interested your post")
+            if let topVC = UIApplication.topViewController(){
+                topVC.present(mail, animated: true)
+            }
+        } else {
+            // show failure alert
+        }
     }
 
+}
+
+
+extension ZJRentAptListViewCell: MFMailComposeViewControllerDelegate{
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true) {
+            if result == .sent{
+                guard let topVC = UIApplication.topViewController() else {return}
+                let alertVC = UIAlertController(title: "Email Sent", message: "Thanks for Your Interesting!", preferredStyle: .actionSheet)
+                let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+                }
+                alertVC.addAction(okAction)
+                topVC.present(alertVC, animated: true) {
+                }
+            }else{
+                
+            }
+        }
+    }
 }
