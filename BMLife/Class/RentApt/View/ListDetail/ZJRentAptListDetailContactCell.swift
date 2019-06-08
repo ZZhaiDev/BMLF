@@ -17,8 +17,10 @@ class ZJRentAptListDetailContactCell: UICollectionViewCell {
     static let selfHeight: CGFloat = 130
     fileprivate let callStr = "Call: "
     fileprivate let emailStr = "Email: "
+    fileprivate let wechatStr = "Wechat: "
     var poster_email = ""
     var poster_phone = ""
+    var poster_wechat = ""
     var data: AddAptContact?{
         didSet{
             guard let data = data else {return}
@@ -31,7 +33,15 @@ class ZJRentAptListDetailContactCell: UICollectionViewCell {
                 phoneB.setTitle(callStr + phone, for: .normal)
             }
             if let weChat = data.wechat{
-                wechatL.text = weChat
+                if weChat != defalutValue{
+                  poster_wechat = weChat
+                  wechatL.text = wechatStr + weChat
+                }
+//                let firstString = wechatStr.withAttributes([.textColor(UIColor.black),
+//                                                              .font(.systemFont(ofSize: 16, weight: .bold))])
+//                let secondString = "zzjasdfasfad".withAttributes([.textColor(UIColor.black),
+//                                                                              .font(.systemFont(ofSize: 15))])
+//                wechatL.attributedText = firstString + secondString
             }
         }
     }
