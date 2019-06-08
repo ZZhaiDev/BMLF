@@ -179,7 +179,7 @@ class ZJRentAptViewController: ZJBaseViewController {
         }
     }
     
-    fileprivate lazy var listView: ZJRentAptListView = {
+    lazy var listView: ZJRentAptListView = {
         let lv = ZJRentAptListView()
         return lv
     }()
@@ -192,6 +192,10 @@ class ZJRentAptViewController: ZJBaseViewController {
             self.mapView.data = self.aptViewModel.aptProperties
         }
         setupUI()
+    }
+    
+    deinit {
+        ZJPrint("deinit")
     }
     
     

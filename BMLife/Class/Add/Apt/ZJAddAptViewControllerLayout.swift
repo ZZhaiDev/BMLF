@@ -134,11 +134,17 @@ extension ZJAddAptViewController: NVActivityIndicatorViewable{
                     })
                     return
                 }
-                NVActivityIndicatorPresenter.sharedInstance.setMessage("Uploaded Successfully...")
-                DispatchQueue.main.asyncAfter(deadline: .now()+1.5, execute: {
-                  self.stopAnimating()
-                  self.closefunc()
-                })
+                NVActivityIndicatorPresenter.sharedInstance.setMessage("Uploaded Successfully, Updating data...")
+                
+                if let rootVC = UIApplication.firstViewController() as? ZJRentAptViewController{
+                    rootVC.aptViewModel.loadApt { (responce) in
+                        rootVC.listView.data = rootVC.aptViewModel.aptProperties
+                        //这个mapview会不会重复添加？
+                        rootVC.mapView.data = rootVC.aptViewModel.aptProperties
+                        self.stopAnimating()
+                        self.closefunc()
+                    }
+                }
                 
                 ZJPrint(data)
             }

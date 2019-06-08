@@ -16,6 +16,7 @@ import GoogleMaps
  4. wechat nsattributestring
  5. 地址到home 时间和距离
  6. share 到微信
+ 7. 首次进入app， 正在请求数据， 如果进入后台， 则请求取消， 导致没有数据了
  */
 
 @UIApplicationMain

@@ -24,10 +24,12 @@ class ZJRentAptMapView: UIView {
     var isDrawing = false
     var locationManager: CLLocationManager!
     var points = [CLLocationCoordinate2D]()
+    var rentingAnnotations = [MKAnnotation]()
     var delegate: ZJRentAptMapViewDelegate?
     var crimeViewModel = CrimeViewModel()
     var data = [AddAptProperties](){
         didSet{
+            self.mapsView.removeAnnotations(rentingAnnotations)
             for property in data{
                 if let lat = property.latitude, let lon = property.longitude{
                     let annotation = CustomizedAnnotation()
@@ -38,6 +40,8 @@ class ZJRentAptMapView: UIView {
                     annotation.coordinate = CLLocationCoordinate2D(latitude: Double(lat)!, longitude: Double(lon)!)
                     DispatchQueue.main.async {
                         self.mapsView.addAnnotation(annotation)
+                        self.rentingAnnotations.append(annotation)
+                        ZJPrint(self.mapsView.annotations.count)
                     }
                 }
                 

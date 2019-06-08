@@ -26,7 +26,7 @@ class ZJRentAptListDetailContactCell: UICollectionViewCell {
             guard let data = data else {return}
             if let email = data.email{
                 poster_email = email
-                emailB.setTitle(emailStr + email, for: .normal)
+                emailB.setTitle("  " + emailStr + email + "  ", for: .normal)
             }
             if let phone = data.phonenumber{
                 poster_phone = phone
@@ -67,6 +67,7 @@ class ZJRentAptListDetailContactCell: UICollectionViewCell {
         b.backgroundColor = .orange
 //        b.setTitle("Email: asdfsdff@/com", for: .normal)
         b.setTitleColor(.white, for: .normal)
+        b.titleLabel?.adjustsFontSizeToFitWidth = true
         b.addTarget(self, action: #selector(sendEmail), for: .touchUpInside)
         
         b.layer.cornerRadius = (ZJRentAptListDetailContactCell.selfHeight - 2*spacePadding)/3/2
