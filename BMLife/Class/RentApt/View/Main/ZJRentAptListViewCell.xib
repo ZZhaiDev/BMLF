@@ -13,10 +13,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ZJRentAptListViewCell" customModule="BMLife" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="286" height="321"/>
+            <rect key="frame" x="0.0" y="0.0" width="286" height="420"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="286" height="321"/>
+                <rect key="frame" x="0.0" y="0.0" width="286" height="420"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NU1-Yb-Wj0">
@@ -59,13 +59,13 @@
                         </constraints>
                     </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_image" translatesAutoresizingMaskIntoConstraints="NO" id="cym-Cd-kHn">
-                        <rect key="frame" x="0.0" y="35" width="286" height="200"/>
+                        <rect key="frame" x="0.0" y="35" width="286" height="300"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="200" id="est-S7-q7G"/>
+                            <constraint firstAttribute="height" constant="300" id="est-S7-q7G"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sda-yZ-uem">
-                        <rect key="frame" x="0.0" y="235" width="286" height="25"/>
+                        <rect key="frame" x="0.0" y="335" width="286" height="25"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="900/m" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YCo-4C-XMc">
                                 <rect key="frame" x="0.0" y="0.0" width="143" height="25"/>
@@ -94,7 +94,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Gn-fH-cdp">
-                        <rect key="frame" x="0.0" y="260" width="286" height="20"/>
+                        <rect key="frame" x="0.0" y="360" width="286" height="20"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1天之前" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xj3-Eb-saF">
                                 <rect key="frame" x="0.0" y="0.0" width="143" height="20"/>
@@ -123,7 +123,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ce-Kj-X7N">
-                        <rect key="frame" x="0.0" y="280" width="286" height="40"/>
+                        <rect key="frame" x="0.0" y="380" width="286" height="40"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHA-I2-QKa">
                                 <rect key="frame" x="0.0" y="0.0" width="143" height="40"/>

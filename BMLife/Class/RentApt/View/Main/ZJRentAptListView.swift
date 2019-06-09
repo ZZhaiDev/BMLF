@@ -8,6 +8,7 @@
 
 import UIKit
 private let cellId = "cellId"
+private let cellId2 = "cellId2"
 
 class ZJRentAptListView: UIView {
     var data = [AddAptProperties](){
@@ -43,12 +44,13 @@ class ZJRentAptListView: UIView {
 //        collectionView.isPagingEnabled = true
 //        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.register(UINib(nibName: "ZJRentAptListViewCell", bundle: nil), forCellWithReuseIdentifier: cellId)
+        collectionView.register(UINib(nibName: "ZJRentAptListViewCell2", bundle: nil), forCellWithReuseIdentifier: cellId)
         
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
 //        layout.scrollDirection = .horizontal
-        layout.minimumInteritemSpacing = 0
+        layout.minimumInteritemSpacing = 10
         layout.minimumLineSpacing = 10
-        layout.itemSize = CGSize(width: zjScreenWidth, height: 320)
+        layout.itemSize = CGSize(width: zjScreenWidth-20, height: ZJRentAptListViewCell2.selfHeight)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -64,7 +66,7 @@ extension ZJRentAptListView: UICollectionViewDataSource, UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ZJRentAptListViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ZJRentAptListViewCell2
         cell.data = data[indexPath.row]
         return cell
     }
@@ -75,8 +77,6 @@ extension ZJRentAptListView: UICollectionViewDataSource, UICollectionViewDelegat
             vc.data = data[indexPath.row]
 //            let nvc = ZJNavigationController(rootViewController: vc)
             tvc.navigationController?.pushViewController(vc, animated: true)
-            
-            
         }
     }
     

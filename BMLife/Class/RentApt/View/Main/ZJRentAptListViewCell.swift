@@ -12,6 +12,8 @@ import MessageUI
 
 class ZJRentAptListViewCell: UICollectionViewCell {
     
+    static var selfHeight: CGFloat = 420
+    
     var data = AddAptProperties(){
         didSet{
             ZJPrint(data.fulladdress)

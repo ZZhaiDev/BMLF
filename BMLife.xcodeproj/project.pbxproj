@@ -14,6 +14,8 @@
 		3800F057228E52B700095A2F /* PublishView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3800F055228E52B700095A2F /* PublishView.xib */; };
 		3800F058228E52B700095A2F /* PublishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3800F056228E52B700095A2F /* PublishView.swift */; };
 		38094D3522A3688200D015B6 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38094D3422A3688200D015B6 /* CustomCalloutView.swift */; };
+		381013CB22ACBB1400967CFC /* ZJRentAptListViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381013C922ACBB1400967CFC /* ZJRentAptListViewCell2.swift */; };
+		381013CC22ACBB1400967CFC /* ZJRentAptListViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 381013CA22ACBB1400967CFC /* ZJRentAptListViewCell2.xib */; };
 		381BE98B22A0D228003BC27C /* ZJAddAptViewControllerLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381BE98A22A0D228003BC27C /* ZJAddAptViewControllerLayout.swift */; };
 		3845EDB8229087B50045A694 /* ZJAddAptDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3845EDB7229087B50045A694 /* ZJAddAptDateCell.swift */; };
 		3845EDBA229097A80045A694 /* ZJAddAptHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3845EDB9229097A80045A694 /* ZJAddAptHeaderView.swift */; };
@@ -97,6 +99,8 @@
 		3800F055228E52B700095A2F /* PublishView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishView.xib; sourceTree = "<group>"; };
 		3800F056228E52B700095A2F /* PublishView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishView.swift; sourceTree = "<group>"; };
 		38094D3422A3688200D015B6 /* CustomCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
+		381013C922ACBB1400967CFC /* ZJRentAptListViewCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListViewCell2.swift; sourceTree = "<group>"; };
+		381013CA22ACBB1400967CFC /* ZJRentAptListViewCell2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZJRentAptListViewCell2.xib; sourceTree = "<group>"; };
 		381BE98A22A0D228003BC27C /* ZJAddAptViewControllerLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptViewControllerLayout.swift; sourceTree = "<group>"; };
 		3845EDB7229087B50045A694 /* ZJAddAptDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptDateCell.swift; sourceTree = "<group>"; };
 		3845EDB9229097A80045A694 /* ZJAddAptHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptHeaderView.swift; sourceTree = "<group>"; };
@@ -397,6 +401,8 @@
 				3800F051228E3D0800095A2F /* ZJRentAptListView.swift */,
 				A41CFD71228F28FE0008FFB6 /* ZJRentAptListViewCell.swift */,
 				A41CFD72228F28FE0008FFB6 /* ZJRentAptListViewCell.xib */,
+				381013C922ACBB1400967CFC /* ZJRentAptListViewCell2.swift */,
+				381013CA22ACBB1400967CFC /* ZJRentAptListViewCell2.xib */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -553,6 +559,7 @@
 				3800F057228E52B700095A2F /* PublishView.xib in Resources */,
 				A454DA7A22947899006EED07 /* RecommendCycleView.xib in Resources */,
 				A454DA7722947899006EED07 /* CycleCell.xib in Resources */,
+				381013CC22ACBB1400967CFC /* ZJRentAptListViewCell2.xib in Resources */,
 				A41CFD74228F28FE0008FFB6 /* ZJRentAptListViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -705,6 +712,7 @@
 				38476142229649A000084946 /* CityBoundaryViewModel.swift in Sources */,
 				3800F058228E52B700095A2F /* PublishView.swift in Sources */,
 				A4F460E622A8183C00A0831E /* ZJRentAptFilterHotView.swift in Sources */,
+				381013CB22ACBB1400967CFC /* ZJRentAptListViewCell2.swift in Sources */,
 				3800F04E228E394400095A2F /* ZJRentAptViewController.swift in Sources */,
 				A41CFD6A228DF6D30008FFB6 /* ZJNavigationController.swift in Sources */,
 				38476144229649CD00084946 /* CityBoundaryModel.swift in Sources */,

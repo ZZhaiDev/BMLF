@@ -35,6 +35,7 @@ struct AddAptProperties: Codable {
     var fulladdress: String?
     var address: String?
     var city: String?
+    var state: String?
     var zipcode: String?
     var submittime: String?
     var longitude: String?
