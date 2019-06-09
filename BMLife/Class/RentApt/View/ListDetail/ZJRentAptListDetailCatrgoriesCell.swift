@@ -15,6 +15,7 @@ private let zjEdgeInsetMargin : CGFloat = 10
 class ZJRentAptListDetailCatrgoriesCell: UICollectionViewCell {
     
     var coordinate: CLLocationCoordinate2D?
+//    var statusViewbackgroundColor = UIColor()
     
     var dict = [["crime", "crime"],["streetview", "street view"]]
     
@@ -86,8 +87,9 @@ extension ZJRentAptListDetailCatrgoriesCell: UICollectionViewDataSource, UIColle
             let streetVC = StreetViewController()
             streetVC.destinationLatitude = coordinate?.latitude
             streetVC.destinationLongitude = coordinate?.longitude
+            streetVC.statusViewBackGroundCorlor = (UIApplication.shared.statusBarView?.backgroundColor)!
             if let topVC = UIApplication.topViewController() as? ZJRentAptListDetailViewController{
-                topVC.collectionView.contentOffset.y = -(zjNavigationBarHeight+zjCycleViewH+zjStatusHeight)
+//                topVC.collectionView.contentOffset.y = -(zjNavigationBarHeight+zjCycleViewH+zjStatusHeight)
                 topVC.present(streetVC, animated: true) {
                     
                 }

@@ -30,6 +30,7 @@ class VerticalButton: UIButton {
     
     func setup() {
         titleLabel?.textAlignment = .center
+        UIApplication.shared.statusBarView?.backgroundColor = .clear
     }
     
     override func layoutSubviews() {

@@ -158,9 +158,11 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
         cv.delegate = self
         return cv
     }()
+//    var statusBarViewInitColor = UIColor()
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         hideNavigationBar()
+//        statusBarViewInitColor = (UIApplication.shared.statusBarView?.backgroundColor)!
         
     }
     
@@ -179,8 +181,9 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
         super.viewWillDisappear(animated)
         showNavigationBar()
         //防止statusView 还是黄色的bug
-        collectionView.contentOffset.y = -(zjNavigationBarHeight+zjCycleViewH+zjStatusHeight)
+//        collectionView.contentOffset.y = -(zjNavigationBarHeight+zjCycleViewH+zjStatusHeight)
         navigationController?.navigationBar.tintColor = .white
+//        UIApplication.shared.statusBarView?.backgroundColor = statusBarViewInitColor
         
     }
 
@@ -194,6 +197,10 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
         collectionView.contentInset = UIEdgeInsets(top: zjCycleViewH, left: 0, bottom: 0, right: 0)
         
         collectionView.addSubview(cycleView)
+    }
+    
+    deinit {
+        ZJPrint("12312312")
     }
     
     fileprivate func getDrivingDistanceAndTime(finished: @escaping (_ distance: String?,_ time: String?, _ error: Error?)->()){
