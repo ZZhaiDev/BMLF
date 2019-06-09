@@ -178,9 +178,9 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         showNavigationBar()
-        navigationController?.navigationBar.tintColor = .white
         //防止statusView 还是黄色的bug
         collectionView.contentOffset.y = -(zjNavigationBarHeight+zjCycleViewH+zjStatusHeight)
+        navigationController?.navigationBar.tintColor = .white
         
     }
 

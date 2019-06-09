@@ -77,6 +77,13 @@ class ZJRentAptListViewCell: UICollectionViewCell {
     @IBOutlet weak var closeL: UILabel!
     @IBOutlet weak var emailB: UIButton!
     @IBOutlet weak var phoneB: UIButton!
+    
+    @IBOutlet weak var firstViewRow: UIView!
+    @IBOutlet weak var secondViewRow: UIView!
+    @IBOutlet weak var thirdViewRow: UIView!
+    @IBOutlet weak var fourthViewRow: UIView!
+    
+    
     @IBAction func emailClicked(_ sender: Any) {
         sendEmail()
     }
@@ -95,6 +102,11 @@ class ZJRentAptListViewCell: UICollectionViewCell {
         emailB.titleLabel?.numberOfLines = 1;
         emailB.titleLabel?.adjustsFontSizeToFitWidth = true;
         emailB.titleLabel?.lineBreakMode = .byClipping
+        
+        firstViewRow.backgroundColor = UIColor.black
+        secondViewRow.backgroundColor = UIColor.black
+        thirdViewRow.backgroundColor = UIColor.black
+        fourthViewRow.backgroundColor = UIColor.black
     }
     
     @objc fileprivate func sendEmail(){
