@@ -10,6 +10,8 @@ import UIKit
 import MapKit
 import CoreLocation
 
+var userCurrentCoordinate: CLLocationCoordinate2D?
+
 //class CustomPointAnnotation: MKPointAnnotation {
 //    var imageName: String!
 //}
@@ -262,6 +264,7 @@ extension ZJRentAptMapView: CLLocationManagerDelegate{
         if let location = locations.last{
          
             let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            userCurrentCoordinate = center
             let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
             self.mapsView.setRegion(region, animated: true)
  

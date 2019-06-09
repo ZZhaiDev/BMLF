@@ -81,7 +81,25 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
                 descriptionVaule = des
                 
             }
-//            collectionView.reloadData()
+            getDrivingDistanceAndTime { (distance, time, error) in
+                if error != nil{
+                    self.collectionView.reloadData()
+                    return
+                }
+                guard let distance = distance, let time = time else {
+                    self.collectionView.reloadData()
+                    return
+                }
+                self.basekey.append("Distance")
+                self.basekey.append("Driving Time")
+                let distanteValue = "\(distance) miles"
+                let timeValue = "\(time) minutes"
+                self.baseValue.append(distanteValue)
+                self.baseValue.append(timeValue)
+                self.collectionView.reloadData()
+            }
+            
+            
         }
     }
     
@@ -176,8 +194,42 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
         collectionView.contentInset = UIEdgeInsets(top: zjCycleViewH, left: 0, bottom: 0, right: 0)
         
         collectionView.addSubview(cycleView)
+    }
+    
+    fileprivate func getDrivingDistanceAndTime(finished: @escaping (_ distance: String?,_ time: String?, _ error: Error?)->()){
+        guard let userCoordinate = userCurrentCoordinate else {return}
+        guard let lat = Double(data.latitude!) else {return}
+        guard let lon = Double(data.longitude!) else {return}
+        let request         = MKDirections.Request()
+        let sourceP         = CLLocationCoordinate2DMake(userCoordinate.latitude, userCoordinate.longitude)
+        let destP           = CLLocationCoordinate2DMake(lat, lon)
+        let source          = MKPlacemark(coordinate: sourceP)
+        let destination     = MKPlacemark(coordinate: destP)
+        request.source      = MKMapItem(placemark: source)
+        request.destination = MKMapItem(placemark: destination)
         
+        // Specify the transportation type
+        request.transportType = MKDirectionsTransportType.automobile;
         
+        // If you're open to getting more than one route,
+        // requestsAlternateRoutes = true; else requestsAlternateRoutes = false;
+        request.requestsAlternateRoutes = true
+        
+        let directions = MKDirections(request: request)
+        
+        // Now we have the routes, we can calculate the distance using
+        directions.calculate { (response, error) in
+            if error != nil{
+                finished(nil, nil, error)
+            }
+            if let response = response, let route = response.routes.first {
+                let distane = String(format: "%.1f", route.distance/1600)
+                let time = String(Int(route.expectedTravelTime/60 + 0.5))
+                finished(distane, time, error)
+            }else{
+                finished(nil, nil, error)
+            }
+        }
     }
 }
 

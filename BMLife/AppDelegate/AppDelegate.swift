@@ -10,11 +10,11 @@ import UIKit
 import GoogleMaps
 
 /*
- 1. 上传数据之后 更新数据
+ Done. 上传数据之后 更新数据
  2. change, house, mine, draw, location icon.
  3. listdetail 界面
  4. wechat nsattributestring
- 5. 地址到home 时间和距离
+ Done. 地址到home 时间和距离
  6. share 到微信
  7. 首次进入app， 正在请求数据， 如果进入后台， 则请求取消， 导致没有数据了
  */
