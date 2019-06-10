@@ -103,7 +103,7 @@ class ZJRentAptViewController: ZJBaseViewController {
 
     var aptViewModel = ZJAptViewModel()
     lazy var cityBoundaryViewModel = CityBoundaryViewModel()
-    fileprivate lazy var drawView: SquareView = {
+    lazy var drawView: SquareView = {
         let view = SquareView()
         view.data = ["draw", "draw"]
         let gesture = UITapGestureRecognizer(target: self, action: #selector(drawCustomCircle))
@@ -119,7 +119,7 @@ class ZJRentAptViewController: ZJBaseViewController {
         return view
     }()
 
-    fileprivate lazy var cityView: SquareView = {
+    lazy var cityView: SquareView = {
         let view = SquareView()
         view.data = ["draw", "city"]
         let gesture = UITapGestureRecognizer(target: self, action: #selector(drawCityBoundray))

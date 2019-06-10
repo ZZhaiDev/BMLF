@@ -20,33 +20,33 @@ class InfoContentCell: UICollectionViewCell {
     let zijiaEmail = "zijiazhai@gmail.com"
     let hongleiEmail = "nbhlzhou@gmail.com"
     lazy var emailL1: PaddingLabel = {
-        let el = PaddingLabel()
-        el.layer.cornerRadius = 10
-        el.layer.masksToBounds = true
-        el.layer.borderWidth = 1
-        el.layer.borderColor = UIColor.orange.cgColor
-        el.text = zijiaEmail
-        el.textColor = .orange
-        el.font = UIFont.systemFont(ofSize: 20)
+        let email = PaddingLabel()
+        email.layer.cornerRadius = 10
+        email.layer.masksToBounds = true
+        email.layer.borderWidth = 1
+        email.layer.borderColor = UIColor.orange.cgColor
+        email.text = zijiaEmail
+        email.textColor = .orange
+        email.font = UIFont.systemFont(ofSize: 20)
         let gesture = UITapGestureRecognizer(target: self, action: #selector(sendEmail))
-        el.addGestureRecognizer(gesture)
-        el.isUserInteractionEnabled = true
-        return el
+        email.addGestureRecognizer(gesture)
+        email.isUserInteractionEnabled = true
+        return email
     }()
 //    "nbhlzhou@gmail.com"
     lazy var emailL2: PaddingLabel = {
-        let el = PaddingLabel()
-        el.layer.cornerRadius = 10
-        el.layer.masksToBounds = true
-        el.layer.borderWidth = 1
-        el.layer.borderColor = UIColor.orange.cgColor
-        el.text = hongleiEmail
-        el.textColor = .orange
-        el.font = UIFont.systemFont(ofSize: 20)
+        let email = PaddingLabel()
+        email.layer.cornerRadius = 10
+        email.layer.masksToBounds = true
+        email.layer.borderWidth = 1
+        email.layer.borderColor = UIColor.orange.cgColor
+        email.text = hongleiEmail
+        email.textColor = .orange
+        email.font = UIFont.systemFont(ofSize: 20)
         let gesture = UITapGestureRecognizer(target: self, action: #selector(sendEmail))
-        el.addGestureRecognizer(gesture)
-        el.isUserInteractionEnabled = true
-        return el
+        email.addGestureRecognizer(gesture)
+        email.isUserInteractionEnabled = true
+        return email
     }()
 
     @objc fileprivate func sendEmail() {
@@ -54,7 +54,6 @@ class InfoContentCell: UICollectionViewCell {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients([zijiaEmail, hongleiEmail])
-//            mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
             mail.setSubject("BMLife-Feedback")
             if let topVC = UIApplication.topViewController() {
                 topVC.present(mail, animated: true)
@@ -122,6 +121,7 @@ extension InfoContentCell: MFMailComposeViewControllerDelegate {
 }
 
 extension NSMutableAttributedString {
+    
     public func setAsLink(textToFind:String, linkURL:String) -> Bool {
         let foundRange = self.mutableString.range(of: textToFind)
         if foundRange.location != NSNotFound {

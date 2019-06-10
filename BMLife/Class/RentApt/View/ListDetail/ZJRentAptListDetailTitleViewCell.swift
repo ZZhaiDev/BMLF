@@ -15,7 +15,6 @@ class ZJRentAptListDetailTitleViewCell: UICollectionViewCell {
         didSet {
             if let description = data.description {
                titleLabel.text = description.title ?? ""
-//                titleLabel.text =  "一室一厅招租，近地铁，进学校 900每月"
             }
         }
     }
@@ -25,7 +24,6 @@ class ZJRentAptListDetailTitleViewCell: UICollectionViewCell {
         lable.textColor = .black
         lable.text = ""
         lable.numberOfLines = 0
-//        l.font = UIFont.Weight.bold
         lable.font = UIFont.boldSystemFont(ofSize: 22)
         lable.adjustsFontSizeToFitWidth = true
         lable.textAlignment = .left
@@ -49,7 +47,6 @@ class ZJRentAptListDetailTitleViewCell: UICollectionViewCell {
     }
 
     fileprivate func setupUI() {
-//        self.backgroundColor = .red
         self.addSubview(userPhoto)
         self.addSubview(titleLabel)
         userPhoto.anchor(top: nil, left: leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: userPhotoWidth, height: userPhotoWidth)

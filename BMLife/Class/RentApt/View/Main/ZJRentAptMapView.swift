@@ -26,8 +26,10 @@ class ZJRentAptMapView: UIView {
     var locationManager: CLLocationManager!
     var points = [CLLocationCoordinate2D]()
     var rentingAnnotations = [MKAnnotation]()
-    var delegate: ZJRentAptMapViewDelegate?
-    var crimeViewModel = CrimeViewModel()
+    weak var delegate: ZJRentAptMapViewDelegate?
+    var zoomLevel: CGFloat = 5
+//    var crimeViewModel = CrimeViewModel()
+    var zipcodeAndCrimeViewModel = ZipcodeAndCrimeViewModel()
     var data = [AddAptProperties]() {
         didSet {
             self.mapsView.removeAnnotations(rentingAnnotations)
@@ -112,12 +114,12 @@ extension ZJRentAptMapView {
         let polygon = MKPolygon(coordinates: &points, count: points.count)
         ZJPrint(points.count)
 //        ZJPrint(points)
-        var temp = ""
+        var coordinatesArr = ""
         for point in points {
-            temp += ",\(point.longitude),\(point.latitude)"
+            coordinatesArr += ",\(point.longitude),\(point.latitude)"
         }
-        temp.removeFirst()
-        temp += ",\(points.first!.longitude),\(points.first!.latitude)"
+        coordinatesArr.removeFirst()
+        coordinatesArr += ",\(points.first!.longitude),\(points.first!.latitude)"
         /*
         crimeViewModel.loadCrime(dictValue: temp) {
             self.crimeViewModel.crimeProperties.forEach({ (property) in
@@ -132,7 +134,26 @@ extension ZJRentAptMapView {
             })
         }
  */
-        ZJPrint(temp)
+        zipcodeAndCrimeViewModel.loadZipcodeAndCrime(dictValue: coordinatesArr) {
+            for data in self.zipcodeAndCrimeViewModel.datas {
+                DispatchQueue.global().async {
+                    let coordinates = data.coordinates
+                    var coorResult = [CLLocationCoordinate2D]()
+                    for coordinate in coordinates {
+                        let tempCoor = CLLocationCoordinate2D(latitude: coordinate[1], longitude: coordinate[0])
+                        coorResult.append(tempCoor)
+                    }
+                    DispatchQueue.main.async {
+                        let polygonArea = MKPolygon(coordinates: &coorResult, count: coorResult.count)
+                        self.mapsView.addOverlay(polygonArea)
+                         ZJPrint("--------------1")
+                        let polygonline = MKPolyline(coordinates: coorResult, count: coorResult.count)
+                        self.mapsView.addOverlay(polygonline)
+                        ZJPrint("--------------1")
+                    }
+                }
+            }
+        }
         mapsView.addOverlay(polygon)
         points = [] // Reset points
 
@@ -143,11 +164,12 @@ extension ZJRentAptMapView {
 
 extension ZJRentAptMapView: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+         ZJPrint("--------------3")
         if overlay is MKPolyline {
             if isDrawing == false {
                 let renderer = MKPolylineRenderer(overlay: overlay)
-                renderer.strokeColor = UIColor.orange
-                renderer.lineWidth = 3
+                renderer.strokeColor = UIColor.gray
+                renderer.lineWidth = 0.5
                 return renderer
             }
             let polylineRenderer = MKPolylineRenderer(overlay: overlay)
@@ -155,7 +177,11 @@ extension ZJRentAptMapView: MKMapViewDelegate {
             polylineRenderer.lineWidth = 1
             return polylineRenderer
         } else if overlay is MKPolygon {
-
+            if isDrawing == false {
+                let polygonView = MKPolygonRenderer(overlay: overlay)
+                polygonView.fillColor = UIColor.lightGray.withAlphaComponent(0.4)
+                return polygonView
+            }
             let polygonView = MKPolygonRenderer(overlay: overlay)
             polygonView.fillColor = UIColor.lightGray.withAlphaComponent(0.4)
             return polygonView
@@ -201,9 +227,9 @@ extension ZJRentAptMapView: MKMapViewDelegate {
             annotationView = dequeuedAnnotationView
             annotationView?.annotation = annotation
         } else {
-            let av = CustomizedAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
-            av.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-            annotationView = av
+            let customeAV = CustomizedAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+            customeAV.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            annotationView = customeAV
         }
 
         if let annotationView = annotationView {
@@ -216,26 +242,18 @@ extension ZJRentAptMapView: MKMapViewDelegate {
 
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if view.annotation is MKUserLocation {return}
-//        if view.annotation is CrimeAnnotation{return}
-        // 2
         let starbucksAnnotation = view.annotation as! CustomizedAnnotation
-//        let views = c
         let calloutView = CustomCalloutView(frame: CGRect(x: 0, y: 0, width: zjScreenWidth*0.6, height: zjScreenHeight*0.5))
         calloutView.data = starbucksAnnotation.data
-
         calloutView.center = CGPoint(x: view.bounds.size.width / 2, y: -calloutView.bounds.size.height*0.52)
         view.addSubview(calloutView)
-        guard let tempCoordinate = view.annotation?.coordinate else {
-            return
-        }
+        guard let tempCoordinate = view.annotation?.coordinate else {return}
         var centerCoordinate = tempCoordinate
         centerCoordinate.latitude += (mapView.region.span.latitudeDelta * 0.2)
         mapView.setCenter(centerCoordinate, animated: true)
     }
 
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        ZJPrint(view)
-//        MKAnnotationView
         ZJPrint(view.annotation)
         ZJPrint(view.calloutOffset)
         ZJPrint(view.leftCalloutAccessoryView)
@@ -251,10 +269,27 @@ extension ZJRentAptMapView: MKMapViewDelegate {
 }
 
 extension ZJRentAptMapView: CLLocationManagerDelegate {
+    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+        let centralLocation = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude:  mapView.centerCoordinate.longitude)
+        guard let topVC = UIApplication.topViewController() as? ZJRentAptViewController else {return}
+        if zoomLevel > getRadius(centralLocation: centralLocation, mapView: mapView) {
+            topVC.drawView.isUserInteractionEnabled = true
+            topVC.drawView.alpha = 1
+        } else {
+            topVC.drawView.isUserInteractionEnabled = false
+            topVC.drawView.alpha = 0.7
+        }
+    }
+    ///calculate zoom level
+    func getRadius(centralLocation: CLLocation, mapView: MKMapView) -> CGFloat {
+        let topCentralLat:Double = centralLocation.coordinate.latitude -  mapView.region.span.latitudeDelta/2
+        let topCentralLocation = CLLocation(latitude: topCentralLat, longitude: centralLocation.coordinate.longitude)
+        let radius = centralLocation.distance(from: topCentralLocation)
+        return CGFloat(radius / 1000.0) // to convert radius to meters
+    }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 
         if let location = locations.last {
-
             let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             userCurrentCoordinate = center
             let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))

@@ -11,10 +11,10 @@ import UIKit
 class MineHead: UIView {
 
     lazy var bgView: UIImageView = {
-        let bw = UIImageView()
-        bw.contentMode = .scaleAspectFill
-        bw.image = UIImage(named: "mine_bg_for_boy")
-        return bw
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "mine_bg_for_boy")
+        return imageView
     }()
 
     override init(frame: CGRect) {

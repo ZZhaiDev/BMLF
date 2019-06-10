@@ -4,23 +4,18 @@ class InfoController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     fileprivate let cellId = "Cell"
     fileprivate let headerId = "id"
-
+    
     fileprivate let collectionView = UICollectionView(frame: .zero, collectionViewLayout: StretchyHeaderLayout())
-
     fileprivate let closeButton = UIButton(type: .system)
-
     fileprivate let confetti = ConfettiView()
-
     fileprivate lazy var floatingView = UIView()
     fileprivate let floatingViewHeight: CGFloat = 64
-
     fileprivate var header: InfoImageHeader?
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         view.addSubview(confetti)
         hideStatusBar(true)
-//        header?.animator.stopAnimation(false)
         navigationController?.navigationBar.isHidden = true
         tabBarController?.tabBar.barTintColor = .black
     }
@@ -34,7 +29,6 @@ class InfoController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupCollectionView()
 //        setupCloseButton()
 //        setupFloatingView()
@@ -111,10 +105,7 @@ class InfoController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
 
     @objc fileprivate func handleDismiss() {
-//        header?.animator.stopAnimation(true)
         confetti.removeFromSuperview()
-//        dismiss(animated: true)
-//        navigationController?.popViewController(animated: true)
         hideStatusBar(false)
     }
 
@@ -143,12 +134,9 @@ class InfoController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         let width = view.frame.width - 48
-
         let dummyCell = InfoContentCell(frame: .init(x: 0, y: 0, width: width, height: .greatestFiniteMagnitude))
         dummyCell.layoutIfNeeded()
-
         let estimatedSize = dummyCell.systemLayoutSizeFitting(.init(width: width, height: .greatestFiniteMagnitude))
-
         return .init(width: width, height: estimatedSize.height)
     }
 

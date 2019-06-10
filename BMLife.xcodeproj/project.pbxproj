@@ -70,6 +70,8 @@
 		A4F460EE22A84F9800A0831E /* CrimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F460ED22A84F9800A0831E /* CrimeViewModel.swift */; };
 		A4F460F122AAE8CB00A0831E /* ZJRentAptListDetailDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F460F022AAE8CB00A0831E /* ZJRentAptListDetailDescriptionCell.swift */; };
 		A4F460F322AAF4BC00A0831E /* ZJRentAptListDetailContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F460F222AAF4BC00A0831E /* ZJRentAptListDetailContactCell.swift */; };
+		A4F460F722AEF25A00A0831E /* ZipcodeAndCrimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F460F622AEF25900A0831E /* ZipcodeAndCrimeViewModel.swift */; };
+		A4F460F922AEF35700A0831E /* ZipcodeAndCrimeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F460F822AEF35700A0831E /* ZipcodeAndCrimeModel.swift */; };
 		D3FC18A892D1483EAE94B8E8 /* Pods_BMLife.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8421B0C6CB69EE790F3D9692 /* Pods_BMLife.framework */; };
 /* End PBXBuildFile section */
 
@@ -163,6 +165,8 @@
 		A4F460ED22A84F9800A0831E /* CrimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrimeViewModel.swift; sourceTree = "<group>"; };
 		A4F460F022AAE8CB00A0831E /* ZJRentAptListDetailDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListDetailDescriptionCell.swift; sourceTree = "<group>"; };
 		A4F460F222AAF4BC00A0831E /* ZJRentAptListDetailContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListDetailContactCell.swift; sourceTree = "<group>"; };
+		A4F460F622AEF25900A0831E /* ZipcodeAndCrimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipcodeAndCrimeViewModel.swift; sourceTree = "<group>"; };
+		A4F460F822AEF35700A0831E /* ZipcodeAndCrimeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipcodeAndCrimeModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,6 +283,7 @@
 			children = (
 				38476143229649CD00084946 /* CityBoundaryModel.swift */,
 				A4F460EB22A84D4000A0831E /* CrimeModel.swift */,
+				A4F460F822AEF35700A0831E /* ZipcodeAndCrimeModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 				38476141229649A000084946 /* CityBoundaryViewModel.swift */,
 				A419FDB122A1BF10002D891F /* ZJAptViewModel.swift */,
 				A4F460ED22A84F9800A0831E /* CrimeViewModel.swift */,
+				A4F460F622AEF25900A0831E /* ZipcodeAndCrimeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -714,11 +720,13 @@
 				3845EDBA229097A80045A694 /* ZJAddAptHeaderView.swift in Sources */,
 				A454DA82229496DE006EED07 /* ZJRentAptListDetailTitleViewCell.swift in Sources */,
 				A43A95D5229DD04F006E7901 /* MyCustomUIView.swift in Sources */,
+				A4F460F722AEF25A00A0831E /* ZipcodeAndCrimeViewModel.swift in Sources */,
 				3847613B2296371600084946 /* ParallaxHeaderMode.swift in Sources */,
 				A4B2DAEA22987607003E1254 /* InfoImageHeader.swift in Sources */,
 				A41CFD6E228E13B60008FFB6 /* Helper.swift in Sources */,
 				A438F0F322959ED300327754 /* NetworkTools.swift in Sources */,
 				A4B2DAEC2298764E003E1254 /* InfoContentCell.swift in Sources */,
+				A4F460F922AEF35700A0831E /* ZipcodeAndCrimeModel.swift in Sources */,
 				A4F460EA22A82ED800A0831E /* StreetViewController.swift in Sources */,
 				3800F047228E389B00095A2F /* ZJBaseViewController.swift in Sources */,
 				3800F052228E3D0800095A2F /* ZJRentAptListView.swift in Sources */,
