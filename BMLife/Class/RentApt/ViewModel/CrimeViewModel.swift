@@ -8,18 +8,18 @@
 
 import UIKit
 
-class CrimeViewModel{
+class CrimeViewModel {
     var crimeMode = CrimeModel()
     var crimeProperties = [CrimepropertiesModel]()
 }
 
-extension CrimeViewModel{
-    func loadCrime(dictValue: String, finished: @escaping ()->()){
+extension CrimeViewModel {
+    func loadCrime(dictValue: String, finished: @escaping ()->Void) {
         ZJPrint(dictValue)
         let urlStr = "http://aca33a60.ngrok.io/api/v1/info/crime/il/?page_size=300"
         NetworkTools.requestData(.post, URLString: urlStr, parameters: ["in_polygon": dictValue]) { (result) in
             guard let dict = result as? [String: Any] else { return }
-            guard let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: []) else{
+            guard let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: []) else {
                 return
             }
             do {
@@ -33,7 +33,7 @@ extension CrimeViewModel{
             } catch let jsonError {
                 ZJPrint(jsonError)
             }
-            
+
             finished()
         }
     }

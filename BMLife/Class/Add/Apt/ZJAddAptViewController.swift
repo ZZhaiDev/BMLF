@@ -12,69 +12,65 @@ import Eureka
 var originalMapViewH: CGFloat = 245
 
 class ZJAddAptViewController: FormViewController {
-    
+
     var isShowedEndDate = false
-    
+
     let testButton: UIButton = {
-       let b = UIButton()
-        b.backgroundColor = .red
-        return b
+       let button = UIButton()
+        button.backgroundColor = .red
+        return button
     }()
-    
-    
+
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == 5{
+        if section == 5 {
             return 245
         }
         return 0
     }
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        
+
         let view = ZJAddAptFooterView()
         return view
     }
-    
+
     var navigationOptionsBackup : RowNavigationOptions?
     fileprivate lazy var mainView : ZJAddAptMainView = {
-        let mv = ZJAddAptMainView()
-        return mv
+        let view = ZJAddAptMainView()
+        return view
     }()
-    
+
     fileprivate lazy var mapView: ZJAddAptMapView = {
-        let mv = ZJAddAptMapView()
+        let view = ZJAddAptMapView()
 //        mv.backgroundColor = .red
-        return mv
+        return view
     }()
-    
+
     let tbutton: UIButton = {
-       let b = UIButton()
-        b.backgroundColor = .red
-        return b
+       let button = UIButton()
+        button.backgroundColor = .red
+        return button
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.barTintColor = .orange
-       
-        
+
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(closefunc))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Submit", style: .plain, target: self, action: #selector(submitfunc))
-        
+
         self.tableView.tableHeaderView = mapView
         self.tableView.tableHeaderView?.frame.size.height = originalMapViewH
         self.tableView.contentInset = UIEdgeInsets(top: -30, left: 0, bottom: 0, right: 0)
 //        self.tableView.backgroundColor = .blue
-        
-        setup()
-        
+
+        setupUI()
+
     }
-    
-    
+
     @objc func multipleSelectorDone(_ item:UIBarButtonItem) {
         _ = navigationController?.popViewController(animated: true)
     }
-    
-    
+
 //    override func valueHasBeenChanged(for row: BaseRow, oldValue: Any?, newValue: Any?) {
 //        if row.section === form[0] {
 //            print("Single Selection:\((row.section as! SelectableSection<ImageCheckRow<String>>).selectedRow()?.baseValue ?? "No row selected")")
@@ -83,29 +79,22 @@ class ZJAddAptViewController: FormViewController {
 //            print("Mutiple Selection:\((row.section as! SelectableSection<ImageCheckRow<String>>).selectedRows().map({$0.baseValue}))")
 //        }
 //    }
-    
-    @objc func closefunc(){
+
+    @objc func closefunc() {
         self.dismiss(animated: true) {
             self.resetForms()
         }
     }
-    
-    
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 //        ZJPrint(scrollView.contentOffset.y)
 //        mapView.frame.origin.y = -scrollView.contentOffset.y - 600
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         super.tableView(tableView, didSelectRowAt: indexPath)
         ZJPrint(indexPath)
-        
+
     }
-    
-    
-    
 
 }
-
-

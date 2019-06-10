@@ -9,22 +9,19 @@
 import UIKit
 import Kingfisher
 
-
-
 class CycleCell: UICollectionViewCell {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    
-    
-    var data = AddAptImages(){
+
+    var data = AddAptImages() {
         didSet {
             imageView.kf.indicatorType = .activity
-            if let imageStr = data.image{
+            if let imageStr = data.image {
                 let url = URL(string: imageStr)
                 imageView.kf.setImage(with: url)
             }
-            
+
 //            if let cycle = data{
 ////                titleLabel.text = cycle.title
 ////                let iconURL = URL(string: cycle.pic_url)
@@ -33,16 +30,14 @@ class CycleCell: UICollectionViewCell {
 //                titleLabel.text = "123test"
 //
 //            }
-            
-            
+
         }
     }
-    
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
+
     }
 
 }

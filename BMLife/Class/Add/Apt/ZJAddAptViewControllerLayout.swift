@@ -26,6 +26,7 @@ private var submittime: String = "empty"
 private var startDate: String = defalutValue
 private var endDate: String = defalutValue
 private var titleL: String = defalutValue
+// swiftlint:disable identifier_name
 var descriptionText_ = defalutValue
 private var phoneNumber: String = defalutValue
 private var email: String = defalutValue
@@ -47,66 +48,62 @@ private var otherRequirements: [String] = []
 private var images: [String] = []
 private var video: String = defalutValue
 
-
-
-extension ZJAddAptViewController: NVActivityIndicatorViewable{
-    func nearbyDict() -> [[String: String]]{
+extension ZJAddAptViewController: NVActivityIndicatorViewable {
+    func nearbyDict() -> [[String: String]] {
         let nearbyCount = nearby.count
         var nearbyDict = [[String:String]]()
-        for i in 0..<nearbyCount{
+        for index in 0..<nearbyCount {
             var dict = [String: String]()
-            dict["nearby"] = nearby[i]
+            dict["nearby"] = nearby[index]
             nearbyDict.append(dict)
         }
         return nearbyDict
     }
-    
-    func includedDict() -> [[String: String]]{
+
+    func includedDict() -> [[String: String]] {
         let includedCount = included.count
         var includedDict = [[String:String]]()
-        for i in 0..<includedCount{
+        for index in 0..<includedCount {
             var dict = [String: String]()
-            dict["included"] = included[i]
+            dict["included"] = included[index]
             includedDict.append(dict)
         }
         return includedDict
     }
-    
-    func otherRequirementsDict() -> [[String: String]]{
+
+    func otherRequirementsDict() -> [[String: String]] {
         let otherCount = otherRequirements.count
         var otherDict = [[String:String]]()
-        for i in 0..<otherCount{
+        for index in 0..<otherCount {
             var dict = [String: String]()
-            dict["otherrequirement"] = otherRequirements[i]
+            dict["otherrequirement"] = otherRequirements[index]
             otherDict.append(dict)
         }
         return otherDict
     }
-    
-    func imagesDict() -> [[String: String]]{
+
+    func imagesDict() -> [[String: String]] {
         let imagesCount = images.count
         var imagesDict = [[String:String]]()
-        for i in 0..<imagesCount{
+        for index in 0..<imagesCount {
             var dict = [String: String]()
-            dict["image"] = images[i]
+            dict["image"] = images[index]
             imagesDict.append(dict)
         }
         return imagesDict
     }
-    
-    
-    
-    func currentTime() -> String{
+
+    func currentTime() -> String {
         let dateformatter = DateFormatter()
         dateformatter.dateStyle = DateFormatter.Style.medium
         let now = dateformatter.string(from: Date())
         return now
     }
-    
-    fileprivate func checkSubmitValide() -> Bool{
-        if fulladdress == defalutValue || titleL == defalutValue || phoneNumber == defalutValue || email == defalutValue || email == defalutValue || selectedItems.count == 0{
+
+    fileprivate func checkSubmitValide() -> Bool {
+        if fulladdress == defalutValue || titleL == defalutValue || phoneNumber == defalutValue || email == defalutValue || email == defalutValue || selectedItems.isEmpty {
             let alertVC = UIAlertController(title: "Warning", message: "Please Make Sure Your Address, Title, Phone Number, Email, Price and Photos are not Empty!", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .cancel) { (alertAction) in
+            let okAction = UIAlertAction(title: "OK", style: .cancel) { (_) in
             }
             alertVC.addAction(okAction)
             self.present(alertVC, animated: true) {
@@ -115,17 +112,17 @@ extension ZJAddAptViewController: NVActivityIndicatorViewable{
         }
         return true
     }
-    
-    @objc func submitfunc(){
+
+    @objc func submitfunc() {
         if checkSubmitValide() == false {return}
         let UUID = NSUUID().uuidString
-        
+
         startAnimating(CGSize(width: 30, height: 30), message: "Uploading...", fadeInAnimation: nil)
         getImageUrlFromAWSS3(UUID: UUID) {
             ZJPrint(images)
             let form = self.fillOutForms(UUID: UUID)
             NetworkTools.requestData(.post, URLString: "http://aca33a60.ngrok.io/api/v1/rental/house/", parameters: form) { (data) in
-                guard let data = data else{
+                guard let data = data else {
                     NVActivityIndicatorPresenter.sharedInstance.setMessage("Something is Wrong...")
                     DispatchQueue.main.asyncAfter(deadline: .now()+1.5, execute: {
                         self.stopAnimating()
@@ -135,9 +132,9 @@ extension ZJAddAptViewController: NVActivityIndicatorViewable{
                     return
                 }
                 NVActivityIndicatorPresenter.sharedInstance.setMessage("Uploaded Successfully, Updating data...")
-                
-                if let rootVC = UIApplication.firstViewController() as? ZJRentAptViewController{
-                    rootVC.aptViewModel.loadApt { (responce) in
+
+                if let rootVC = UIApplication.firstViewController() as? ZJRentAptViewController {
+                    rootVC.aptViewModel.loadApt { (_) in
                         rootVC.listView.data = rootVC.aptViewModel.aptProperties
                         //这个mapview会不会重复添加？
                         rootVC.mapView.data = rootVC.aptViewModel.aptProperties
@@ -145,13 +142,13 @@ extension ZJAddAptViewController: NVActivityIndicatorViewable{
                         self.closefunc()
                     }
                 }
-                
+
                 ZJPrint(data)
             }
         }
     }
-    
-    func fillOutForms(UUID: String) -> [String : Any]{
+
+    func fillOutForms(UUID: String) -> [String : Any] {
         let form = [
             "uuid": UUID,
             "category": category,
@@ -198,8 +195,8 @@ extension ZJAddAptViewController: NVActivityIndicatorViewable{
             ] as [String : Any]
         return form
     }
-    
-    func resetForms(){
+
+    func resetForms() {
         uuid = defalutValue
         fulladdress = defalutValue
         address = defalutValue
@@ -209,7 +206,7 @@ extension ZJAddAptViewController: NVActivityIndicatorViewable{
         submittime = defalutValue
         longitude = "0.0"
         latitude = "0.0"
-        
+
         startDate = defalutValue
         endDate = defalutValue
         titleL = defalutValue
@@ -233,17 +230,17 @@ extension ZJAddAptViewController: NVActivityIndicatorViewable{
         otherRequirements = []
         images = []
         video = defalutValue
-        
+
         selectedItems = []
     }
-    
-    func getImageUrlFromAWSS3(UUID: String, finish: @escaping ()->()){
-        if selectedItems.count == 0{
+
+    func getImageUrlFromAWSS3(UUID: String, finish: @escaping ()->Void) {
+        if selectedItems.isEmpty {
             finish()
             return
         }
-        for image in selectedItems{
-            switch image{
+        for image in selectedItems {
+            switch image {
             case .photo(p: let imageV):
                 guard let imageName = imageV.asset?.value(forKey: "filename") else {return}
                 ZJPrint(imageName)
@@ -256,41 +253,41 @@ extension ZJAddAptViewController: NVActivityIndicatorViewable{
                         return
                     }
                     ZJPrint(message)
-                    if let jsonData = data{
+                    if let jsonData = data {
                         let str = String(data: jsonData, encoding: String.Encoding.utf8)!
-                        ApiService.uploadToS3(image: imageV.image, urlString: str, completion: { (responce, err) in
-                            if err != nil{
+                        ApiService.uploadToS3(image: imageV.image, urlString: str, completion: { (_, err) in
+                            if err != nil {
                                 ZJPrint(err)
                                 return
                             }
 //                            ZJPrint(responce!)
                             let urlStr = "https://blissmotors-web-upload.s3.amazonaws.com/bmlife/\(UUID)-\(imageName)"
                             images.append(urlStr)
-                            if images.count == selectedItems.count{
+                            if images.count == selectedItems.count {
                                 finish()
                             }
-                            
+
                         })
                     }
                 }
-            case .video(let _):
+            case .video(_):
                 break
             }
         }
-        
+
     }
 }
 
-
-
-// MARK:- UISetup
-extension ZJAddAptViewController{
-    func setup(){
+// MARK: - UISetup
+extension ZJAddAptViewController {
+    // swiftlint:disable cyclomatic_complexity
+    // swiftlint:disable function_body_length
+    func setupUI() {
         form.inlineRowHideOptions = InlineRowHideOptions.AnotherInlineRowIsShown.union(.FirstResponderChanges)
         form
             +++ Section(header: "Date", footer: "This section is shown only when 'Show Next Row' switch is enabled")
-            
-            <<< DateInlineRow() {
+
+            <<< DateInlineRow {
                 $0.title = "Start Date"
                 let defaultV = Date()
                 $0.value = defaultV
@@ -299,21 +296,21 @@ extension ZJAddAptViewController{
                 let now = dateformatter.string(from: defaultV)
                 startDate = now
                 }.onChange({ (date) in
-                    if let value = date.value{
+                    if let value = date.value {
                         let dateformatter = DateFormatter()
                         dateformatter.dateStyle = DateFormatter.Style.medium
                         let now = dateformatter.string(from: value)
                         startDate = now
                     }
                 })
-            <<< SwitchRow("Show End Date"){
+            <<< SwitchRow("Show End Date") {
                 $0.title = $0.tag
                 }.onChange({ (bool) in
-                    if let value = bool.value{
+                    if let value = bool.value {
                         self.isShowedEndDate = value
                     }
                 })
-            <<< DateInlineRow() {
+            <<< DateInlineRow {
                 $0.title = "End Date"
                 $0.value = Date()
                 $0.hidden = .function(["Show End Date"], { form -> Bool in
@@ -321,26 +318,26 @@ extension ZJAddAptViewController{
                     return row.value ?? false == false
                 })
                 }.onChange({ (date) in
-                    if let value = date.value{
+                    if let value = date.value {
                         let dateformatter = DateFormatter()
                         dateformatter.dateStyle = DateFormatter.Style.medium
                         let now = dateformatter.string(from: value)
                         endDate = now
                     }
-                    
+
                 })
             +++ Section("Description")
-            
-            <<< TextRow() {
+
+            <<< TextRow {
                 $0.title = "Title"
                 $0.placeholder = "Input Your Title"
                 }.onChange({ (text) in
-                    if let text =  text.value{
+                    if let text =  text.value {
                         titleL = text
                     }
                 })
-            
-            +++ Section(){ section in
+
+            +++ Section { section in
                 var customView = HeaderFooterView<MyCustomUIView>(.class)
                 customView.height = {MyCustomUIView.cellHeight}
                 customView.title = "Description"
@@ -349,46 +346,46 @@ extension ZJAddAptViewController{
                 }
                 section.header = customView
             }
-            
+
             +++ Section("Contact")
-            
-            <<< TextRow() {
+
+            <<< TextRow {
                 $0.title = "Phone Number"
                 $0.placeholder = "Input Your Phone Number"
                 }.onChange({ (text) in
-                    if let text = text.value{
+                    if let text = text.value {
                         phoneNumber = text
                     }
                 })
-            <<< TextRow() {
+            <<< TextRow {
                 $0.title = "Email"
                 $0.placeholder = "Input Your Email"
                 }.onChange({ (text) in
-                    if let text = text.value{
+                    if let text = text.value {
                         email = text
                     }
                 })
-            
-            <<< TextRow() {
+
+            <<< TextRow {
                 $0.title = "Wechat"
                 $0.placeholder = optionalStr
                 }.onChange({ (text) in
-                    if let text = text.value{
+                    if let text = text.value {
                         wechat = text
                     }
                 })
-            
+
             +++ Section("Base")
-            <<< TextRow() {
+            <<< TextRow {
                 $0.title = "Price"
                 $0.placeholder = "Input Your Price"
                 }.onChange({ (text) in
-                    if let text = text.value{
+                    if let text = text.value {
                         price = text
                     }
                 })
-            
-            <<< AlertRow<String>() {
+
+            <<< AlertRow<String> {
                 $0.title = "Category"
                 $0.cancelTitle = "Exit"
                 $0.selectorTitle = "Category"
@@ -400,14 +397,14 @@ extension ZJAddAptViewController{
                 }.onChange { row in
                     print(row.value ?? "No Value")
                 }
-                .onPresent{ _, to in
+                .onPresent { _, to in
                     to.view.tintColor = .orange
                 }.onChange({ (text) in
-                    if let text = text.value{
+                    if let text = text.value {
                         category = text
                     }
                 })
-            <<< AlertRow<String>() {
+            <<< AlertRow<String> {
                 $0.title = "Room Type"
                 $0.cancelTitle = "Exit"
                 $0.selectorTitle = "Room type"
@@ -418,15 +415,15 @@ extension ZJAddAptViewController{
                 }.onChange { row in
                     print(row.value ?? "No Value")
                 }
-                .onPresent{ _, to in
+                .onPresent { _, to in
                     to.view.tintColor = .orange
                 }.onChange({ (text) in
-                    if let text = text.value{
+                    if let text = text.value {
                         roomType = text
                     }
                 })
-            
-            <<< AlertRow<String>() {
+
+            <<< AlertRow<String> {
                 $0.title = "House Type"
                 $0.cancelTitle = "Exit"
                 $0.selectorTitle = "House type"
@@ -437,15 +434,15 @@ extension ZJAddAptViewController{
                 }.onChange { row in
                     print(row.value ?? "No Value")
                 }
-                .onPresent{ _, to in
+                .onPresent { _, to in
                     to.view.tintColor = .orange
                 }.onChange({ (text) in
-                    if let text = text.value{
+                    if let text = text.value {
                         houseType = text
                     }
                 })
-            
-            <<< AlertRow<String>() {
+
+            <<< AlertRow<String> {
                 $0.title = "Bathroom"
                 $0.cancelTitle = "Exit"
                 $0.selectorTitle = "Bathroom"
@@ -456,15 +453,15 @@ extension ZJAddAptViewController{
                 }.onChange { row in
                     print(row.value ?? "No Value")
                 }
-                .onPresent{ _, to in
+                .onPresent { _, to in
                     to.view.tintColor = .orange
                 }.onChange({ (text) in
-                    if let text = text.value{
+                    if let text = text.value {
                         bathroom = text
                     }
                 })
-            
-            <<< AlertRow<String>() {
+
+            <<< AlertRow<String> {
                 $0.title = "Parking Lot"
                 $0.cancelTitle = "Exit"
                 $0.selectorTitle = "Parking Lot"
@@ -475,15 +472,15 @@ extension ZJAddAptViewController{
                 }.onChange { row in
                     print(row.value ?? "No Value")
                 }
-                .onPresent{ _, to in
+                .onPresent { _, to in
                     to.view.tintColor = .orange
                 }.onChange({ (text) in
-                    if let text = text.value{
+                    if let text = text.value {
                         parkingLot = text
                     }
                 })
-            
-            <<< AlertRow<String>() {
+
+            <<< AlertRow<String> {
                 $0.title = "Washing Machine"
                 $0.cancelTitle = "Exit"
                 $0.selectorTitle = "Washing Machine"
@@ -494,15 +491,15 @@ extension ZJAddAptViewController{
                 }.onChange { row in
                     print(row.value ?? "No Value")
                 }
-                .onPresent{ _, to in
+                .onPresent { _, to in
                     to.view.tintColor = .orange
                 }.onChange({ (text) in
-                    if let text = text.value{
+                    if let text = text.value {
                         washingMachine = text
                     }
                 })
-            
-            <<< MultipleSelectorRow<String>() {
+
+            <<< MultipleSelectorRow<String> {
                 $0.title = "Included"
                 $0.options = ["Water Included", "Electricity Included", "WiFi Included", "Gym", "Furniture"]
                 let defalutV = ["Water Included", "Electricity Included", "WiFi Included"]
@@ -512,12 +509,12 @@ extension ZJAddAptViewController{
                 .onPresent { from, to in
                     to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
                 }.onChange({ (text) in
-                    if let text = text.value{
+                    if let text = text.value {
                         included = Array(text)
                     }
                 })
-            
-            <<< MultipleSelectorRow<String>() {
+
+            <<< MultipleSelectorRow<String> {
                 $0.title = "Nearby"
                 $0.options = ["School", "Subway", "bus", "Supermarket", "Restaurant", "Bar", "Park", "Lake"]
                 let defalutV = ["Restaurant"]
@@ -527,14 +524,13 @@ extension ZJAddAptViewController{
                 .onPresent { from, to in
                     to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
                 }.onChange({ (text) in
-                    if let text = text.value{
+                    if let text = text.value {
                         nearby = Array(text)
                     }
                 })
-            
-            
+
             +++ Section("Requirement")
-            <<< AlertRow<String>() {
+            <<< AlertRow<String> {
                 $0.title = "Lease period"
                 $0.cancelTitle = "Exit"
                 $0.selectorTitle = "Lease period"
@@ -545,15 +541,15 @@ extension ZJAddAptViewController{
                 }.onChange { row in
                     print(row.value ?? "No Value")
                 }
-                .onPresent{ _, to in
+                .onPresent { _, to in
                     to.view.tintColor = .orange
                 }.onChange({ (text) in
-                    if let text = text.value{
+                    if let text = text.value {
                         leasePeriod = text
                     }
                 })
-            
-            <<< AlertRow<String>() {
+
+            <<< AlertRow<String> {
                 $0.title = "Gender"
                 $0.cancelTitle = "Exit"
                 $0.selectorTitle = "Gender"
@@ -564,15 +560,15 @@ extension ZJAddAptViewController{
                 }.onChange { row in
                     print(row.value ?? "No Value")
                 }
-                .onPresent{ _, to in
+                .onPresent { _, to in
                     to.view.tintColor = .orange
                 }.onChange({ (text) in
-                    if let text = text.value{
+                    if let text = text.value {
                         gender = text
                     }
                 })
-            
-            <<< AlertRow<String>() {
+
+            <<< AlertRow<String> {
                 $0.title = "Cooking"
                 $0.cancelTitle = "Exit"
                 $0.selectorTitle = "Cooking"
@@ -583,15 +579,15 @@ extension ZJAddAptViewController{
                 }.onChange { row in
                     print(row.value ?? "No Value")
                 }
-                .onPresent{ _, to in
+                .onPresent { _, to in
                     to.view.tintColor = .orange
                 }.onChange({ (text) in
-                    if let text = text.value{
+                    if let text = text.value {
                         cooking = text
                     }
                 })
-            
-            <<< AlertRow<String>() {
+
+            <<< AlertRow<String> {
                 $0.title = "Smoking"
                 $0.cancelTitle = "Exit"
                 $0.selectorTitle = "Smoke"
@@ -602,15 +598,15 @@ extension ZJAddAptViewController{
                 }.onChange { row in
                     print(row.value ?? "No Value")
                 }
-                .onPresent{ _, to in
+                .onPresent { _, to in
                     to.view.tintColor = .orange
                 }.onChange({ (text) in
-                    if let text = text.value{
+                    if let text = text.value {
                         smoking = text
                     }
                 })
-            
-            <<< MultipleSelectorRow<String>() {
+
+            <<< MultipleSelectorRow<String> {
                 $0.title = "Other Requirements"
                 $0.options = ["Single Only", "Keep Clean", "Without Overnight Visitor", "Quiet", "No Party", "Not Staying up Late", "No Pets", "Love Pets"]
                 let defalutV = ["Quiet", "Not Staying up Late"]
@@ -620,11 +616,11 @@ extension ZJAddAptViewController{
                 .onPresent { from, to in
                     to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
                 }.onChange({ (text) in
-                    if let text = text.value{
+                    if let text = text.value {
                         otherRequirements = Array(text)
                     }
                 })
-        
+
         navigationOptions = RowNavigationOptions.Enabled.union(.SkipCanNotBecomeFirstResponderRow)
         navigationOptionsBackup = navigationOptions
     }

@@ -15,7 +15,7 @@ class ZJRentAptListDetailBaseCell: UICollectionViewCell {
         fl.font = UIFont.systemFont(ofSize: 15)
         return fl
     }()
-    
+
     lazy var secondtLabel: UILabel = {
         let fl = UILabel()
         fl.textColor = UIColor.black
@@ -31,10 +31,9 @@ class ZJRentAptListDetailBaseCell: UICollectionViewCell {
         firstLabel.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 15, paddingBottom: 0, paddingRight: 0, width: zjScreenWidth/4, height: 0)
         self.addSubview(secondtLabel)
         secondtLabel.anchor(top: topAnchor, left: firstLabel.rightAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        
-       
+
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

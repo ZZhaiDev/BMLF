@@ -18,31 +18,30 @@ class ZJAddAptDateCell: UICollectionViewCell {
         tv.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         return tv
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(tableView)
         tableView.fillSuperview()
-      
+
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
 }
 
-extension ZJAddAptDateCell: UITableViewDataSource, UITableViewDelegate{
+extension ZJAddAptDateCell: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         cell.backgroundColor = .clear
         cell.textLabel?.text = "日期"
         return cell
     }
-    
-    
+
 }

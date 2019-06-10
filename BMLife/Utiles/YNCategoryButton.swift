@@ -17,20 +17,20 @@ public enum YNCategoryButtonType {
 open class YNCategoryButton: UIButton {
     open var type: YNCategoryButtonType? {
         didSet {
-            guard let _type = type else { return }
-            self.setType(type: _type)
+            guard let tempType = type else { return }
+            self.setType(type: tempType)
         }
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         self.initVIew()
     }
-    
+
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     override open var isHighlighted: Bool {
         didSet {
             if let type = self.type {
@@ -50,10 +50,10 @@ open class YNCategoryButton: UIButton {
                     case false:
                         layer.borderColor = UIColor.white.cgColor
                     }
-                    
+
                 case .background: break
                 }
-                
+
             } else {
                 switch isHighlighted {
                 case true:
@@ -73,7 +73,7 @@ open class YNCategoryButton: UIButton {
         self.layer.cornerRadius = self.frame.height * 0.1
 
     }
-    
+
     open func setType(type: YNCategoryButtonType) {
         switch type {
         case .background:
@@ -82,13 +82,13 @@ open class YNCategoryButton: UIButton {
             self.backgroundColor = UIColor.init(red: 246.0/255.0, green: 246.0/255.0, blue: 246.0/255.0, alpha: 1)
             self.setTitleColor(UIColor.darkGray, for: .normal)
             self.setTitleColor(UIColor.darkGray.withAlphaComponent(0.3), for: .highlighted)
-            
+
         case .border:
             self.layer.borderColor = UIColor.darkGray.cgColor
             self.layer.borderWidth = 1
             self.setTitleColor(UIColor.darkGray, for: .normal)
             self.setTitleColor(UIColor.darkGray.withAlphaComponent(0.3), for: .highlighted)
-            
+
         case .colorful:
             self.layer.borderColor = nil
             self.layer.borderWidth = 0
@@ -97,16 +97,16 @@ open class YNCategoryButton: UIButton {
             self.setTitleColor(UIColor.white, for: .normal)
             self.setTitleColor(UIColor.white.withAlphaComponent(0.3), for: .highlighted)
         }
-        
+
     }
-    
+
     open func randomColor() -> UIColor {
+        // swiftlint:disable ine_length
         let colorArray = ["009999", "0099cc", "0099ff", "00cc99", "00cccc", "336699", "3366cc", "3366ff", "339966", "666666", "666699", "6666cc", "6666ff", "996666", "996699", "999900", "999933", "99cc00", "99cc33", "660066", "669933", "990066", "cc9900", "cc6600" , "cc3300", "cc3366", "cc6666", "cc6699", "cc0066", "cc0033", "ffcc00", "ffcc33", "ff9900", "ff9933", "ff6600", "ff6633", "ff6666", "ff6699", "ff3366", "ff3333"]
-        
+
         let randomNumber = arc4random_uniform(UInt32(colorArray.count))
         return UIColor(hexString: colorArray[Int(randomNumber)])
     }
-    
 
 }
 
@@ -115,6 +115,7 @@ extension UIColor {
         let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int = UInt32()
         Scanner(string: hex).scanHexInt32(&int)
+        // swiftlint:disable identifier_name
         let a, r, g, b: UInt32
         switch hex.count {
         case 3: // RGB (12-bit)

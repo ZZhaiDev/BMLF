@@ -20,20 +20,19 @@ protocol ZJRentAptMapViewDelegate: class {
     func zjRentAptMapViewDidEndDraw()
 }
 
-
 class ZJRentAptMapView: UIView {
-    
+
     var isDrawing = false
     var locationManager: CLLocationManager!
     var points = [CLLocationCoordinate2D]()
     var rentingAnnotations = [MKAnnotation]()
     var delegate: ZJRentAptMapViewDelegate?
     var crimeViewModel = CrimeViewModel()
-    var data = [AddAptProperties](){
-        didSet{
+    var data = [AddAptProperties]() {
+        didSet {
             self.mapsView.removeAnnotations(rentingAnnotations)
-            for property in data{
-                if let lat = property.latitude, let lon = property.longitude{
+            for property in data {
+                if let lat = property.latitude, let lon = property.longitude {
                     let annotation = CustomizedAnnotation()
 //                    annotation.imageName = "Sites-RBC"
                     annotation.data = property
@@ -46,11 +45,11 @@ class ZJRentAptMapView: UIView {
                         ZJPrint(self.mapsView.annotations.count)
                     }
                 }
-                
+
             }
         }
     }
-    
+
     lazy var mapsView: MKMapView = {
         let view = MKMapView()
         view.layer.cornerRadius = 10
@@ -60,14 +59,13 @@ class ZJRentAptMapView: UIView {
         view.delegate = self
         return view
     }()
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    fileprivate func setupLocation(){
-        if (CLLocationManager.locationServicesEnabled())
-        {
+
+    fileprivate func setupLocation() {
+        if (CLLocationManager.locationServicesEnabled()) {
             locationManager = CLLocationManager()
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -75,21 +73,21 @@ class ZJRentAptMapView: UIView {
             locationManager.startUpdatingLocation()
         }
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupLocation()
         setupUI()
     }
-    
-    fileprivate func setupUI(){
+
+    fileprivate func setupUI() {
         self.addSubview(mapsView)
         mapsView.fillSuperview()
     }
 }
 
 //:MARK -- 画圈
-extension ZJRentAptMapView{
+extension ZJRentAptMapView {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !isDrawing { return }
         mapsView.removeOverlays(mapsView.overlays)
@@ -98,7 +96,7 @@ extension ZJRentAptMapView{
             points.append(coordinate)
         }
     }
-    
+
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !isDrawing { return }
         if let touch = touches.first {
@@ -108,14 +106,14 @@ extension ZJRentAptMapView{
             mapsView.addOverlay(polyline)
         }
     }
-    
+
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !isDrawing { return }
         let polygon = MKPolygon(coordinates: &points, count: points.count)
         ZJPrint(points.count)
 //        ZJPrint(points)
         var temp = ""
-        for point in points{
+        for point in points {
             temp += ",\(point.longitude),\(point.latitude)"
         }
         temp.removeFirst()
@@ -137,17 +135,16 @@ extension ZJRentAptMapView{
         ZJPrint(temp)
         mapsView.addOverlay(polygon)
         points = [] // Reset points
-        
 
         self.delegate?.zjRentAptMapViewDidEndDraw()
-        
-    }  
+
+    }
 }
 
-extension ZJRentAptMapView: MKMapViewDelegate{
+extension ZJRentAptMapView: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolyline {
-            if isDrawing == false{
+            if isDrawing == false {
                 let renderer = MKPolylineRenderer(overlay: overlay)
                 renderer.strokeColor = UIColor.orange
                 renderer.lineWidth = 3
@@ -158,21 +155,21 @@ extension ZJRentAptMapView: MKMapViewDelegate{
             polylineRenderer.lineWidth = 1
             return polylineRenderer
         } else if overlay is MKPolygon {
-            
+
             let polygonView = MKPolygonRenderer(overlay: overlay)
             polygonView.fillColor = UIColor.lightGray.withAlphaComponent(0.4)
             return polygonView
         }
         return MKPolylineRenderer(overlay: overlay)
     }
-    
+
     //自定义 annotation
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         // Don't want to show a custom image if the annotation is the user's location.
         guard !(annotation is MKUserLocation) else {
             return nil
         }
-        
+
         /*
          //画crime 点
         guard !(annotation is CrimeAnnotation) else {
@@ -195,21 +192,20 @@ extension ZJRentAptMapView: MKMapViewDelegate{
             return crimeAnnotion
         }
          */
-        
-        
+
         // Better to make this class property
         let annotationIdentifier = "AnnotationIdentifier"
-        
+
         var annotationView: MKAnnotationView?
         if let dequeuedAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) {
             annotationView = dequeuedAnnotationView
             annotationView?.annotation = annotation
-        }else {
+        } else {
             let av = CustomizedAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
             av.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             annotationView = av
         }
-        
+
         if let annotationView = annotationView {
             annotationView.canShowCallout = false
             annotationView.frame.size = CGSize(width: 21, height: 36)
@@ -217,68 +213,64 @@ extension ZJRentAptMapView: MKMapViewDelegate{
         }
         return annotationView
     }
-    
+
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        if view.annotation is MKUserLocation{return}
+        if view.annotation is MKUserLocation {return}
 //        if view.annotation is CrimeAnnotation{return}
         // 2
         let starbucksAnnotation = view.annotation as! CustomizedAnnotation
 //        let views = c
         let calloutView = CustomCalloutView(frame: CGRect(x: 0, y: 0, width: zjScreenWidth*0.6, height: zjScreenHeight*0.5))
         calloutView.data = starbucksAnnotation.data
-        
-        
+
         calloutView.center = CGPoint(x: view.bounds.size.width / 2, y: -calloutView.bounds.size.height*0.52)
         view.addSubview(calloutView)
-        guard let tempCoordinate = view.annotation?.coordinate else{
+        guard let tempCoordinate = view.annotation?.coordinate else {
             return
         }
         var centerCoordinate = tempCoordinate
         centerCoordinate.latitude += (mapView.region.span.latitudeDelta * 0.2)
         mapView.setCenter(centerCoordinate, animated: true)
     }
-    
+
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         ZJPrint(view)
 //        MKAnnotationView
         ZJPrint(view.annotation)
         ZJPrint(view.calloutOffset)
         ZJPrint(view.leftCalloutAccessoryView)
-        if view.isKind(of: CustomizedAnnotationView.self)
-        {
-            for subview in view.subviews
-            {
+        if view.isKind(of: CustomizedAnnotationView.self) {
+            for subview in view.subviews {
                 subview.removeFromSuperview()
             }
         }
     }
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        
+
     }
 }
 
-
-extension ZJRentAptMapView: CLLocationManagerDelegate{
+extension ZJRentAptMapView: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-      
-        if let location = locations.last{
-         
+
+        if let location = locations.last {
+
             let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             userCurrentCoordinate = center
             let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
             self.mapsView.setRegion(region, animated: true)
- 
+
             let geocoder = CLGeocoder()
             geocoder.reverseGeocodeLocation(CLLocation.init(latitude: location.coordinate.latitude, longitude:location.coordinate.longitude)) { (places, error) in
-                if error == nil{
-                    if let place = places{
-                        if let firstPlace = place.first, let subthoroughfare = firstPlace.subThoroughfare, let thoroughfare = firstPlace.thoroughfare, let postalCode = firstPlace.postalCode, let locality = firstPlace.locality{
+                if error == nil {
+                    if let place = places {
+                        if let firstPlace = place.first, let subthoroughfare = firstPlace.subThoroughfare, let thoroughfare = firstPlace.thoroughfare, let postalCode = firstPlace.postalCode, let locality = firstPlace.locality {
                         }
                     }
                 }
             }
         }
-        
+
         manager.stopUpdatingLocation()
         manager.delegate = nil
     }

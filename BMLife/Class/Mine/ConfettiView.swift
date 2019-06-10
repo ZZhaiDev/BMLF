@@ -21,9 +21,9 @@ struct ConfettiCardProperties {
     let colorsNodes: Bool
     let colors: [UIColor]
     let type: ConfettiType
-    
+
     static let `default` = ConfettiCardProperties(colorsNodes: true, colors: ConfettiCardProperties.defaultColors, type: .confetti)
-    
+
     static let defaultColors: [UIColor] = [
         UIColor(red:0.95, green:0.40, blue:0.27, alpha:1.0),
         UIColor(red:1.00, green:0.78, blue:0.36, alpha:1.0),
@@ -39,17 +39,17 @@ class ConfettiView: UIView {
     public var intensity: Float!
     public var type: ConfettiType = .confetti
     private var active :Bool!
-    
+
     init(properties: ConfettiCardProperties = .default) {
         self.properties = properties
         super.init(frame: .zero)
         setup()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func setup() {
         colors = self.properties.colors
         intensity = 0.5
@@ -57,31 +57,31 @@ class ConfettiView: UIView {
         active = false
         startConfetti()
     }
-    
+
     public func startConfetti() {
         emitter = CAEmitterLayer()
-        
+
         emitter.emitterPosition = CGPoint(x: frame.size.width / 2.0, y: 0)
         emitter.emitterShape = CAEmitterLayerEmitterShape.line
         emitter.emitterSize = CGSize(width: frame.size.width, height: 1)
-        
+
         var cells = [CAEmitterCell]()
         for color in colors {
             cells.append(confettiWithColor(color: color))
         }
-        
+
         emitter.emitterCells = cells
         layer.addSublayer(emitter)
         active = true
     }
-    
+
     public func stopConfetti() {
         emitter?.birthRate = 0
         active = false
     }
-    
+
     func imageForType(type: ConfettiType) -> UIImage? {
-        
+
         switch type {
         case .confetti:
             return #imageLiteral(resourceName: "confetti")
@@ -95,7 +95,7 @@ class ConfettiView: UIView {
             return customImage
         }
     }
-    
+
     func confettiWithColor(color: UIColor) -> CAEmitterCell {
         let confetti = CAEmitterCell()
         confetti.birthRate = 6.0 * intensity
@@ -110,14 +110,14 @@ class ConfettiView: UIView {
         confetti.scaleRange = CGFloat(intensity)
         confetti.scaleSpeed = CGFloat(-0.1 * intensity)
         confetti.contents = imageForType(type: type)!.cgImage
-        
+
         if properties.colorsNodes {
             confetti.color = color.cgColor
         }
-        
+
         return confetti
     }
-    
+
     public func isActive() -> Bool {
         return self.active
     }

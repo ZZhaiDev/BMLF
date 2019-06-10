@@ -8,17 +8,15 @@
 
 import UIKit
 
-
-
 class MyCustomUIView: UIView {
-    
+
     static let cellHeight: CGFloat = 120
     lazy var label: UILabel = {
-       let l = UILabel()
-        l.font = UIFont.systemFont(ofSize: 18)
-        l.textAlignment = .left
-        l.text = "Description"
-        return l
+       let lable = UILabel()
+        lable.font = UIFont.systemFont(ofSize: 18)
+        lable.textAlignment = .left
+        lable.text = "Description"
+        return lable
     }()
     lazy var textView: UITextView = {
        let tv = UITextView()
@@ -28,7 +26,7 @@ class MyCustomUIView: UIView {
         tv.delegate = self
         return tv
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(label)
@@ -37,25 +35,25 @@ class MyCustomUIView: UIView {
         self.addSubview(textView)
         textView.anchor(top: label.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: padding, paddingBottom: 0, paddingRight: padding, width: 0, height: 0)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 
-extension MyCustomUIView: UITextViewDelegate{
+extension MyCustomUIView: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         label.textColor = UIColor.blue
-        if (textView.text == "(Optional)"){
+        if (textView.text == "(Optional)") {
             textView.text = ""
             textView.textColor = UIColor.black
         }
         textView.becomeFirstResponder()
     }
-    
+
     func textViewDidEndEditing(_ textView: UITextView) {
         label.textColor = .black
-        if (textView.text == ""){
+        if (textView.text == "") {
             textView.text = "(Optional)"
             textView.textColor = UIColor.lightGray
         }
@@ -63,6 +61,5 @@ extension MyCustomUIView: UITextViewDelegate{
         ZJPrint(textView.text)
         descriptionText_ = textView.text
     }
-    
-    
+
 }

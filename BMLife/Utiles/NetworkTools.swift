@@ -15,11 +15,11 @@ enum MethodType {
 }
 
 class NetworkTools {
-    class func requestData(_ type : MethodType, URLString : String, parameters : [String : Any]? = nil, finishedCallback :  @escaping (_ result : Any?) -> ()) {
-        
+    class func requestData(_ type : MethodType, URLString : String, parameters : [String : Any]? = nil, finishedCallback :  @escaping (_ result : Any?) -> Void) {
+
         // 1.获取类型
         let method = type == .get ? HTTPMethod.get : HTTPMethod.post
-        
+
         // 2.发送网络请求
 //        ZJPrint(URLString)
         AF.request(URLString, method: method, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
@@ -27,7 +27,7 @@ class NetworkTools {
             guard let result = response.result.value else {
                 print(response.result.value ?? "")
                 finishedCallback(response)
-                return 
+                return
             }
 
             // 4.将结果回调出去
@@ -37,49 +37,44 @@ class NetworkTools {
     }
 }
 
-
-class ApiService{
-    static func getPostString(params:[String:Any]) -> String
-    {
+class ApiService {
+    static func getPostString(params:[String:Any]) -> String {
         var data = [String]()
-        for(key, value) in params
-        {
+        for(key, value) in params {
             data.append(key + "=\(value)")
         }
         return data.map { String($0) }.joined(separator: "&")
     }
-    
-    static func callPost(url:URL, params:[String:Any], finish: @escaping ((message:String, data:Data?)) -> Void){
+
+    static func callPost(url:URL, params:[String:Any], finish: @escaping ((message:String, data:Data?)) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        
+
         let postString = self.getPostString(params: params)
         request.httpBody = postString.data(using: .utf8)
-        
+
         var result:(message:String, data:Data?) = (message: "Fail", data: nil)
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            
-            if(error != nil){
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
+
+            if(error != nil) {
                 result.message = "Fail Error not null : \(error.debugDescription)"
-            }
-            else{
+            } else {
 //                ZJPrint(response)
                 result.message = "Success"
                 result.data = data
             }
-            
+
             finish(result)
         }
         task.resume()
     }
-    
-    
+
     static func uploadToS3(image: UIImage, urlString: String, completion: @escaping (URLResponse?, Error?) -> Void) {
         let imageData = image.jpegData(compressionQuality: 0.9)
         let decodedURLString = urlString.replacingOccurrences(of: "\"", with: "").replacingOccurrences(of: "\n", with: "").removingPercentEncoding!
 //        ZJPrint(decodedURLString)
         guard let encoded = decodedURLString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-            let myURL = URL(string: encoded) else{
+            let myURL = URL(string: encoded) else {
             return
         }
 //        ZJPrint(myURL)
@@ -89,14 +84,13 @@ class ApiService{
         request.setValue("base64", forHTTPHeaderField: "Content-Encoding")
         request.setValue("image/jpeg", forHTTPHeaderField: "Content-Type")
         request.httpBody = imageData
-        
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, responce, error) in
+
+        let task = URLSession.shared.dataTask(with: request) { (_, responce, error) in
             completion(responce, error)
         }
         task.resume()
     }
-    
+
 //   static func convertToDictionary(text: String) -> [String: Any]? {
 //        if let data = text.data(using: .utf8) {
 //            do {
@@ -107,7 +101,5 @@ class ApiService{
 //        }
 //        return nil
 //    }
-    
-    
-   
+
 }

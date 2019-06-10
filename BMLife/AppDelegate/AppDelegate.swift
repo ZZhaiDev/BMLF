@@ -24,23 +24,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+
         GMSServices.provideAPIKey("AIzaSyB-v-ac0d_I5do478BBROehAvLbltTpsGw")
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.backgroundColor = UIColor.white
         let root = ZJTabBarController()
-//        let root = ZJAddAptViewController()
         self.window?.rootViewController = root
         self.window?.makeKeyAndVisible()
         UINavigationBar.appearance().tintColor = .white
-        
-        
+
         return true
     }
 
-
-
 }
-

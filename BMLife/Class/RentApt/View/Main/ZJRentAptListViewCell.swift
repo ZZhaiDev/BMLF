@@ -11,61 +11,62 @@ import Kingfisher
 import MessageUI
 
 class ZJRentAptListViewCell: UICollectionViewCell {
-    
+
     static var selfHeight: CGFloat = 420
-    
-    var data = AddAptProperties(){
-        didSet{
+
+    var data = AddAptProperties() {
+        didSet {
             ZJPrint(data.fulladdress)
-            if let city = data.city{
+            if let city = data.city {
                 ZJPrint(city)
                 cityL.text = city
             }
-            if let time = data.submittime{
+            if let time = data.submittime {
                 timeL.text = time
             }
-            
-            if let contact = data.contact{
-                if let email = contact.email{
+
+            if let contact = data.contact {
+                if let email = contact.email {
                     emailB.setTitle(email, for: .normal)
                 }
-                if let phone = contact.phonenumber{
+                if let phone = contact.phonenumber {
                     phoneB.setTitle(phone, for: .normal)
                 }
             }
-            
-            if let base = data.base{
-                if let price = base.price{
+
+            if let base = data.base {
+                if let price = base.price {
                     priceL.text = "\(price)/m"
                 }
-                if let type = base.housetype{
+                if let type = base.housetype {
                     typeL.text = type
                 }
-                if let nearby = base.nearby{
+                if let nearby = base.nearby {
                     var result = "Close to"
-                    for i in nearby{
+                    // swiftlint:disable identifier_name
+                    for i in nearby {
                         result += " \(i.nearby ?? ""),"
                     }
                     result.removeLast()
-                    if nearby.count == 0{
+                    if nearby.isEmpty {
                         result = ""
                     }
                     closeL.text = result
                 }
             }
-            
-            if let requirement = data.requirement{
-                if let gender = requirement.gender{
+
+            if let requirement = data.requirement {
+                if let gender = requirement.gender {
                     genderL.text = gender
                 }
             }
-            
-            if let imagef = data.images?.first, let imageStr = imagef.image{
+
+            if let imagef = data.images?.first, let imageStr = imagef.image {
                 imageV.kf.indicatorType = .activity
                 ZJPrint(imageStr)
                 let url = URL(string: imageStr)
                 imageV.kf.setImage(with: url)
-                
+
             }
         }
     }
@@ -79,46 +80,45 @@ class ZJRentAptListViewCell: UICollectionViewCell {
     @IBOutlet weak var closeL: UILabel!
     @IBOutlet weak var emailB: UIButton!
     @IBOutlet weak var phoneB: UIButton!
-    
+
     @IBOutlet weak var firstViewRow: UIView!
     @IBOutlet weak var secondViewRow: UIView!
     @IBOutlet weak var thirdViewRow: UIView!
     @IBOutlet weak var fourthViewRow: UIView!
-    
-    
+
     @IBAction func emailClicked(_ sender: Any) {
         sendEmail()
     }
     @IBAction func phoneClicked(_ sender: Any) {
-        if let str = phoneB.titleLabel?.text, let url = URL(string: "telprompt://\(str)"), UIApplication.shared.canOpenURL(url){
+        if let str = phoneB.titleLabel?.text, let url = URL(string: "telprompt://\(str)"), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:]) { (_) in
-                
+
             }
         }
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = .clear
-        
-        emailB.titleLabel?.numberOfLines = 1;
-        emailB.titleLabel?.adjustsFontSizeToFitWidth = true;
+
+        emailB.titleLabel?.numberOfLines = 1
+        emailB.titleLabel?.adjustsFontSizeToFitWidth = true
         emailB.titleLabel?.lineBreakMode = .byClipping
-        
+
         firstViewRow.backgroundColor = UIColor.black
         secondViewRow.backgroundColor = UIColor.black
         thirdViewRow.backgroundColor = UIColor.black
         fourthViewRow.backgroundColor = UIColor.black
     }
-    
-    @objc fileprivate func sendEmail(){
+
+    @objc fileprivate func sendEmail() {
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients([emailB.titleLabel?.text ?? ""])
             //            mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
             mail.setSubject("BMLife-interested your post")
-            if let topVC = UIApplication.topViewController(){
+            if let topVC = UIApplication.topViewController() {
                 topVC.present(mail, animated: true)
             }
         } else {
@@ -128,20 +128,19 @@ class ZJRentAptListViewCell: UICollectionViewCell {
 
 }
 
-
-extension ZJRentAptListViewCell: MFMailComposeViewControllerDelegate{
+extension ZJRentAptListViewCell: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true) {
-            if result == .sent{
+            if result == .sent {
                 guard let topVC = UIApplication.topViewController() else {return}
                 let alertVC = UIAlertController(title: "Email Sent", message: "Thanks for Your Interesting!", preferredStyle: .actionSheet)
-                let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+                let okAction = UIAlertAction(title: "OK", style: .cancel) { (_) in
                 }
                 alertVC.addAction(okAction)
                 topVC.present(alertVC, animated: true) {
                 }
-            }else{
-                
+            } else {
+
             }
         }
     }

@@ -8,19 +8,19 @@
 
 import UIKit
 
-class ZJAptViewModel{
+class ZJAptViewModel {
     lazy var aptModel: ZJAddAptModel = ZJAddAptModel()
     lazy var aptProperties: [AddAptProperties] = [AddAptProperties]()
 }
 
-extension ZJAptViewModel{
-    func loadApt(finished: @escaping ([String: Any])->()){
+extension ZJAptViewModel {
+    func loadApt(finished: @escaping ([String: Any])->Void) {
         aptProperties.removeAll()
         let api = "http://aca33a60.ngrok.io/api/v1/rental/house/?page=1&page_size=300"
         NetworkTools.requestData(.get, URLString: api) { (responce) in
-            
+
             guard let dict = responce as? [String: Any] else { return }
-            guard let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: []) else{
+            guard let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: []) else {
                 return
             }
             do {
@@ -28,21 +28,18 @@ extension ZJAptViewModel{
                 self.aptModel = data
                 guard let results = data.results else {return}
                 guard let features = results.features else {return}
-                for feature in features{
+                for feature in features {
                     guard let properties = feature.properties else {return}
                     self.aptProperties.append(properties)
                 }
 //                ZJPrint(self.aptProperties.count)
 //                ZJPrint(self.aptProperties)
-                
+
             } catch let jsonError {
                 ZJPrint(jsonError)
             }
 
-            
-            
             finished(responce as! [String : Any])
         }
     }
 }
-

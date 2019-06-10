@@ -10,7 +10,7 @@ import UIKit
 import MessageUI
 
 class InfoContentCell: UICollectionViewCell {
-    
+
     let title1 = UILabel()
     let title2 = UILabel()
     let content1 = UILabel()
@@ -48,23 +48,22 @@ class InfoContentCell: UICollectionViewCell {
         el.isUserInteractionEnabled = true
         return el
     }()
-    
-    @objc fileprivate func sendEmail(){
+
+    @objc fileprivate func sendEmail() {
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients([zijiaEmail, hongleiEmail])
 //            mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
             mail.setSubject("BMLife-Feedback")
-            if let topVC = UIApplication.topViewController(){
+            if let topVC = UIApplication.topViewController() {
                 topVC.present(mail, animated: true)
             }
         } else {
             // show failure alert
         }
     }
-    
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .black
@@ -72,7 +71,7 @@ class InfoContentCell: UICollectionViewCell {
         title2.textColor = .white
         content1.textColor = .white
         content2.textColor = .white
-        
+
         let labels = [title1, content1, title2, content2, emailL1, emailL2]
         labels.forEach { label in
             label.numberOfLines = 0
@@ -82,7 +81,7 @@ class InfoContentCell: UICollectionViewCell {
         labelStack.axis = .vertical
         addSubview(labelStack)
         labelStack.fillSuperview()
-        
+
         title1.font = UIFont.boldSystemFont(ofSize: 32)
         title1.text = "Developers:"
         content1.text = """
@@ -97,30 +96,28 @@ class InfoContentCell: UICollectionViewCell {
         If you have any questions, contact us;
         """
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
+
 }
 
-
-extension InfoContentCell: MFMailComposeViewControllerDelegate{
+extension InfoContentCell: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true) {
-            if result == .sent{
+            if result == .sent {
                 guard let topVC = UIApplication.topViewController() else {return}
                 let alertVC = UIAlertController(title: "Email Sent", message: "Thanks for Your Feedback, We Will Reply back to You Soon!", preferredStyle: .actionSheet)
-                let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+                let okAction = UIAlertAction(title: "OK", style: .cancel) { (_) in
                 }
                 alertVC.addAction(okAction)
                 topVC.present(alertVC, animated: true) {
                 }
-            }else{
-                
+            } else {
+
             }
-        } 
+        }
     }
 }
 
@@ -134,4 +131,3 @@ extension NSMutableAttributedString {
         return false
     }
 }
-

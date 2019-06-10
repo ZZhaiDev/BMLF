@@ -9,7 +9,7 @@
 import UIKit
 
 class ZJTabBarController: UITabBarController, UITabBarControllerDelegate {
-    
+
     private lazy var composeBtn : UIButton = UIButton()
 
     override func viewDidLoad() {
@@ -19,26 +19,26 @@ class ZJTabBarController: UITabBarController, UITabBarControllerDelegate {
         self.tabBar.tintColor = UIColor.orange
         setupComposeBtn()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        for i in 0..<tabBar.items!.count {
+        for index in 0..<tabBar.items!.count {
             // 2.获取item
-            let item = tabBar.items![i]
-            
+            let item = tabBar.items![index]
+
             // 3.如果是下标值为2,则该item不可以和用户交互
-            if i == 1 {
+            if index == 1 {
                 item.isEnabled = false
                 continue
             }
         }
-        
+
     }
-    
+
     private func setupComposeBtn() {
         // 1.将composeBtn添加到tabbar中
         tabBar.addSubview(composeBtn)
-        
+
         // 2.设置属性
         composeBtn.setBackgroundImage(UIImage(named: "tabbar_compose_button"), for: .normal)
         composeBtn.setBackgroundImage(UIImage(named: "tabbar_compose_button_highlighted"), for: .highlighted)
@@ -49,30 +49,30 @@ class ZJTabBarController: UITabBarController, UITabBarControllerDelegate {
         composeBtn.titleLabel?.textColor = .white
 //        composeBtn.sizeToFit()
         composeBtn.frame.size = CGSize(width: zjScreenWidth/5, height: tabBar.bounds.size.height)
-        
+
         // 3.设置位置
         composeBtn.center = CGPoint(x: tabBar.center.x, y: tabBar.bounds.size.height * 0.5)
         composeBtn.addTarget(self, action: #selector(composeBtnButtonClicked), for: .touchUpInside)
     }
-    
+
     // 添加所有控件
-    func setUpAllViewController() -> Void {
+    func setUpAllViewController() {
         setUpChildController(ZJRentAptViewController(), "House","tab_house","tab_houseHL")
 //        setUpChildController(UIViewController(), "同城",  "tabYule",  "tabYuleHL")
         setUpChildController(UIViewController(), "",  "",  "")
 //        setUpChildController(UIViewController(), "移民",  "tabYuba",  "tabYubaHL")
         setUpChildController(InfoController(), "Mine",  "tab_mine",  "tab_mineHL")
     }
-    
-    @objc fileprivate func composeBtnButtonClicked(){
-        
+
+    @objc fileprivate func composeBtnButtonClicked() {
+
         let publishView = Bundle.main.loadNibNamed("PublishView", owner: nil, options: nil)?.first as! PublishView
-        
+
         publishView.show()
     }
 
-    fileprivate func setUpChildController(_ controller : UIViewController,_ title : String,_ norImage : String,_ selectedImage : String){
-        
+    fileprivate func setUpChildController(_ controller : UIViewController,_ title : String,_ norImage : String,_ selectedImage : String) {
+
         controller.tabBarItem.title = title
         controller.tabBarItem.image = UIImage(named: norImage)
         controller.tabBarItem.selectedImage = UIImage(named: selectedImage)
@@ -81,8 +81,5 @@ class ZJTabBarController: UITabBarController, UITabBarControllerDelegate {
 //        controller.title = title
         self.addChild(nav)
     }
-    
 
 }
-
-

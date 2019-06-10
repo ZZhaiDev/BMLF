@@ -459,6 +459,7 @@
 				A41CFD34228DF4F00008FFB6 /* Resources */,
 				5C7211D192DE7639061603A9 /* [CP] Embed Pods Frameworks */,
 				CA632D2B14CE5978C5C2C696 /* [CP] Copy Pods Resources */,
+				A4F460F522AECD1000A0831E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -618,6 +619,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BMLife/Pods-BMLife-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		A4F460F522AECD1000A0831E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		CA632D2B14CE5978C5C2C696 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

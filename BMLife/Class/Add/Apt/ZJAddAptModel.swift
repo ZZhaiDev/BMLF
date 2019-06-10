@@ -14,7 +14,7 @@ struct ZJAddAptModel: Codable {
     var results: AddAptResults?
 }
 
-struct AddAptResults: Codable{
+struct AddAptResults: Codable {
     var type: String? //FeatureCollection
     var features: [AddAptFeature]?
 }
@@ -67,7 +67,7 @@ struct AddAptContact: Codable {
 
 struct AddAptBase: Codable {
     var price: String?
-    
+
     var housetype: String?
     var roomtype: String?
     var bathroom: String?
@@ -75,7 +75,7 @@ struct AddAptBase: Codable {
     var washingmachine: String?
     var nearby: [AddAptNearby]?
     var included: [AddAptIncluded]?
-    
+
 }
 
 struct AddAptNearby: Codable {
@@ -92,13 +92,12 @@ struct AddAptRequirement: Codable {
     var cooking: String?
     var smoking: String?
     var otherrequirements: [AddAptOtherRequirement]?
-    
+
 }
 
 struct AddAptOtherRequirement: Codable {
     var otherrequirement: String?
 }
-
 
 struct AddAptImages: Codable {
     var image: String?

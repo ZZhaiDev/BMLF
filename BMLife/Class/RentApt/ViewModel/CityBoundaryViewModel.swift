@@ -9,13 +9,12 @@
 import UIKit
 import MapKit
 
-class CityBoundaryViewModel{
+class CityBoundaryViewModel {
     lazy var viewModel: CityBoundaryModel = CityBoundaryModel()
 }
 
-
-extension CityBoundaryViewModel{
-    func loadCityBoundary(city: String, finishesCallBack: @escaping () -> ()){
+extension CityBoundaryViewModel {
+    func loadCityBoundary(city: String, finishesCallBack: @escaping () -> Void) {
 //        "https://nominatim.openstreetmap.org/search.php?q=chicago&polygon_geojson=1&format=json"
         let urlStr = "https://nominatim.openstreetmap.org/search.php?q=\(city)&polygon_geojson=1&format=json"
         NetworkTools.requestData(.get, URLString: urlStr) { (result) in
@@ -24,17 +23,17 @@ extension CityBoundaryViewModel{
             guard let firstResult = result.first else {return}
             guard let geojson = firstResult["geojson"] as? [String: Any] else {return}
             guard let coordinates = geojson["coordinates"] as? [Any] else {return}
-            guard let f_coordinates = coordinates.first as? [[Double]] else {return}
-            var temp_coordinates = [CLLocationCoordinate2D]()
-            for arr in f_coordinates{
+            guard let fcoordinates = coordinates.first as? [[Double]] else {return}
+            var tempCoordinates = [CLLocationCoordinate2D]()
+            for arr in fcoordinates {
                 let lat = arr[1]
                 let lon = arr[0]
                 let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-                temp_coordinates.append(coordinate)
+                tempCoordinates.append(coordinate)
             }
-            self.viewModel.coordinates = temp_coordinates
+            self.viewModel.coordinates = tempCoordinates
             finishesCallBack()
         }
-        
+
     }
 }

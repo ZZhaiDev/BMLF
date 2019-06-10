@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct CrimeModel: Codable{
+struct CrimeModel: Codable {
     var count: Int?
     var results: CrimeResultModel?
 }
@@ -28,12 +28,15 @@ struct CrimeFeatureModel: Codable {
 //}
 
 struct CrimepropertiesModel: Codable {
+    // swiftlint:disable identifier_name
     var address_1: String?
     var city: String?
     var state: String?
     var zip: String?
+    // swiftlint:disable identifier_name
     var incident_datetime: String?
     var longitude: String?
     var latitude: String?
+    // swiftlint:disable identifier_name
     var parent_incident_type: String?
 }
