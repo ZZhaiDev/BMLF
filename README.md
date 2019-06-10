@@ -25,3 +25,8 @@ But, the first release version will only contain house renting. We plan to relea
 - [Eureka](https://github.com/xmartlabs/Eureka) - Most flexible and powerful iOS library to create dynamic table-view forms.
 - [NVActivityIndicatorView](https://github.com/ninjaprox/NVActivityIndicatorView) - NVActivityIndicatorView is a collection of awesome loading animations.
 - Mapkit, MessageUI, Corelocation.
+- Customize calloutView & draw an area on mapkit
+<p float="left">
+  <img width="139" height="301" src="https://github.com/zijiazhai/BMLF/blob/master/github_photos/callout.png">
+  <img width="139" height="301" src="https://github.com/zijiazhai/BMLF/blob/master/github_photos/draw.png">
+</p>
