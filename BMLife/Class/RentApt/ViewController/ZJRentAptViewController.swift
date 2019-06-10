@@ -23,7 +23,7 @@ class SquareView: UIView{
         let iv = UILabel()
         iv.textAlignment = .center
         iv.textColor = UIColor.darkGray
-        iv.font = UIFont.systemFont(ofSize: 12)
+        iv.font = UIFont.systemFont(ofSize: 10)
         return iv
     }()
     
@@ -70,6 +70,8 @@ class SquareView: UIView{
 let searchBarHeight: CGFloat = 30
 
 class ZJRentAptViewController: ZJBaseViewController {
+    
+    var changeRightBarButtonItem_list = UIBarButtonItem()
     
 //    fileprivate lazy var drawButton: UIButton = {
 //       let db = UIButton()
@@ -279,14 +281,20 @@ extension ZJRentAptViewController{
         listView.alpha = 0
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(imageName: "Logo_english")
-        let changeRightBarButtonItem = UIBarButtonItem(title: "change", style: .plain, target: self, action: #selector(rightBarButtonClicked))
+//        let changeRightBarButtonItem = UIBarButtonItem(title: "change", style: .plain, target: self, action: #selector(rightBarButtonClicked))
+//        let changeRightBarButtonItem = UIBarButtonItem(imageName: "navigationBar_map", size: CGSize(width: 20, height: 20))
+//        let changeRightBarButtonItem_map = UIBarButtonItem(image: UIImage(named: "navigationBar_map"), style: .plain, target: self, action: #selector(rightBarButtonClicked))
+        changeRightBarButtonItem_list = UIBarButtonItem(image: UIImage(named: "navigationBar_list"), style: .plain, target: self, action: #selector(rightBarButtonClicked))
+        
+        
+        
         
         
         titleView.addSubview(searchBar)
         navigationItem.titleView = titleView
         
 //        let filterRightBarButtonItem = UIBarButtonItem(title: "filter", style: .plain, target: self, action: #selector(filterBarButtonClicked))
-        navigationItem.rightBarButtonItems = [changeRightBarButtonItem]
+        navigationItem.rightBarButtonItems = [ changeRightBarButtonItem_list]
     }
     
     @objc fileprivate func rightBarButtonClicked(){
@@ -300,6 +308,7 @@ extension ZJRentAptViewController{
         if mapView.alpha == 0{
             UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
                 self.mapView.alpha = 1.0
+                self.changeRightBarButtonItem_list.image = UIImage(named: "navigationBar_list")
                 self.stackView.alpha = 1.0
                 self.listView.alpha = 0
             }) { (_) in
@@ -311,6 +320,7 @@ extension ZJRentAptViewController{
                 self.mapView.alpha = 0
                 self.stackView.alpha = 0
                 self.listView.alpha = 1
+                self.changeRightBarButtonItem_list.image = UIImage(named: "navigationBar_map")
             }) { (_) in
                 
             }

@@ -57,11 +57,11 @@ class ZJTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     // 添加所有控件
     func setUpAllViewController() -> Void {
-        setUpChildController(ZJRentAptViewController(), "房子","tabLive","tabLiveHL")
+        setUpChildController(ZJRentAptViewController(), "House","tab_house","tab_houseHL")
 //        setUpChildController(UIViewController(), "同城",  "tabYule",  "tabYuleHL")
         setUpChildController(UIViewController(), "",  "",  "")
 //        setUpChildController(UIViewController(), "移民",  "tabYuba",  "tabYubaHL")
-        setUpChildController(InfoController(), "我的",  "tabDiscovery",  "tabDiscoveryHL")
+        setUpChildController(InfoController(), "Mine",  "tab_mine",  "tab_mineHL")
     }
     
     @objc fileprivate func composeBtnButtonClicked(){
