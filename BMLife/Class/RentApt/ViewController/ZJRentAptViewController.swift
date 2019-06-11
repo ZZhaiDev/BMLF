@@ -183,6 +183,12 @@ class ZJRentAptViewController: ZJBaseViewController {
         let lv = ZJRentAptListView()
         return lv
     }()
+    
+    lazy var indicatorView: IndicaterView = {
+        let view = IndicaterView(frame: .zero)
+        view.isHidden = true
+        return view
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -212,11 +218,13 @@ class ZJRentAptViewController: ZJBaseViewController {
             mapView.mapsView.isUserInteractionEnabled = true
             drawView.data = ["draw", "draw"]
             mapView.mapsView.removeOverlays(mapView.mapsView.overlays)
+            indicatorView.isHidden = true
             return
         }
 
         if mapView.isDrawing == false {
             mapView.isDrawing = true
+            indicatorView.isHidden = false
             mapView.mapsView.isUserInteractionEnabled = false
             drawView.data = ["draw", "drawing"]
         }
@@ -245,7 +253,6 @@ extension ZJRentAptViewController: ZJRentAptMapViewDelegate {
 
 extension ZJRentAptViewController {
     fileprivate func setupUI() {
-
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.barTintColor = .orange
@@ -253,6 +260,9 @@ extension ZJRentAptViewController {
         self.view.backgroundColor = .orange
         self.view.addSubview(mapView)
         mapView.fillSuperview()
+        
+        self.view.addSubview(indicatorView)
+        indicatorView.anchor(top: self.mapView.topAnchor, left: nil, bottom: nil, right: self.mapView.rightAnchor, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 20, width: IndicaterView.selfWidth, height: IndicaterView.selfHeight)
 
         self.view.addSubview(listView)
         listView.fillSuperview()

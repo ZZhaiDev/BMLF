@@ -14,7 +14,6 @@ class ZJRentAptListDetailDescriptionCell: UICollectionViewCell {
             if data != nil {
                 label.text = data!
             }
-
         }
     }
 

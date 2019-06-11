@@ -14,9 +14,9 @@ class CrimeViewModel {
 }
 
 extension CrimeViewModel {
-    func loadCrime(dictValue: String, finished: @escaping ()->Void) {
+    func loadCrime(dictValue: String, finished: @escaping () -> Void) {
         ZJPrint(dictValue)
-        let urlStr = "http://aca33a60.ngrok.io/api/v1/info/crime/il/?page_size=300"
+        let urlStr = "http://c8790638.ngrok.io/api/v1/info/crime/il/?page_size=300"
         NetworkTools.requestData(.post, URLString: urlStr, parameters: ["in_polygon": dictValue]) { (result) in
             guard let dict = result as? [String: Any] else { return }
             guard let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: []) else {

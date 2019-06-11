@@ -15,21 +15,19 @@ private let zjEdgeInsetMargin : CGFloat = 10
 class ZJRentAptListDetailCatrgoriesCell: UICollectionViewCell {
 
     var coordinate: CLLocationCoordinate2D?
-//    var statusViewbackgroundColor = UIColor()
-
     var dict = [["crime", "crime"],["streetview", "street view"]]
 
     fileprivate lazy var collectionView: UICollectionView = { [weak self] in
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 80, height: self!.frame.size.height)
         layout.scrollDirection = .horizontal
-        let cv = UICollectionView(frame: self!.bounds, collectionViewLayout: layout)
-        cv.dataSource = self
-        cv.delegate = self
-        cv.register(GameCell.self, forCellWithReuseIdentifier: cellId)
-        cv.contentInset = UIEdgeInsets(top: 0, left: zjEdgeInsetMargin, bottom: 0, right: zjEdgeInsetMargin)
-        cv.backgroundColor = .clear
-        return cv
+        let collectionV = UICollectionView(frame: self!.bounds, collectionViewLayout: layout)
+        collectionV.dataSource = self
+        collectionV.delegate = self
+        collectionV.register(GameCell.self, forCellWithReuseIdentifier: cellId)
+        collectionV.contentInset = UIEdgeInsets(top: 0, left: zjEdgeInsetMargin, bottom: 0, right: zjEdgeInsetMargin)
+        collectionV.backgroundColor = .clear
+        return collectionV
         }()
 
     lazy var line1: UIView = {
@@ -46,8 +44,6 @@ class ZJRentAptListDetailCatrgoriesCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        self.backgroundColor = .red
-
         setupUI()
     }
 
@@ -70,14 +66,9 @@ extension ZJRentAptListDetailCatrgoriesCell: UICollectionViewDataSource, UIColle
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        // swiftlint:disable force_cast
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! GameCell
-
-//        cell.baseGame = groups![(indexPath as NSIndexPath).item]
-        ZJPrint(dict[indexPath.row][0])
-//        cell.imageView = UIImageView(image: UIImage(named: dict[indexPath.row][0]))
-//        cell.titleView.text = dict[indexPath.row][1]
         cell.data = [dict[indexPath.row][0], dict[indexPath.row][1]]
-
         return cell
     }
 
@@ -88,14 +79,10 @@ extension ZJRentAptListDetailCatrgoriesCell: UICollectionViewDataSource, UIColle
             streetVC.destinationLongitude = coordinate?.longitude
             streetVC.statusViewBackGroundCorlor = (UIApplication.shared.statusBarView?.backgroundColor)!
             if let topVC = UIApplication.topViewController() as? ZJRentAptListDetailViewController {
-//                topVC.collectionView.contentOffset.y = -(zjNavigationBarHeight+zjCycleViewH+zjStatusHeight)
-                topVC.present(streetVC, animated: true) {
-
-                }
+                topVC.present(streetVC, animated: true) {}
             }
         }
     }
-
 }
 
 //cell 宽高：80*90 imageView: 45*45
@@ -106,44 +93,39 @@ class GameCell: UICollectionViewCell {
             titleView.text = data[1]
             setupUI()
         }
-
     }
+    
     lazy var externalView: UIView = {
-        let iv = UIView()
-        return iv
+        let view = UIView()
+        return view
     }()
 
     lazy var imageView: UIImageView = {
-        let iv = UIImageView()
-        return iv
+        let imageV = UIImageView()
+        return imageV
     }()
     lazy var titleView: UILabel = {
-        let tv = UILabel()
-        tv.textAlignment = .center
-        tv.font = UIFont.systemFont(ofSize: 12)
-        return tv
+        let labelV = UILabel()
+        labelV.textAlignment = .center
+        labelV.font = UIFont.systemFont(ofSize: 12)
+        return labelV
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        setupUI()
     }
 
     func setupUI() {
         externalView.layer.cornerRadius = 22.5
         externalView.layer.masksToBounds = true
-
         self.addSubview(externalView)
         externalView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -8).isActive = true
         externalView.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0).isActive = true
-        //        imageView.frame.size = CGSize(width: 45, height: 45)
         externalView.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 45, height: 45)
         externalView.layer.borderColor = UIColor.orange.cgColor
         externalView.layer.borderWidth = 1
-
         externalView.addSubview(imageView)
         imageView.fillSuperview(padding: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8))
-
         self.addSubview(titleView)
         titleView.anchor(top: externalView.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 5, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         titleView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor, constant: 0).isActive = true
@@ -152,5 +134,4 @@ class GameCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }

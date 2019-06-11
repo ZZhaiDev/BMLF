@@ -18,7 +18,6 @@ class ZJRentAptListView: UIView {
     }
 
     fileprivate lazy var collectionView: UICollectionView = {
-//         = UICollectionView(collectionViewLayout: UICollectionViewFlowLayout())
         let view = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
@@ -26,28 +25,16 @@ class ZJRentAptListView: UIView {
         return view
     }()
 
-//    fileprivate lazy var orangeView: UIView = {
-//       let view = UIView(frame: CGRect(x: 0, y: 0, width: zjScreenWidth, height: 200))
-//        view.backgroundColor = .orange
-//        return view
-//    }()
-
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        self.backgroundColor = .red
-//        self.addSubview(orangeView)
         self.addSubview(collectionView)
         collectionView.fillSuperview()
-
         collectionView.dataSource = self
         collectionView.delegate = self
-//        collectionView.isPagingEnabled = true
-//        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.register(UINib(nibName: "ZJRentAptListViewCell", bundle: nil), forCellWithReuseIdentifier: cellId)
         collectionView.register(UINib(nibName: "ZJRentAptListViewCell2", bundle: nil), forCellWithReuseIdentifier: cellId)
-
+        // swiftlint:disable force_cast
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-//        layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 10
         layout.minimumLineSpacing = 10
         layout.itemSize = CGSize(width: zjScreenWidth-20, height: ZJRentAptListViewCell2.selfHeight)
@@ -61,11 +48,11 @@ class ZJRentAptListView: UIView {
 
 extension ZJRentAptListView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        ZJPrint(data.count)
         return data.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        // swiftlint:disable force_cast
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ZJRentAptListViewCell2
         cell.data = data[indexPath.row]
         return cell
@@ -73,10 +60,9 @@ extension ZJRentAptListView: UICollectionViewDataSource, UICollectionViewDelegat
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let tvc = UIApplication.topViewController() as? ZJRentAptViewController {
-            let vc = ZJRentAptListDetailViewController()
-            vc.data = data[indexPath.row]
-//            let nvc = ZJNavigationController(rootViewController: vc)
-            tvc.navigationController?.pushViewController(vc, animated: true)
+            let detailVC = ZJRentAptListDetailViewController()
+            detailVC.data = data[indexPath.row]
+            tvc.navigationController?.pushViewController(detailVC, animated: true)
         }
     }
 

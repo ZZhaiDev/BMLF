@@ -4,7 +4,6 @@ class InfoController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     fileprivate let cellId = "Cell"
     fileprivate let headerId = "id"
-    
     fileprivate let collectionView = UICollectionView(frame: .zero, collectionViewLayout: StretchyHeaderLayout())
     fileprivate let closeButton = UIButton(type: .system)
     fileprivate let confetti = ConfettiView()
@@ -71,19 +70,16 @@ class InfoController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
-
         if -offsetY > 150 {
 //            handleDismiss()
             return
         }
-
         if offsetY > 0 {
             header?.animator.fractionComplete = 0
             closeButton.alpha = 1
             animateFloatingView(offsetY)
             return
         }
-
         closeButton.alpha = 1 - abs(offsetY) / 100
         header?.animator.fractionComplete = abs(offsetY) / 300
     }
@@ -127,12 +123,10 @@ class InfoController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! InfoContentCell
-
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
         let width = view.frame.width - 48
         let dummyCell = InfoContentCell(frame: .init(x: 0, y: 0, width: width, height: .greatestFiniteMagnitude))
         dummyCell.layoutIfNeeded()

@@ -121,7 +121,7 @@ extension ZJAddAptViewController: NVActivityIndicatorViewable {
         getImageUrlFromAWSS3(UUID: UUID) {
             ZJPrint(images)
             let form = self.fillOutForms(UUID: UUID)
-            NetworkTools.requestData(.post, URLString: "http://aca33a60.ngrok.io/api/v1/rental/house/", parameters: form) { (data) in
+            NetworkTools.requestData(.post, URLString: "http://c8790638.ngrok.io/api/v1/rental/house/", parameters: form) { (data) in
                 guard let data = data else {
                     NVActivityIndicatorPresenter.sharedInstance.setMessage("Something is Wrong...")
                     DispatchQueue.main.asyncAfter(deadline: .now()+1.5, execute: {

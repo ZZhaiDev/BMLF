@@ -10,15 +10,14 @@ import UIKit
 import MapKit
 import CoreLocation
 
-var userCurrentCoordinate: CLLocationCoordinate2D?
 
-//class CustomPointAnnotation: MKPointAnnotation {
-//    var imageName: String!
-//}
+var userCurrentCoordinate: CLLocationCoordinate2D?
 
 protocol ZJRentAptMapViewDelegate: class {
     func zjRentAptMapViewDidEndDraw()
 }
+
+
 
 class ZJRentAptMapView: UIView {
 
@@ -27,19 +26,16 @@ class ZJRentAptMapView: UIView {
     var points = [CLLocationCoordinate2D]()
     var rentingAnnotations = [MKAnnotation]()
     weak var delegate: ZJRentAptMapViewDelegate?
-    var zoomLevel: CGFloat = 5
-//    var crimeViewModel = CrimeViewModel()
+    var zoomLevel: CGFloat = 20
     var zipcodeAndCrimeViewModel = ZipcodeAndCrimeViewModel()
+    
     var data = [AddAptProperties]() {
         didSet {
             self.mapsView.removeAnnotations(rentingAnnotations)
             for property in data {
                 if let lat = property.latitude, let lon = property.longitude {
                     let annotation = CustomizedAnnotation()
-//                    annotation.imageName = "Sites-RBC"
                     annotation.data = property
-//                    annotation.title = "chicago il"
-//                    annotation.subtitle = "1室一厅 u短租"
                     annotation.coordinate = CLLocationCoordinate2D(latitude: Double(lat)!, longitude: Double(lon)!)
                     DispatchQueue.main.async {
                         self.mapsView.addAnnotation(annotation)
@@ -47,7 +43,6 @@ class ZJRentAptMapView: UIView {
                         ZJPrint(self.mapsView.annotations.count)
                     }
                 }
-
             }
         }
     }
@@ -112,8 +107,6 @@ extension ZJRentAptMapView {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !isDrawing { return }
         let polygon = MKPolygon(coordinates: &points, count: points.count)
-        ZJPrint(points.count)
-//        ZJPrint(points)
         var coordinatesArr = ""
         for point in points {
             coordinatesArr += ",\(point.longitude),\(point.latitude)"
@@ -144,27 +137,26 @@ extension ZJRentAptMapView {
                         coorResult.append(tempCoor)
                     }
                     DispatchQueue.main.async {
+                        ZJPrint(data.zipCode)
+                        let dangerousLevelCorlorDict = UIColor.dangerouseLevelColor(crimeCount: data.crimeCount)
                         let polygonArea = MKPolygon(coordinates: &coorResult, count: coorResult.count)
+                        polygonArea.title = String(dangerousLevelCorlorDict["level"] as! Int)
                         self.mapsView.addOverlay(polygonArea)
-                         ZJPrint("--------------1")
                         let polygonline = MKPolyline(coordinates: coorResult, count: coorResult.count)
                         self.mapsView.addOverlay(polygonline)
-                        ZJPrint("--------------1")
                     }
                 }
             }
         }
         mapsView.addOverlay(polygon)
-        points = [] // Reset points
-
+        points = []
         self.delegate?.zjRentAptMapViewDidEndDraw()
-
     }
 }
 
 extension ZJRentAptMapView: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-         ZJPrint("--------------3")
+        
         if overlay is MKPolyline {
             if isDrawing == false {
                 let renderer = MKPolylineRenderer(overlay: overlay)
@@ -178,9 +170,17 @@ extension ZJRentAptMapView: MKMapViewDelegate {
             return polylineRenderer
         } else if overlay is MKPolygon {
             if isDrawing == false {
-                let polygonView = MKPolygonRenderer(overlay: overlay)
-                polygonView.fillColor = UIColor.lightGray.withAlphaComponent(0.4)
-                return polygonView
+                if let text = overlay.title, let tempText = text, let level = Int(tempText) {
+                    if level == -1 {
+                        let polygonView = MKPolygonRenderer(overlay: overlay)
+                        polygonView.fillColor = UIColor.white.withAlphaComponent(0.5)
+                        return polygonView
+                    } else {
+                        let polygonView = MKPolygonRenderer(overlay: overlay)
+                        polygonView.fillColor = UIColor.dangerouseLevelColorArr[level]
+                        return polygonView
+                    }
+                }
             }
             let polygonView = MKPolygonRenderer(overlay: overlay)
             polygonView.fillColor = UIColor.lightGray.withAlphaComponent(0.4)
@@ -188,8 +188,7 @@ extension ZJRentAptMapView: MKMapViewDelegate {
         }
         return MKPolylineRenderer(overlay: overlay)
     }
-
-    //自定义 annotation
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         // Don't want to show a custom image if the annotation is the user's location.
         guard !(annotation is MKUserLocation) else {
@@ -221,7 +220,6 @@ extension ZJRentAptMapView: MKMapViewDelegate {
 
         // Better to make this class property
         let annotationIdentifier = "AnnotationIdentifier"
-
         var annotationView: MKAnnotationView?
         if let dequeuedAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) {
             annotationView = dequeuedAnnotationView
@@ -242,6 +240,7 @@ extension ZJRentAptMapView: MKMapViewDelegate {
 
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if view.annotation is MKUserLocation {return}
+        // swiftlint:disable force_cast
         let starbucksAnnotation = view.annotation as! CustomizedAnnotation
         let calloutView = CustomCalloutView(frame: CGRect(x: 0, y: 0, width: zjScreenWidth*0.6, height: zjScreenHeight*0.5))
         calloutView.data = starbucksAnnotation.data
@@ -298,10 +297,10 @@ extension ZJRentAptMapView: CLLocationManagerDelegate {
             let geocoder = CLGeocoder()
             geocoder.reverseGeocodeLocation(CLLocation.init(latitude: location.coordinate.latitude, longitude:location.coordinate.longitude)) { (places, error) in
                 if error == nil {
-                    if let place = places {
-                        if let firstPlace = place.first, let subthoroughfare = firstPlace.subThoroughfare, let thoroughfare = firstPlace.thoroughfare, let postalCode = firstPlace.postalCode, let locality = firstPlace.locality {
-                        }
-                    }
+//                    if let place = places {
+//                        if let firstPlace = place.first, let subthoroughfare = firstPlace.subThoroughfare, let thoroughfare = firstPlace.thoroughfare, let postalCode = firstPlace.postalCode, let locality = firstPlace.locality {
+//                        }
+//                    }
                 }
             }
         }

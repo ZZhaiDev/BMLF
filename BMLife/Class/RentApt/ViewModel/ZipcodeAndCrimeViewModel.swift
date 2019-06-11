@@ -27,7 +27,7 @@ extension ZipcodeAndCrimeViewModel {
     func loadZipcodeAndCrime(dictValue: String, finished: @escaping () -> Void) {
         datas.removeAll()
         ZJPrint(dictValue)
-        let urlStr = "http://aca33a60.ngrok.io/api/v1/location/zipcode/areas/?page_size=300"
+        let urlStr = "http://c8790638.ngrok.io/api/v1/location/zipcode/areas/?page_size=300"
         NetworkTools.requestData(.post, URLString: urlStr, parameters: ["in_polygon": dictValue]) { (result) in
             guard let dict = result as? [String: Any] else { return }
             guard let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: []) else {return}

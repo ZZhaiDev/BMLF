@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//http://aca33a60.ngrok.io/api/v1/rental/house/
+//http://c8790638.ngrok.io/api/v1/rental/house/
 
 struct ZJAddAptModel: Codable {
     var count: Int?

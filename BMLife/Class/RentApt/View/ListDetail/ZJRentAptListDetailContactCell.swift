@@ -40,46 +40,37 @@ class ZJRentAptListDetailContactCell: UICollectionViewCell {
                   poster_wechat = weChat
                   wechatL.text = wechatStr + weChat
                 }
-//                let firstString = wechatStr.withAttributes([.textColor(UIColor.black),
-//                                                              .font(.systemFont(ofSize: 16, weight: .bold))])
-//                let secondString = "zzjasdfasfad".withAttributes([.textColor(UIColor.black),
-//                                                                              .font(.systemFont(ofSize: 15))])
-//                wechatL.attributedText = firstString + secondString
             }
         }
     }
 
     lazy var phoneB: UIButton = {
-       let b = UIButton()
-        b.backgroundColor = .orange
-//        b.setTitle("Call: 654000333552", for: .normal)
-        b.setTitleColor(.white, for: .normal)
-        b.addTarget(self, action: #selector(callPhone), for: .touchUpInside)
-
-        b.layer.cornerRadius = (ZJRentAptListDetailContactCell.selfHeight - 2*spacePadding)/3/2
-        b.layer.masksToBounds = false
-        b.layer.shadowColor = UIColor.lightGray.cgColor
-        b.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-        b.layer.shadowOpacity = 1.0
-        b.layer.shadowRadius = 0.0
-        return b
+       let button = UIButton()
+        button.backgroundColor = .orange
+        button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(callPhone), for: .touchUpInside)
+        button.layer.cornerRadius = (ZJRentAptListDetailContactCell.selfHeight - 2*spacePadding)/3/2
+        button.layer.masksToBounds = false
+        button.layer.shadowColor = UIColor.lightGray.cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        button.layer.shadowOpacity = 1.0
+        button.layer.shadowRadius = 0.0
+        return button
     }()
 
     lazy var emailB: UIButton = {
-        let b = UIButton()
-        b.backgroundColor = .orange
-//        b.setTitle("Email: asdfsdff@/com", for: .normal)
-        b.setTitleColor(.white, for: .normal)
-        b.titleLabel?.adjustsFontSizeToFitWidth = true
-        b.addTarget(self, action: #selector(sendEmail), for: .touchUpInside)
-
-        b.layer.cornerRadius = (ZJRentAptListDetailContactCell.selfHeight - 2*spacePadding)/3/2
-        b.layer.masksToBounds = false
-        b.layer.shadowColor = UIColor.lightGray.cgColor
-        b.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-        b.layer.shadowOpacity = 1.0
-        b.layer.shadowRadius = 0.0
-        return b
+        let button = UIButton()
+        button.backgroundColor = .orange
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
+        button.addTarget(self, action: #selector(sendEmail), for: .touchUpInside)
+        button.layer.cornerRadius = (ZJRentAptListDetailContactCell.selfHeight - 2*spacePadding)/3/2
+        button.layer.masksToBounds = false
+        button.layer.shadowColor = UIColor.lightGray.cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        button.layer.shadowOpacity = 1.0
+        button.layer.shadowRadius = 0.0
+        return button
     }()
 
     lazy var wechatL: UILabel = {
@@ -105,7 +96,6 @@ class ZJRentAptListDetailContactCell: UICollectionViewCell {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients([poster_email])
-            //            mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
             mail.setSubject("BMLife-interested your post")
             if let topVC = UIApplication.topViewController() {
                 topVC.present(mail, animated: true)
@@ -118,8 +108,7 @@ class ZJRentAptListDetailContactCell: UICollectionViewCell {
     @objc fileprivate func callPhone() {
         if let url = URL(string: "telprompt://\(poster_phone)"), UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:]) { (_) in
-
-                }
+            }
         }
     }
 

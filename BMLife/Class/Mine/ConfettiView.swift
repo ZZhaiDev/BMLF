@@ -1,10 +1,3 @@
-//
-//  ConfettiView.swift
-//  find-my-parking
-//
-//  Created by Tieda Wei on 2019-04-13.
-//  Copyright © 2019 Tieda Wei. All rights reserved.
-//
 
 import UIKit
 import QuartzCore

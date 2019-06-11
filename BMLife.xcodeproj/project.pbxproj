@@ -72,6 +72,7 @@
 		A4F460F322AAF4BC00A0831E /* ZJRentAptListDetailContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F460F222AAF4BC00A0831E /* ZJRentAptListDetailContactCell.swift */; };
 		A4F460F722AEF25A00A0831E /* ZipcodeAndCrimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F460F622AEF25900A0831E /* ZipcodeAndCrimeViewModel.swift */; };
 		A4F460F922AEF35700A0831E /* ZipcodeAndCrimeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F460F822AEF35700A0831E /* ZipcodeAndCrimeModel.swift */; };
+		A4F460FB22B04A4B00A0831E /* IndicaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F460FA22B04A4B00A0831E /* IndicaterView.swift */; };
 		D3FC18A892D1483EAE94B8E8 /* Pods_BMLife.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8421B0C6CB69EE790F3D9692 /* Pods_BMLife.framework */; };
 /* End PBXBuildFile section */
 
@@ -167,6 +168,7 @@
 		A4F460F222AAF4BC00A0831E /* ZJRentAptListDetailContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListDetailContactCell.swift; sourceTree = "<group>"; };
 		A4F460F622AEF25900A0831E /* ZipcodeAndCrimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipcodeAndCrimeViewModel.swift; sourceTree = "<group>"; };
 		A4F460F822AEF35700A0831E /* ZipcodeAndCrimeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipcodeAndCrimeModel.swift; sourceTree = "<group>"; };
+		A4F460FA22B04A4B00A0831E /* IndicaterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicaterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -409,6 +411,7 @@
 				A41CFD72228F28FE0008FFB6 /* ZJRentAptListViewCell.xib */,
 				381013C922ACBB1400967CFC /* ZJRentAptListViewCell2.swift */,
 				381013CA22ACBB1400967CFC /* ZJRentAptListViewCell2.xib */,
+				A4F460FA22B04A4B00A0831E /* IndicaterView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -700,6 +703,7 @@
 				A454DA7822947899006EED07 /* RecommendCycleView.swift in Sources */,
 				A4A12EE2228F64B100D281BE /* ZJAddAptMapView.swift in Sources */,
 				38476134229636D500084946 /* MineViewController.swift in Sources */,
+				A4F460FB22B04A4B00A0831E /* IndicaterView.swift in Sources */,
 				3845EDB8229087B50045A694 /* ZJAddAptDateCell.swift in Sources */,
 				3883511122A3159000E00A93 /* CustomizedAnnotationView.swift in Sources */,
 				A41CFD6C228DFCCA0008FFB6 /* ZJAddAptViewController.swift in Sources */,

@@ -116,7 +116,6 @@ class ZJRentAptListViewCell: UICollectionViewCell {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients([emailB.titleLabel?.text ?? ""])
-            //            mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
             mail.setSubject("BMLife-interested your post")
             if let topVC = UIApplication.topViewController() {
                 topVC.present(mail, animated: true)

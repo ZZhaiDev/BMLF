@@ -15,9 +15,7 @@ class ZJNavigationController: UINavigationController {
         self.navigationBar.isTranslucent = false
     }
 
-    // MARK: 重写跳转
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-
         if !self.viewControllers.isEmpty {
             viewController.hidesBottomBarWhenPushed = true //跳转之后隐藏
         }
@@ -26,7 +24,6 @@ class ZJNavigationController: UINavigationController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 }

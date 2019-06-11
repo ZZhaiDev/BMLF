@@ -31,10 +31,10 @@ class ZJRentAptListDetailTitleViewCell: UICollectionViewCell {
     }()
 
     fileprivate lazy var userPhoto: UIImageView = {
-       let up = UIImageView(image: UIImage(named: "phone"))
-        up.layer.cornerRadius = userPhotoWidth/2
-        up.layer.masksToBounds = true
-        return up
+       let imageV = UIImageView(image: UIImage(named: "phone"))
+        imageV.layer.cornerRadius = userPhotoWidth/2
+        imageV.layer.masksToBounds = true
+        return imageV
     }()
 
     override init(frame: CGRect) {

@@ -14,11 +14,10 @@ class ZJAptViewModel {
 }
 
 extension ZJAptViewModel {
-    func loadApt(finished: @escaping ([String: Any])->Void) {
+    func loadApt(finished: @escaping ([String: Any]) -> Void) {
         aptProperties.removeAll()
-        let api = "http://aca33a60.ngrok.io/api/v1/rental/house/?page=1&page_size=300"
+        let api = "http://c8790638.ngrok.io/api/v1/rental/house/?page=1&page_size=300"
         NetworkTools.requestData(.get, URLString: api) { (responce) in
-
             guard let dict = responce as? [String: Any] else { return }
             guard let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: []) else {
                 return
@@ -32,13 +31,9 @@ extension ZJAptViewModel {
                     guard let properties = feature.properties else {return}
                     self.aptProperties.append(properties)
                 }
-//                ZJPrint(self.aptProperties.count)
-//                ZJPrint(self.aptProperties)
-
             } catch let jsonError {
                 ZJPrint(jsonError)
             }
-
             finished(responce as! [String : Any])
         }
     }

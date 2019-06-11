@@ -22,7 +22,6 @@ class ZJTabBarController: UITabBarController, UITabBarControllerDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         for index in 0..<tabBar.items!.count {
             let item = tabBar.items![index]
             if index == 1 {
@@ -34,7 +33,6 @@ class ZJTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
 
     private func setupComposeBtn() {
-        
         tabBar.addSubview(composeBtn)
         composeBtn.setBackgroundImage(UIImage(named: "tabbar_compose_button"), for: .normal)
         composeBtn.setBackgroundImage(UIImage(named: "tabbar_compose_button_highlighted"), for: .highlighted)
@@ -47,30 +45,24 @@ class ZJTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
 
     func setUpAllViewController() {
-        
         setUpChildController(ZJRentAptViewController(), "House","tab_house","tab_houseHL")
 //        setUpChildController(UIViewController(), "同城",  "tabYule",  "tabYuleHL")
         setUpChildController(UIViewController(), "",  "",  "")
 //        setUpChildController(UIViewController(), "移民",  "tabYuba",  "tabYubaHL")
         setUpChildController(InfoController(), "Mine",  "tab_mine",  "tab_mineHL")
-        
     }
 
     @objc fileprivate func composeBtnButtonClicked() {
-
         let publishView = Bundle.main.loadNibNamed("PublishView", owner: nil, options: nil)?.first as! PublishView
         publishView.show()
-        
     }
 
     fileprivate func setUpChildController(_ controller : UIViewController,_ title : String,_ norImage : String,_ selectedImage : String) {
-
         controller.tabBarItem.title = title
         controller.tabBarItem.image = UIImage(named: norImage)
         controller.tabBarItem.selectedImage = UIImage(named: selectedImage)
         let nav = ZJNavigationController(rootViewController: controller)
         self.addChild(nav)
-        
     }
 
 }

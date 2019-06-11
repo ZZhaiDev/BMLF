@@ -18,8 +18,7 @@ extension CityBoundaryViewModel {
 //        "https://nominatim.openstreetmap.org/search.php?q=chicago&polygon_geojson=1&format=json"
         let urlStr = "https://nominatim.openstreetmap.org/search.php?q=\(city)&polygon_geojson=1&format=json"
         NetworkTools.requestData(.get, URLString: urlStr) { (result) in
-//            ZJPrint(result)
-            guard let result = result as? [Dictionary<String, Any>] else {return}
+            guard let result = result as? [[String: Any]] else {return}
             guard let firstResult = result.first else {return}
             guard let geojson = firstResult["geojson"] as? [String: Any] else {return}
             guard let coordinates = geojson["coordinates"] as? [Any] else {return}

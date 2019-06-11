@@ -22,11 +22,10 @@ struct ZipcodeAndCrimeModelGeometry: Codable {
     var coordinates: [[[[Double]]]]?
 }
 
-struct ZipcodeAndCrimeModelCoordinate: Codable{
-}
+//struct ZipcodeAndCrimeModelCoordinate: Codable{
+//}
 
 struct ZipcodeAndCrimeModelProperties: Codable {
     var zcta5ce10: String?
     var crimecount: Int?
 }
-

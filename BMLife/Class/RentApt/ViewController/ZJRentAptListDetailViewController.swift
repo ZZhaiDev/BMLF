@@ -27,12 +27,9 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
 
     var data = AddAptProperties() {
         didSet {
-//            titleView.data = data
             if let images = data.images {
                 cycleView.data = images
             }
-
-            ZJPrint(data.fulladdress)
             baseValue.append(data.fulladdress ?? "")
             let price = (data.base?.price ?? "") + "/m"
             baseValue.append(price)
@@ -43,7 +40,6 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
             baseValue.append(bathroom)
             baseValue.append(data.base?.parkinglot ?? "")
             baseValue.append(data.base?.washingmachine ?? "")
-
             if let requirement = data.requirement, let others = requirement.otherrequirements {
                 for other in others {
                     requirementTitles.append(other.otherrequirement ?? "")
@@ -61,13 +57,11 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
                     requirementTitles.insert(gender, at: 0)
                 }
             }
-
             if let base = data.base, let include = base.included {
                 for temp in include {
                     includeTitles.append(temp.included ?? "")
                 }
             }
-
             if let base = data.base, let nearby = base.nearby {
                 for temp in nearby {
                     closeTitles.append(temp.nearby ?? "")
@@ -77,9 +71,7 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
                 baseValue.append(start)
             }
             if let description = data.description, let des = description.description {
-//                descriptionVaule = des
                 descriptionVaule = des
-
             }
             getDrivingDistanceAndTime { (distance, time, error) in
                 if error != nil {
@@ -98,14 +90,12 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
                 self.baseValue.append(timeValue)
                 self.collectionView.reloadData()
             }
-
         }
     }
 
     var descriptionVaule = defalutValue
     var requiredmentCellHeight: CGFloat = 100
     var ynCategoryButtons = [YNCategoryButton]()
-
     var titleArr = ["", "", "Base", "Requirement", "Included", "Nearby", "Description", "Contact", ""]
     var basekey = ["Address", "Price", "Category", "House Type", "Room Type",  "Bathroom", "Parking", "Washer", "Start Date"]
     var baseValue = [String]()
@@ -114,56 +104,35 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
     var closeTitles = [String]()
 
     let cycleView: RecommendCycleView = {
-        let cv = RecommendCycleView.recommendCycleView()
-        cv.frame = CGRect(x: 0, y: -(zjCycleViewH+zjStatusHeight+zjNavigationBarHeight), width: zjScreenWidth, height: zjCycleViewH+zjStatusHeight+zjNavigationBarHeight)
-        return cv
+        let view = RecommendCycleView.recommendCycleView()
+        view.frame = CGRect(x: 0, y: -(zjCycleViewH+zjStatusHeight+zjNavigationBarHeight), width: zjScreenWidth, height: zjCycleViewH+zjStatusHeight+zjNavigationBarHeight)
+        return view
     }()
-
-//    let titleView: ZJRentAptListDetailTitleView = {
-//       let tv = ZJRentAptListDetailTitleView(frame: CGRect(x: 0, y: -(titleViewH+cateViewH), width: zjScreenWidth, height: titleViewH))
-//        return tv
-//    }()
-//
-//    let catView: ZJRentAptListDetailCatrgories = {
-//       let cat = ZJRentAptListDetailCatrgories(frame: CGRect(x: 0, y: -cateViewH, width: zjScreenWidth, height: cateViewH))
-//        return cat
-//    }()
 
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.headerReferenceSize = CGSize(width: zjScreenWidth, height: zjHeaderViewH)
-//        layout.estimatedItemSize = CGSize(width: zjScreenWidth, height: 10)
-//        layout.itemSize = CGSize(width: zjScreenWidth, height: 150)
         layout.minimumInteritemSpacing = zjItemMargin
         layout.minimumLineSpacing = 5
         layout.sectionInset = UIEdgeInsets(top: 0, left: zjItemMargin, bottom: 0, right: zjItemMargin)
-
-        let cv = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
-        cv.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
-        cv.register(ZJRentAptListDetailBaseCell.self, forCellWithReuseIdentifier: baseCellId)
-
-        cv.register(ZJRentAptListDetailRequirementCell.self, forCellWithReuseIdentifier: requirementCellId)
-        cv.register(ZJRentAptListDetailTitleViewCell.self, forCellWithReuseIdentifier: titleCellId)
-        cv.register(ZJRentAptListDetailCatrgoriesCell.self, forCellWithReuseIdentifier: cateCellId)
-        cv.register(ZJRentAptListDetailDescriptionCell.self, forCellWithReuseIdentifier: descriptionCellId)
-        cv.register(ZJRentAptListDetailContactCell.self, forCellWithReuseIdentifier: contactCellId)
-
-        cv.backgroundColor = .clear
-//        cv.register(UINib(nibName: "CollectionPrettyCell", bundle: nil), forCellWithReuseIdentifier: zjPrettyCellID)
-//        cv.register(UINib(nibName: "CollectionNormalCell", bundle: nil), forCellWithReuseIdentifier: zjNormalCellID)
-
-        cv.register(ZJRentAptListHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerCellId)
-
-        cv.dataSource = self
-        cv.delegate = self
-        return cv
+        let view = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
+        view.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        view.register(ZJRentAptListDetailBaseCell.self, forCellWithReuseIdentifier: baseCellId)
+        view.register(ZJRentAptListDetailRequirementCell.self, forCellWithReuseIdentifier: requirementCellId)
+        view.register(ZJRentAptListDetailTitleViewCell.self, forCellWithReuseIdentifier: titleCellId)
+        view.register(ZJRentAptListDetailCatrgoriesCell.self, forCellWithReuseIdentifier: cateCellId)
+        view.register(ZJRentAptListDetailDescriptionCell.self, forCellWithReuseIdentifier: descriptionCellId)
+        view.register(ZJRentAptListDetailContactCell.self, forCellWithReuseIdentifier: contactCellId)
+        view.backgroundColor = .clear
+        view.register(ZJRentAptListHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerCellId)
+        view.dataSource = self
+        view.delegate = self
+        return view
     }()
-//    var statusBarViewInitColor = UIColor()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         hideNavigationBar()
-//        statusBarViewInitColor = (UIApplication.shared.statusBarView?.backgroundColor)!
-
     }
 
     func hideNavigationBar() {
@@ -172,30 +141,23 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
     }
+    
     fileprivate func showNavigationBar() {
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.view.backgroundColor = .orange
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         showNavigationBar()
-        //防止statusView 还是黄色的bug
-//        collectionView.contentOffset.y = -(zjNavigationBarHeight+zjCycleViewH+zjStatusHeight)
         navigationController?.navigationBar.tintColor = .white
-//        UIApplication.shared.statusBarView?.backgroundColor = statusBarViewInitColor
-
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        hideNavigationBar()
-//        self.navigationController?.navigationBar.tintColor = .orange
-
         view.addSubview(collectionView)
         collectionView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         collectionView.contentInset = UIEdgeInsets(top: zjCycleViewH, left: 0, bottom: 0, right: 0)
-
         collectionView.addSubview(cycleView)
     }
 
@@ -214,17 +176,9 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
         let destination     = MKPlacemark(coordinate: destP)
         request.source      = MKMapItem(placemark: source)
         request.destination = MKMapItem(placemark: destination)
-
-        // Specify the transportation type
         request.transportType = MKDirectionsTransportType.automobile
-
-        // If you're open to getting more than one route,
-        // requestsAlternateRoutes = true; else requestsAlternateRoutes = false;
         request.requestsAlternateRoutes = true
-
         let directions = MKDirections(request: request)
-
-        // Now we have the routes, we can calculate the distance using
         directions.calculate { (response, error) in
             if error != nil {
                 finished(nil, nil, error)
@@ -294,60 +248,66 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
         return CGSize(width: zjScreenWidth, height: 44)
     }
 
+    // swiftlint:disable function_body_length
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.section == 0 {
+        switch indexPath.section {
+        case 0:
+            // swiftlint:disable: force_cast
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: titleCellId, for: indexPath) as! ZJRentAptListDetailTitleViewCell
             cell.data = data
             return cell
-        } else if indexPath.section == 1 {
+        case 1:
+            // swiftlint:disable: force_cast
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cateCellId, for: indexPath) as! ZJRentAptListDetailCatrgoriesCell
             if let lon = data.longitude, let lati = data.latitude {
                 cell.coordinate = CLLocationCoordinate2D(latitude: Double(lati)!, longitude: Double(lon)!)
             }
             return cell
-
-        } else if indexPath.section == 2 {
+        case 2:
+            // swiftlint:disable: force_cast
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: baseCellId, for: indexPath) as! ZJRentAptListDetailBaseCell
-
             cell.firstLabel.text = "\(basekey[indexPath.row])" + ":"
-            ZJPrint(baseValue.count)
             cell.secondtLabel.text = "\(baseValue[indexPath.row])"
             return cell
-        } else if indexPath.section == 3 {
+        case 3:
+            // swiftlint:disable: force_cast
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: requirementCellId, for: indexPath) as! ZJRentAptListDetailRequirementCell
             cell.ynCategoryButtonType = .colorful
             cell.titles = requirementTitles
-
             return cell
-        } else if indexPath.section == 4 {
+        case 4:
+            // swiftlint:disable: force_cast
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: requirementCellId, for: indexPath) as! ZJRentAptListDetailRequirementCell
             cell.titles = includeTitles
             return cell
-        } else if indexPath.section == 5 {
+        case 5:
+            // swiftlint:disable: force_cast
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: requirementCellId, for: indexPath) as! ZJRentAptListDetailRequirementCell
             cell.titles = closeTitles
             return cell
-        } else if indexPath.section == 6 {
+        case 6:
             if descriptionVaule == defalutValue {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
                 return cell
             }
+            // swiftlint:disable: force_cast
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: descriptionCellId, for: indexPath) as! ZJRentAptListDetailDescriptionCell
             cell.data = descriptionVaule
             return cell
-        } else if indexPath.section == 7 {
+        case 7:
+            // swiftlint:disable: force_cast
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: contactCellId, for: indexPath) as! ZJRentAptListDetailContactCell
             cell.data = data.contact
             return cell
+        default:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+            return cell
         }
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        // 1.取出HeaderView
+       // swiftlint:disable: force_cast
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerCellId, for: indexPath) as! ZJRentAptListHeaderView
-
         headerView.label.text = titleArr[indexPath.section]
         return headerView
     }
@@ -375,31 +335,18 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        ZJPrint(scrollView.contentOffset)
-        ZJPrint(zjCycleViewH)
         var offset = (scrollView.contentOffset.y + zjCycleViewH + zjNavigationBarHeight + zjStatusHeight)/150
-        ZJPrint(offset)
         if offset > 1 {
             offset = 1
-//            let color = UIColor.init(red: 1, green: 1, blue: 1, alpha: offset)
-//            let color = UIColor(displayP3Red: 255/255, green: 165/255, blue: 0, alpha: offset)
-//            self.navigationController?.navigationBar.tintColor = UIColor(hue: 0, saturation: offset, brightness: 1, alpha: 1)
             let color = UIColor.orange.withAlphaComponent(offset)
             self.navigationController?.navigationBar.tintColor = UIColor.white
-//            let color = UIColor.orange.withAlphaComponent(offset)
-//            self.navigationController?.navigationBar.tintColor =  UIColor.white.withAlphaComponent(offset)
             self.navigationController?.navigationBar.backgroundColor = color
             UIApplication.shared.statusBarView?.backgroundColor = color
         } else {
-//            let color = UIColor.init(red: 1, green: 1, blue: 1, alpha: offset)
             let color = UIColor.orange.withAlphaComponent(offset)
-//            self.navigationController?.navigationBar.tintColor = UIColor(hue: 39, saturation:(1-offset), brightness: 1, alpha: 1)
             self.navigationController?.navigationBar.tintColor = UIColor.orange.withAlphaComponent(1-offset)
-//            let color = UIColor.orange.withAlphaComponent(offset)
-//            self.navigationController?.navigationBar.tintColor =  UIColor.orange.withAlphaComponent(1-offset)
             self.navigationController?.navigationBar.backgroundColor = color
             UIApplication.shared.statusBarView?.backgroundColor = color
         }
     }
-
 }

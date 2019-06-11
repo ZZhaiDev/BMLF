@@ -15,6 +15,8 @@ let zjStatusHeight : CGFloat = isIphoneX ? 44 : 20
 let zjNavigationBarHeight :CGFloat = 44
 let zjTabBarHeight : CGFloat = isIphoneX ? 49 + 34 : 49
 
+private let polygonAlpha: CGFloat = 0.7
+
 class PaddingLabel: UILabel {
 
     @IBInspectable var topInset: CGFloat = 5.0
@@ -115,6 +117,61 @@ extension UIColor {
     }
 }
 
+
+extension UIColor {
+    static let dangerouseLevelColorArr = [UIColor(r: 0, g: 255, b: 0).withAlphaComponent(polygonAlpha),
+                                          UIColor(r: 85, g: 255, b: 0).withAlphaComponent(polygonAlpha),
+                                          UIColor(r: 165, g: 255, b: 0).withAlphaComponent(polygonAlpha),
+                                          UIColor(r: 255, g: 255, b: 0).withAlphaComponent(polygonAlpha),
+                                          UIColor(r: 255, g: 210, b: 0).withAlphaComponent(polygonAlpha),
+                                          UIColor(r: 255, g: 168, b: 0).withAlphaComponent(polygonAlpha),
+                                          UIColor(r: 255, g: 126, b: 0).withAlphaComponent(polygonAlpha),
+                                          UIColor(r: 255, g: 84, b: 0).withAlphaComponent(polygonAlpha),
+                                          UIColor(r: 255, g: 42, b: 0).withAlphaComponent(polygonAlpha),
+                                          UIColor(r: 255, g: 0, b: 0).withAlphaComponent(polygonAlpha),
+                                          ]
+    static func dangerouseLevelColor(crimeCount: Int) -> [String: Any] {
+        var levelColorDict = [String: Any]()
+        if crimeCount == 0 {
+            levelColorDict["level"] = -1
+            levelColorDict["color"] = UIColor.white.withAlphaComponent(polygonAlpha)
+            return levelColorDict
+        }
+        if crimeCount >= 1 && crimeCount <= 5 {
+            levelColorDict["level"] = 0
+            levelColorDict["color"] = dangerouseLevelColorArr[0]
+        } else if crimeCount >= 6 && crimeCount <= 10 {
+            levelColorDict["level"] = 1
+            levelColorDict["color"] = dangerouseLevelColorArr[1]
+        } else if crimeCount >= 11 && crimeCount <= 20 {
+            levelColorDict["level"] = 2
+            levelColorDict["color"] = dangerouseLevelColorArr[2]
+        } else if crimeCount >= 21 && crimeCount <= 50 {
+            levelColorDict["level"] = 3
+            levelColorDict["color"] = dangerouseLevelColorArr[3]
+        } else if crimeCount >= 51 && crimeCount <= 100 {
+            levelColorDict["level"] = 4
+            levelColorDict["color"] = dangerouseLevelColorArr[4]
+        } else if crimeCount >= 101 && crimeCount <= 400 {
+            levelColorDict["level"] = 5
+            levelColorDict["color"] = dangerouseLevelColorArr[5]
+        } else if crimeCount >= 401 && crimeCount <= 1000 {
+            levelColorDict["level"] = 6
+            levelColorDict["color"] = dangerouseLevelColorArr[6]
+        } else if crimeCount >= 1000 && crimeCount <= 10000 {
+            levelColorDict["level"] = 7
+            levelColorDict["color"] = dangerouseLevelColorArr[7]
+        } else if crimeCount >= 10000 && crimeCount <= 100000 {
+            levelColorDict["level"] = 8
+            levelColorDict["color"] = dangerouseLevelColorArr[8]
+        } else if crimeCount >= 100000 {
+            levelColorDict["level"] = 9
+            levelColorDict["color"] = dangerouseLevelColorArr[9]
+        }
+        return levelColorDict
+    }
+}
+
 extension Date {
     static func dateSince1970(timeStamp: Double, formate: String = "HH:mm") -> String {
         let date = Date(timeIntervalSince1970: timeStamp)
@@ -145,8 +202,11 @@ extension UIApplication {
     }
 
     class func firstViewController() -> UIViewController? {
+        // swiftlint:disable force_cast
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        // swiftlint:disable force_cast
         let tab = appDelegate.window?.rootViewController as! UITabBarController
+        // swiftlint:disable force_cast
         let nav = tab.children.first as! UINavigationController
         let vc = nav.viewControllers.first
         return vc
@@ -307,29 +367,22 @@ extension UIView {
 
 }
 
-
 class VerticalButton: UIButton {
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         self.setup()
     }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setup()
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     func setup() {
         titleLabel?.textAlignment = .center
         UIApplication.shared.statusBarView?.backgroundColor = .clear
     }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         imageView?.frame.origin.x = 0
@@ -341,9 +394,7 @@ class VerticalButton: UIButton {
         titleLabel?.frame.size.width = self.frame.size.width
         titleLabel?.frame.size.height = self.frame.size.height - (titleLabel?.frame.origin.y)!
     }
-    
 }
-
 
 class ImageTextsButton: UIButton {
     override init(frame: CGRect) {
