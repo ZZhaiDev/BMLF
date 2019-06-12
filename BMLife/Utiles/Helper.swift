@@ -389,9 +389,9 @@ class VerticalButton: UIButton {
         imageView?.frame.origin.y = 0
         imageView?.frame.size.width = self.frame.size.width
         imageView?.frame.size.height = (imageView?.frame.size.width)!
-        titleLabel?.frame.origin.x = 0
+        titleLabel?.frame.origin.x = -15
         titleLabel?.frame.origin.y = (imageView?.frame.size.height)!
-        titleLabel?.frame.size.width = self.frame.size.width
+        titleLabel?.frame.size.width = self.frame.size.width + 30
         titleLabel?.frame.size.height = self.frame.size.height - (titleLabel?.frame.origin.y)!
     }
 }

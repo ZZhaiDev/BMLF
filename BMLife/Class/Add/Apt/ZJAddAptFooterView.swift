@@ -90,7 +90,6 @@ class ZJAddAptFooterView: UIView {
 
     fileprivate lazy var imageBackGroundView: UIView = {
         let view = UIView()
-//        view.backgroundColor = .red
         return view
     }()
 
@@ -162,6 +161,9 @@ extension ZJAddAptFooterView {
         config.library.maxNumberOfItems = 5
         let picker = YPImagePicker(configuration: config)
         picker.didFinishPicking { [unowned picker] items, cancelled in
+            if let topVC = UIApplication.topViewController() {
+                topVC.navigationController?.navigationBar.tintColor = .white
+            }
 
             if cancelled {
                 print("Picker was canceled")
@@ -180,28 +182,26 @@ extension ZJAddAptFooterView {
             if let firstItem = items.first {
                 switch firstItem {
                 case .photo(let photo):
-//                    self.selectedImageV.image = photo.image
                     self.setupImages(images: selectedItems)
                     picker.dismiss(animated: true, completion: nil)
                 case .video(let video):
                     self.selectedImageV.image = video.thumbnail
-
                     let assetURL = video.url
                     let playerVC = AVPlayerViewController()
                     let player = AVPlayer(playerItem: AVPlayerItem(url:assetURL))
                     playerVC.player = player
-
                     picker.dismiss(animated: true, completion: { [weak self] in
-                        if let vc = UIApplication.topViewController() {
-                            vc.present(picker, animated: true, completion: nil)
+                        if let topVC = UIApplication.topViewController() {
+                            topVC.present(picker, animated: true, completion: nil)
                         }
                         print("😀 \(String(describing: self?.resolutionForLocalVideo(url: assetURL)!))")
                     })
                 }
             }
         }
-        if let vc = UIApplication.topViewController() {
-            vc.present(picker, animated: true, completion: nil)
+        if let topVC = UIApplication.topViewController() {
+            picker.navigationBar.tintColor = .blue
+            topVC.present(picker, animated: true, completion: nil)
         }
 
     }

@@ -190,14 +190,31 @@ class ZJRentAptViewController: ZJBaseViewController {
         return view
     }()
 
+    var totalDatas = [AddAptProperties]()
     override func viewDidLoad() {
         super.viewDidLoad()
         aptViewModel.loadApt { (_) in
-            ZJPrint(self.aptViewModel.aptProperties.count)
-            self.listView.data = self.aptViewModel.aptProperties
-            self.mapView.data = self.aptViewModel.aptProperties
+            ZJPrint(self.aptViewModel.aptModel.count!)
+            self.feedDataToListAndMapView()
+            let count: Int = ZJAptViewModel.pageSize
+            let pageCount = (self.aptViewModel.aptModel.count!+count/2)/count
+            let dGroup = DispatchGroup()
+            for index in 2...pageCount{
+                dGroup.enter()
+                self.aptViewModel.loadApt(page: index, pageSize: count, finished: { (_) in
+                   
+                    self.feedDataToListAndMapView()
+                    dGroup.leave()
+                })
+            }
         }
         setupUI()
+    }
+    
+    func feedDataToListAndMapView(){
+        self.listView.data = self.aptViewModel.aptProperties
+        self.mapView.data = self.aptViewModel.aptProperties
+        self.totalDatas += self.aptViewModel.aptProperties
     }
 
     deinit {
@@ -221,18 +238,12 @@ class ZJRentAptViewController: ZJBaseViewController {
             indicatorView.isHidden = true
             return
         }
-
         if mapView.isDrawing == false {
             mapView.isDrawing = true
             indicatorView.isHidden = false
             mapView.mapsView.isUserInteractionEnabled = false
             drawView.data = ["draw", "drawing"]
         }
-//        else{
-//            mapView.isDrawing = false
-//            drawView.data = ["draw", "draw"]
-//            mapView.mapsView.removeOverlays(mapView.mapsView.overlays)
-//        }
     }
 
     @objc fileprivate func moveCurrentLocation() {
@@ -260,7 +271,6 @@ extension ZJRentAptViewController {
         self.view.backgroundColor = .orange
         self.view.addSubview(mapView)
         mapView.fillSuperview()
-        
         self.view.addSubview(indicatorView)
         indicatorView.anchor(top: self.mapView.topAnchor, left: nil, bottom: nil, right: self.mapView.rightAnchor, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 20, width: IndicaterView.selfWidth, height: IndicaterView.selfHeight)
 
@@ -269,31 +279,16 @@ extension ZJRentAptViewController {
         let subViews = [drawView, locationView]
         stackView = UIStackView(arrangedSubviews: subViews)
         stackView.setCustomSpacing(stackViewSpace, after: drawView)
-//        stackView.setCustomSpacing(stackViewSpace, after: locationView)
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         self.view.addSubview(stackView)
         stackView.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 10, paddingBottom: zjTabBarHeight+10, paddingRight: 0, width: squareViewW, height: stackViewSpace*CGFloat(subViews.count-1)+squareViewW*CGFloat(subViews.count))
-
-//        self.view.addSubview(drawButton)
-//        let width: CGFloat = 50
-//        drawButton.anchor(top: nil, left: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 20, paddingRight: 20, width: width, height: width)
-//        drawButton.layer.cornerRadius = width/2
-//        drawButton.layer.masksToBounds = true
-
         mapView.alpha = 1
         listView.alpha = 0
-
         navigationItem.leftBarButtonItem = UIBarButtonItem(imageName: "Logo_english")
-//        let changeRightBarButtonItem = UIBarButtonItem(title: "change", style: .plain, target: self, action: #selector(rightBarButtonClicked))
-//        let changeRightBarButtonItem = UIBarButtonItem(imageName: "navigationBar_map", size: CGSize(width: 20, height: 20))
-//        let changeRightBarButtonItem_map = UIBarButtonItem(image: UIImage(named: "navigationBar_map"), style: .plain, target: self, action: #selector(rightBarButtonClicked))
         changeRightBarButtonItem_list = UIBarButtonItem(image: UIImage(named: "navigationBar_list"), style: .plain, target: self, action: #selector(rightBarButtonClicked))
-
         titleView.addSubview(searchBar)
         navigationItem.titleView = titleView
-
-//        let filterRightBarButtonItem = UIBarButtonItem(title: "filter", style: .plain, target: self, action: #selector(filterBarButtonClicked))
         navigationItem.rightBarButtonItems = [ changeRightBarButtonItem_list]
     }
 
@@ -312,7 +307,6 @@ extension ZJRentAptViewController {
                 self.stackView.alpha = 1.0
                 self.listView.alpha = 0
             }) { (_) in
-
             }
 
         } else {
@@ -322,7 +316,6 @@ extension ZJRentAptViewController {
                 self.listView.alpha = 1
                 self.changeRightBarButtonItem_list.image = UIImage(named: "navigationBar_map")
             }) { (_) in
-
             }
         }
     }

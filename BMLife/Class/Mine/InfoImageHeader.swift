@@ -12,7 +12,7 @@ class InfoImageHeader: UICollectionReusableView {
 
     var animator: UIViewPropertyAnimator!
 
-    fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "bg"))
+    fileprivate let imageView = UIImageView(image: UIImage(named: "chicago_bgimge"))
     fileprivate let titleLabel = UILabel()
 
     override init(frame: CGRect) {

@@ -55,6 +55,13 @@ class CustomCalloutView: UIView {
         cv.showsHorizontalScrollIndicator = false
         return cv
     }()
+    
+    lazy var paddingLable: PaddingLabel = {
+        let lable = PaddingLabel()
+        lable.textColor = UIColor.white
+        lable.backgroundColor = UIColor(r: 21, g: 88, b: 35)
+        return lable
+    }()
 
     lazy var blackView: UIView = {
        let view = UIView(frame: .zero)
@@ -135,7 +142,10 @@ class CustomCalloutView: UIView {
                 phoneB.setTitle(str, for: .normal)
             }
             if let cat = data.category {
-                typeL.text = cat
+                paddingLable.text = cat
+            }
+            if let description = data.description, let title = description.title{
+                typeL.text = title
             }
             if let price = data.base?.price {
                 priceL.text = "Price: " + price + "/m"
@@ -179,6 +189,8 @@ class CustomCalloutView: UIView {
         self.layer.borderWidth = 3
         addSubview(collectionView)
         collectionView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: phoneBHeight, paddingRight: 0, width: 0, height: 0)
+        addSubview(paddingLable)
+        paddingLable.anchor(top: collectionView.topAnchor, left: collectionView.leftAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         addSubview(blackView)
         blackView.anchor(top: nil, left: leftAnchor, bottom: collectionView.bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: self.frame.size.height/4)
         // swiftlint:diable force_cast

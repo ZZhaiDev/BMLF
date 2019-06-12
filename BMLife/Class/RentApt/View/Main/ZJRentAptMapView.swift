@@ -17,21 +17,18 @@ protocol ZJRentAptMapViewDelegate: class {
     func zjRentAptMapViewDidEndDraw()
 }
 
-
-
 class ZJRentAptMapView: UIView {
-
     var isDrawing = false
     var locationManager: CLLocationManager!
     var points = [CLLocationCoordinate2D]()
-    var rentingAnnotations = [MKAnnotation]()
+//    var rentingAnnotations = [MKAnnotation]()
     weak var delegate: ZJRentAptMapViewDelegate?
     var zoomLevel: CGFloat = 20
     var zipcodeAndCrimeViewModel = ZipcodeAndCrimeViewModel()
-    
     var data = [AddAptProperties]() {
         didSet {
-            self.mapsView.removeAnnotations(rentingAnnotations)
+//            self.mapsView.removeAnnotations(rentingAnnotations)
+            ZJPrint(data.count)
             for property in data {
                 if let lat = property.latitude, let lon = property.longitude {
                     let annotation = CustomizedAnnotation()
@@ -39,7 +36,7 @@ class ZJRentAptMapView: UIView {
                     annotation.coordinate = CLLocationCoordinate2D(latitude: Double(lat)!, longitude: Double(lon)!)
                     DispatchQueue.main.async {
                         self.mapsView.addAnnotation(annotation)
-                        self.rentingAnnotations.append(annotation)
+//                        self.rentingAnnotations.append(annotation)
                         ZJPrint(self.mapsView.annotations.count)
                     }
                 }
@@ -276,7 +273,7 @@ extension ZJRentAptMapView: CLLocationManagerDelegate {
             topVC.drawView.alpha = 1
         } else {
             topVC.drawView.isUserInteractionEnabled = false
-            topVC.drawView.alpha = 0.7
+            topVC.drawView.alpha = 0.5
         }
     }
     ///calculate zoom level

@@ -53,5 +53,7 @@ class ZJRentAptListViewCell2: UICollectionViewCell {
         self.layer.masksToBounds = true
         imageV.layer.borderColor = UIColor.init(r: 21, g: 88, b: 35).cgColor
         imageV.layer.borderWidth = 0.5
+        imageV.contentMode = .scaleAspectFill
+        imageV.layer.masksToBounds = true
     }
 }

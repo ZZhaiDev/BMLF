@@ -17,16 +17,16 @@ class ZJRentAptFilterViewController: UIViewController {
     var searchCompleter = MKLocalSearchCompleter()
     var searchResults = [MKLocalSearchCompletion]()
     lazy var searchBar: PaddingTextField = { [weak self] in
-        let sb = PaddingTextField()
-        sb.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
-        sb.placeholder = "Enter Your Address"
-        sb.font = UIFont.systemFont(ofSize: 12)
-        sb.delegate = self
-        sb.clearButtonMode = .always
-        sb.layer.cornerRadius = 15
-        sb.layer.masksToBounds = true
-        sb.addTarget(self, action: #selector(textFieldEditing), for: .editingChanged)
-        return sb
+        let searchB = PaddingTextField()
+        searchB.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
+        searchB.placeholder = "Enter Your Address"
+        searchB.font = UIFont.systemFont(ofSize: 12)
+        searchB.delegate = self
+        searchB.clearButtonMode = .always
+        searchB.layer.cornerRadius = 15
+        searchB.layer.masksToBounds = true
+        searchB.addTarget(self, action: #selector(textFieldEditing), for: .editingChanged)
+        return searchB
     }()
 
     lazy var cancelButton: UIButton = {
@@ -47,9 +47,15 @@ class ZJRentAptFilterViewController: UIViewController {
     }
 
     func dismissWithCity(city: String) {
+//        let city = city.lowercased()
         searchBar.resignFirstResponder()
         self.dismiss(animated: true) {
             if let topVC = UIApplication.topViewController() as? ZJRentAptViewController {
+                if city == "All"{
+                    topVC.listView.data = topVC.totalDatas
+//                    topVC.mapView.data = topVC.totalDatas
+                    return
+                }
                 let mapView = topVC.mapView.mapsView
                 CLGeocoder().geocodeAddressString(city, completionHandler: { (placeMark, err) in
                     if err != nil {
@@ -60,25 +66,40 @@ class ZJRentAptFilterViewController: UIViewController {
                         return
                     }
                     let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
-
                     mapView.setRegion(region, animated: true)
                 })
+                ZJPrint(city)
+                let urlCity = city.replacingOccurrences(of: " ", with: "+")
+                topVC.aptViewModel.loadApt(page: 1, pageSize: 300, city: urlCity, finished: { (_) in
+                    topVC.listView.data = topVC.aptViewModel.aptProperties
+                })
+//                topVC.searchBar
             }
         }
     }
 
     fileprivate lazy var resultTableView: UITableView = { [weak self] in
-        let tv = UITableView()
-        tv.dataSource = self
-        tv.delegate = self
-        tv.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
-        return tv
+        let tableV = UITableView()
+        tableV.dataSource = self
+        tableV.delegate = self
+        tableV.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        return tableV
     }()
 
     fileprivate lazy var hotView: ZJRentAptFilterHotView = {
-        let hv = ZJRentAptFilterHotView(frame: CGRect(x: 0, y: -hotViewHeight, width: zjScreenWidth, height: hotViewHeight))
-        return hv
+        let view = ZJRentAptFilterHotView(frame: CGRect(x: 0, y: -hotViewHeight, width: zjScreenWidth, height: hotViewHeight))
+        return view
     }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.statusBarView?.backgroundColor = .clear
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.shared.statusBarView?.backgroundColor = .orange
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -27,7 +27,7 @@ class PublishView: UIView {
     lazy var titlesArr:Array! = { () -> [String] in
 
 //        let array = ["北美同城","租房子","北美同校","移民","审贴","离线下载"]
-        let array = ["同城活动","租房子","同校活动", "吃喝玩乐", "移民板块"]
+        let array = ["City Activities","House Renting","School Activities", "Eat, drink, have fun", "Immigration"]
 
         return array
     }()
@@ -78,7 +78,7 @@ class PublishView: UIView {
             button.setImage(UIImage(named:imagesArr[index]), for: .normal)
             button.setTitle(titlesArr[index], for: .normal)
             button.setTitleColor(UIColor.black, for: .normal)
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 10)
             addSubview(button)
             button.addTarget(self, action: #selector(PublishView.clickButton(button:)), for: .touchUpInside)
 
