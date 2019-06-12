@@ -21,6 +21,8 @@ private let cateCellId = "cateCellId"
 private let headerCellId = "headerCellId"
 private let baseCellId = "baseCellId"
 private let requirementCellId = "requirementCellId"
+private let requirementCellId1 = "requirementCellId1"
+private let requirementCellId2 = "requirementCellId2"
 private let descriptionCellId = "descriptionCellId"
 private let contactCellId = "contactCellId"
 class ZJRentAptListDetailViewController: ZJBaseViewController {
@@ -95,7 +97,7 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
 
     var descriptionVaule = defalutValue
     var requiredmentCellHeight: CGFloat = 100
-    var ynCategoryButtons = [YNCategoryButton]()
+    
     var titleArr = ["", "", "Base", "Requirement", "Included", "Nearby", "Description", "Contact", ""]
     var basekey = ["Address", "Price", "Category", "House Type", "Room Type",  "Bathroom", "Parking", "Washer", "Start Date"]
     var baseValue = [String]()
@@ -119,6 +121,8 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
         view.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         view.register(ZJRentAptListDetailBaseCell.self, forCellWithReuseIdentifier: baseCellId)
         view.register(ZJRentAptListDetailRequirementCell.self, forCellWithReuseIdentifier: requirementCellId)
+        view.register(ZJRentAptListDetailRequirementCell1.self, forCellWithReuseIdentifier: requirementCellId1)
+        view.register(ZJRentAptListDetailRequirementCell2.self, forCellWithReuseIdentifier: requirementCellId2)
         view.register(ZJRentAptListDetailTitleViewCell.self, forCellWithReuseIdentifier: titleCellId)
         view.register(ZJRentAptListDetailCatrgoriesCell.self, forCellWithReuseIdentifier: cateCellId)
         view.register(ZJRentAptListDetailDescriptionCell.self, forCellWithReuseIdentifier: descriptionCellId)
@@ -216,6 +220,7 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
         } else if indexPath.section == 2 {
             return CGSize(width: zjScreenWidth, height: 25)
         } else if indexPath.section == 3 {
+            ZJPrint(requirementTitles)
             return CGSize(width: zjScreenWidth, height: calcuatedHeight(titles: requirementTitles))
         } else if indexPath.section == 4 {
             return CGSize(width: zjScreenWidth, height: calcuatedHeight(titles: includeTitles))
@@ -277,12 +282,12 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
             return cell
         case 4:
             // swiftlint:disable: force_cast
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: requirementCellId, for: indexPath) as! ZJRentAptListDetailRequirementCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: requirementCellId1, for: indexPath) as! ZJRentAptListDetailRequirementCell1
             cell.titles = includeTitles
             return cell
         case 5:
             // swiftlint:disable: force_cast
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: requirementCellId, for: indexPath) as! ZJRentAptListDetailRequirementCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: requirementCellId2, for: indexPath) as! ZJRentAptListDetailRequirementCell2
             cell.titles = closeTitles
             return cell
         case 6:
@@ -313,6 +318,7 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
     }
 
     func calcuatedHeight(titles: [String]) -> CGFloat {
+        var ynCategoryButtons = [YNCategoryButton]()
         let margin: CGFloat = 15
         var formerWidth: CGFloat = 15
         var formerHeight: CGFloat = 0

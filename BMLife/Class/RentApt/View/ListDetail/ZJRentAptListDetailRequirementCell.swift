@@ -7,6 +7,11 @@
 //
 
 import UIKit
+class ZJRentAptListDetailRequirementCell1: ZJRentAptListDetailRequirementCell {
+}
+
+class ZJRentAptListDetailRequirementCell2: ZJRentAptListDetailRequirementCell {
+}
 
 class ZJRentAptListDetailRequirementCell: UICollectionViewCell {
 
@@ -31,8 +36,11 @@ class ZJRentAptListDetailRequirementCell: UICollectionViewCell {
 
     func setupUI() {
         self.translatesAutoresizingMaskIntoConstraints = false
-        for button in ynCategoryButtons {
-            button.removeFromSuperview()
+//        for button in ynCategoryButtons {
+//            button.removeFromSuperview()
+//        }
+        if !ynCategoryButtons.isEmpty {
+            return  
         }
         let margin: CGFloat = 15
         var formerWidth: CGFloat = 15
