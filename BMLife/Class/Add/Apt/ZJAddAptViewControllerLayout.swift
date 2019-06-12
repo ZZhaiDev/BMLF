@@ -121,7 +121,7 @@ extension ZJAddAptViewController: NVActivityIndicatorViewable {
         getImageUrlFromAWSS3(UUID: UUID) {
             ZJPrint(images)
             let form = self.fillOutForms(UUID: UUID)
-            NetworkTools.requestData(.post, URLString: "http://c8790638.ngrok.io/api/v1/rental/house/", parameters: form) { (data) in
+            NetworkTools.requestData(.post, URLString: "\(baseAPI)api/v1/rental/house/", parameters: form) { (data) in
                 guard let data = data else {
                     NVActivityIndicatorPresenter.sharedInstance.setMessage("Something is Wrong...")
                     DispatchQueue.main.asyncAfter(deadline: .now()+1.5, execute: {
@@ -143,6 +143,13 @@ extension ZJAddAptViewController: NVActivityIndicatorViewable {
 //                    }
                     
                     // 这里需要用 uuid 来call 用户提交的数据
+                    rootVC.aptViewModel.loadAptByUUID(UUID: UUID, finished: { (aptProperties) in
+                        rootVC.totalDatas.append(aptProperties)
+                        rootVC.listView.data = rootVC.totalDatas
+                        rootVC.mapView.data = [aptProperties]
+                        self.stopAnimating()
+                        self.closefunc()
+                    })
                 }
 
                 ZJPrint(data)

@@ -43,4 +43,29 @@ extension ZJAptViewModel {
             finished(responce as! [String : Any])
         }
     }
+    
+    func loadAptByUUID(UUID: String, finished: @escaping (AddAptProperties) -> Void) {
+        let api = "\(baseAPI)api/v1/rental/house/\(UUID)"
+        ZJPrint(UUID)
+        NetworkTools.requestData(.get, URLString: api) { (responce) in
+            self.aptProperties.removeAll()
+            ZJPrint("--------------11111111112")
+            guard let dict = responce as? [String: Any] else { return }
+            guard let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: []) else {
+                return
+            }
+            do {
+                let data = try JSONDecoder().decode(ZJAddAptModel.self, from: jsonData)
+                self.aptModel = data
+                guard let results = data.results else {return}
+                guard let features = results.features else {return}
+                guard let feature = features.first else { return }
+                guard let properties = feature.properties else {return}
+                finished(properties)
+            } catch let jsonError {
+                ZJPrint(jsonError)
+            }
+            // 这里需要做error
+        }
+    }
 }
