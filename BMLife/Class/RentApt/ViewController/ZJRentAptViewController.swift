@@ -199,7 +199,7 @@ class ZJRentAptViewController: ZJBaseViewController {
             let count: Int = ZJAptViewModel.pageSize
             let pageCount = (self.aptViewModel.aptModel.count!+count/2)/count
             let dGroup = DispatchGroup()
-            for index in 2...pageCount{
+            for index in 2...pageCount {
                 dGroup.enter()
                 self.aptViewModel.loadApt(page: index, pageSize: count, finished: { (_) in
                     self.feedDataToListAndMapView()
@@ -210,7 +210,7 @@ class ZJRentAptViewController: ZJBaseViewController {
         setupUI()
     }
     
-    func feedDataToListAndMapView(){
+    func feedDataToListAndMapView() {
         self.listView.data = self.aptViewModel.aptProperties
         self.mapView.data = self.aptViewModel.aptProperties
         self.totalDatas += self.aptViewModel.aptProperties
