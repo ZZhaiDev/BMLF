@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 let zjCycleViewH: CGFloat = zjScreenHeight * 3 / 8
-private let titleViewH:CGFloat = 80
+
 private let cateViewH: CGFloat = 80
 private let zjHeaderViewH: CGFloat = 50
 private let zjItemMargin : CGFloat = 10
@@ -214,7 +214,7 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.section == 0 {
-            return CGSize(width: zjScreenWidth, height: titleViewH)
+            return CGSize(width: zjScreenWidth, height: ZJRentAptListDetailTitleViewCell.selfHeight)
         } else if indexPath.section == 1 {
             return CGSize(width: zjScreenWidth, height: cateViewH)
         } else if indexPath.section == 2 {
@@ -227,7 +227,7 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
         } else if indexPath.section == 5 {
             return CGSize(width: zjScreenWidth, height: calcuatedHeight(titles: closeTitles))
         } else if indexPath.section == 6 {
-            if descriptionVaule == defalutValue {
+            if descriptionVaule == defalutValue || descriptionVaule == defalutServerValue {
                 return CGSize(width: zjScreenWidth, height: 0.001)
             }
             let approximateWidthOfContent = view.frame.width - 15
@@ -245,7 +245,7 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
         } else if section == 1 {
             return .zero
         } else if section == 6 {
-            if descriptionVaule == defalutValue {
+            if descriptionVaule == defalutValue || descriptionVaule == defalutServerValue  {
                 return .zero
             }
             return CGSize(width: zjScreenWidth, height: 44)

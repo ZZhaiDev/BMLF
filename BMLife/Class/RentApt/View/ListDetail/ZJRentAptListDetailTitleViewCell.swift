@@ -10,7 +10,7 @@ import UIKit
 private let userPhotoWidth: CGFloat = 50
 
 class ZJRentAptListDetailTitleViewCell: UICollectionViewCell {
-
+    static let selfHeight: CGFloat = 60
     var data = AddAptProperties() {
         didSet {
             if let description = data.description {
@@ -26,12 +26,12 @@ class ZJRentAptListDetailTitleViewCell: UICollectionViewCell {
         lable.numberOfLines = 0
         lable.font = UIFont.boldSystemFont(ofSize: 22)
         lable.adjustsFontSizeToFitWidth = true
-        lable.textAlignment = .left
+        lable.textAlignment = .center
         return lable
     }()
 
     fileprivate lazy var userPhoto: UIImageView = {
-       let imageV = UIImageView(image: UIImage(named: "phone"))
+       let imageV = UIImageView(image: UIImage(named: "AppIcon"))
         imageV.layer.cornerRadius = userPhotoWidth/2
         imageV.layer.masksToBounds = true
         return imageV
@@ -47,11 +47,13 @@ class ZJRentAptListDetailTitleViewCell: UICollectionViewCell {
     }
 
     fileprivate func setupUI() {
-        self.addSubview(userPhoto)
+//        self.addSubview(userPhoto)
+//        self.addSubview(titleLabel)
+//        userPhoto.anchor(top: nil, left: leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: userPhotoWidth, height: userPhotoWidth)
+//        userPhoto.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+//        titleLabel.anchor(top: self.topAnchor, left: userPhoto.rightAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingTop: 5, paddingLeft: 15, paddingBottom: 5, paddingRight: 10, width: 0, height: 0)
         self.addSubview(titleLabel)
-        userPhoto.anchor(top: nil, left: leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: userPhotoWidth, height: userPhotoWidth)
-        userPhoto.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        titleLabel.anchor(top: self.topAnchor, left: userPhoto.rightAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingTop: 5, paddingLeft: 15, paddingBottom: 5, paddingRight: 10, width: 0, height: 0)
+        titleLabel.fillSuperview()
     }
 
 }

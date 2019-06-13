@@ -36,7 +36,7 @@ class ZJRentAptListDetailContactCell: UICollectionViewCell {
                 phoneB.setTitle(callStr + phone, for: .normal)
             }
             if let weChat = data.wechat {
-                if weChat != defalutValue {
+                if weChat != defalutValue && weChat != defalutServerValue {
                   poster_wechat = weChat
                   wechatL.text = wechatStr + weChat
                 }

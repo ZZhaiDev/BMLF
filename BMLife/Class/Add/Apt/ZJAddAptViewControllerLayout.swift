@@ -12,6 +12,7 @@ import NVActivityIndicatorView
 
 var optionalStr = "(Optional)"
 var defalutValue = "empty"
+var defalutServerValue = "Data unavailable"
 
 private var uuid: String = defalutValue
 var fulladdress: String = defalutValue
@@ -151,8 +152,6 @@ extension ZJAddAptViewController: NVActivityIndicatorViewable {
                         self.closefunc()
                     })
                 }
-
-                ZJPrint(data)
             }
         }
     }

@@ -15,7 +15,8 @@ private let zjEdgeInsetMargin : CGFloat = 10
 class ZJRentAptListDetailCatrgoriesCell: UICollectionViewCell {
 
     var coordinate: CLLocationCoordinate2D?
-    var dict = [["crime", "crime"],["streetview", "street view"]]
+//    var dict = [["crime", "crime"],["streetview", "street view"]]
+    var dict = [["streetview", "street view"]]
 
     fileprivate lazy var collectionView: UICollectionView = { [weak self] in
         let layout = UICollectionViewFlowLayout()

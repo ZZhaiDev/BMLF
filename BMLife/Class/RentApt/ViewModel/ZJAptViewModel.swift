@@ -47,6 +47,7 @@ extension ZJAptViewModel {
     func loadAptByUUID(UUID: String, finished: @escaping (AddAptProperties) -> Void) {
         let api = "\(baseAPI)api/v1/rental/house/\(UUID)"
         ZJPrint(UUID)
+        ZJPrint(api)
         NetworkTools.requestData(.get, URLString: api) { (responce) in
             self.aptProperties.removeAll()
             ZJPrint("--------------11111111112")
@@ -55,13 +56,10 @@ extension ZJAptViewModel {
                 return
             }
             do {
-                let data = try JSONDecoder().decode(ZJAddAptModel.self, from: jsonData)
-                self.aptModel = data
-                guard let results = data.results else {return}
-                guard let features = results.features else {return}
-                guard let feature = features.first else { return }
-                guard let properties = feature.properties else {return}
-                finished(properties)
+                let data = try JSONDecoder().decode(AddAptFeature.self, from: jsonData)
+                ZJPrint(data)
+                guard let property = data.properties else { return }
+                finished(property)
             } catch let jsonError {
                 ZJPrint(jsonError)
             }
