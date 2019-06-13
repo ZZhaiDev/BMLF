@@ -74,7 +74,7 @@ extension ZJRentAptListDetailCatrgoriesCell: UICollectionViewDataSource, UIColle
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row == 1 {
+        if indexPath.row == 0 {
             let streetVC = StreetViewController()
             streetVC.destinationLatitude = coordinate?.latitude
             streetVC.destinationLongitude = coordinate?.longitude

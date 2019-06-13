@@ -49,38 +49,6 @@
             endingLineNumber = "50"
             landmarkName = "loadAptByUUID(UUID:finished:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BMLife.ZJAptViewModel.loadAptByUUID(UUID: Swift.String, finished: (BMLife.AddAptProperties) -&gt; ()) -&gt; ()"
-                  moduleName = "BMLife"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/cai_ios_dev_1/Desktop/BMLF/BMLife/Class/RentApt/ViewModel/ZJAptViewModel.swift"
-                  timestampString = "582071595.416562"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "50"
-                  endingLineNumber = "50"
-                  offsetFromSymbolStart = "544">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Any&gt;) -&gt; () in BMLife.ZJAptViewModel.loadAptByUUID(UUID: Swift.String, finished: (BMLife.AddAptProperties) -&gt; ()) -&gt; ()"
-                  moduleName = "BMLife"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/cai_ios_dev_1/Desktop/BMLF/BMLife/Class/RentApt/ViewModel/ZJAptViewModel.swift"
-                  timestampString = "582071595.42045"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51"
-                  offsetFromSymbolStart = "84">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -97,53 +65,6 @@
             endingLineNumber = "65"
             landmarkName = "loadAptByUUID(UUID:finished:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Any&gt;) -&gt; () in BMLife.ZJAptViewModel.loadAptByUUID(UUID: Swift.String, finished: (BMLife.AddAptProperties) -&gt; ()) -&gt; ()"
-                  moduleName = "BMLife"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/cai_ios_dev_1/Desktop/BMLF/BMLife/Class/RentApt/ViewModel/ZJAptViewModel.swift"
-                  timestampString = "582071595.427503"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "65"
-                  endingLineNumber = "65"
-                  offsetFromSymbolStart = "1300">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Any&gt;) -&gt; () in BMLife.ZJAptViewModel.loadAptByUUID(UUID: Swift.String, finished: (BMLife.AddAptProperties) -&gt; ()) -&gt; ()"
-                  moduleName = "BMLife"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/cai_ios_dev_1/Desktop/BMLF/BMLife/Class/RentApt/ViewModel/ZJAptViewModel.swift"
-                  timestampString = "582071595.429971"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "65"
-                  endingLineNumber = "65"
-                  offsetFromSymbolStart = "5980">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Any&gt;) -&gt; () in BMLife.ZJAptViewModel.loadAptByUUID(UUID: Swift.String, finished: (BMLife.AddAptProperties) -&gt; ()) -&gt; ()"
-                  moduleName = "BMLife"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/cai_ios_dev_1/Desktop/BMLF/BMLife/Class/RentApt/ViewModel/ZJAptViewModel.swift"
-                  timestampString = "582071595.4329309"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "65"
-                  endingLineNumber = "65"
-                  offsetFromSymbolStart = "8036">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -256,6 +177,38 @@
             endingLineNumber = "147"
             landmarkName = "submitfunc()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Any&gt;) -&gt; () in closure #1 () -&gt; () in BMLife.ZJAddAptViewController.submitfunc() -&gt; ()"
+                  moduleName = "BMLife"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cai_ios_dev_1/Desktop/BMLF/BMLife/Class/Add/Apt/ZJAddAptViewControllerLayout.swift"
+                  timestampString = "582132012.46518"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "147"
+                  endingLineNumber = "147"
+                  offsetFromSymbolStart = "412">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (BMLife.AddAptProperties) -&gt; () in closure #1 (Swift.Optional&lt;Any&gt;) -&gt; () in closure #1 () -&gt; () in BMLife.ZJAddAptViewController.submitfunc() -&gt; ()"
+                  moduleName = "BMLife"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cai_ios_dev_1/Desktop/BMLF/BMLife/Class/Add/Apt/ZJAddAptViewControllerLayout.swift"
+                  timestampString = "582132012.469591"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "148"
+                  endingLineNumber = "148"
+                  offsetFromSymbolStart = "64">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

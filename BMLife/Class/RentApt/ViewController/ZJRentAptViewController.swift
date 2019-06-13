@@ -202,7 +202,6 @@ class ZJRentAptViewController: ZJBaseViewController {
             for index in 2...pageCount{
                 dGroup.enter()
                 self.aptViewModel.loadApt(page: index, pageSize: count, finished: { (_) in
-                   
                     self.feedDataToListAndMapView()
                     dGroup.leave()
                 })
