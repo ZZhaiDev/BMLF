@@ -36,9 +36,10 @@ class ZJTabBarController: UITabBarController, UITabBarControllerDelegate {
         tabBar.addSubview(composeBtn)
         composeBtn.setBackgroundImage(UIImage(named: "tabbar_compose_button"), for: .normal)
         composeBtn.setBackgroundImage(UIImage(named: "tabbar_compose_button_highlighted"), for: .highlighted)
-        composeBtn.setTitle("+", for: .normal)
-        composeBtn.titleLabel?.font = UIFont.systemFont(ofSize: 45)
-        composeBtn.titleLabel?.textColor = .white
+//        composeBtn.setTitle("+", for: .normal)
+//        composeBtn.titleLabel?.font = UIFont.systemFont(ofSize: 45, weight: UIFont.Weight.light)
+//        composeBtn.titleLabel?.textColor = .white
+        composeBtn.setImage(UIImage(named: "tab_plus"), for: .normal)
         composeBtn.frame.size = CGSize(width: zjScreenWidth/5, height: tabBar.bounds.size.height)
         composeBtn.center = CGPoint(x: tabBar.center.x, y: tabBar.bounds.size.height * 0.5)
         composeBtn.addTarget(self, action: #selector(composeBtnButtonClicked), for: .touchUpInside)

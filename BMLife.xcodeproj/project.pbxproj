@@ -35,7 +35,6 @@
 		A419FDB222A1BF10002D891F /* ZJAptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A419FDB122A1BF10002D891F /* ZJAptViewModel.swift */; };
 		A41CFD3A228DF4F00008FFB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41CFD39228DF4F00008FFB6 /* AppDelegate.swift */; };
 		A41CFD41228DF4F30008FFB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A41CFD40228DF4F30008FFB6 /* Assets.xcassets */; };
-		A41CFD44228DF4F30008FFB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A41CFD42228DF4F30008FFB6 /* LaunchScreen.storyboard */; };
 		A41CFD4F228DF4F40008FFB6 /* BMLFTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41CFD4E228DF4F40008FFB6 /* BMLFTests.swift */; };
 		A41CFD5A228DF4F40008FFB6 /* BMLFUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41CFD59228DF4F40008FFB6 /* BMLFUITests.swift */; };
 		A41CFD68228DF6490008FFB6 /* ZJTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41CFD67228DF6490008FFB6 /* ZJTabBarController.swift */; };
@@ -126,7 +125,6 @@
 		A41CFD36228DF4F00008FFB6 /* BMLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BMLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A41CFD39228DF4F00008FFB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A41CFD40228DF4F30008FFB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A41CFD43228DF4F30008FFB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A41CFD45228DF4F30008FFB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A41CFD4A228DF4F40008FFB6 /* BMLifeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BMLifeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A41CFD4E228DF4F40008FFB6 /* BMLFTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMLFTests.swift; sourceTree = "<group>"; };
@@ -342,7 +340,6 @@
 				3800F04A228E38DE00095A2F /* Class */,
 				38C514702294EACE00953286 /* Utiles */,
 				A41CFD40228DF4F30008FFB6 /* Assets.xcassets */,
-				A41CFD42228DF4F30008FFB6 /* LaunchScreen.storyboard */,
 				A41CFD45228DF4F30008FFB6 /* Info.plist */,
 			);
 			path = BMLife;
@@ -563,7 +560,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A41CFD44228DF4F30008FFB6 /* LaunchScreen.storyboard in Resources */,
 				A41CFD41228DF4F30008FFB6 /* Assets.xcassets in Resources */,
 				A4F460E922A82ED800A0831E /* StreetViewController.xib in Resources */,
 				3800F057228E52B700095A2F /* PublishView.xib in Resources */,
@@ -788,17 +784,6 @@
 			targetProxy = A41CFD56228DF4F40008FFB6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		A41CFD42228DF4F30008FFB6 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A41CFD43228DF4F30008FFB6 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A41CFD5C228DF4F40008FFB6 /* Debug */ = {

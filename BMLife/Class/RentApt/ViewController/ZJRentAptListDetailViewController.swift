@@ -33,7 +33,7 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
                 cycleView.data = images
             }
             baseValue.append(data.fulladdress ?? "")
-            let price = (data.base?.price ?? "") + "/m"
+            let price = "$" + (data.base?.price ?? "") + " /month"
             baseValue.append(price)
             baseValue.append(data.category ?? "")
             baseValue.append(data.base?.housetype ?? "")
@@ -218,7 +218,11 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
         } else if indexPath.section == 1 {
             return CGSize(width: zjScreenWidth, height: cateViewH)
         } else if indexPath.section == 2 {
-            return CGSize(width: zjScreenWidth, height: 25)
+            if indexPath.row == 0{
+                let height = calculateHeight(width: ZJRentAptListDetailBaseCell.secondLableWidth, textFont: ZJRentAptListDetailBaseCell.secondLabelFont, text: data.fulladdress ?? "")
+                return CGSize(width: zjScreenWidth, height: height)
+            }
+            return CGSize(width: zjScreenWidth, height: ZJRentAptListDetailBaseCell.selfHeight)
         } else if indexPath.section == 3 {
             ZJPrint(requirementTitles)
             return CGSize(width: zjScreenWidth, height: calcuatedHeight(titles: requirementTitles))
