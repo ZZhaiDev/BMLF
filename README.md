@@ -27,7 +27,11 @@ But, the first release version will only contain house renting. We plan to relea
 - Mapkit, MessageUI, Corelocation.
 - Customize calloutView & draw an area on mapkit
 <p float="left">
-  <img width="139" height="301" src="https://github.com/zijiazhai/BMLF/blob/master/github_photos/callout.png">
-  <img width="139" height="301" src="https://github.com/zijiazhai/BMLF/blob/master/github_photos/draw.png">
-  <img width="139" height="301" src="https://github.com/zijiazhai/BMLF/blob/master/github_photos/draw2.png">
+  <img width="139" height="301" src="https://github.com/zijiazhai/BMLF/blob/master/github_photos/1.png">
+  <img width="139" height="301" src="https://github.com/zijiazhai/BMLF/blob/master/github_photos/2.png">
+  <img width="139" height="301" src="https://github.com/zijiazhai/BMLF/blob/master/github_photos/3.png">
+  <img width="139" height="301" src="https://github.com/zijiazhai/BMLF/blob/master/github_photos/4.png">
+  <img width="139" height="301" src="https://github.com/zijiazhai/BMLF/blob/master/github_photos/5.png">
+  <img width="139" height="301" src="https://github.com/zijiazhai/BMLF/blob/master/github_photos/6.png">
+  <img width="139" height="301" src="https://github.com/zijiazhai/BMLF/blob/master/github_photos/7.png">
 </p>

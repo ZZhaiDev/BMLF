@@ -30,9 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.backgroundColor = UIColor.white
         let root = ZJTabBarController()
-        self.window?.rootViewController = root
         self.window?.makeKeyAndVisible()
         UINavigationBar.appearance().tintColor = .white
+        
+//        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+            self.window?.rootViewController = root
+//        }
+        
 
         return true
     }
