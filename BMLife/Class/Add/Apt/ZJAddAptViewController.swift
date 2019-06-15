@@ -8,10 +8,11 @@
 
 import UIKit
 import Eureka
+import NVActivityIndicatorView
 
 var originalMapViewH: CGFloat = 245
 
-class ZJAddAptViewController: FormViewController {
+class ZJAddAptViewController: FormViewController, NVActivityIndicatorViewable {
 
     var isShowedEndDate = false
 

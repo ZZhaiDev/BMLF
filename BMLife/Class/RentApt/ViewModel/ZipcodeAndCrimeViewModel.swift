@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 struct ZipcodeCrimeAndCount {
     var crimeCount: Int = 0

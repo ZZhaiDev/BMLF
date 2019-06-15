@@ -10,7 +10,7 @@ import UIKit
 
 class ZJRentAptFilterHotView: UIView {
 
-    fileprivate lazy var titles = ["Chicago", "San Francisco", "Los Angeles", "New York", "Dallas", "San Jose", "Seattle", "All"]
+    fileprivate lazy var titles = ["Chicago", "Boston", "Los Angeles", "New York", "Dallas", "San Jose", "Seattle", "All"]
     fileprivate var ynCategoryButtons = [YNCategoryButton]()
     fileprivate var ynCategoryButtonType: YNCategoryButtonType = .colorful
 

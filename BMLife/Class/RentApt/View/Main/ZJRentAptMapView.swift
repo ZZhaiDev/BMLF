@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import NVActivityIndicatorView
 
 
 var userCurrentCoordinate: CLLocationCoordinate2D?
@@ -124,6 +125,10 @@ extension ZJRentAptMapView {
             })
         }
  */
+        if let topVC = UIApplication.topViewController() as? ZJRentAptViewController{
+            topVC.startAnimating(CGSize(width: 30, height: 30), message: "drawing crime map...", fadeInAnimation: nil)
+        }
+        
         zipcodeAndCrimeViewModel.loadZipcodeAndCrime(dictValue: coordinatesArr) {
             for data in self.zipcodeAndCrimeViewModel.datas {
                 DispatchQueue.global().async {
@@ -144,6 +149,10 @@ extension ZJRentAptMapView {
                     }
                 }
             }
+            if let topVC = UIApplication.topViewController() as? ZJRentAptViewController{
+                topVC.stopAnimating()
+            }
+            
         }
         mapsView.addOverlay(polygon)
         points = []

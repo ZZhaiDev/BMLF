@@ -8,7 +8,7 @@
 
 import UIKit
 
-let baseAPI = "http://431b3f19.ngrok.io/"
+let baseAPI = "http://api.qubeimei.com/"
 
 class ZJAptViewModel {
     lazy var aptModel: ZJAddAptModel = ZJAddAptModel()

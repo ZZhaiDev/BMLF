@@ -49,7 +49,7 @@ private var otherRequirements: [String] = []
 private var images: [String] = []
 private var video: String = defalutValue
 
-extension ZJAddAptViewController: NVActivityIndicatorViewable {
+extension ZJAddAptViewController {
     func nearbyDict() -> [[String: String]] {
         let nearbyCount = nearby.count
         var nearbyDict = [[String:String]]()

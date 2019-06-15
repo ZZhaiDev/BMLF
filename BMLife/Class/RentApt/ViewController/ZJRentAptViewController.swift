@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import AFNetworking
+import NVActivityIndicatorView
 
 private let squareViewW: CGFloat = 50
 private let stackViewSpace: CGFloat = 10
@@ -69,7 +70,7 @@ class SquareView: UIView {
 
 let searchBarHeight: CGFloat = 30
 
-class ZJRentAptViewController: ZJBaseViewController {
+class ZJRentAptViewController: ZJBaseViewController, NVActivityIndicatorViewable {
     // swiftlint:disable identifier_name
     var changeRightBarButtonItem_list = UIBarButtonItem()
 
