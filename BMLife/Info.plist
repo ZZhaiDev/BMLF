@@ -15,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.5</string>
+	<string>1.6</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -26,15 +26,15 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>BMLF Need to Use Your Camera</string>
+	<string>BMLF Need to Use Your Camera to Take Photos.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>BMLF Need to Use Your Location</string>
+	<string>Your current location will be displayed on the map for nearby apartments results.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>BMLF Need to Use Your Location</string>
+	<string>Your current location will be displayed on the map for nearby apartments results.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>BMLF Need to Use Your Microphone</string>
+	<string>BMLF Need to Use Your Microphone to Take Vedios.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>BMLF Need to Use Your Photo Library</string>
+	<string>BMLF Need to Use Your Photo Library to Display Photos.</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
