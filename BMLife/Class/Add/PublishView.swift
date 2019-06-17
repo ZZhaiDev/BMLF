@@ -66,9 +66,9 @@ class PublishView: UIView {
         let buttonStartY = (zjScreenHeight - 2 * CGFloat(buttonH)) / CGFloat(2)
         for  index in 0 ..< imagesArr.count {
             let button = VerticalButton(type: .custom)
-            button.isEnabled = false
+            button.isHidden = true
             if index == 1 {
-                button.isEnabled = true
+                button.isHidden = false
             }
             let row = index / maxCols
             let col = index % maxCols
