@@ -148,7 +148,7 @@ class CustomCalloutView: UIView {
                 typeL.text = title
             }
             if let price = data.base?.price {
-                priceL.text = "Price: " + price + "/m"
+                priceL.text = "Price: $" + price + " /m"
             }
             var result = ""
             if let requirements = data.requirement?.otherrequirements {

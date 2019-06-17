@@ -6,7 +6,7 @@
 </p>
 The purpose of this project is to enrich the lives of Chinese people, and making their lives easier in the United States. 
 
-This project will mainly include four parts: House renting, School activities, City activities and Immigration information.
+This project will mainly include four parts: House&Apartment renting, School&City activities, Eat Drink Have Fun, and Immigration information.
 
 But, the first release version will only contain house renting. We plan to release the first version before 20 Jun.
 
