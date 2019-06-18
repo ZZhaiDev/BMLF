@@ -9,46 +9,31 @@
 import UIKit
 import pop
 
-
-
 class PublishView: UIView {
-
     var sloganView:UIImageView!
-
     var publishWindow:UIWindow!
-
     lazy var imagesArr:Array! = { () -> [String] in
-
-//       let array = ["publish-video","publish-picture","publish-text","publish-audio","publish-review","publish-offline"]
         let array = ["publish-video","publish-picture","publish-text","publish-audio","publish-review"]
         return array
     }()
 
     lazy var titlesArr:Array! = { () -> [String] in
-
-//        let array = ["北美同城","租房子","北美同校","移民","审贴","离线下载"]
         let array = ["City Activities","House Renting","School Activities", "Eat, drink, have fun", "Immigration"]
-
         return array
     }()
 
     @IBAction func buttonClick(_ sender: UIButton) {
         cancelWithCompletionBlock {
-
         }
     }
 
     func show() {
-
-//        let publishView = Bundle.main.loadNibNamed("PublishView", owner: nil, options: nil)?.first as! PublishView
-
         publishWindow = UIWindow()
         publishWindow.frame = UIScreen.main.bounds
         publishWindow.backgroundColor = UIColor.init(white: 1.0, alpha: 1.0)
         publishWindow.isHidden = false
         self.frame = publishWindow.bounds
         publishWindow.addSubview(self)
-
     }
 
     override func awakeFromNib() {
@@ -93,9 +78,7 @@ class PublishView: UIView {
         }
 
         sloganView = UIImageView(image: UIImage(named: "app_slogan"))
-
         addSubview(sloganView)
-
         let centerX:CGFloat = zjScreenWidth * 0.5
         let centerEndY:CGFloat = zjScreenHeight * 0.2
         let centerBeginY:CGFloat = centerEndY - zjScreenHeight
@@ -106,14 +89,12 @@ class PublishView: UIView {
         animation?.springSpeed = 15
         animation?.beginTime = CACurrentMediaTime() + CFTimeInterval(0.1 * CGFloat(imagesArr.count))
         animation?.completionBlock = { (animation,finished) in
-
-        self.isUserInteractionEnabled = true
+            self.isUserInteractionEnabled = true
         }
         sloganView.pop_add(animation, forKey: nil)
     }
 
     @objc func clickButton(button:VerticalButton) {
-
         if button.tag == 1 {
             cancelWithCompletionBlock {
                 if let tvc = UIApplication.topViewController() {
@@ -122,38 +103,28 @@ class PublishView: UIView {
                     tvc.present(nvc, animated: true, completion: nil)
                 }
             }
-
         }
     }
 
     func cancelWithCompletionBlock(complentionBlock: @escaping () -> Void) {
         isUserInteractionEnabled = false
         for index in 1 ..< subviews.count {
-
             let subview = subviews[index]
-
             let animation = POPSpringAnimation(propertyNamed: kPOPViewCenter)
-
             let centerY:CGFloat = subview.center.y + zjScreenHeight
-
             animation?.springBounciness = 5
             animation?.springSpeed = 15
             animation?.toValue = NSValue.init(cgPoint: CGPoint(x: subview.center.x, y: centerY))
             animation?.beginTime = CACurrentMediaTime() + CFTimeInterval(CGFloat(index - 2) * 0.1)
-
             subview.pop_add(animation, forKey: nil)
-
             if index == subviews.count - 1 {
                 animation?.completionBlock = {(animation,finished) in
-
                     self.removeFromSuperview()
                     self.publishWindow.isHidden = true
                     self.publishWindow = nil
-
                 }
             }
         }
         complentionBlock()
     }
-
 }

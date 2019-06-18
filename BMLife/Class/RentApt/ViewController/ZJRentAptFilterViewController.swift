@@ -8,12 +8,11 @@
 
 import UIKit
 import MapKit
-private let cellId = "cellId"
 
+private let cellId = "cellId"
 private let hotViewHeight: CGFloat = 100
 
 class ZJRentAptFilterViewController: UIViewController {
-
     var searchCompleter = MKLocalSearchCompleter()
     var searchResults = [MKLocalSearchCompletion]()
     lazy var searchBar: PaddingTextField = { [weak self] in
@@ -47,13 +46,11 @@ class ZJRentAptFilterViewController: UIViewController {
     }
 
     func dismissWithCity(city: String) {
-//        let city = city.lowercased()
         searchBar.resignFirstResponder()
         self.dismiss(animated: true) {
             if let topVC = UIApplication.topViewController() as? ZJRentAptViewController {
                 if city == "All"{
                     topVC.listView.data = topVC.totalDatas
-//                    topVC.mapView.data = topVC.totalDatas
                     return
                 }
                 let mapView = topVC.mapView.mapsView
@@ -73,7 +70,6 @@ class ZJRentAptFilterViewController: UIViewController {
                 topVC.aptViewModel.loadApt(page: 1, pageSize: 300, city: urlCity, finished: { (_) in
                     topVC.listView.data = topVC.aptViewModel.aptProperties
                 })
-//                topVC.searchBar
             }
         }
     }
@@ -106,7 +102,6 @@ class ZJRentAptFilterViewController: UIViewController {
         searchCompleter.delegate = self
         searchBar.becomeFirstResponder()
         setupUI()
-        // Do any additional setup after loading the view.
     }
 
     fileprivate func setupUI() {
@@ -130,17 +125,11 @@ class ZJRentAptFilterViewController: UIViewController {
 extension ZJRentAptFilterViewController: UITextFieldDelegate {
 
     @objc fileprivate func textFieldEditing(textF: UITextField) {
-
         guard let text = textF.text else {
             return
         }
         ZJPrint(text)
         if text == ""{
-//            if let topVC = UIApplication.topViewController() as? ZJAddAptViewController{
-//                topVC.tableView.tableHeaderView?.frame.size.height = originalMapViewH
-//                topVC.tableView.reloadData()
-//            }
-//            return
         }
         searchCompleter.queryFragment = text
     }

@@ -11,7 +11,6 @@ import MapKit
 import CoreLocation
 import NVActivityIndicatorView
 
-
 var userCurrentCoordinate: CLLocationCoordinate2D?
 
 protocol ZJRentAptMapViewDelegate: class {
@@ -22,13 +21,11 @@ class ZJRentAptMapView: UIView {
     var isDrawing = false
     var locationManager: CLLocationManager!
     var points = [CLLocationCoordinate2D]()
-//    var rentingAnnotations = [MKAnnotation]()
     weak var delegate: ZJRentAptMapViewDelegate?
     var zoomLevel: CGFloat = 20
     var zipcodeAndCrimeViewModel = ZipcodeAndCrimeViewModel()
     var data = [AddAptProperties]() {
         didSet {
-//            self.mapsView.removeAnnotations(rentingAnnotations)
             ZJPrint(data.count)
             for property in data {
                 if let lat = property.latitude, let lon = property.longitude {
@@ -37,7 +34,6 @@ class ZJRentAptMapView: UIView {
                     annotation.coordinate = CLLocationCoordinate2D(latitude: Double(lat)!, longitude: Double(lon)!)
                     DispatchQueue.main.async {
                         self.mapsView.addAnnotation(annotation)
-//                        self.rentingAnnotations.append(annotation)
                         ZJPrint(self.mapsView.annotations.count)
                     }
                 }
@@ -125,10 +121,9 @@ extension ZJRentAptMapView {
             })
         }
  */
-        if let topVC = UIApplication.topViewController() as? ZJRentAptViewController{
+        if let topVC = UIApplication.topViewController() as? ZJRentAptViewController {
             topVC.startAnimating(CGSize(width: 30, height: 30), message: "drawing crime map...", fadeInAnimation: nil)
         }
-        
         zipcodeAndCrimeViewModel.loadZipcodeAndCrime(dictValue: coordinatesArr) {
             for data in self.zipcodeAndCrimeViewModel.datas {
                 DispatchQueue.global().async {
@@ -149,10 +144,9 @@ extension ZJRentAptMapView {
                     }
                 }
             }
-            if let topVC = UIApplication.topViewController() as? ZJRentAptViewController{
+            if let topVC = UIApplication.topViewController() as? ZJRentAptViewController {
                 topVC.stopAnimating()
             }
-            
         }
         mapsView.addOverlay(polygon)
         points = []
@@ -162,7 +156,6 @@ extension ZJRentAptMapView {
 
 extension ZJRentAptMapView: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        
         if overlay is MKPolyline {
             if isDrawing == false {
                 let renderer = MKPolylineRenderer(overlay: overlay)
@@ -223,7 +216,6 @@ extension ZJRentAptMapView: MKMapViewDelegate {
             return crimeAnnotion
         }
          */
-
         // Better to make this class property
         let annotationIdentifier = "AnnotationIdentifier"
         var annotationView: MKAnnotationView?
@@ -268,9 +260,6 @@ extension ZJRentAptMapView: MKMapViewDelegate {
             }
         }
     }
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-
-    }
 }
 
 extension ZJRentAptMapView: CLLocationManagerDelegate {
@@ -303,10 +292,6 @@ extension ZJRentAptMapView: CLLocationManagerDelegate {
             let geocoder = CLGeocoder()
             geocoder.reverseGeocodeLocation(CLLocation.init(latitude: location.coordinate.latitude, longitude:location.coordinate.longitude)) { (places, error) in
                 if error == nil {
-//                    if let place = places {
-//                        if let firstPlace = place.first, let subthoroughfare = firstPlace.subThoroughfare, let thoroughfare = firstPlace.thoroughfare, let postalCode = firstPlace.postalCode, let locality = firstPlace.locality {
-//                        }
-//                    }
                 }
             }
         }

@@ -19,7 +19,6 @@ class ZJAptViewModel {
 extension ZJAptViewModel {
     func loadApt(page: Int = 1, pageSize: Int = ZJAptViewModel.pageSize, city: String = "", finished: @escaping ([String: Any]) -> Void) {
         ZJPrint("--------------1111111111")
-        
         let api = "\(baseAPI)api/v1/rental/house/?page=\(page)&page_size=\(pageSize)&city=\(city)"
         NetworkTools.requestData(.get, URLString: api) { (responce) in
             self.aptProperties.removeAll()

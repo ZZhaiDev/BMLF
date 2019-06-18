@@ -181,7 +181,7 @@ extension ZJAddAptFooterView {
             ZJPrint(selectedItems.count)
             if let firstItem = items.first {
                 switch firstItem {
-                case .photo(let photo):
+                case .photo(_):
                     self.setupImages(images: selectedItems)
                     picker.dismiss(animated: true, completion: nil)
                 case .video(let video):
@@ -213,7 +213,7 @@ extension ZJAddAptFooterView {
             case .photo(p: let photo):
                 imagesArr[index].image = photo.image
                 imagesArr[index].isHidden = false
-            case .video(let video): break
+            case .video(_): break
             }
         }
     }

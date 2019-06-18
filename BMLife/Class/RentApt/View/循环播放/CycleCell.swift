@@ -21,23 +21,11 @@ class CycleCell: UICollectionViewCell {
                 let url = URL(string: imageStr)
                 imageView.kf.setImage(with: url)
             }
-
-//            if let cycle = data{
-////                titleLabel.text = cycle.title
-////                let iconURL = URL(string: cycle.pic_url)
-////
-////                imageView.kf.setImage(with: iconURL, placeholder: UIImage(named: "Img_default"))
-//                titleLabel.text = "123test"
-//
-//            }
-
         }
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-
     }
 
 }

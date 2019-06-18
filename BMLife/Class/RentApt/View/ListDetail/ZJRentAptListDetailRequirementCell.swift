@@ -18,7 +18,6 @@ class ZJRentAptListDetailRequirementCell: UICollectionViewCell {
     var titleButtons: [UIButton] = [UIButton]()
     var ynCategoryButtons = [YNCategoryButton]()
     var ynCategoryButtonType: YNCategoryButtonType = .border
-    
     var titles = [String]() {
         didSet {
             ZJPrint(titles)
@@ -36,9 +35,6 @@ class ZJRentAptListDetailRequirementCell: UICollectionViewCell {
 
     func setupUI() {
         self.translatesAutoresizingMaskIntoConstraints = false
-//        for button in ynCategoryButtons {
-//            button.removeFromSuperview()
-//        }
         if !ynCategoryButtons.isEmpty {
             return  
         }

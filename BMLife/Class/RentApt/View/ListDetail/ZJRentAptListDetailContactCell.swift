@@ -75,7 +75,6 @@ class ZJRentAptListDetailContactCell: UICollectionViewCell {
 
     lazy var wechatL: UILabel = {
         let b = UILabel()
-//        b.text = "微信：dafasdfdafs"
         return b
     }()
 

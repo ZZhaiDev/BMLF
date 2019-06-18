@@ -18,6 +18,7 @@ class MyCustomUIView: UIView {
         lable.text = "Description"
         return lable
     }()
+    
     lazy var textView: UITextView = {
        let tv = UITextView()
         tv.font = UIFont.systemFont(ofSize: 14)
