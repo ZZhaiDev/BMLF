@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BMLife/Class/RentApt/View/Main/ZJRentAptMapView.swift"
-            timestampString = "582232084.503828"
+            timestampString = "582832862.909899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "127"
@@ -26,12 +26,12 @@
                   moduleName = "BMLife"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/cai_ios_dev_1/Desktop/BMLF/BMLife/Class/RentApt/View/Main/ZJRentAptMapView.swift"
-                  timestampString = "582232084.57809"
+                  timestampString = "582834777.7028559"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "127"
                   endingLineNumber = "127"
-                  offsetFromSymbolStart = "2640">
+                  offsetFromSymbolStart = "4455">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -41,12 +41,12 @@
                   moduleName = "BMLife"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/cai_ios_dev_1/Desktop/BMLF/BMLife/Class/RentApt/View/Main/ZJRentAptMapView.swift"
-                  timestampString = "582232084.581475"
+                  timestampString = "582834777.705707"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "128"
                   endingLineNumber = "128"
-                  offsetFromSymbolStart = "40">
+                  offsetFromSymbolStart = "53">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -96,6 +96,22 @@
             startingLineNumber = "45"
             endingLineNumber = "45"
             landmarkName = "loadZipcodeAndCrime(dictValue:finished:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BMLife/Class/RentApt/View/Main/ZJRentApiListTopSettingView.swift"
+            timestampString = "582834931.816505"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "titleLabelClicked(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
