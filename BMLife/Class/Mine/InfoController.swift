@@ -29,9 +29,6 @@ class InfoController: UIViewController, UICollectionViewDelegate, UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
-//        setupCloseButton()
-//        setupFloatingView()
-
     }
 
     fileprivate func setupFloatingView() {
@@ -71,7 +68,6 @@ class InfoController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         if -offsetY > 150 {
-//            handleDismiss()
             return
         }
         if offsetY > 0 {

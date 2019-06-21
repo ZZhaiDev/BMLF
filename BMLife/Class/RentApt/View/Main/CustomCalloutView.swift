@@ -75,7 +75,6 @@ class CustomCalloutView: UIView {
         lable.textColor = .white
         lable.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
         lable.numberOfLines = 1
-//        l.adjustsFontSizeToFitWidth = true
         return lable
     }()
 
@@ -84,7 +83,6 @@ class CustomCalloutView: UIView {
         lable.backgroundColor = .clear
         lable.textColor = .white
         lable.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-//        l.text = "900/m"
         return lable
     }()
 
@@ -96,7 +94,6 @@ class CustomCalloutView: UIView {
         lable.numberOfLines = 0
         lable.adjustsFontSizeToFitWidth = true
         lable.textColor = UIColor.yellow.withAlphaComponent(1)
-//        l.text = "Girls only"
         return lable
     }()
 
@@ -126,7 +123,6 @@ class CustomCalloutView: UIView {
         }
 
     }
-    
     @objc func onTap() {
         if let tvc = UIApplication.topViewController() as? ZJRentAptViewController {
             let detailVC = ZJRentAptListDetailViewController()
@@ -134,7 +130,6 @@ class CustomCalloutView: UIView {
             tvc.navigationController?.pushViewController(detailVC, animated: true)
         }
     }
-    
     var data = AddAptProperties() {
         didSet {
             if let contact = data.contact, let phone = contact.phonenumber {
@@ -144,7 +139,7 @@ class CustomCalloutView: UIView {
             if let cat = data.category {
                 paddingLable.text = cat
             }
-            if let description = data.description, let title = description.title{
+            if let description = data.description, let title = description.title {
                 typeL.text = title
             }
             if let price = data.base?.price {
@@ -176,7 +171,6 @@ class CustomCalloutView: UIView {
             }
         }
     }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.isUserInteractionEnabled = true
@@ -221,7 +215,6 @@ extension CustomCalloutView: UICollectionViewDataSource, UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return data.images?.count ?? 0
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // swiftlint:disable force_cast
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CalloutViewCell

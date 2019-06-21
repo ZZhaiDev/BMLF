@@ -13,7 +13,6 @@ class ZJRentAptFilterHotView: UIView {
     fileprivate lazy var titles = ["Chicago", "Boston", "Los Angeles", "New York", "Dallas", "San Jose", "Seattle", "All"]
     fileprivate var ynCategoryButtons = [YNCategoryButton]()
     fileprivate var ynCategoryButtonType: YNCategoryButtonType = .colorful
-
     fileprivate lazy var hotImageV: UIImageView = {
        let imageV = UIImageView(image: UIImage(named: "home_header_hot"))
         return imageV
@@ -29,14 +28,11 @@ class ZJRentAptFilterHotView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        self.backgroundColor = .blue
         self.addSubview(hotImageV)
         hotImageV.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 15, paddingBottom: 0, paddingRight: 0, width: 18, height: 18)
         self.addSubview(hotLable)
         hotLable.anchor(top: hotImageV.topAnchor, left: hotImageV.rightAnchor, bottom: hotImageV.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 5, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-
         setupButtons()
-
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -47,7 +43,6 @@ class ZJRentAptFilterHotView: UIView {
         let margin: CGFloat = 15
         var formerWidth: CGFloat = 15
         var formerHeight: CGFloat = 40
-
         let font = UIFont.systemFont(ofSize: 12)
         let userAttributes = [NSAttributedString.Key.font : font, NSAttributedString.Key.foregroundColor: UIColor.gray]
         for index in 0..<titles.count {

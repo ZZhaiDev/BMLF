@@ -21,7 +21,6 @@ class ZJRentAptListDetailBaseCell: UICollectionViewCell {
     lazy var secondtLabel: UILabel = {
         let labelV = UILabel()
         labelV.textColor = UIColor.black.withAlphaComponent(0.8)
-//        labelV.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.medium)
         labelV.font = ZJRentAptListDetailBaseCell.secondLabelFont
         labelV.numberOfLines = 0
         labelV.adjustsFontSizeToFitWidth = true

@@ -139,7 +139,6 @@ extension ZJRentAptListViewCell: MFMailComposeViewControllerDelegate {
                 topVC.present(alertVC, animated: true) {
                 }
             } else {
-
             }
         }
     }

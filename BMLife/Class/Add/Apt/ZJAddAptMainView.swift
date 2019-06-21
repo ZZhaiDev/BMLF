@@ -27,9 +27,8 @@ class ZJAddAptMainView: UIView {
     }()
 
     fileprivate lazy var mapView: ZJAddAptMapView = {
-//        let mv = ZJAddAptMapView(frame: CGRect(x: 0, y: -250, width: zjScreenWidth, height: originalMapViewH))
-        let mv = ZJAddAptMapView()
-        return mv
+        let mapV = ZJAddAptMapView()
+        return mapV
     }()
 
     override init(frame: CGRect) {

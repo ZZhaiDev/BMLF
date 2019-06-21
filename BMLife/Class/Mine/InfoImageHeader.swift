@@ -11,7 +11,6 @@ import UIKit
 class InfoImageHeader: UICollectionReusableView {
 
     var animator: UIViewPropertyAnimator!
-
     fileprivate let imageView = UIImageView(image: UIImage(named: "chicago_bgimge"))
     fileprivate let titleLabel = UILabel()
 
@@ -19,7 +18,6 @@ class InfoImageHeader: UICollectionReusableView {
         super.init(frame: frame)
 
         clipsToBounds = true
-
         setupImageView()
         setupBlurView()
         setupGradientLayer()
@@ -35,7 +33,6 @@ class InfoImageHeader: UICollectionReusableView {
     fileprivate func setupBlurView() {
         animator = UIViewPropertyAnimator(duration: 2, curve: .linear, animations: { [unowned self] in
             let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
-
             self.addSubview(blurView)
             blurView.fillSuperview()
             self.bringSubviewToFront(self.titleLabel)
@@ -47,12 +44,10 @@ class InfoImageHeader: UICollectionReusableView {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
         gradientLayer.locations = [0.5, 1]
-
         let gradientContainer = UIView()
         addSubview(gradientContainer)
         gradientContainer.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
         gradientContainer.layer.addSublayer(gradientLayer)
-
         gradientLayer.frame = self.bounds
         gradientLayer.frame.origin.y -= bounds.height
     }
@@ -61,7 +56,6 @@ class InfoImageHeader: UICollectionReusableView {
         addSubview(titleLabel)
         titleLabel.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 24, bottom: 16, right: 16))
         titleLabel.numberOfLines = 0
-
         let attributedText = NSMutableAttributedString(string:  NSLocalizedString("Welcome to", comment: ""), attributes: [.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .bold)])
         attributedText.append(NSAttributedString(string: "\n", attributes: [.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 4, weight: .heavy)]))
         attributedText.append(NSAttributedString(string: "BMLife", attributes: [.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 32, weight: .heavy)]))

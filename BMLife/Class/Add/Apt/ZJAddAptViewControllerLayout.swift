@@ -117,13 +117,12 @@ extension ZJAddAptViewController {
     @objc func submitfunc() {
         if checkSubmitValide() == false {return}
         let UUID = NSUUID().uuidString
-
         startAnimating(CGSize(width: 30, height: 30), message: "Uploading...", fadeInAnimation: nil)
         getImageUrlFromAWSS3(UUID: UUID) {
             ZJPrint(images)
             let form = self.fillOutForms(UUID: UUID)
             NetworkTools.requestData(.post, URLString: "\(baseAPI)api/v1/rental/house/", parameters: form) { (data) in
-                guard let data = data else {
+                guard data != nil else {
                     NVActivityIndicatorPresenter.sharedInstance.setMessage("Something is Wrong...")
                     DispatchQueue.main.asyncAfter(deadline: .now()+1.5, execute: {
                         self.stopAnimating()
@@ -133,16 +132,7 @@ extension ZJAddAptViewController {
                     return
                 }
                 NVActivityIndicatorPresenter.sharedInstance.setMessage("Uploaded Successfully, Updating data...")
-
                 if let rootVC = UIApplication.firstViewController() as? ZJRentAptViewController {
-//                    rootVC.aptViewModel.loadApt { (_) in
-//                        rootVC.listView.data = rootVC.aptViewModel.aptProperties
-//                        //这个mapview会不会重复添加？
-//                        rootVC.mapView.data = rootVC.aptViewModel.aptProperties
-//                        self.stopAnimating()
-//                        self.closefunc()
-//                    }
-                    
                     // 这里需要用 uuid 来call 用户提交的数据
                     rootVC.aptViewModel.loadAptByUUID(UUID: UUID, finished: { (aptProperties) in
                         rootVC.totalDatas.append(aptProperties)
@@ -268,7 +258,6 @@ extension ZJAddAptViewController {
                                 ZJPrint(err)
                                 return
                             }
-//                            ZJPrint(responce!)
                             let urlStr = "https://blissmotors-web-upload.s3.amazonaws.com/bmlife/\(UUID)-\(imageName)"
                             images.append(urlStr)
                             if images.count == selectedItems.count {

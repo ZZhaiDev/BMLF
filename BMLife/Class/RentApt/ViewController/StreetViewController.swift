@@ -23,7 +23,6 @@ class StreetViewController: UIViewController, GMSPanoramaViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         panoramaView.delegate  = self
-        // Do any additional setup after loading the view.
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -50,23 +49,18 @@ class StreetViewController: UIViewController, GMSPanoramaViewDelegate {
         lable.textColor = UIColor.white
         lable.textAlignment = .center
         panoramaView.addSubview(lable)
-//        panoramaView.moveNearCoordinate(CLLocationCoordinate2D(latitude: destinationLatitude!, longitude: destinationLongitude!))
     }
 
     func panoramaView(_ panoramaView: GMSPanoramaView, didTap point: CGPoint) {
-
     }
 
     func panoramaView(_ view: GMSPanoramaView, error: Error, onMoveToPanoramaID panoramaID: String) {
-
     }
 
     func panoramaViewDidStartRendering(_ panoramaView: GMSPanoramaView) {
-
     }
 
     func panoramaViewDidFinishRendering(_ panoramaView: GMSPanoramaView) {
-
     }
 
 }

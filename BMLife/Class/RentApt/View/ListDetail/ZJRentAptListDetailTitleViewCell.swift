@@ -47,11 +47,6 @@ class ZJRentAptListDetailTitleViewCell: UICollectionViewCell {
     }
 
     fileprivate func setupUI() {
-//        self.addSubview(userPhoto)
-//        self.addSubview(titleLabel)
-//        userPhoto.anchor(top: nil, left: leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: userPhotoWidth, height: userPhotoWidth)
-//        userPhoto.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-//        titleLabel.anchor(top: self.topAnchor, left: userPhoto.rightAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingTop: 5, paddingLeft: 15, paddingBottom: 5, paddingRight: 10, width: 0, height: 0)
         self.addSubview(titleLabel)
         titleLabel.fillSuperview()
     }

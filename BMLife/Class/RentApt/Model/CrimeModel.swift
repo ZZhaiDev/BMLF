@@ -18,14 +18,8 @@ struct CrimeResultModel: Codable {
 }
 
 struct CrimeFeatureModel: Codable {
-//    var geometry: CrimeGeometryModel?
     var properties: CrimepropertiesModel?
 }
-
-//struct CrimeGeometryModel: Codable {
-//
-////    var geometry: CrimeGeometry?
-//}
 
 struct CrimepropertiesModel: Codable {
     // swiftlint:disable identifier_name

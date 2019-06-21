@@ -31,7 +31,6 @@ class ZJAddAptMapView: UIView {
 
     var locationManager: CLLocationManager!
     let newPin = MKPointAnnotation()
-//    let userPin = MKPointAnnotation()
     var searchCompleter = MKLocalSearchCompleter()
     var searchResults = [MKLocalSearchCompletion]()
     var resultTableHeightConstraint: NSLayoutConstraint?
@@ -40,13 +39,13 @@ class ZJAddAptMapView: UIView {
     fileprivate let searchBarHeight: CGFloat = 40
 
     lazy var searchBar: AutoCompleteTextField = { [weak self] in
-       let sb = AutoCompleteTextField()
-        sb.delegate = self
-        sb.clearButtonMode = .always
-        sb.layer.borderWidth = 0.5
-        sb.layer.borderColor = UIColor.black.cgColor
-        sb.addTarget(self, action: #selector(textFieldEditing), for: .editingChanged)
-        return sb
+       let searchb = AutoCompleteTextField()
+        searchb.delegate = self
+        searchb.clearButtonMode = .always
+        searchb.layer.borderWidth = 0.5
+        searchb.layer.borderColor = UIColor.black.cgColor
+        searchb.addTarget(self, action: #selector(textFieldEditing), for: .editingChanged)
+        return searchb
     }()
 
     lazy var addressLabel:UILabel = {
@@ -59,11 +58,11 @@ class ZJAddAptMapView: UIView {
     }()
 
     fileprivate lazy var resultTableView: UITableView = { [weak self] in
-        let tv = UITableView()
-        tv.dataSource = self
-        tv.delegate = self
-        tv.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
-        return tv
+        let tableV = UITableView()
+        tableV.dataSource = self
+        tableV.delegate = self
+        tableV.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        return tableV
     }()
 
     fileprivate lazy var mapsView: MKMapView = {
@@ -135,12 +134,8 @@ extension ZJAddAptMapView: UITextFieldDelegate {
         guard let text = textF.text else {
             return
         }
-        ZJPrint(text)
         if text == ""{
-//            searchBar.resignFirstResponder()
-
             self.resultTableHeightConstraint?.constant = 0
-//            self.heightAnchor.constraint(equalToConstant: originalMapViewH)
             if let topVC = UIApplication.topViewController() as? ZJAddAptViewController {
                 topVC.tableView.tableHeaderView?.frame.size.height = originalMapViewH
                 topVC.tableView.reloadData()
@@ -159,17 +154,13 @@ extension ZJAddAptMapView: UITextFieldDelegate {
 
 extension ZJAddAptMapView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         let max = 4
         let cellH = 56
         var cellNum = max
         if searchResults.count < max {
             cellNum = searchResults.count
         }
-
         self.resultTableHeightConstraint?.constant = CGFloat(cellH * cellNum)
-//        self.heightAnchor.constraint(equalToConstant: originalMapViewH+CGFloat(cellH * cellNum))
-//        self.frame.size.height = 245 + CGFloat(cellH * cellNum)
         if let topVC = UIApplication.topViewController() as? ZJAddAptViewController {
             topVC.tableView.tableHeaderView?.frame.size.height = originalMapViewH + CGFloat(cellH * cellNum)
             topVC.tableView.reloadData()
@@ -187,9 +178,7 @@ extension ZJAddAptMapView: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
         mapsView.removeAnnotation(newPin)
-
         let completion = searchResults[indexPath.row]
         ZJPrint(completion.subtitle)
         ZJPrint(completion.title)
@@ -203,7 +192,6 @@ extension ZJAddAptMapView: UITableViewDataSource, UITableViewDelegate {
             resultTableHeightConstraint = resultTableView.heightAnchor.constraint(equalToConstant: 0)
             resultTableHeightConstraint?.isActive = true
             topVC.tableView.reloadData()
-
         }
 
         let searchRequest = MKLocalSearch.Request(completion: completion)
@@ -257,26 +245,20 @@ extension ZJAddAptMapView: UITableViewDataSource, UITableViewDelegate {
 
 extension ZJAddAptMapView: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        mapsView.removeAnnotation(userPin)
         if let location = locations.last {
             let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
             self.mapsView.setRegion(region, animated: true)
-//            userPin.coordinate = location.coordinate
-//            mapsView.addAnnotation(userPin)
             let geocoder = CLGeocoder()
             geocoder.reverseGeocodeLocation(CLLocation.init(latitude: location.coordinate.latitude, longitude:location.coordinate.longitude)) { (places, error) in
                 if error == nil {
                     if let place = places {
-                        if let firstPlace = place.first, let subthoroughfare = firstPlace.subThoroughfare, let thoroughfare = firstPlace.thoroughfare, let postalCode = firstPlace.postalCode, let locality = firstPlace.locality {
-                            //                            self.addressLabel.text = "\(subthoroughfare) \(thoroughfare),\(locality),\(postalCode)"
-                        }
-
+//                        if let firstPlace = place.first, let subthoroughfare = firstPlace.subThoroughfare, let thoroughfare = firstPlace.thoroughfare, let postalCode = firstPlace.postalCode, let locality = firstPlace.locality {
+//                        }
                     }
                 }
             }
         }
-
         manager.stopUpdatingLocation()
         manager.delegate = nil
     }

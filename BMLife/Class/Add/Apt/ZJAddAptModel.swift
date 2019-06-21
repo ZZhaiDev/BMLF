@@ -67,7 +67,6 @@ struct AddAptContact: Codable {
 
 struct AddAptBase: Codable {
     var price: String?
-
     var housetype: String?
     var roomtype: String?
     var bathroom: String?
@@ -92,7 +91,6 @@ struct AddAptRequirement: Codable {
     var cooking: String?
     var smoking: String?
     var otherrequirements: [AddAptOtherRequirement]?
-
 }
 
 struct AddAptOtherRequirement: Codable {

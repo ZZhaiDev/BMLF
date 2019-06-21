@@ -16,21 +16,13 @@ enum MethodType {
 
 class NetworkTools {
     class func requestData(_ type : MethodType, URLString : String, parameters : [String : Any]? = nil, finishedCallback :  @escaping (_ result : Any?) -> Void) {
-
-        // 1.获取类型
         let method = type == .get ? HTTPMethod.get : HTTPMethod.post
-
-        // 2.发送网络请求
-//        ZJPrint(URLString)
         AF.request(URLString, method: method, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
-            // 3.获取结果
             guard let result = response.result.value else {
                 print(response.result.value ?? "")
                 finishedCallback(response)
                 return
             }
-
-            // 4.将结果回调出去
             finishedCallback(result)
         }
 
@@ -59,11 +51,9 @@ class ApiService {
             if(error != nil) {
                 result.message = "Fail Error not null : \(error.debugDescription)"
             } else {
-//                ZJPrint(response)
                 result.message = "Success"
                 result.data = data
             }
-
             finish(result)
         }
         task.resume()
@@ -72,34 +62,19 @@ class ApiService {
     static func uploadToS3(image: UIImage, urlString: String, completion: @escaping (URLResponse?, Error?) -> Void) {
         let imageData = image.jpegData(compressionQuality: 0.9)
         let decodedURLString = urlString.replacingOccurrences(of: "\"", with: "").replacingOccurrences(of: "\n", with: "").removingPercentEncoding!
-//        ZJPrint(decodedURLString)
         guard let encoded = decodedURLString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
             let myURL = URL(string: encoded) else {
             return
         }
-//        ZJPrint(myURL)
         var request = URLRequest(url: myURL)
         request.httpMethod = "PUT"
         request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
         request.setValue("base64", forHTTPHeaderField: "Content-Encoding")
         request.setValue("image/jpeg", forHTTPHeaderField: "Content-Type")
         request.httpBody = imageData
-
         let task = URLSession.shared.dataTask(with: request) { (_, responce, error) in
             completion(responce, error)
         }
         task.resume()
     }
-
-//   static func convertToDictionary(text: String) -> [String: Any]? {
-//        if let data = text.data(using: .utf8) {
-//            do {
-//                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-//            } catch {
-//                print(error.localizedDescription)
-//            }
-//        }
-//        return nil
-//    }
-
 }

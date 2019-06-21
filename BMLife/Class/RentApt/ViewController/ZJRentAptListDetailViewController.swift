@@ -97,7 +97,6 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
 
     var descriptionVaule = defalutValue
     var requiredmentCellHeight: CGFloat = 100
-    
     var titleArr = ["", "", "Base", "Requirement", "Included", "Nearby", "Description", "Contact", ""]
     var basekey = ["Address", "Price", "Category", "House Type", "Room Type",  "Bathroom", "Parking", "Washer", "Start Date"]
     var baseValue = [String]()
@@ -133,7 +132,6 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
         view.delegate = self
         return view
     }()
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         hideNavigationBar()
@@ -145,18 +143,15 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
     }
-    
     fileprivate func showNavigationBar() {
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.view.backgroundColor = .orange
     }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         showNavigationBar()
         navigationController?.navigationBar.tintColor = .white
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(collectionView)
@@ -218,7 +213,7 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
         } else if indexPath.section == 1 {
             return CGSize(width: zjScreenWidth, height: cateViewH)
         } else if indexPath.section == 2 {
-            if indexPath.row == 0{
+            if indexPath.row == 0 {
                 let height = calculateHeight(width: ZJRentAptListDetailBaseCell.secondLableWidth, textFont: ZJRentAptListDetailBaseCell.secondLabelFont, text: data.fulladdress ?? "")
                 return CGSize(width: zjScreenWidth, height: height)
             }
@@ -249,7 +244,7 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
         } else if section == 1 {
             return .zero
         } else if section == 6 {
-            if descriptionVaule == defalutValue || descriptionVaule == defalutServerValue  {
+            if descriptionVaule == defalutValue || descriptionVaule == defalutServerValue {
                 return .zero
             }
             return CGSize(width: zjScreenWidth, height: 44)

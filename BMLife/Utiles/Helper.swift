@@ -14,7 +14,6 @@ let isIphoneX = zjScreenHeight >= 812 ? true : false
 let zjStatusHeight : CGFloat = isIphoneX ? 44 : 20
 let zjNavigationBarHeight :CGFloat = 44
 let zjTabBarHeight : CGFloat = isIphoneX ? 49 + 34 : 49
-
 private let polygonAlpha: CGFloat = 0.7
 
 class PaddingLabel: UILabel {
@@ -116,7 +115,6 @@ extension UIColor {
         return UIColor(displayP3Red: 21/255, green: 88/255, blue: 35/255, alpha: 1.0)
     }
 }
-
 
 extension UIColor {
     static let dangerouseLevelColorArr = [UIColor(r: 0, g: 255, b: 0).withAlphaComponent(polygonAlpha),
