@@ -9,6 +9,7 @@
 import UIKit
 private let cellId = "cellId"
 private let cellId2 = "cellId2"
+private var lastContentOffset: CGFloat = -(ZJRentApiListTopSettingView.selfHeight)
 
 class ZJRentAptListView: UIView {
     var data = [AddAptProperties]() {
@@ -77,5 +78,16 @@ extension ZJRentAptListView: UICollectionViewDataSource, UICollectionViewDelegat
             tvc.navigationController?.pushViewController(detailVC, animated: true)
         }
     }
-
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentY = scrollView.contentOffset.y
+        ZJPrint(currentY)
+        if currentY > lastContentOffset { // scroll up
+            if currentY <= -(ZJRentApiListTopSettingView.selfHeight) { return }
+            self.topSettingView.frame.size.height = ZJRentApiListTopSettingView.selfHeight/2 - 8
+        } else {
+            self.topSettingView.frame.size.height = ZJRentApiListTopSettingView.selfHeight
+        }
+        lastContentOffset = currentY
+    }
 }
