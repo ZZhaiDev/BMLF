@@ -16,6 +16,12 @@ class ZJRentAptListView: UIView {
             collectionView.reloadData()
         }
     }
+    
+    var topSettingView: ZJRentApiListTopSettingView = {
+        let view = ZJRentApiListTopSettingView(frame: .zero)
+        view.backgroundColor = UIColor.background
+        return view
+    }()
 
     fileprivate lazy var collectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -29,6 +35,9 @@ class ZJRentAptListView: UIView {
         super.init(frame: frame)
         self.addSubview(collectionView)
         collectionView.fillSuperview()
+        self.addSubview(topSettingView)
+        topSettingView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: ZJRentApiListTopSettingView.selfHeight)
+        collectionView.contentInset = UIEdgeInsets(top: ZJRentApiListTopSettingView.selfHeight, left: 0, bottom: 0, right: 0)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(UINib(nibName: "ZJRentAptListViewCell", bundle: nil), forCellWithReuseIdentifier: cellId)
@@ -38,6 +47,8 @@ class ZJRentAptListView: UIView {
         layout.minimumInteritemSpacing = 10
         layout.minimumLineSpacing = 10
         layout.itemSize = CGSize(width: zjScreenWidth-20, height: ZJRentAptListViewCell2.selfHeight)
+        
+        
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -46,6 +46,7 @@
 		A438F0F12294ADC900327754 /* ZJRentAptListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A438F0F02294ADC900327754 /* ZJRentAptListHeaderView.swift */; };
 		A438F0F322959ED300327754 /* NetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = A438F0F222959ED300327754 /* NetworkTools.swift */; };
 		A43A95D5229DD04F006E7901 /* MyCustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43A95D3229DD04F006E7901 /* MyCustomUIView.swift */; };
+		A454C99322BD4ED500C3D073 /* ZJRentApiListTopSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454C99222BD4ED500C3D073 /* ZJRentApiListTopSettingView.swift */; };
 		A454DA67229468DA006EED07 /* ZJRentAptListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454DA66229468DA006EED07 /* ZJRentAptListDetailViewController.swift */; };
 		A454DA7722947899006EED07 /* CycleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454DA7322947899006EED07 /* CycleCell.xib */; };
 		A454DA7822947899006EED07 /* RecommendCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454DA7422947899006EED07 /* RecommendCycleView.swift */; };
@@ -141,6 +142,7 @@
 		A438F0F02294ADC900327754 /* ZJRentAptListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListHeaderView.swift; sourceTree = "<group>"; };
 		A438F0F222959ED300327754 /* NetworkTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTools.swift; sourceTree = "<group>"; };
 		A43A95D3229DD04F006E7901 /* MyCustomUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomUIView.swift; sourceTree = "<group>"; };
+		A454C99222BD4ED500C3D073 /* ZJRentApiListTopSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentApiListTopSettingView.swift; sourceTree = "<group>"; };
 		A454DA66229468DA006EED07 /* ZJRentAptListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListDetailViewController.swift; sourceTree = "<group>"; };
 		A454DA7322947899006EED07 /* CycleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CycleCell.xib; sourceTree = "<group>"; };
 		A454DA7422947899006EED07 /* RecommendCycleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendCycleView.swift; sourceTree = "<group>"; };
@@ -404,6 +406,7 @@
 				3883511022A3159000E00A93 /* CustomizedAnnotationView.swift */,
 				38094D3422A3688200D015B6 /* CustomCalloutView.swift */,
 				3800F051228E3D0800095A2F /* ZJRentAptListView.swift */,
+				A454C99222BD4ED500C3D073 /* ZJRentApiListTopSettingView.swift */,
 				A41CFD71228F28FE0008FFB6 /* ZJRentAptListViewCell.swift */,
 				A41CFD72228F28FE0008FFB6 /* ZJRentAptListViewCell.xib */,
 				381013C922ACBB1400967CFC /* ZJRentAptListViewCell2.swift */,
@@ -729,6 +732,7 @@
 				A4F460F922AEF35700A0831E /* ZipcodeAndCrimeModel.swift in Sources */,
 				A4F460EA22A82ED800A0831E /* StreetViewController.swift in Sources */,
 				3800F047228E389B00095A2F /* ZJBaseViewController.swift in Sources */,
+				A454C99322BD4ED500C3D073 /* ZJRentApiListTopSettingView.swift in Sources */,
 				3800F052228E3D0800095A2F /* ZJRentAptListView.swift in Sources */,
 				3800F050228E39D400095A2F /* ZJRentAptMapView.swift in Sources */,
 				A4B2DAE922987607003E1254 /* ConfettiView.swift in Sources */,
