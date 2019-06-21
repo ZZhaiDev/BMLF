@@ -10,6 +10,9 @@ This project will mainly include four parts: House&Apartment renting, School&Cit
 
 But, the first release version will only contain house renting. We plan to release the first version before 20 Jun.
 
+## Releases
+* V1.0 Released at 06/19/2019
+
 ## Features
 * The landlord can publish house information and house photos.
 * User can search house information by location, price, etc.
