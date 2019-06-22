@@ -18,7 +18,7 @@ class ZJRentAptFilterViewController: UIViewController {
     lazy var searchBar: PaddingTextField = { [weak self] in
         let searchB = PaddingTextField()
         searchB.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
-        searchB.placeholder = "Enter Your Address"
+        searchB.placeholder = "Choose City"
         searchB.font = UIFont.systemFont(ofSize: 12)
         searchB.delegate = self
         searchB.clearButtonMode = .always
@@ -41,7 +41,6 @@ class ZJRentAptFilterViewController: UIViewController {
     @objc fileprivate func cancelButtonClicked() {
         searchBar.resignFirstResponder()
         self.dismiss(animated: true) {
-
         }
     }
 
@@ -49,6 +48,7 @@ class ZJRentAptFilterViewController: UIViewController {
         searchBar.resignFirstResponder()
         self.dismiss(animated: true) {
             if let topVC = UIApplication.topViewController() as? ZJRentAptViewController {
+                topVC.searchBar.setTitle(city, for: .normal)
                 if city == "All"{
                     topVC.listView.data = topVC.totalDatas
                     return

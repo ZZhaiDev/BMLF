@@ -84,7 +84,7 @@ extension ZJRentAptListView: UICollectionViewDataSource, UICollectionViewDelegat
         ZJPrint(currentY)
         if currentY > lastContentOffset { // scroll up
             if currentY <= -(ZJRentApiListTopSettingView.selfHeight) { return }
-            self.topSettingView.frame.size.height = ZJRentApiListTopSettingView.selfHeight/2 - 8
+            self.topSettingView.frame.size.height = ZJRentApiListTopSettingView.selfHeight/2 - 10
         } else {
             self.topSettingView.frame.size.height = ZJRentApiListTopSettingView.selfHeight
         }

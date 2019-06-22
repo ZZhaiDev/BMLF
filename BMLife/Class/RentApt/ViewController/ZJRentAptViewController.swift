@@ -94,7 +94,7 @@ class ZJRentAptViewController: ZJBaseViewController, NVActivityIndicatorViewable
 //        b.layer.borderWidth = 0.5
         button.layer.cornerRadius = searchBarHeight/2
         button.layer.masksToBounds = true
-        button.setTitle("Enter Address", for: .normal)
+        button.setTitle("Choose City", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         button.titleLabel?.textAlignment = .left
         button.setTitleColor(UIColor.lightGray, for: .normal)
