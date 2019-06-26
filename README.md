@@ -23,6 +23,7 @@ But, the first release version will only contain house renting. We plan to relea
 - [Kingfisher](https://github.com/onevcat/Kingfisher) - A lightweight, pure-Swift library for downloading and caching images from the web.
 - [pop](https://github.com/facebook/pop) - An extensible iOS and OS X animation library, useful for physics-based interactions.
 - [Eureka](https://github.com/xmartlabs/Eureka) - Most flexible and powerful iOS library to create dynamic table-view forms.
+- [Realm](https://realm.io/docs/swift/latest/) - Realm Swift enables you to efficiently write your app’s model layer in a safe, persisted and fast way. 
 - [NVActivityIndicatorView](https://github.com/ninjaprox/NVActivityIndicatorView) - NVActivityIndicatorView is a collection of awesome loading animations.
 - Mapkit, MessageUI, Corelocation.
 - Customize calloutView & draw an area on mapkit
