@@ -134,10 +134,14 @@ extension ZJAddAptViewController {
                 NVActivityIndicatorPresenter.sharedInstance.setMessage("Uploaded Successfully, Updating data...")
                 if let rootVC = UIApplication.firstViewController() as? ZJRentAptViewController {
                     // 这里需要用 uuid 来call 用户提交的数据
-                    rootVC.aptViewModel.loadAptByUUID(UUID: UUID, finished: { (aptProperties) in
-                        rootVC.totalDatas.append(aptProperties)
-                        rootVC.listView.data = rootVC.totalDatas
-                        rootVC.mapView.data = [aptProperties]
+                    rootVC.aptViewModel.loadAptByUUID(UUID: UUID, finished: { (aptProperties, id) in
+//                        rootVC.totalDatas.append(aptProperties)
+//                        rootVC.listView.data = rootVC.totalDatas
+//                        rootVC.mapView.data = [aptProperties]
+                        rootVC.realmResult = realmInstance.objects(ZJAddAptRealmModel.self).sorted(byKeyPath: "id")
+                        rootVC.listView.realmData = rootVC.realmResult
+                        rootVC.mapView.realmData = rootVC.realmResult
+                        
                         self.stopAnimating()
                         self.closefunc()
                     })

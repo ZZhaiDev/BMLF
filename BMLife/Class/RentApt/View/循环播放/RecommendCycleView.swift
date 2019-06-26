@@ -26,6 +26,17 @@ class RecommendCycleView: UIView {
             addCycleTimer()
         }
     }
+    
+    var realmData = [String]() {
+        didSet {
+            collectionView.reloadData()
+            pageControl.numberOfPages = realmData.count
+            let indexPath = IndexPath(item: realmData.count * 10, section: 0)
+            collectionView.scrollToItem(at: indexPath, at: .left, animated: false)
+            removeCycleTimer()
+            addCycleTimer()
+        }
+    }
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
@@ -58,11 +69,11 @@ extension RecommendCycleView {
 
 extension RecommendCycleView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count * 10000
+        return realmData.count * 10000
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CycleCell
-        cell.data = data[(indexPath as NSIndexPath).item % data.count]
+        cell.reamlData = realmData[(indexPath as NSIndexPath).item % realmData.count]
         return cell
     }
 
@@ -82,7 +93,7 @@ extension RecommendCycleView: UICollectionViewDataSource, UICollectionViewDelega
 extension RecommendCycleView {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetX = scrollView.contentOffset.x + scrollView.bounds.width * 0.5
-        pageControl.currentPage = Int(offsetX / scrollView.bounds.width) % (data.count)
+        pageControl.currentPage = Int(offsetX / scrollView.bounds.width) % (realmData.count)
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

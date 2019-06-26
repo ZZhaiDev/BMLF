@@ -50,7 +50,11 @@ class ZJRentAptFilterViewController: UIViewController {
             if let topVC = UIApplication.topViewController() as? ZJRentAptViewController {
                 topVC.searchBar.setTitle(city, for: .normal)
                 if city == "All"{
-                    topVC.listView.data = topVC.totalDatas
+//                    topVC.listView.data = topVC.totalDatas
+//                    topVC.listView.realmData = topVC.realmResult
+//                    topVC.realmResult = realmInstance.objects(ZJAddAptRealmModel.self).sorted(byKeyPath: "id")
+//                    topVC.listView.realmData = topVC.realmResult
+                    topVC.listView.realmData = realmInstance.objects(ZJAddAptRealmModel.self).sorted(byKeyPath: "id")
                     return
                 }
                 let mapView = topVC.mapView.mapsView
@@ -65,11 +69,12 @@ class ZJRentAptFilterViewController: UIViewController {
                     let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
                     mapView.setRegion(region, animated: true)
                 })
-                ZJPrint(city)
-                let urlCity = city.replacingOccurrences(of: " ", with: "+")
-                topVC.aptViewModel.loadApt(page: 1, pageSize: 300, city: urlCity, finished: { (_) in
-                    topVC.listView.data = topVC.aptViewModel.aptProperties
-                })
+//                ZJPrint(city)
+//                let urlCity = city.replacingOccurrences(of: " ", with: "+")
+//                topVC.aptViewModel.loadApt(page: 1, pageSize: 300, city: urlCity, finished: { (_) in
+////                    topVC.listView.data = topVC.aptViewModel.aptProperties
+//                })
+                topVC.listView.realmData = realmInstance.objects(ZJAddAptRealmModel.self).filter("city == '\(city)'")
             }
         }
     }

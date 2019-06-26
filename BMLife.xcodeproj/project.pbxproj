@@ -48,6 +48,7 @@
 		A438F0F322959ED300327754 /* NetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = A438F0F222959ED300327754 /* NetworkTools.swift */; };
 		A43A95D5229DD04F006E7901 /* MyCustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43A95D3229DD04F006E7901 /* MyCustomUIView.swift */; };
 		A454C99322BD4ED500C3D073 /* ZJRentApiListTopSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454C99222BD4ED500C3D073 /* ZJRentApiListTopSettingView.swift */; };
+		A454C99822C3CF1600C3D073 /* SquareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454C99722C3CF1600C3D073 /* SquareView.swift */; };
 		A454DA67229468DA006EED07 /* ZJRentAptListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454DA66229468DA006EED07 /* ZJRentAptListDetailViewController.swift */; };
 		A454DA7722947899006EED07 /* CycleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454DA7322947899006EED07 /* CycleCell.xib */; };
 		A454DA7822947899006EED07 /* RecommendCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454DA7422947899006EED07 /* RecommendCycleView.swift */; };
@@ -145,6 +146,7 @@
 		A438F0F222959ED300327754 /* NetworkTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTools.swift; sourceTree = "<group>"; };
 		A43A95D3229DD04F006E7901 /* MyCustomUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomUIView.swift; sourceTree = "<group>"; };
 		A454C99222BD4ED500C3D073 /* ZJRentApiListTopSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentApiListTopSettingView.swift; sourceTree = "<group>"; };
+		A454C99722C3CF1600C3D073 /* SquareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareView.swift; sourceTree = "<group>"; };
 		A454DA66229468DA006EED07 /* ZJRentAptListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListDetailViewController.swift; sourceTree = "<group>"; };
 		A454DA7322947899006EED07 /* CycleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CycleCell.xib; sourceTree = "<group>"; };
 		A454DA7422947899006EED07 /* RecommendCycleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendCycleView.swift; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 				A438F0F222959ED300327754 /* NetworkTools.swift */,
 				38C514712294EADD00953286 /* YNCategoryButton.swift */,
 				A41CFD6D228E13B60008FFB6 /* Helper.swift */,
+				A454C99722C3CF1600C3D073 /* SquareView.swift */,
 			);
 			path = Utiles;
 			sourceTree = "<group>";
@@ -748,6 +751,7 @@
 				38476135229636D500084946 /* MineHead.swift in Sources */,
 				A4F460E422A701F000A0831E /* ZJRentAptFilterViewController.swift in Sources */,
 				38476142229649A000084946 /* CityBoundaryViewModel.swift in Sources */,
+				A454C99822C3CF1600C3D073 /* SquareView.swift in Sources */,
 				3800F058228E52B700095A2F /* PublishView.swift in Sources */,
 				A4F460E622A8183C00A0831E /* ZJRentAptFilterHotView.swift in Sources */,
 				381013CB22ACBB1400967CFC /* ZJRentAptListViewCell2.swift in Sources */,

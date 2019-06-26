@@ -23,6 +23,15 @@ class CycleCell: UICollectionViewCell {
             }
         }
     }
+    
+    var reamlData: String? {
+        didSet {
+            guard let reamlData = reamlData else { return }
+            imageView.kf.indicatorType = .activity
+            let url = URL(string: reamlData)
+            imageView.kf.setImage(with: url)
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

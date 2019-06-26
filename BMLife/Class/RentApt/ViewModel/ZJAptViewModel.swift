@@ -19,11 +19,9 @@ class ZJAptViewModel {
 
 extension ZJAptViewModel {
     func loadApt(page: Int = 1, pageSize: Int = ZJAptViewModel.pageSize, city: String = "", finished: @escaping ([String: Any]) -> Void) {
-        ZJPrint("--------------1111111111")
         let api = "\(baseAPI)api/v1/rental/house/?page=\(page)&page_size=\(pageSize)&city=\(city)"
         NetworkTools.requestData(.get, URLString: api) { (responce) in
             self.aptProperties.removeAll()
-            ZJPrint("--------------11111111112")
             guard let dict = responce as? [String: Any] else { return }
             guard let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: []) else {
                 return
@@ -38,10 +36,9 @@ extension ZJAptViewModel {
                     self.aptProperties.append(properties)
                 }
                 try! realmInstance.write {
-                    for (index, feature) in features.enumerated() {
-                        guard let properties = feature.properties else {return}
-                        let realmModel = self.modelToRealm(property: properties)
-                        realmModel.id = index
+                    for (_, feature) in features.enumerated() {
+                        guard let properties = feature.properties else { return }
+                        let realmModel = ZJAptViewModel.modelToRealm(property: properties, id: feature.id ?? -1)
                         realmInstance.add(realmModel, update: true)
                     }
                 }
@@ -52,8 +49,9 @@ extension ZJAptViewModel {
         }
     }
     
-    fileprivate func modelToRealm(property: AddAptProperties) -> ZJAddAptRealmModel {
+    static func modelToRealm(property: AddAptProperties, id: Int) -> ZJAddAptRealmModel {
         let realmModel = ZJAddAptRealmModel()
+        realmModel.id = id
         realmModel.uuid = property.uuid ?? ""
         realmModel.category = property.category ?? ""
         realmModel.fulladdress = property.fulladdress ?? ""
@@ -114,7 +112,7 @@ extension ZJAptViewModel {
         return realmModel
     }
     
-    func loadAptByUUID(UUID: String, finished: @escaping (AddAptProperties) -> Void) {
+    func loadAptByUUID(UUID: String, finished: @escaping (AddAptProperties, Int) -> Void) {
         let api = "\(baseAPI)api/v1/rental/house/\(UUID)"
         ZJPrint(UUID)
         ZJPrint(api)
@@ -129,7 +127,11 @@ extension ZJAptViewModel {
                 let data = try JSONDecoder().decode(AddAptFeature.self, from: jsonData)
                 ZJPrint(data)
                 guard let property = data.properties else { return }
-                finished(property)
+                try! realmInstance.write {
+                    let realmModel = ZJAptViewModel.modelToRealm(property: property, id: data.id ?? -1)
+                    realmInstance.add(realmModel, update: true)
+                }
+                finished(property, data.id ?? -1)
             } catch let jsonError {
                 ZJPrint(jsonError)
             }

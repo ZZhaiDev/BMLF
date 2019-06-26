@@ -16,6 +16,13 @@ class ZJRentAptListDetailDescriptionCell: UICollectionViewCell {
             }
         }
     }
+    
+    var realmData: String? {
+        didSet {
+            guard let realmData = realmData else { return }
+            label.text = realmData
+        }
+    }
 
     lazy var label: UITextView = {
        let lable = UITextView(frame: .zero)
