@@ -49,6 +49,7 @@
 		A43A95D5229DD04F006E7901 /* MyCustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43A95D3229DD04F006E7901 /* MyCustomUIView.swift */; };
 		A454C99322BD4ED500C3D073 /* ZJRentApiListTopSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454C99222BD4ED500C3D073 /* ZJRentApiListTopSettingView.swift */; };
 		A454C99822C3CF1600C3D073 /* SquareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454C99722C3CF1600C3D073 /* SquareView.swift */; };
+		A454C99A22C40E5C00C3D073 /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454C99922C40E5B00C3D073 /* Popover.swift */; };
 		A454DA67229468DA006EED07 /* ZJRentAptListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454DA66229468DA006EED07 /* ZJRentAptListDetailViewController.swift */; };
 		A454DA7722947899006EED07 /* CycleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454DA7322947899006EED07 /* CycleCell.xib */; };
 		A454DA7822947899006EED07 /* RecommendCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454DA7422947899006EED07 /* RecommendCycleView.swift */; };
@@ -147,6 +148,7 @@
 		A43A95D3229DD04F006E7901 /* MyCustomUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomUIView.swift; sourceTree = "<group>"; };
 		A454C99222BD4ED500C3D073 /* ZJRentApiListTopSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentApiListTopSettingView.swift; sourceTree = "<group>"; };
 		A454C99722C3CF1600C3D073 /* SquareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareView.swift; sourceTree = "<group>"; };
+		A454C99922C40E5B00C3D073 /* Popover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
 		A454DA66229468DA006EED07 /* ZJRentAptListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListDetailViewController.swift; sourceTree = "<group>"; };
 		A454DA7322947899006EED07 /* CycleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CycleCell.xib; sourceTree = "<group>"; };
 		A454DA7422947899006EED07 /* RecommendCycleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendCycleView.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 		38C514702294EACE00953286 /* Utiles */ = {
 			isa = PBXGroup;
 			children = (
+				A454C99922C40E5B00C3D073 /* Popover.swift */,
 				384761362296371600084946 /* ParallaxHeader */,
 				A438F0F222959ED300327754 /* NetworkTools.swift */,
 				38C514712294EADD00953286 /* YNCategoryButton.swift */,
@@ -715,6 +718,7 @@
 				A4F460FB22B04A4B00A0831E /* IndicaterView.swift in Sources */,
 				3845EDB8229087B50045A694 /* ZJAddAptDateCell.swift in Sources */,
 				3883511122A3159000E00A93 /* CustomizedAnnotationView.swift in Sources */,
+				A454C99A22C40E5C00C3D073 /* Popover.swift in Sources */,
 				A41CFD6C228DFCCA0008FFB6 /* ZJAddAptViewController.swift in Sources */,
 				A41CFD73228F28FE0008FFB6 /* ZJRentAptListViewCell.swift in Sources */,
 				A419FDB222A1BF10002D891F /* ZJAptViewModel.swift in Sources */,
