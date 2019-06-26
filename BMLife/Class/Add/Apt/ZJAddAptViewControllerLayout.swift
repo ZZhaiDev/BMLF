@@ -16,13 +16,13 @@ var defalutServerValue = "Data unavailable"
 
 private var uuid: String = defalutValue
 var fulladdress: String = defalutValue
- var address: String = defalutValue
- var city: String = defalutValue
- var state: String = defalutValue
- var zipcode: String = defalutValue
+var address: String = defalutValue
+var city: String = defalutValue
+var state: String = defalutValue
+var zipcode: String = defalutValue
 private var submittime: String = "empty"
- var longitude: String = "0.0"
- var latitude: String = "0.0"
+var longitude: String = "0.0"
+var latitude: String = "0.0"
 
 private var startDate: String = defalutValue
 private var endDate: String = defalutValue
