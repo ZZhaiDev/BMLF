@@ -8,12 +8,15 @@
 
 import UIKit
 import GoogleMaps
-
+import RealmSwift
 /*
  4. wechat nsattributestring
  6. share 到微信
  7. 首次进入app， 正在请求数据， 如果进入后台， 则请求取消， 导致没有数据了
  */
+import RealmSwift
+
+var realmInstance = try! Realm()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

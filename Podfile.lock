@@ -29,6 +29,11 @@ PODS:
   - NVActivityIndicatorView/Presenter (4.6.0)
   - pop (1.0.12)
   - PryntTrimmerView (3.0.0)
+  - Realm (3.15.0):
+    - Realm/Headers (= 3.15.0)
+  - Realm/Headers (3.15.0)
+  - RealmSwift (3.15.0):
+    - Realm (= 3.15.0)
   - SteviaLayout (4.4.4)
   - YPImagePicker (3.5.3):
     - PryntTrimmerView (~> 3.0.0)
@@ -43,6 +48,7 @@ DEPENDENCIES:
   - Kingfisher (~> 5.1.1)
   - NVActivityIndicatorView (= 4.6.0)
   - pop
+  - RealmSwift
   - YPImagePicker (~> 3.5.3)
 
 SPEC REPOS:
@@ -56,6 +62,8 @@ SPEC REPOS:
     - NVActivityIndicatorView
     - pop
     - PryntTrimmerView
+    - Realm
+    - RealmSwift
     - SteviaLayout
     - YPImagePicker
 
@@ -69,9 +77,11 @@ SPEC CHECKSUMS:
   NVActivityIndicatorView: 9c3704896798b042315e2a154dc27e48384756f0
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   PryntTrimmerView: 53ac64053c7ce63cb3e27f54090f52da0734891d
+  Realm: 9b834e1be6062f544805252c812348872dc5d4ed
+  RealmSwift: 8a41886f8ab6efef9eb8df97de2f2bb911561a79
   SteviaLayout: 523469269059f2c6da02820bb2ff28a5fe0780aa
   YPImagePicker: 5dd3814b47b1208e9c8cc8f6ef77fe90db3723b6
 
-PODFILE CHECKSUM: c96da247c527085f1f376c99ab126dcff6bd2305
+PODFILE CHECKSUM: 8a8e746229cdf7454f655d6e17ef089563b2715c
 
-COCOAPODS: 1.6.2
+COCOAPODS: 1.5.3

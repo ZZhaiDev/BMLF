@@ -13,6 +13,7 @@ let baseAPI = "http://api.qubeimei.com/"
 class ZJAptViewModel {
     lazy var aptModel: ZJAddAptModel = ZJAddAptModel()
     lazy var aptProperties: [AddAptProperties] = [AddAptProperties]()
+    lazy var aptRealmModels: [ZJAddAptRealmModel] = [ZJAddAptRealmModel]()
     static let pageSize = 300
 }
 
@@ -36,11 +37,81 @@ extension ZJAptViewModel {
                     guard let properties = feature.properties else {return}
                     self.aptProperties.append(properties)
                 }
+                try! realmInstance.write {
+                    for (index, feature) in features.enumerated() {
+                        guard let properties = feature.properties else {return}
+                        let realmModel = self.modelToRealm(property: properties)
+                        realmModel.id = index
+                        realmInstance.add(realmModel, update: true)
+                    }
+                }
             } catch let jsonError {
                 ZJPrint(jsonError)
             }
             finished(responce as! [String : Any])
         }
+    }
+    
+    fileprivate func modelToRealm(property: AddAptProperties) -> ZJAddAptRealmModel {
+        let realmModel = ZJAddAptRealmModel()
+        realmModel.uuid = property.uuid ?? ""
+        realmModel.category = property.category ?? ""
+        realmModel.fulladdress = property.fulladdress ?? ""
+        realmModel.address = property.address ?? ""
+        realmModel.city = property.city ?? ""
+        realmModel.state = property.state ?? ""
+        realmModel.zipcode = property.zipcode ?? ""
+        realmModel.submittime = property.submittime ?? ""
+        realmModel.longitude = property.longitude ?? ""
+        realmModel.latitude = property.latitude ?? ""
+        if let date = property.date {
+            realmModel.starttime = date.starttime ?? ""
+            realmModel.endtime = date.endtime ?? ""
+        }
+        if let description = property.description {
+            realmModel.title = description.title ?? ""
+            realmModel.descriptions = description.description ?? ""
+        }
+        if let contact = property.contact {
+            realmModel.phonenumber = contact.phonenumber ?? ""
+            realmModel.email = contact.email ?? ""
+            realmModel.wechat = contact.wechat ?? ""
+        }
+        if let base = property.base {
+            realmModel.price = Int(base.price ?? "0")!
+            realmModel.housetype = base.housetype ?? ""
+            realmModel.roomtype = base.roomtype ?? ""
+            realmModel.bathroom = base.bathroom ?? ""
+            realmModel.parkinglot = base.parkinglot ?? ""
+            realmModel.washingmachine = base.washingmachine ?? ""
+            if let nearbys = base.nearby {
+                for nearby in nearbys {
+                    realmModel.nearby.append(nearby.nearby ?? "")
+                }
+            }
+            if let includeds = base.included {
+                for included in includeds {
+                    realmModel.included.append(included.included ?? "")
+                }
+            }
+        }
+        if let requirement = property.requirement {
+            realmModel.leaseperiod = requirement.leaseperiod ?? ""
+            realmModel.gender = requirement.gender ?? ""
+            realmModel.cooking = requirement.cooking ?? ""
+            realmModel.smoking = requirement.smoking ?? ""
+            if let otherrequirements = requirement.otherrequirements {
+                for otherrequirement in otherrequirements {
+                    realmModel.otherrequirements.append(otherrequirement.otherrequirement ?? "")
+                }
+            }
+        }
+        if let images = property.images {
+            for image in images {
+                realmModel.images.append(image.image ?? "")
+            }
+        }
+        return realmModel
     }
     
     func loadAptByUUID(UUID: String, finished: @escaping (AddAptProperties) -> Void) {
