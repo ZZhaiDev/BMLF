@@ -34,6 +34,20 @@ class ZJRentAptListViewCell2: UICollectionViewCell {
             }
         }
     }
+    
+    var realmData = ZJAddAptRealmModel() {
+        didSet {
+            cityLabel.text = realmData.city + ", " + realmData.state
+            titleLabel.text = realmData.title
+            priceLabel.text = "$ \(realmData.price)/m"
+            typeLabel.text = realmData.category
+            if let image = realmData.images.first {
+                imageV.kf.indicatorType = .activity
+                let url = URL(string: image)
+                imageV.kf.setImage(with: url)
+            }
+        }
+    }
 
     static let selfHeight: CGFloat = 245
     @IBOutlet weak var backView: UIView!

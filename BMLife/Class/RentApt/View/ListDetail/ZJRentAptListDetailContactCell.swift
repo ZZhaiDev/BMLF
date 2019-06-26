@@ -43,6 +43,21 @@ class ZJRentAptListDetailContactCell: UICollectionViewCell {
             }
         }
     }
+    
+    var realmData = ZJAddAptRealmModel() {
+        didSet {
+            poster_email = realmData.email
+            emailB.setTitle("  " + emailStr + poster_email + "  ", for: .normal)
+            poster_phone = realmData.phonenumber
+            phoneB.setTitle(callStr + poster_phone, for: .normal)
+            
+            let weChat = realmData.wechat
+            if weChat != defalutValue && weChat != defalutServerValue {
+                poster_wechat = weChat
+                wechatL.text = wechatStr + weChat
+            }
+        }
+    }
 
     lazy var phoneB: UIButton = {
        let button = UIButton()

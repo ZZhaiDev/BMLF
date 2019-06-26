@@ -18,6 +18,13 @@ class ZJRentAptListDetailTitleViewCell: UICollectionViewCell {
             }
         }
     }
+    
+    var realmData: String? {
+        didSet {
+            guard let realmData = realmData else { return }
+            titleLabel.text = realmData
+        }
+    }
 
     fileprivate lazy var titleLabel: UILabel = {
        let lable = UILabel()

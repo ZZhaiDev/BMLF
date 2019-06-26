@@ -7,11 +7,20 @@
 //
 
 import UIKit
+import RealmSwift
+
 private let cellId = "cellId"
 private let cellId2 = "cellId2"
+private var lastContentOffset: CGFloat = -(ZJRentApiListTopSettingView.selfHeight)
 
 class ZJRentAptListView: UIView {
     var data = [AddAptProperties]() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    
+    var realmData: Results<ZJAddAptRealmModel>? {
         didSet {
             collectionView.reloadData()
         }
@@ -47,8 +56,6 @@ class ZJRentAptListView: UIView {
         layout.minimumInteritemSpacing = 10
         layout.minimumLineSpacing = 10
         layout.itemSize = CGSize(width: zjScreenWidth-20, height: ZJRentAptListViewCell2.selfHeight)
-        
-        
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -59,23 +66,37 @@ class ZJRentAptListView: UIView {
 
 extension ZJRentAptListView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        ZJPrint(data.count)
-        return data.count
+//        ZJPrint(data.count)
+//        return data.count
+        return realmData?.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // swiftlint:disable force_cast
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ZJRentAptListViewCell2
-        cell.data = data[indexPath.row]
+//        cell.data = data[indexPath.row]
+        cell.realmData = realmData![indexPath.row]
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let tvc = UIApplication.topViewController() as? ZJRentAptViewController {
             let detailVC = ZJRentAptListDetailViewController()
-            detailVC.data = data[indexPath.row]
+//            detailVC.data = data[indexPath.row]
+            detailVC.realmData = realmData![indexPath.row]
             tvc.navigationController?.pushViewController(detailVC, animated: true)
         }
     }
-
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentY = scrollView.contentOffset.y
+        ZJPrint(currentY)
+        if currentY > lastContentOffset { // scroll up
+            if currentY <= -(ZJRentApiListTopSettingView.selfHeight) { return }
+            self.topSettingView.frame.size.height = ZJRentApiListTopSettingView.selfHeight/2 - 10
+        } else {
+            self.topSettingView.frame.size.height = ZJRentApiListTopSettingView.selfHeight
+        }
+        lastContentOffset = currentY
+    }
 }

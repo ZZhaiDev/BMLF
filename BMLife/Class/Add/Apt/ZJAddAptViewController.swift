@@ -15,6 +15,8 @@ var originalMapViewH: CGFloat = 245
 class ZJAddAptViewController: FormViewController, NVActivityIndicatorViewable {
 
     var isShowedEndDate = false
+    var navigationOptionsBackup : RowNavigationOptions?
+    
     let testButton: UIButton = {
        let button = UIButton()
         button.backgroundColor = .red
@@ -28,12 +30,11 @@ class ZJAddAptViewController: FormViewController, NVActivityIndicatorViewable {
         return 0
     }
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-
         let view = ZJAddAptFooterView()
         return view
     }
 
-    var navigationOptionsBackup : RowNavigationOptions?
+    
     fileprivate lazy var mainView : ZJAddAptMainView = {
         let view = ZJAddAptMainView()
         return view

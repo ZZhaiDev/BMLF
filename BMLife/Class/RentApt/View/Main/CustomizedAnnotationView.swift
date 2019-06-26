@@ -6,6 +6,10 @@ class CustomizedAnnotation: MKPointAnnotation {
         didSet {
         }
     }
+    var realmData = ZJAddAptRealmModel() {
+        didSet {
+        }
+    }
 }
 
 class CustomizedAnnotationView: MKAnnotationView {

@@ -10,14 +10,23 @@ import UIKit
 import Kingfisher
 
 class CalloutViewCell: UICollectionViewCell {
-    var data = AddAptImages() {
+//    var data = AddAptImages() {
+//        didSet {
+//            imageV.kf.indicatorType = .activity
+//            if let image = data.image {
+//                let url = URL(string: image)
+//                imageV.kf.setImage(with: url)
+//            }
+//
+//        }
+//    }
+    
+    var realmData: String? {
         didSet {
+            guard let realmData = realmData else { return }
             imageV.kf.indicatorType = .activity
-            if let image = data.image {
-                let url = URL(string: image)
-                imageV.kf.setImage(with: url)
-            }
-
+            let url = URL(string: realmData)
+            imageV.kf.setImage(with: url)
         }
     }
 
@@ -118,15 +127,13 @@ class CustomCalloutView: UIView {
     @objc fileprivate func phoneBclicked() {
         if let str = phoneB.titleLabel?.text, let phone = str.components(separatedBy: callStr).last, let url = URL(string: "telprompt://\(phone)"), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:]) { (_) in
-
             }
         }
-
     }
     @objc func onTap() {
         if let tvc = UIApplication.topViewController() as? ZJRentAptViewController {
             let detailVC = ZJRentAptListDetailViewController()
-            detailVC.data = data
+            detailVC.realmData = realmData
             tvc.navigationController?.pushViewController(detailVC, animated: true)
         }
     }
@@ -171,6 +178,35 @@ class CustomCalloutView: UIView {
             }
         }
     }
+    
+    var realmData = ZJAddAptRealmModel() {
+        didSet {
+            phoneB.setTitle(callStr + realmData.phonenumber, for: .normal)
+            paddingLable.text = realmData.category
+            typeL.text = realmData.title
+            priceL.text = "Price: $" + String(realmData.price) + " /m"
+            var result = ""
+            for requirement in realmData.otherrequirements {
+                result += (requirement + ", ")
+            }
+            if realmData.leaseperiod != "Both" {
+                result = realmData.leaseperiod + ", " + result
+            }
+            if realmData.cooking != "Normal Cooking" {
+                result = realmData.cooking + ", " + result
+            }
+            if realmData.smoking == "No Smoking" {
+                result = realmData.smoking + ", " + result
+            }
+            if realmData.gender != "Both" {
+                result = realmData.gender + ", " + result
+            }
+            if result.suffix(2) == ", "{
+                result.removeLast(2)
+            }
+            requireL.text = "Requirements: " + result
+        }
+    }
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.isUserInteractionEnabled = true
@@ -213,14 +249,16 @@ class CustomCalloutView: UIView {
 
 extension CustomCalloutView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.images?.count ?? 0
+//        return data.images?.count ?? 0
+        return realmData.images.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // swiftlint:disable force_cast
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CalloutViewCell
-        if let image = data.images?[indexPath.row] {
-            cell.data = image
-        }
+//        if let image = data.images?[indexPath.row] {
+//            cell.data = image
+//        }
+        cell.realmData = realmData.images[indexPath.row]
         return cell
     }
 }

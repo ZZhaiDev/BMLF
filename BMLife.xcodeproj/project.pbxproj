@@ -28,6 +28,7 @@
 		38476142229649A000084946 /* CityBoundaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38476141229649A000084946 /* CityBoundaryViewModel.swift */; };
 		38476144229649CD00084946 /* CityBoundaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38476143229649CD00084946 /* CityBoundaryModel.swift */; };
 		38536EE822938C1700A555AC /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38536EE722938C1700A555AC /* APIs.swift */; };
+		386F9A9E22C31168002E23DD /* ZJAddAptRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386F9A9D22C31168002E23DD /* ZJAddAptRealmModel.swift */; };
 		3883511122A3159000E00A93 /* CustomizedAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3883511022A3159000E00A93 /* CustomizedAnnotationView.swift */; };
 		38C5146D2294C88B00953286 /* ZJRentAptListDetailBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C5146C2294C88B00953286 /* ZJRentAptListDetailBaseCell.swift */; };
 		38C5146F2294E2C800953286 /* ZJRentAptListDetailRequirementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C5146E2294E2C800953286 /* ZJRentAptListDetailRequirementCell.swift */; };
@@ -47,6 +48,7 @@
 		A438F0F322959ED300327754 /* NetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = A438F0F222959ED300327754 /* NetworkTools.swift */; };
 		A43A95D5229DD04F006E7901 /* MyCustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43A95D3229DD04F006E7901 /* MyCustomUIView.swift */; };
 		A454C99322BD4ED500C3D073 /* ZJRentApiListTopSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454C99222BD4ED500C3D073 /* ZJRentApiListTopSettingView.swift */; };
+		A454C99822C3CF1600C3D073 /* SquareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454C99722C3CF1600C3D073 /* SquareView.swift */; };
 		A454DA67229468DA006EED07 /* ZJRentAptListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454DA66229468DA006EED07 /* ZJRentAptListDetailViewController.swift */; };
 		A454DA7722947899006EED07 /* CycleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454DA7322947899006EED07 /* CycleCell.xib */; };
 		A454DA7822947899006EED07 /* RecommendCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454DA7422947899006EED07 /* RecommendCycleView.swift */; };
@@ -116,6 +118,7 @@
 		38476141229649A000084946 /* CityBoundaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityBoundaryViewModel.swift; sourceTree = "<group>"; };
 		38476143229649CD00084946 /* CityBoundaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityBoundaryModel.swift; sourceTree = "<group>"; };
 		38536EE722938C1700A555AC /* APIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIs.swift; sourceTree = "<group>"; };
+		386F9A9D22C31168002E23DD /* ZJAddAptRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJAddAptRealmModel.swift; sourceTree = "<group>"; };
 		3883511022A3159000E00A93 /* CustomizedAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizedAnnotationView.swift; sourceTree = "<group>"; };
 		38C5146C2294C88B00953286 /* ZJRentAptListDetailBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListDetailBaseCell.swift; sourceTree = "<group>"; };
 		38C5146E2294E2C800953286 /* ZJRentAptListDetailRequirementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListDetailRequirementCell.swift; sourceTree = "<group>"; };
@@ -143,6 +146,7 @@
 		A438F0F222959ED300327754 /* NetworkTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTools.swift; sourceTree = "<group>"; };
 		A43A95D3229DD04F006E7901 /* MyCustomUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomUIView.swift; sourceTree = "<group>"; };
 		A454C99222BD4ED500C3D073 /* ZJRentApiListTopSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentApiListTopSettingView.swift; sourceTree = "<group>"; };
+		A454C99722C3CF1600C3D073 /* SquareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareView.swift; sourceTree = "<group>"; };
 		A454DA66229468DA006EED07 /* ZJRentAptListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJRentAptListDetailViewController.swift; sourceTree = "<group>"; };
 		A454DA7322947899006EED07 /* CycleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CycleCell.xib; sourceTree = "<group>"; };
 		A454DA7422947899006EED07 /* RecommendCycleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendCycleView.swift; sourceTree = "<group>"; };
@@ -283,6 +287,8 @@
 		3847613F2296493D00084946 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A4A32C59229F191D002EC50E /* ZJAddAptModel.swift */,
+				386F9A9D22C31168002E23DD /* ZJAddAptRealmModel.swift */,
 				38476143229649CD00084946 /* CityBoundaryModel.swift */,
 				A4F460EB22A84D4000A0831E /* CrimeModel.swift */,
 				A4F460F822AEF35700A0831E /* ZipcodeAndCrimeModel.swift */,
@@ -308,6 +314,7 @@
 				A438F0F222959ED300327754 /* NetworkTools.swift */,
 				38C514712294EADD00953286 /* YNCategoryButton.swift */,
 				A41CFD6D228E13B60008FFB6 /* Helper.swift */,
+				A454C99722C3CF1600C3D073 /* SquareView.swift */,
 			);
 			path = Utiles;
 			sourceTree = "<group>";
@@ -433,7 +440,6 @@
 		A4A12EE0228F648D00D281BE /* Apt */ = {
 			isa = PBXGroup;
 			children = (
-				A4A32C59229F191D002EC50E /* ZJAddAptModel.swift */,
 				A41CFD6B228DFCCA0008FFB6 /* ZJAddAptViewController.swift */,
 				381BE98A22A0D228003BC27C /* ZJAddAptViewControllerLayout.swift */,
 				3845EDB9229097A80045A694 /* ZJAddAptHeaderView.swift */,
@@ -598,13 +604,15 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BMLife/Pods-BMLife-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-BMLife/Pods-BMLife-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/PryntTrimmerView/PryntTrimmerView.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SteviaLayout/Stevia.framework",
 				"${BUILT_PRODUCTS_DIR}/YPImagePicker/YPImagePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
@@ -619,13 +627,15 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PryntTrimmerView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stevia.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YPImagePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BMLife/Pods-BMLife-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BMLife/Pods-BMLife-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A4F460F522AECD1000A0831E /* ShellScript */ = {
@@ -653,7 +663,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BMLife/Pods-BMLife-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-BMLife/Pods-BMLife-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
@@ -666,7 +676,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BMLife/Pods-BMLife-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BMLife/Pods-BMLife-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FB76C125D3930B7A8147DE76 /* [CP] Check Pods Manifest.lock */ = {
@@ -729,6 +739,7 @@
 				A41CFD6E228E13B60008FFB6 /* Helper.swift in Sources */,
 				A438F0F322959ED300327754 /* NetworkTools.swift in Sources */,
 				A4B2DAEC2298764E003E1254 /* InfoContentCell.swift in Sources */,
+				386F9A9E22C31168002E23DD /* ZJAddAptRealmModel.swift in Sources */,
 				A4F460F922AEF35700A0831E /* ZipcodeAndCrimeModel.swift in Sources */,
 				A4F460EA22A82ED800A0831E /* StreetViewController.swift in Sources */,
 				3800F047228E389B00095A2F /* ZJBaseViewController.swift in Sources */,
@@ -740,6 +751,7 @@
 				38476135229636D500084946 /* MineHead.swift in Sources */,
 				A4F460E422A701F000A0831E /* ZJRentAptFilterViewController.swift in Sources */,
 				38476142229649A000084946 /* CityBoundaryViewModel.swift in Sources */,
+				A454C99822C3CF1600C3D073 /* SquareView.swift in Sources */,
 				3800F058228E52B700095A2F /* PublishView.swift in Sources */,
 				A4F460E622A8183C00A0831E /* ZJRentAptFilterHotView.swift in Sources */,
 				381013CB22ACBB1400967CFC /* ZJRentAptListViewCell2.swift in Sources */,

@@ -94,6 +94,69 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
             }
         }
     }
+    
+    var realmData = ZJAddAptRealmModel() {
+        didSet {
+            var images = [String]()
+            for image in realmData.images {
+                images.append(image)
+            }
+            cycleView.realmData = images
+            
+            baseValue.append(realmData.fulladdress)
+            let price = "$" + String(realmData.price) + " /month"
+            baseValue.append(price)
+            baseValue.append(realmData.category)
+            baseValue.append(realmData.housetype)
+            baseValue.append(realmData.roomtype)
+            let bathroom = (realmData.bathroom) + " Bathroom"
+            baseValue.append(bathroom)
+            baseValue.append(realmData.parkinglot)
+            baseValue.append(realmData.washingmachine)
+            
+            for requirement in realmData.otherrequirements {
+                requirementTitles.append(requirement)
+            }
+            if realmData.leaseperiod != "Both" {
+                requirementTitles.insert(realmData.leaseperiod, at: 0)
+            }
+            if realmData.cooking != "Normal Cooking" {
+                requirementTitles.insert(realmData.cooking, at: 0)
+            }
+            if realmData.smoking == "No Smoking" {
+                requirementTitles.insert(realmData.smoking, at: 0)
+            }
+            if realmData.gender != "Both" {
+                requirementTitles.insert(realmData.gender, at: 0)
+            }
+            for include in realmData.included {
+                includeTitles.append(include)
+            }
+            for nearby in realmData.nearby {
+                closeTitles.append(nearby)
+            }
+            baseValue.append(realmData.starttime)
+            descriptionVaule = realmData.descriptions
+            
+            getDrivingDistanceAndTime { (distance, time, error) in
+                if error != nil {
+                    self.collectionView.reloadData()
+                    return
+                }
+                guard let distance = distance, let time = time else {
+                    self.collectionView.reloadData()
+                    return
+                }
+                self.basekey.append("Distance")
+                self.basekey.append("Driving Time")
+                let distanteValue = "\(distance) miles"
+                let timeValue = "\(time) minutes"
+                self.baseValue.append(distanteValue)
+                self.baseValue.append(timeValue)
+                self.collectionView.reloadData()
+            }
+        }
+    }
 
     var descriptionVaule = defalutValue
     var requiredmentCellHeight: CGFloat = 100
@@ -166,8 +229,8 @@ class ZJRentAptListDetailViewController: ZJBaseViewController {
 
     fileprivate func getDrivingDistanceAndTime(finished: @escaping (_ distance: String?,_ time: String?, _ error: Error?)->Void) {
         guard let userCoordinate = userCurrentCoordinate else {return}
-        guard let lat = Double(data.latitude!) else {return}
-        guard let lon = Double(data.longitude!) else {return}
+        guard let lat = Double(realmData.latitude) else {return}
+        guard let lon = Double(realmData.longitude) else {return}
         let request         = MKDirections.Request()
         let sourceP         = CLLocationCoordinate2DMake(userCoordinate.latitude, userCoordinate.longitude)
         let destP           = CLLocationCoordinate2DMake(lat, lon)
@@ -258,14 +321,12 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
         case 0:
             // swiftlint:disable: force_cast
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: titleCellId, for: indexPath) as! ZJRentAptListDetailTitleViewCell
-            cell.data = data
+            cell.realmData = realmData.title
             return cell
         case 1:
             // swiftlint:disable: force_cast
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cateCellId, for: indexPath) as! ZJRentAptListDetailCatrgoriesCell
-            if let lon = data.longitude, let lati = data.latitude {
-                cell.coordinate = CLLocationCoordinate2D(latitude: Double(lati)!, longitude: Double(lon)!)
-            }
+            cell.coordinate = CLLocationCoordinate2D(latitude: Double(realmData.latitude)!, longitude: Double(realmData.longitude)!)
             return cell
         case 2:
             // swiftlint:disable: force_cast
@@ -296,12 +357,12 @@ extension ZJRentAptListDetailViewController: UICollectionViewDataSource, UIColle
             }
             // swiftlint:disable: force_cast
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: descriptionCellId, for: indexPath) as! ZJRentAptListDetailDescriptionCell
-            cell.data = descriptionVaule
+            cell.realmData = descriptionVaule
             return cell
         case 7:
             // swiftlint:disable: force_cast
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: contactCellId, for: indexPath) as! ZJRentAptListDetailContactCell
-            cell.data = data.contact
+            cell.realmData = realmData
             return cell
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)

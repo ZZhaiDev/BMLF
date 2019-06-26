@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import NVActivityIndicatorView
+import RealmSwift
 
 var userCurrentCoordinate: CLLocationCoordinate2D?
 
@@ -36,6 +37,21 @@ class ZJRentAptMapView: UIView {
                         self.mapsView.addAnnotation(annotation)
                         ZJPrint(self.mapsView.annotations.count)
                     }
+                }
+            }
+        }
+    }
+    
+    var realmData: Results<ZJAddAptRealmModel>? {
+        didSet {
+            guard let realmData = realmData else { return }
+            for realm in realmData {
+                let annotation = CustomizedAnnotation()
+                annotation.realmData = realm
+                annotation.coordinate = CLLocationCoordinate2D(latitude: Double(realm.latitude)!, longitude: Double(realm.longitude)!)
+                DispatchQueue.main.async {
+                    self.mapsView.addAnnotation(annotation)
+                    ZJPrint(self.mapsView.annotations.count)
                 }
             }
         }
@@ -241,7 +257,8 @@ extension ZJRentAptMapView: MKMapViewDelegate {
         // swiftlint:disable force_cast
         let starbucksAnnotation = view.annotation as! CustomizedAnnotation
         let calloutView = CustomCalloutView(frame: CGRect(x: 0, y: 0, width: zjScreenWidth*0.6, height: zjScreenHeight*0.5))
-        calloutView.data = starbucksAnnotation.data
+//        calloutView.data = starbucksAnnotation.data
+        calloutView.realmData = starbucksAnnotation.realmData
         calloutView.center = CGPoint(x: view.bounds.size.width / 2, y: -calloutView.bounds.size.height*0.52)
         view.addSubview(calloutView)
         guard let tempCoordinate = view.annotation?.coordinate else {return}
@@ -295,7 +312,6 @@ extension ZJRentAptMapView: CLLocationManagerDelegate {
                 }
             }
         }
-
         manager.stopUpdatingLocation()
         manager.delegate = nil
     }

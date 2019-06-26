@@ -14,5 +14,6 @@ pod 'AFNetworking'
 pod 'NVActivityIndicatorView', '4.6.0'
 pod 'GoogleMaps'
 pod 'GooglePlaces'
+pod 'RealmSwift'
 
 end
