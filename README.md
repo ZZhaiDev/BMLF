@@ -39,4 +39,5 @@ But, the first release version will only contain house renting. We plan to relea
   <img width="139" height="301" src="https://github.com/zijiazhai/BMLF/blob/master/github_photos/5.png">
   <img width="139" height="301" src="https://github.com/zijiazhai/BMLF/blob/master/github_photos/6.png">
   <img width="139" height="301" src="https://github.com/zijiazhai/BMLF/blob/master/github_photos/7.png">
+  <img width="139" height="301" src="https://github.com/zijiazhai/BMLF/blob/master/github_photos/8.png">
 </p>
