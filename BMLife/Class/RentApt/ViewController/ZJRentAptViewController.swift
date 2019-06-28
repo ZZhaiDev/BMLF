@@ -20,7 +20,11 @@ class ZJRentAptViewController: ZJBaseViewController, NVActivityIndicatorViewable
     // swiftlint:disable identifier_name
     fileprivate var changeRightBarButtonItem_list = UIBarButtonItem()
     var totalDatas = [AddAptProperties]()
-    var realmResult: Results<ZJAddAptRealmModel>?
+    var realmResult: Results<ZJAddAptRealmModel>? {
+        didSet {
+            listView.topSettingView.resetReaultRealm()
+        }
+    }
     var aptViewModel = ZJAptViewModel()
     lazy var cityBoundaryViewModel = CityBoundaryViewModel()
     fileprivate var stackView = UIStackView()
@@ -111,34 +115,40 @@ class ZJRentAptViewController: ZJBaseViewController, NVActivityIndicatorViewable
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+        startAnimating(CGSize(width: 30, height: 30), message: "Loading Data...", fadeInAnimation: nil)
+        self.realmResult = realmInstance.objects(ZJAddAptRealmModel.self).sorted(byKeyPath: "id")
+        if !self.realmResult!.isEmpty {
+            self.feedDataToListAndMapView()
+        } else {
+            loadNewData {
+            }
+        }
+    }
+    
+    func loadNewData(finished: @escaping (() -> ())) {
         aptViewModel.loadApt { (_) in
-            ZJPrint(self.aptViewModel.aptModel.count!)
-//            self.feedDataToListAndMapView()
             let count: Int = ZJAptViewModel.pageSize
             let pageCount = (self.aptViewModel.aptModel.count!+count/2)/count
             let dGroup = DispatchGroup()
             for index in 2...pageCount {
                 dGroup.enter()
                 self.aptViewModel.loadApt(page: index, pageSize: count, finished: { (_) in
-//                    self.feedDataToListAndMapView()
                     if index == pageCount {
+                        finished()
                         self.realmResult = realmInstance.objects(ZJAddAptRealmModel.self).sorted(byKeyPath: "id")
-                        ZJPrint(self.realmResult?.count)
                         self.feedDataToListAndMapView()
                     }
                     dGroup.leave()
                 })
             }
         }
-        setupUI()
     }
     
     func feedDataToListAndMapView() {
-//        self.listView.data = self.aptViewModel.aptProperties
         self.listView.realmData = self.realmResult
         self.mapView.realmData = self.realmResult
-//        self.mapView.data = self.aptViewModel.aptProperties
-//        self.totalDatas += self.aptViewModel.aptProperties
+        self.stopAnimating()
     }
 
     deinit {
