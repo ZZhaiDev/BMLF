@@ -56,7 +56,23 @@ class ZJRentAptListView: UIView {
         layout.minimumInteritemSpacing = 10
         layout.minimumLineSpacing = 10
         layout.itemSize = CGSize(width: zjScreenWidth-20, height: ZJRentAptListViewCell2.selfHeight)
+        
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
+        collectionView.addSubview(refreshControl)
     }
+    var refreshControl = UIRefreshControl()
+    
+    @objc func refresh(sender:AnyObject) {
+        guard let topVC = UIApplication.topViewController() as? ZJRentAptViewController else { return }
+        topVC.loadNewData {
+            self.refreshControl.endRefreshing()
+        }
+        
+        
+    }
+    
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
