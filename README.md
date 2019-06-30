@@ -8,7 +8,6 @@ The purpose of this project is to enrich the lives of Chinese people, and making
 
 This project will mainly include four parts: House&Apartment renting, School&City activities, Eat Drink Have Fun, and Immigration information.
 
-But, the first release version will only contain house renting. We plan to release the first version before 20 Jun.
 
 ## Releases
 * V1.0 Released at 06/19/2019
