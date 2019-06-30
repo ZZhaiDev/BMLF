@@ -8,7 +8,6 @@ The purpose of this project is to enrich the lives of Chinese people, and making
 
 This project will mainly include four parts: House&Apartment renting, School&City activities, Eat Drink Have Fun, and Immigration information.
 
-But, the first release version will only contain house renting. We plan to release the first version before 20 Jun.
 
 ## Releases
 * V1.0 Released at 06/19/2019
@@ -35,7 +34,6 @@ But, the first release version will only contain house renting. We plan to relea
   <img width="139" height="301" src="https://github.com/zijiazhai/BMLF/blob/master/github_photos/2.png">
   <img width="139" height="301" src="https://github.com/zijiazhai/BMLF/blob/master/github_photos/3.png">
   <img width="139" height="301" src="https://github.com/zijiazhai/BMLF/blob/master/github_photos/4.png">
-  <img width="139" height="301" src="https://github.com/zijiazhai/BMLF/blob/master/github_photos/9.png">
   <img width="139" height="301" src="https://github.com/zijiazhai/BMLF/blob/master/github_photos/5.png">
   <img width="139" height="301" src="https://github.com/zijiazhai/BMLF/blob/master/github_photos/6.png">
   <img width="139" height="301" src="https://github.com/zijiazhai/BMLF/blob/master/github_photos/7.png">
