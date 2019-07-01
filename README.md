@@ -14,7 +14,7 @@ This project will mainly include four parts: House&Apartment renting, School&Cit
 
 ## Features
 * The landlord can publish house information and house photos.
-* User can search house information by location, price, etc.
+* User can search house information by location, price, gender, washer, room type and etc.
 * User can draw an area on the map, and house information and crime information in this area will be shown.
 * User can look around in Street View by draging fingers on the screen or tap the compass.
 * User can get driving distance and driving time from house location to their location. 
