@@ -51,7 +51,7 @@ class ZJRentAptMapView: UIView {
                 annotation.coordinate = CLLocationCoordinate2D(latitude: Double(realm.latitude)!, longitude: Double(realm.longitude)!)
                 DispatchQueue.main.async {
                     self.mapsView.addAnnotation(annotation)
-                    ZJPrint(self.mapsView.annotations.count)
+//                    ZJPrint(self.mapsView.annotations.count)
                 }
             }
         }

@@ -16,4 +16,7 @@ pod 'GoogleMaps'
 pod 'GooglePlaces'
 pod 'RealmSwift'
 
+
+pod 'FacebookLogin'
+
 end

@@ -16,6 +16,20 @@ PODS:
     - AFNetworking/NSURLSession
   - Alamofire (5.0.0.beta.1)
   - Eureka (4.3.1)
+  - FacebookCore (0.7.0):
+    - FBSDKCoreKit (~> 5.0)
+  - FacebookLogin (0.7.0):
+    - FacebookCore (~> 0.7)
+    - FBSDKCoreKit (~> 5.0)
+    - FBSDKLoginKit (~> 5.0)
+  - FBSDKCoreKit (5.0.0):
+    - FBSDKCoreKit/Basics (= 5.0.0)
+    - FBSDKCoreKit/Core (= 5.0.0)
+  - FBSDKCoreKit/Basics (5.0.0)
+  - FBSDKCoreKit/Core (5.0.0):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (5.0.0):
+    - FBSDKCoreKit (= 5.0.0)
   - GoogleMaps (3.1.0):
     - GoogleMaps/Maps (= 3.1.0)
   - GoogleMaps/Base (3.1.0)
@@ -43,6 +57,7 @@ DEPENDENCIES:
   - AFNetworking
   - Alamofire (= 5.0.0.beta.1)
   - Eureka
+  - FacebookLogin
   - GoogleMaps
   - GooglePlaces
   - Kingfisher (~> 5.1.1)
@@ -56,6 +71,10 @@ SPEC REPOS:
     - AFNetworking
     - Alamofire
     - Eureka
+    - FacebookCore
+    - FacebookLogin
+    - FBSDKCoreKit
+    - FBSDKLoginKit
     - GoogleMaps
     - GooglePlaces
     - Kingfisher
@@ -71,6 +90,10 @@ SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   Alamofire: 2ef6d6c984c5d21c366e9b41a9ae7dfee2b67a44
   Eureka: 28ea296f06710f6745266b71f17862048941a32d
+  FacebookCore: 4eee98476cb37a485af5d337eb21f8cd5b3c7e6c
+  FacebookLogin: 94cdad6850e86a2b04704dedfe7674a7af8148eb
+  FBSDKCoreKit: ba361d4a9d4dc29ff218822b849b22d4f869c7bb
+  FBSDKLoginKit: c6d0dc187bd076e370dffa10f7fc8a3562a6892c
   GoogleMaps: 5c13302e6fe6bb6e686b267196586b91cd594225
   GooglePlaces: e874db179f2675c4f3eeda0b686b540273a578b0
   Kingfisher: 2558186963e5be42d98c5b110ccb3130148b77e4
@@ -82,6 +105,6 @@ SPEC CHECKSUMS:
   SteviaLayout: 523469269059f2c6da02820bb2ff28a5fe0780aa
   YPImagePicker: 5dd3814b47b1208e9c8cc8f6ef77fe90db3723b6
 
-PODFILE CHECKSUM: 8a8e746229cdf7454f655d6e17ef089563b2715c
+PODFILE CHECKSUM: aac7e6c43e0b975ae1da74434ace314fe95a3b7c
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.2

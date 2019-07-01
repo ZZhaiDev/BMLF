@@ -11,6 +11,8 @@ import MapKit
 import AFNetworking
 import NVActivityIndicatorView
 import RealmSwift
+import FBSDKLoginKit
+import FBSDKCoreKit
 
 
 
@@ -112,9 +114,27 @@ class ZJRentAptViewController: ZJBaseViewController, NVActivityIndicatorViewable
         view.isHidden = true
         return view
     }()
+    
+    override func loadView() {
+        super.loadView()
+        if let token = AccessToken.current {
+            let params = ["fields": "email, first_name, last_name, picture"]
+            GraphRequest(graphPath: "me", parameters: params).start(completionHandler: { connection, result, error in
+                ZJPrint(error)
+                ZJPrint(result)
+            })
+        } else {
+            self.present(ZJLoginController(), animated: true) {
+                
+            }
+        }
+        
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupUI()
         startAnimating(CGSize(width: 30, height: 30), message: "Loading Data...", fadeInAnimation: nil)
         self.realmResult = realmInstance.objects(ZJAddAptRealmModel.self).sorted(byKeyPath: "id")
