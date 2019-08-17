@@ -8,9 +8,13 @@ The purpose of this project is to enrich the lives of Chinese people, and making
 
 This project will mainly include four parts: House&Apartment renting, School&City activities, Eat Drink Have Fun, and Immigration information.
 
-
 ## Releases
+* Search BMLife in Apple Store
 * V1.0 Released at 06/19/2019
+
+## Backend
+* Check [BMLife Backend](
+https://github.com/uczhou/bmlife_backend) to see more details.
 
 ## Features
 * The landlord can publish house information and house photos.
